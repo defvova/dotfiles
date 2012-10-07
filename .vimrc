@@ -45,6 +45,9 @@ nnoremap <silent> <C-b> :BufExplorer<CR>
 :vnoremap <A-down> :m'>+<CR>gv=gv
 :vnoremap <A-up> :m-2<CR>gv=gv
 
+" Sort css style
+:nmap <F3> :g#\({\n\)\@<=#.,/}/sort<CR>
+
 " Rgrep
 :map <C-f> :Rgrep<cr>
 :let Grep_Default_Filelist = '*.*'
@@ -77,9 +80,10 @@ let g:syntastic_warning_symbol='⚠'
 
 "CtrlP plugin
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_user_command = 'find %s -type f'
 let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_extensions = ['sample']
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " ignore
   " style Ctrlp
   hi CtrlPMode1 guifg=blue guibg=green
