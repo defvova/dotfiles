@@ -18,7 +18,9 @@ set list
 set listchars=trail:•
 set ignorecase
 set nocompatible
+set shellslash
 filetype indent on                " Turn on file type detection.
+filetype plugin on
 syntax enable
 
 autocmd BufWritePre *.* :%s/\s\+$//e
@@ -77,6 +79,9 @@ let g:syntastic_warning_symbol='⚠'
 
 " Nerdtree plugin
 :map <F2> :NERDTreeToggle<cr>
+
+" temp shorcuts
+:map <F4> :!touch tmp/restart.txt<cr><cr>
 
 "CtrlP plugin
 let g:ctrlp_map = '<c-p>'
