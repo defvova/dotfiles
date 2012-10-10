@@ -1,10 +1,10 @@
 #Rails
 # teg <%= %>
 snippet =
-	<%= %>
+	<%= ${1} %>
 # teg <% %>
 snippet -
-	<% %>
+	<% ${1} %>
 # link_to
 snippet link
 	<%= link_to ${1:name}, ${2:url} %>
