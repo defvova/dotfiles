@@ -124,7 +124,9 @@
 " Nerdtree plugin {
   :map <F2> :NERDTreeToggle<cr>
   :map <leader>e :NERDTreeFind<CR>
-
+  " Don't show pyc files {
+    :let NERDTreeIgnore=['\.pys$']
+  " }
   :let NERDTreeShowBookmarks=1
   :let NERDTreeChDirMode=0
   :let NERDTreeQuitOnOpen=1
