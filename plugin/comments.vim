@@ -1,13 +1,13 @@
 " *********************************************************************************************
-" comments.vim  
+" comments.vim
 " *********************************************************************************************
-" Description : Global Plugin to comment and un-comment different 
+" Description : Global Plugin to comment and un-comment different
 "               source files in both normal and visual <Shift-V> mode
 " Last Change : 26th April, 2006
 " Created By  : Jasmeet Singh Anand <jasanand@hotmail.com>
 " Version     : 2.2
 " Usage       : For VIM 6 -
-"               Stick this file in your ~/.vim/plugin directory or 
+"               Stick this file in your ~/.vim/plugin directory or
 "               in some other 'plugin' directory that is in your runtime path
 "               For VIM 5 -
 "               Stick this file somewhere and 'source <path>/comments.vim' it from
@@ -20,13 +20,13 @@
 " *********************************************************************************************
  "Modification:
 " *********************************************************************************************
-" Jasmeet Anand  26th April, 2006 v2.0 
+" Jasmeet Anand  26th April, 2006 v2.0
 " Fixed C commenting where a single line already had previous comments.
 " int x=0; /*this is an x value*/
 " Still working on situations like
 " Issue A:
 " 1 int x=0; /*this
-" 2           is 
+" 2           is
 " 3           an
 " 4           x
 " 5           value*/
@@ -37,14 +37,14 @@
 " Jasmeet Anand  27th April, 2006 v2.2
 " Fixed another minor C code commenting bug
 " Provided for .csh, .php, .php2 and .php3 support
-" Resolved Issue A with the following logic 
+" Resolved Issue A with the following logic
 " 1 /* int x=0; */ /*this*/
-" 2           /*is*/ 
+" 2           /*is*/
 " 3           /*an*/
 " 4           /*x*/
 " 5           /*value*/
 " However care should be taken when un-commenting it
-" in order to retain the previous comments  
+" in order to retain the previous comments
 " *********************************************************************************************
 " Jasmeet Anand  1st May 2006 v2.3
 " Provided [:blank:] to accomodate for space and tab characters
@@ -93,9 +93,9 @@ endif
 let loaded_comments_plugin="v2.10"
 
 " key-mappings for comment line in normal mode
-noremap  <silent> <C-C> :call CommentLine()<CR>
+noremap  <silent> <C-Z> :call CommentLine()<CR>
 " key-mappings for range comment lines in visual <Shift-V> mode
-vnoremap <silent> <C-C> :call RangeCommentLine()<CR>
+vnoremap <silent> <C-Z> :call RangeCommentLine()<CR>
 
 " key-mappings for un-comment line in normal mode
 noremap  <silent> <C-X> :call UnCommentLine()<CR>
@@ -130,7 +130,7 @@ function! CommentLine()
       execute ":silent! normal ^i(*\<ESC>$a*)\<ESC>==\<down>^"
     endif
     " .html,.xml,.xthml,.htm
-  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$' 
+  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$'
     if stridx( getline("."), "\<!--" ) != -1 && stridx( getline("."), "--\>" ) != -1
     elseif stridx( getline("."), "\<!--" ) != -1 && stridx( getline("."), "--\>" ) == -1
         "  open, but a close "
@@ -152,19 +152,19 @@ function! CommentLine()
   " for .tex files use %
   elseif file_name =~ '\.tex$' || file_name =~ '\.nw$'
     execute ":silent! normal ^i%\<ESC>\<down>^"
-  " for fortran 77 files use C on first column 
+  " for fortran 77 files use C on first column
   elseif file_name =~ '\.f$' || file_name =~ '\.F$'
     execute ":silent! normal ^gIC\<ESC>\<down>^"
   " for fortran 90/95 files use !
   elseif file_name =~ '\.f90$' || file_name =~ '\.F90$' || file_name =~ '\.f95$' || file_name =~ '\.F95$'
     execute ":silent! normal ^i!\<ESC>\<down>^"
-  " for VHDL and Haskell files use -- 
+  " for VHDL and Haskell files use --
   elseif file_name =~ '\.vhd$' || file_name =~ '\.vhdl$' || file_name =~ '\.hs$'
     execute ":silent! normal ^gI-- \<ESC>\<down>^"
   " for Haml files use -#
   elseif file_name =~ '\.haml'
     execute ":silent! normal ^i-#\<ESC>\<down>^"
-  " for all other files use # 
+  " for all other files use #
   else
     execute ":silent! normal ^i#\<ESC>\<down>^"
   endif
@@ -194,13 +194,13 @@ function! UnCommentLine()
   elseif file_name =~ '\.[kc]\?sh$' || file_name =~ '\.pl$' || file_name =~ '\.pm$'
     execute ":silent! normal :nohlsearch\<CR>:s/\\#//\<CR>:nohlsearch\<CR>"
   " for .xml .html .xhtml .htm use <!-- -->
-  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$' 
+  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$'
     execute ":silent! normal :nohlsearch\<CR>:s/<!--//\<CR>=="
     execute ":silent! normal :nohlsearch\<CR>:s/-->//\<CR>=="
   " for .tex use %
   elseif file_name =~ '\.tex$' || file_name =~ '\.nw$'
     execute ":silent! normal :nohlsearch\<CR>:s/%/\<CR>:nohlsearch\<CR>"
-  " for fortran 77 files use C on first column 
+  " for fortran 77 files use C on first column
   elseif file_name =~ '\.f$' || file_name =~ '\.F$'
     execute ":silent! normal ^x\<ESC>\<down>^"
   " for fortran 90/95 files use !
@@ -212,7 +212,7 @@ function! UnCommentLine()
   " for Haml files use -#
   elseif file_name =~ '\.haml'
     execute ":silent! normal :nohlsearch\<CR>:s/\\-#//\<CR>:nohlsearch\<CR>"
-  " for all other files use # 
+  " for all other files use #
   else
     execute ":silent! normal :nohlsearch\<CR>:s/\\#//\<CR>:nohlsearch\<CR>"
   endif
@@ -241,7 +241,7 @@ function! RangeCommentLine()
       execute ":silent! normal :s/\\(\\S.*$\\)/\\/\\*\\1\\*\\//\<CR>:nohlsearch\<CR>=="
     endif
   " .html,.xml,.xthml,.htm
-  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$' 
+  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$'
     if stridx( getline("."), "\<!--" ) != -1 && stridx( getline("."), "--\>" ) != -1
     elseif stridx( getline("."), "\<!--" ) != -1 && stridx( getline("."), "--\>" ) == -1
         "  open, but a close "
@@ -268,7 +268,7 @@ function! RangeCommentLine()
   " for .tex use %
   elseif file_name =~ '\.tex$' || file_name =~ '\.nw$'
     execute ":silent! normal :s/\\S/\\%\\0/\<CR>:nohlsearch<CR>"
-  " for fortran 77 files use C on first column 
+  " for fortran 77 files use C on first column
   elseif file_name =~ '\.f$' || file_name =~ '\.F$'
     execute ":silent! normal ^gIC\<ESC>\<down>^"
   " for fortran 90/95 files use !
@@ -280,7 +280,7 @@ function! RangeCommentLine()
   " for Haml files use -#
   elseif file_name =~ '\.haml'
     execute ":silent! normal :s/\\S/\\-#\\0/\<CR>:nohlsearch<CR>"
-  " for all other files use #  
+  " for all other files use #
   else
     execute ":silent! normal :s/\\S/\\#\\0/\<CR>:nohlsearch<CR>"
   endif
@@ -296,10 +296,10 @@ function! RangeUnCommentLine()
   " for .c or .h or .pc or .css files use /* */
   elseif file_name =~ '\.c$' || file_name =~ '\.h$' || file_name =~ '\.pc$' || file_name =~ '\.css$' || file_name =~ '\.js$' || file_name =~ '\.scss'
     execute ":silent! normal :nohlsearch\<CR>:s/\\/\\*//\<CR>:s/\\*\\///\<CR>:nohlsearch\<CR>=="
-  " for .vim files use " 
+  " for .vim files use "
   elseif file_name =~ '\.vim$' || file_name =~ '\.vimrc$'
     execute ":silent! normal :s/\\\"//\<CR>:nohlsearch\<CR>"
-  " for .sql files use -- 
+  " for .sql files use --
   elseif file_name =~ '\.sql$'
     execute ":silent! normal :s/\\-\\-//\<CR>:nohlsearch\<CR>"
   " for .ml .mli
@@ -307,7 +307,7 @@ function! RangeUnCommentLine()
     execute ":silent! normal :nohlsearch\<CR>:s/(\\*//\<CR>=="
     execute ":silent! normal :nohlsearch\<CR>:s/\\*)//\<CR>=="
   " for .xml .html .xhtml .htm use <!-- -->
-  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$' 
+  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$'
     execute ":silent! normal :nohlsearch\<CR>:s/<!--//\<CR>=="
     execute ":silent! normal :nohlsearch\<CR>:s/-->//\<CR>=="
   elseif file_name =~ '\.[kc]\?sh$' || file_name =~ '\.pl$' || file_name =~ '\.pm$'
@@ -315,7 +315,7 @@ function! RangeUnCommentLine()
   " for .tex use %
   elseif file_name =~ '\.tex$' || file_name =~ '\.nw$'
     execute ":silent! normal :s/%/\<CR>:nohlsearch\<CR>"
-  " for fortran 77 files use C on first column 
+  " for fortran 77 files use C on first column
   elseif file_name =~ '\.f$' || file_name =~ '\.F$'
     execute ":silent! normal ^x\<ESC>\<down>^"
   " for fortran 90/95 files use !
@@ -327,7 +327,7 @@ function! RangeUnCommentLine()
   " for Haml files use --
   elseif file_name =~ '\.haml'
     execute ":silent! normal :s/\\-#//\<CR>:nohlsearch\<CR>"
-  " for all other files use # 
+  " for all other files use #
   else
     execute ":silent! normal :s/\\#//\<CR>:nohlsearch\<CR>"
   endif
