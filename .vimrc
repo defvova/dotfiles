@@ -13,6 +13,23 @@
 "                                                 __/ |
 "                                                |___/
 "
+" let Vundle manage Vundle
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+" required!
+  Bundle 'gmarik/vundle'
+
+" My Bundles here:
+  Bundle 'AutoClose'
+  Bundle "bufexplorer.zip"
+  Bundle 'FuzzyFinder'
+  Bundle 'kien/ctrlp.vim'
+  Bundle 'scrooloose/nerdtree'
+  Bundle 'Syntastic'
+  Bundle 'tpope/vim-rails'
+  Bundle 'vim-scripts/L9.git'
+  Bundle 'vim-scripts/ragtag.vim'
+  Bundle 'vim-scripts/matchit.zip'
 
 " VIM Ui {
   color desert                      " Vim Color
@@ -161,13 +178,7 @@
     silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
   endfunction!
 
-  au GUIEnter * call Maximize_Window()"
-" }
-
-" Use local vimrc if available {
-    if filereadable(expand("~/.vimrc.local"))
-        source ~/.vimrc.local
-    endif
+  au GUIEnter * call Maximize_Window()
 " }
 
 function! NERDTreeInitAsNeeded()
