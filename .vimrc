@@ -13,23 +13,89 @@
 "                                                 __/ |
 "                                                |___/
 "
+
 " let Vundle manage Vundle
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 " required!
   Bundle 'gmarik/vundle'
 
-" My Bundles here:
+" My Bundles here {
   Bundle 'AutoClose'
   Bundle "bufexplorer.zip"
-  Bundle 'FuzzyFinder'
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'scrooloose/nerdtree'
   Bundle 'Syntastic'
-  Bundle 'tpope/vim-rails'
   Bundle 'vim-scripts/L9.git'
   Bundle 'vim-scripts/ragtag.vim'
   Bundle 'vim-scripts/matchit.zip'
+  " Syntax highlight
+  Bundle 'cucumber.zip'
+  Bundle 'gmarik/vim-markdown'
+  Bundle 'timcharper/textile.vim'
+  " Command-T
+  Bundle 'wincent/Command-T.git'
+
+  " FuzzyFinder {
+    Bundle 'FuzzyFinder'
+
+    :map <A-S-o> :FufCoverageFile<cr>
+    let g:fuf_file_exclude = '*.png;*.jpeg;*.jpg;*.gif;*.log;public/**/*;log/**/*;coverage/**/*;tmp/**/*;.git/**/*;.sass-cache/**/*;'
+  " }
+
+  " CtrlP plugin {
+    Bundle 'kien/ctrlp.vim'
+
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_working_path_mode = 'rc'
+    let g:ctrlp_user_command = 'find %s -type f'
+    let g:ctrlp_match_window_bottom = 0
+    let g:ctrlp_extensions = ['sample']
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " ignore
+      " style Ctrlp {
+        hi CtrlPMode1 guifg=blue guibg=green
+        hi CtrlPMode2 guifg=red guibg=yellow
+      " }
+  " }
+
+  " Nerdtree plugin {
+    Bundle 'scrooloose/nerdtree'
+
+    :map <F2> :NERDTreeToggle<cr>
+    :map <leader>e :NERDTreeFind<CR>
+    " Don't show pyc files {
+      :let NERDTreeIgnore=['\.pys$']
+    " }
+    :let NERDTreeShowBookmarks=1
+    :let NERDTreeChDirMode=0
+    :let NERDTreeQuitOnOpen=1
+    :let NERDTreeShowHidden=1
+    :let NERDTreeKeepTreeInNewTab=1
+
+    function! NERDTreeInitAsNeeded()
+        redir => bufoutput
+        buffers!
+        redir END
+        let idx = stridx(bufoutput, "NERD_tree")
+        if idx > -1
+            NERDTreeMirror
+            NERDTreeFind
+            wincmd l
+        endif
+    endfunction
+  " }
+
+  " Rail {
+    Bundle 'tpope/vim-rails'
+    :map gv :Rview<cr>
+    :map gc :Rcontroller<cr>
+    :map gm :Rmodel<cr>
+    :map gh :Rhelper<cr>
+" }
+
+  " Snippets {
+    Bundle 'gmarik/snipmate.vim'
+    nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
+  " }
+" }
 
 " VIM Ui {
   color desert                      " Vim Color
@@ -55,14 +121,16 @@
   set ignorecase                    " case insensitive search
   set nocompatible                  " Use ViMproved, don't emulate old vi
   set shellslash
+  filetype off " !include
   filetype indent on                " Turn on file type detection.
-  filetype plugin on                " Automatically detect file types.
+  filetype plugin indent on         " Automatically detect file types.
   syntax on                         " syntax highlighting
 
   autocmd BufWritePre *.* :%s/\s\+$//e
 
   " Easier copy/paste {
     :map <C-v> "+gP
+    :imap <C-v> <esc> "+gP
     :map <C-c> "+y
   " }
 
@@ -105,7 +173,7 @@
 " }
 
 " Sort css style {
-  :nmap <F3> :g#\({\n\)\@<=#.,/}/sort<CR>
+  :map <F3> :g#\({\n\)\@<=#.,/}/sort<CR>
 " }
 
 " Rgrep {
@@ -113,10 +181,6 @@
   :let Grep_Default_Filelist = '*.*'
   :let Grep_Skip_Files = '*.log all.css all.js'
   set nocompatible
-" }
-
-" Snippets {
-  nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
 " }
 
 " reload .vimrc settings {
@@ -131,46 +195,14 @@
   let g:syntastic_warning_symbol='⚠'
 " }
 
-" Rails {
-  :map gv :Rview<cr>
-  :map gc :Rcontroller<cr>
-  :map gm :Rmodel<cr>
-  :map gh :Rhelper<cr>
-" }
-
-" Nerdtree plugin {
-  :map <F2> :NERDTreeToggle<cr>
-  :map <leader>e :NERDTreeFind<CR>
-  " Don't show pyc files {
-    :let NERDTreeIgnore=['\.pys$']
-  " }
-  :let NERDTreeShowBookmarks=1
-  :let NERDTreeChDirMode=0
-  :let NERDTreeQuitOnOpen=1
-  :let NERDTreeShowHidden=1
-  :let NERDTreeKeepTreeInNewTab=1
-" }
-
 " temp shorcuts {
   :map <F4> :!touch tmp/restart.txt<cr><cr>
 " }
 
-" FuzzyFinder {
-  :map <A-S-o> :FufCoverageFile<cr>
-  let g:fuf_file_exclude = '*.png;*.jpeg;*.jpg;*.gif;*.log;public/**/*;log/**/*;coverage/**/*;tmp/**/*;.git/**/*;.sass-cache/**/*;'
-" }
-
-" CtrlP plugin {
-  let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_working_path_mode = 'rc'
-  let g:ctrlp_user_command = 'find %s -type f'
-  let g:ctrlp_match_window_bottom = 0
-  let g:ctrlp_extensions = ['sample']
-  set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " ignore
-    " style Ctrlp {
-      hi CtrlPMode1 guifg=blue guibg=green
-      hi CtrlPMode2 guifg=red guibg=yellow
-    " }
+" SuperTab {
+  " color
+    :highlight Pmenu guibg=slategrey gui=bold
+    :highlight Pmenu ctermbg=30 gui=bold
 " }
 
 " to start vim maximized {
@@ -180,15 +212,3 @@
 
   au GUIEnter * call Maximize_Window()
 " }
-
-function! NERDTreeInitAsNeeded()
-    redir => bufoutput
-    buffers!
-    redir END
-    let idx = stridx(bufoutput, "NERD_tree")
-    if idx > -1
-        NERDTreeMirror
-        NERDTreeFind
-        wincmd l
-    endif
-endfunction
