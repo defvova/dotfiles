@@ -46,7 +46,7 @@
     :let Grep_Skip_Files = '*.log all.css all.js'
   " }
 
-  " Syntastiv {
+  " Syntastic {
     Bundle 'Syntastic'
 
     let g:syntastic_enable_signs=1
