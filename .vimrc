@@ -29,10 +29,8 @@
   Bundle 'cucumber.zip'
   Bundle 'gmarik/vim-markdown'
   Bundle 'timcharper/textile.vim'
-
-  " Comments {
-    Bundle 'vim-scripts/comments.vim'
-  " }
+  " Comments
+  Bundle 'vim-scripts/comments.vim'
 
   " Bufexplorer {
     Bundle "bufexplorer.zip"

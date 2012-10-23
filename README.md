@@ -8,7 +8,11 @@ git clone git@github.com:volodymyrpartytskyi/vim.git
 ````````````
 ln -s  ~/.vim/.vimrc ~/.vimrc
 ````````````
-3) open gvim and enter:
+3) add vundle
+````````
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+````````
+4) open gvim and enter:
 ``````````
 :BundleInstall
 ``````````
