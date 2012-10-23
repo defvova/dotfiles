@@ -59,7 +59,7 @@
     Bundle 'wincent/Command-T.git'
 
     set wildignore+=*.sql,*.log,*.git
-    :map <A-S-o> :CommandT<cr>
+    :map <A-S-i> :CommandT<cr>
     let g:CommandTCursorRightMap=['<C-r>']
     let g:CommandTAcceptSelectionTabMap=['<C-l>']
     let g:CommandTMatchWindowAtTop=1
