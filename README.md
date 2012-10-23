@@ -1,4 +1,5 @@
 Installation:
+
 1) clone
 `````
 git clone git@github.com:volodymyrpartytskyi/vim.git
