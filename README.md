@@ -1,8 +1,16 @@
 Installation:
+1) clone
 `````
 git clone git@github.com:volodymyrpartytskyi/vim.git
-ln -s  ~/.vim/.vimrc ~/.vimrc
 `````
+2) create symlink
+````````````
+ln -s  ~/.vim/.vimrc ~/.vimrc
+````````````
+3) open gvim and enter:
+``````````
+:BundleInstall
+``````````
 
 If you have warnings:
 
