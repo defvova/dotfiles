@@ -22,17 +22,51 @@
 
 " My Bundles here {
   Bundle 'AutoClose'
-  Bundle "bufexplorer.zip"
-  Bundle 'Syntastic'
   Bundle 'vim-scripts/L9.git'
-  Bundle 'vim-scripts/ragtag.vim'
   Bundle 'vim-scripts/matchit.zip'
+  Bundle 'vim-scripts/ragtag.vim'
   " Syntax highlight
   Bundle 'cucumber.zip'
   Bundle 'gmarik/vim-markdown'
   Bundle 'timcharper/textile.vim'
-  " Command-T
-  Bundle 'wincent/Command-T.git'
+
+  " Comments {
+    Bundle 'vim-scripts/comments.vim'
+  " }
+
+  " Bufexplorer {
+    Bundle "bufexplorer.zip"
+
+    nnoremap <silent> <C-b> :BufExplorer<CR>
+  " }
+
+  " Rgrep {
+    Bundle 'vim-scripts/grep.vim'
+
+    :map <C-f> :Rgrep<cr>
+    :let Grep_Default_Filelist = '*.*'
+    :let Grep_Skip_Files = '*.log all.css all.js'
+  " }
+
+  " Syntastiv {
+    Bundle 'Syntastic'
+
+    let g:syntastic_enable_signs=1
+    let g:syntastic_quiet_warnings=1
+    let g:syntastic_error_symbol='✗'
+    let g:syntastic_warning_symbol='⚠'
+  " }
+
+  " Command-T {
+    Bundle 'wincent/Command-T.git'
+
+    set wildignore+=*.sql,*.log,*.git
+    :map <A-S-o> :CommandT<cr>
+    let g:CommandTCursorRightMap=['<C-r>']
+    let g:CommandTAcceptSelectionTabMap=['<C-l>']
+    let g:CommandTMatchWindowAtTop=1
+    map <F9> :CommandTFlush<cr>
+  " }
 
   " FuzzyFinder {
     Bundle 'FuzzyFinder'
@@ -83,16 +117,18 @@
     endfunction
   " }
 
-  " Rail {
+  " Rails {
     Bundle 'tpope/vim-rails'
+
     :map gv :Rview<cr>
     :map gc :Rcontroller<cr>
     :map gm :Rmodel<cr>
     :map gh :Rhelper<cr>
-" }
+  " }
 
   " Snippets {
     Bundle 'gmarik/snipmate.vim'
+
     nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
   " }
 " }
@@ -127,11 +163,13 @@
   syntax on                         " syntax highlighting
 
   autocmd BufWritePre *.* :%s/\s\+$//e
+  autocmd BufNewFile,BufRead *.html.erb set ft=eruby.html
+  au Bufread,BufNewFile *.feature set filetype=gherkin
+  au! Syntax gherkin source ~/.vim/cucumber.vim
 
   " Easier copy/paste {
-    :map <C-v> "+gP
-    :imap <C-v> <esc> "+gP
-    :map <C-c> "+y
+    ":map p "+gP<cr>
+    ":map y "+y<cr>
   " }
 
   " Save {
@@ -146,11 +184,6 @@
   " Clearing highlighted search {
     nnoremap <esc> :noh<return><esc>
   " }
-
-  nnoremap <silent> <C-b> :BufExplorer<CR>
-  autocmd BufNewFile,BufRead *.html.erb set ft=eruby.html
-  au Bufread,BufNewFile *.feature set filetype=gherkin
-  au! Syntax gherkin source ~/.vim/cucumber.vim
 " }
 
 " Tabs {
@@ -176,30 +209,16 @@
   :map <F3> :g#\({\n\)\@<=#.,/}/sort<CR>
 " }
 
-" Rgrep {
-  :map <C-f> :Rgrep<cr>
-  :let Grep_Default_Filelist = '*.*'
-  :let Grep_Skip_Files = '*.log all.css all.js'
-  set nocompatible
-" }
-
 " reload .vimrc settings {
   autocmd! bufwritepost .vimrc source %
   :set autoread                     " autorealod changed files
-" }
-
-" Syntastic {
-  let g:syntastic_enable_signs=1
-  let g:syntastic_quiet_warnings=1
-  let g:syntastic_error_symbol='✗'
-  let g:syntastic_warning_symbol='⚠'
 " }
 
 " temp shorcuts {
   :map <F4> :!touch tmp/restart.txt<cr><cr>
 " }
 
-" SuperTab {
+" WindowPopup {
   " color
     :highlight Pmenu guibg=slategrey gui=bold
     :highlight Pmenu ctermbg=30 gui=bold

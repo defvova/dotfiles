@@ -1,15 +1,16 @@
-Installation
+Installation:
 `````
 git clone git@github.com:volodymyrpartytskyi/vim.git
 ln -s  ~/.vim/.vimrc ~/.vimrc
 `````
 
-Warning:
-1) Unable to create Ubuntu Menu Proxy: Timeout was reached
+If you have warnings:
 
-2) Trying to remove a child that does not believe we are it is parent.
+1) `Unable to create Ubuntu Menu Proxy: Timeout was reached`
 
-add in ~/.bashrc the lines and restart the terminal
+2) `Trying to remove a child that does not believe we are it is parent.`
+
+add in `~/.bashrc` the lines and restart the terminal
 ``````
 function gvim () { (/usr/bin/gvim -f "$@" &>/dev/null &) }
 alias gvim='UBUNTU_MENUPROXY= gvim'
