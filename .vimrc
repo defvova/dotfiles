@@ -21,6 +21,7 @@
   Bundle 'gmarik/vundle'
 
 " My Bundles here {
+  Bundle 'vim-scripts/endwise.vim'
   Bundle 'AutoClose'
   Bundle 'vim-scripts/L9.git'
   Bundle 'vim-scripts/matchit.zip'
