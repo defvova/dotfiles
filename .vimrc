@@ -27,6 +27,7 @@
   Bundle 'vim-scripts/matchit.zip'
   Bundle 'vim-scripts/ragtag.vim'
   " Syntax highlight
+  Bundle 'bbommarito/vim-slim'
   Bundle 'cucumber.zip'
   Bundle 'gmarik/vim-markdown'
   Bundle 'timcharper/textile.vim'
