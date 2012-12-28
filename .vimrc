@@ -31,6 +31,8 @@
   Bundle 'cucumber.zip'
   Bundle 'gmarik/vim-markdown'
   Bundle 'timcharper/textile.vim'
+  Bundle 'vim-less'
+  Bundle 'kchmck/vim-coffee-script.git'
   " Comments
   Bundle 'vim-scripts/comments.vim'
 
