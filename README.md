@@ -1,4 +1,4 @@
-Installation:
+**Installation:**
 
 1) clone
 `````
@@ -16,15 +16,18 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ``````````
 :BundleInstall
 ``````````
+That’s it!
+***
+**If you have warnings:**
 
-If you have warnings:
+- _Unable to create Ubuntu Menu Proxy: Timeout was reached_
+- _Trying to remove a child that does not believe we are it is parent._
 
-1) `Unable to create Ubuntu Menu Proxy: Timeout was reached`
-
-2) `Trying to remove a child that does not believe we are it is parent.`
-
-add in `~/.bashrc` the lines and restart the terminal
+**add** in `~/.bashrc` a lines and **restart** a terminal
 ``````
 function gvim () { (/usr/bin/gvim -f "$@" &>/dev/null &) }
 alias gvim='UBUNTU_MENUPROXY= gvim'
 ``````
+
+***
+**[Read wiki](https://github.com/volodymyrpartytskyi/vim/wiki)**
