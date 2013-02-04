@@ -173,8 +173,8 @@
   au! Syntax gherkin source ~/.vim/cucumber.vim
 
   " Easier copy/paste {
-    ":map p "+gP<cr>
-    ":map y "+y<cr>
+    noremap p "+gP
+    noremap y "+y
   " }
 
   " Save {
