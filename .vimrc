@@ -36,6 +36,9 @@
   " Comments
   Bundle 'vim-scripts/comments.vim'
 
+  " Surround {
+    Bundle 'tpope/vim-surround'
+  " }
   " Bufexplorer {
     Bundle "bufexplorer.zip"
 
