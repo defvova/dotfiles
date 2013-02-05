@@ -18,7 +18,7 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ``````````
 That’s it!
 ***
-**If you have warnings:**
+**If you have got warnings in the terminal:**
 
 - _Unable to create Ubuntu Menu Proxy: Timeout was reached_
 - _Trying to remove a child that does not believe we are it is parent._
