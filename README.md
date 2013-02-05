@@ -23,7 +23,7 @@ That’s it!
 - _Unable to create Ubuntu Menu Proxy: Timeout was reached_
 - _Trying to remove a child that does not believe we are it is parent._
 
-**add** in `~/.bashrc` a lines and **restart** a terminal
+**add** in `~/.bashrc` the lines and **restart** the terminal
 ``````
 function gvim () { (/usr/bin/gvim -f "$@" &>/dev/null &) }
 alias gvim='UBUNTU_MENUPROXY= gvim'
