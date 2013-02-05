@@ -2,7 +2,7 @@
 
 1) clone
 `````
-git clone git@github.com:volodymyrpartytskyi/vim.git
+git clone git@github.com:volodymyrpartytskyi/vim.git ~/.vim
 `````
 2) create symlink
 ````````````
