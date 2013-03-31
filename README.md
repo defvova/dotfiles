@@ -16,6 +16,8 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ``````````
 :BundleInstall
 ``````````
+sudo apt-get install ctags wmctrl
+
 That’s it!
 ***
 **If you have got warnings in the terminal:**
