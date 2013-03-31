@@ -22,16 +22,18 @@
 
 " My Bundles here {
   Bundle 'vim-scripts/endwise.vim'
-  Bundle 'AutoClose'
+  Bundle 'Townk/vim-autoclose'
   Bundle 'vim-scripts/L9.git'
   Bundle 'vim-scripts/matchit.zip'
   Bundle 'vim-scripts/ragtag.vim'
   " Syntax highlight
-  Bundle 'bbommarito/vim-slim'
+  Bundle 'slim-template/vim-slim'
   Bundle 'cucumber.zip'
   Bundle 'gmarik/vim-markdown'
   Bundle 'timcharper/textile.vim'
+  Bundle 'tpope/vim-haml'
   Bundle 'vim-less'
+  Bundle 'pangloss/vim-javascript'
   Bundle 'kchmck/vim-coffee-script.git'
   " Comments
   Bundle 'vim-scripts/comments.vim'
@@ -107,7 +109,7 @@
     :let NERDTreeShowBookmarks=1
     :let NERDTreeChDirMode=0
     :let NERDTreeQuitOnOpen=1
-    :let NERDTreeShowHidden=1
+    "":let NERDTreeShowHidden=1
     :let NERDTreeKeepTreeInNewTab=1
 
     function! NERDTreeInitAsNeeded()
@@ -173,9 +175,10 @@
   au Bufread,BufNewFile *.feature set filetype=gherkin
   au! Syntax gherkin source ~/.vim/cucumber.vim
 
-  " Easier copy/paste {
+  " Easier copy/paste/cut {
     noremap p "+gP
     noremap y "+y
+    noremap x "+x
   " }
 
   " Save {
