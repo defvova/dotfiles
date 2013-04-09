@@ -16,7 +16,10 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ``````````
 :BundleInstall
 ``````````
+start on the full window
+``````````
 sudo apt-get install ctags wmctrl
+``````````
 
 That’s it!
 ***

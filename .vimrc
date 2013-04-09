@@ -132,6 +132,8 @@
     :map gc :Rcontroller<cr>
     :map gm :Rmodel<cr>
     :map gh :Rhelper<cr>
+    :map gj :Rjavascript<CR>
+    :map gs :Rstylesheet<CR>
   " }
 
   " Snippets {
