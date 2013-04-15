@@ -52,8 +52,8 @@
     Bundle 'vim-scripts/grep.vim'
 
     :map <C-f> :Rgrep<cr>
-    :let Grep_Default_Filelist = '*.*'
-    :let Grep_Skip_Files = '*.log all.css all.js'
+    let Grep_Skip_Files = '*.log *.sql *.png *.jpg *.jpeg *.gif'
+    let Grep_Skip_Dirs = 'tmp system coverage log solr public'
   " }
 
   " Syntastic {
@@ -79,8 +79,12 @@
   " FuzzyFinder {
     Bundle 'FuzzyFinder'
 
-    :map <A-S-o> :FufCoverageFile<cr>
-    let g:fuf_file_exclude = '*.png;*.jpeg;*.jpg;*.gif;*.log;public/**/*;log/**/*;coverage/**/*;tmp/**/*;.git/**/*;.sass-cache/**/*;'
+    let g:fuf_file_exclude =  '\v\~$|\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+    let g:fuf_coveragefile_exclude = '\v\~$|\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+    let g:fuf_enumeratingLimit = 30
+    map <A-S-o> :FufCoverageFile<CR>
+    nnoremap <silent> <tab> :FufBuffer<CR>
+    map <F5> :FufRenewCache<cr>
   " }
 
   " CtrlP plugin {
@@ -177,8 +181,13 @@
   au Bufread,BufNewFile *.feature set filetype=gherkin
   au! Syntax gherkin source ~/.vim/cucumber.vim
 
+  " move text to left/right {
+    vnoremap < <gv
+    vnoremap > >gv
+  " }
+
   " Easier copy/paste/cut {
-    noremap p "+gP
+    noremap p ]p
     noremap y "+y
     noremap x "+x
   " }
@@ -195,6 +204,13 @@
   " Clearing highlighted search {
     nnoremap <esc> :noh<return><esc>
   " }
+" }
+
+" ruby {
+  autocmd FileType ruby set omnifunc=rubycomplete#Complete
+  autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
+  autocmd FileType ruby let g:rubycomplete_rails = 1
+  autocmd FileType ruby let g:rubycomplete_classes_in_global = 1
 " }
 
 " Tabs {
