@@ -84,22 +84,26 @@
     let g:fuf_enumeratingLimit = 30
     map <A-S-o> :FufCoverageFile<CR>
     nnoremap <silent> <tab> :FufBuffer<CR>
-    map <F5> :FufRenewCache<cr>
+    map <F4> :FufRenewCache<cr>
   " }
 
   " CtrlP plugin {
     Bundle 'kien/ctrlp.vim'
 
     let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_working_path_mode = 'rc'
+    map <F5> :CtrlPClearAllCaches<CR>
+    let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_user_command = 'find %s -type f'
     let g:ctrlp_match_window_bottom = 0
     let g:ctrlp_extensions = ['sample']
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " ignore
-      " style Ctrlp {
-        hi CtrlPMode1 guifg=blue guibg=green
-        hi CtrlPMode2 guifg=red guibg=yellow
-      " }
+    "let g:ctrlp_custom_ignore = {
+      "\ 'dir':  '\v[\/]\.(git|hg|svn)$(doc|log|script|test|tmp)$',
+      "\ 'file': '\v\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+      "\ }
+    " style Ctrlp {
+      hi CtrlPMode1 guifg=blue guibg=green
+      hi CtrlPMode2 guifg=red guibg=yellow
+    " }
   " }
 
   " Nerdtree plugin {
@@ -239,10 +243,6 @@
 " reload .vimrc settings {
   autocmd! bufwritepost .vimrc source %
   :set autoread                     " autorealod changed files
-" }
-
-" temp shorcuts {
-  :map <F4> :!touch tmp/restart.txt<cr><cr>
 " }
 
 " WindowPopup {
