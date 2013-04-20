@@ -38,6 +38,10 @@
   " Comments
   Bundle 'vim-scripts/comments.vim'
 
+  " MultipleCursors {
+    Bundle 'terryma/vim-multiple-cursors.git'
+  " }
+
   " Surround {
     Bundle 'tpope/vim-surround'
   " }
@@ -96,10 +100,6 @@
     let g:ctrlp_user_command = 'find %s -type f'
     let g:ctrlp_match_window_bottom = 0
     let g:ctrlp_extensions = ['sample']
-    "let g:ctrlp_custom_ignore = {
-      "\ 'dir':  '\v[\/]\.(git|hg|svn)$(doc|log|script|test|tmp)$',
-      "\ 'file': '\v\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-      "\ }
     " style Ctrlp {
       hi CtrlPMode1 guifg=blue guibg=green
       hi CtrlPMode2 guifg=red guibg=yellow
