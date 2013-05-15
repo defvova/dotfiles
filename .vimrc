@@ -38,10 +38,6 @@
   " Comments
   Bundle 'vim-scripts/comments.vim'
 
-  " MultipleCursors {
-    Bundle 'terryma/vim-multiple-cursors.git'
-  " }
-
   " Surround {
     Bundle 'tpope/vim-surround'
   " }
@@ -249,6 +245,10 @@
   " color
     :highlight Pmenu guibg=slategrey gui=bold
     :highlight Pmenu ctermbg=30 gui=bold
+" }
+
+" Permissions {
+  cmap w!! %!sudo tee > /dev/null %
 " }
 
 " to start vim maximized {
