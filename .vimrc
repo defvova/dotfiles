@@ -251,6 +251,10 @@
   cmap w!! %!sudo tee > /dev/null %
 " }
 
+" Save session {
+  :map <F6> :mksession last.vim<CR>
+" }
+
 " to start vim maximized {
   function! Maximize_Window()
     silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
