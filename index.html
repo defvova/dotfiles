@@ -32,36 +32,169 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>1) clone repository</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<pre><code>git clone git@github.com:volodymyrpartytskyi/vim.git ~/.vim
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>2) create symlink for vimrc</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code>ln -s  ~/.vim/.vimrc ~/.vimrc
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>3) add Vundle, the plug-in manager for Vim</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<pre><code>git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>4) start gvim and enter in console</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<pre><code>:BundleInstall
+</code></pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>That’s it!</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<hr><h3>
+<a name="if-you-want-start-vim-on-the-full-window-please-install" class="anchor" href="#if-you-want-start-vim-on-the-full-window-please-install"><span class="octicon octicon-link"></span></a>If you want start vim on the full window, please install.</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>sudo apt-get install ctags wmctrl
+</code></pre>
+
+<hr><h3>
+<a name="warnings" class="anchor" href="#warnings"><span class="octicon octicon-link"></span></a>Warnings</h3>
+
+<p>After start vim, please check your terminal. If you have got warnings in the terminal <code>Unable to create Ubuntu Menu Proxy: Timeout was reached</code> or <code>Trying to remove a child that does not believe we are it is parent.</code> please <strong>add</strong> in <code>~/.bashrc</code> the lines and <strong>restart</strong> the terminal</p>
+
+<pre><code>function gvim () { (/usr/bin/gvim -f "$@" &amp;&gt;/dev/null &amp;) }
+alias gvim='UBUNTU_MENUPROXY= gvim'
+</code></pre>
+
+<hr><h3>
+<a name="plugins" class="anchor" href="#plugins"><span class="octicon octicon-link"></span></a>Plugins</h3>
+
+<p><strong>Vim</strong></p>
+
+<ul>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=2386">Endwise</a>
+&gt; This is a simple plugin that helps to end certain structures automatically.  In Ruby, this means adding "end" after "if", "do", "def" and several other keywords.</li>
+<li>
+<a href="https://github.com/Townk/vim-autoclose">AutoClose</a>
+&gt; This plugin was  born  as  a  personal  need  to  have some little special features from other editors into my preferred one. The Eclipse IDE editor has an auto-complete for  open-close  pair  of  characters  feature  that I always wanted into Vim.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=3252">L9</a>
+&gt; l9 is a Vim-script library, which provides some utility functions and commands for programming in Vim.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=39">Matchit</a>
+&gt; The matchit.vim script allows you to configure % to match more than just single characters.  You can match words and even regular expressions. Also, matching treats strings and comments (as recognized by the syntax highlighting mechanism) intelligently.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=1896">Ragtag</a>
+&gt; This plugin started out as a set of personal mappings, but there was enough enjoyment among those I shared it with for me to clean it up and release it.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=1528">Comments</a>
+&gt; Plugin to comment and un-comment lines in different source files in both normal and visual mode</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=1697">Surround</a>
+&gt; Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more.  The plugin provides mappings to easily delete, change and add such surroundings in pairs.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=42">Bufexplorer</a>
+&gt; With bufexplorer, you can quickly and easily switch between buffers.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=311">Grep</a>
+&gt; The grep plugin integrates the grep, fgrep, egrep, and agrep tools with Vim and allows you to search for a pattern in one or more files and jump to them.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=2736">Syntastic</a>
+&gt; If syntax errors are detected, the user is notified and is happy because they didn't have to compile their code or execute their script to find them.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=2540">SnipMate</a>
+&gt; A snippet is a piece of often-typed text that you can insert into your document using a trigger word followed by a Tab. </li>
+</ul><hr><p><strong>Navigations</strong></p>
+
+<ul>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=3025">Command-T</a>
+&gt; The Command-T plug-in provides an extremely fast, intuitive mechanism for opening files with a minimal number of keystrokes. It's named "Command-T" because it is inspired by the "Go to File" window bound to Command-T in TextMate.</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=1984">FuzzyFinder</a>
+&gt; Fast opening files</li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=3736">Ctrlp</a>
+&gt; Fuzzy file, buffer, mru, tag, ... finder with regexp support. </li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=1658">Nerdtree</a>
+&gt; The NERD tree : A tree explorer plugin for navigating the filesystem </li>
+<li>
+<a href="http://www.vim.org/scripts/script.php?script_id=1567">vim-rails</a>
+&gt; Easy file navigation, enhanced syntax highlighting, and more.</li>
+</ul><hr><p><strong>Syntax highlight</strong></p>
+
+<ul>
+<li><a href="https://github.com/slim-template/vim-slim">Vim-Slim</a></li>
+<li><a href="https://github.com/tpope/vim-haml">Haml</a></li>
+<li><a href="https://github.com/pangloss/vim-javascript">vim-javascript</a></li>
+<li><a href="http://www.vim.org/scripts/script.php?script_id=2973">Cucumber</a></li>
+<li><a href="http://www.vim.org/scripts/script.php?script_id=2882">Markdown</a></li>
+<li><a href="http://www.vim.org/scripts/script.php?script_id=2305">Textile</a></li>
+<li><a href="http://www.vim.org/scripts/script.php?script_id=3964">Less</a></li>
+<li><a href="http://www.vim.org/scripts/script.php?script_id=3590">Coffee-script</a></li>
+</ul><hr><p><strong>Fast keys</strong></p>
+
+<ul>
+<li>
+<strong>Bufexplorer</strong> &gt; <code>Ctrl + b</code>
+</li>
+<li>
+<strong>Comments</strong> &gt; comment <code>Ctrl + c</code>, uncomment <code>Ctrl + x</code>
+</li>
+<li>
+<strong>Grep</strong> &gt; <code>Ctrl + f</code>
+</li>
+<li>
+<strong>Command-T</strong> &gt; <code>Alt + Shift + i</code>
+</li>
+<li>
+<strong>Fuzzyfinder</strong> &gt; <code>Alt + Shift + o</code>
+</li>
+<li>
+<strong>Ctrlp</strong> &gt; <code>Ctrl + p</code>
+</li>
+<li>
+<strong>Nerdtree</strong> &gt; <code>F2</code>, more functions <code>Shift + s m</code>
+</li>
+<li>
+<strong>vim-rails</strong> &gt; Go to view <code>gv</code>, model <code>gm</code>, helper <code>gh</code>, controller <code>gc</code>, stylesheets <code>gs</code>, javascript <code>gj</code>
+</li>
+<li>
+<strong>SnipMate</strong> &gt; Snip name + <code>Tab</code>
+</li>
+<li>
+<strong>Save file</strong> &gt; <code>Ctrl + s</code>
+</li>
+<li>
+<strong>Select all</strong> &gt; <code>Ctrl + a</code>
+</li>
+<li>
+<strong>Clearing highlighted search</strong> &gt; press <code>Esc</code>
+</li>
+<li>
+<strong>Tabs</strong> &gt; New tab <code>tt</code>, next tab <code>Ctrl + Tab</code>, previous tab <code>Shift + Tab</code>, close tab <code>Ctrl + q</code>
+</li>
+<li>
+<strong>Move line</strong> &gt; up <code>Alt + up</code>, down <code>Alt + down</code>
+</li>
+<li>
+<strong>Sort css style</strong> &gt; press <code>F3</code>
+</li>
+<li>
+<strong><em>Saving a session is simple</em></strong> &gt; press <code>F6</code>. To open Vim with a saved session, call it with -S option.  Enter in terminal: <code>$ gvim -S last.vim</code>
+</li>
+</ul><hr><p>When you need to make changes to a system file, you can override the read-only permissions by typing <code>:w!!</code>, vim will ask for your sudo password and save your changes.</p>
+
+<p><a href="http://www.tuxfiles.org/linuxhelp/vimcheat.html">more commands...</a> |
+<a href="http://ru.najomi.org/vim">how to use vim?</a> |
+<a href="http://john2x.com/blog/my-vim-setup/">plugins</a></p>
       </section>
     </div>
 
