@@ -70,6 +70,7 @@
 
     set wildignore+=*.sql,*.log,*.git
     :map <A-S-i> :CommandT<cr>
+    nnoremap <silent> <tab> :CommandT<CR>
     let g:CommandTCursorRightMap=['<C-r>']
     let g:CommandTAcceptSelectionTabMap=['<C-l>']
     let g:CommandTMatchWindowAtTop=1
@@ -83,7 +84,6 @@
     let g:fuf_coveragefile_exclude = '\v\~$|\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
     let g:fuf_enumeratingLimit = 30
     map <A-S-o> :FufCoverageFile<CR>
-    nnoremap <silent> <tab> :FufBuffer<CR>
     map <F4> :FufRenewCache<cr>
   " }
 
@@ -96,6 +96,7 @@
     let g:ctrlp_user_command = 'find %s -type f'
     let g:ctrlp_match_window_bottom = 0
     let g:ctrlp_extensions = ['sample']
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/log/*,*/coverage/*
     " style Ctrlp {
       hi CtrlPMode1 guifg=blue guibg=green
       hi CtrlPMode2 guifg=red guibg=yellow
@@ -187,9 +188,9 @@
   " }
 
   " Easier copy/paste/cut {
-    noremap p ]p
-    noremap y "+y
-    noremap x "+x
+    ":map <C-S-v> "+gP<cr>
+    ":map <C-S-c> "+y<cr>
+    ":map <C-S-x> "+x<cr>
   " }
 
   " Save {
@@ -252,7 +253,7 @@
 " }
 
 " Save session {
-  :map <F6> :mksession last.vim<CR>
+  :map <F6> :mksession! last.vim<CR>
 " }
 
 " to start vim maximized {
