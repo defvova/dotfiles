@@ -5,7 +5,7 @@
 
 1) clone
 `````
-git clone git@github.com:volodymyrpartytskyi/vim.git ~/.vim
+git clone git@github.com:0bman/vim.git ~/.vim
 `````
 2) create symlink
 ````````````
@@ -38,4 +38,4 @@ alias gvim='UBUNTU_MENUPROXY= gvim'
 ``````
 
 ***
-**[Read wiki](https://github.com/volodymyrpartytskyi/vim/wiki)**
+**[Read wiki](https://github.com/0bman/vim/wiki)**
