@@ -5,7 +5,7 @@
 
 1) clone
 `````
-git clone git@github.com:0bman/vim.git ~/.vim
+git clone git@github.com:volodimirp/vim.git ~/.vim
 `````
 2) create symlink
 ````````````
