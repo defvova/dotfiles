@@ -38,4 +38,4 @@ alias gvim='UBUNTU_MENUPROXY= gvim'
 ``````
 
 ***
-**[Read wiki](https://github.com/0bman/vim/wiki)**
+**[Read wiki](https://github.com/volodimirp/vim/wiki)**
