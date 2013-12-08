@@ -187,19 +187,9 @@
     vnoremap > >gv
   " }
 
-  " Easier copy/paste/cut {
-    ":map <C-S-v> "+gP<cr>
-    ":map <C-S-c> "+y<cr>
-    ":map <C-S-x> "+x<cr>
-  " }
-
   " Save {
     :map <C-s> :w<cr>
     :imap <C-s> <ESC>:w<cr>
-  " }
-
-  " Select all text {
-    :map <C-a> <esc>ggVG<end>
   " }
 
   " Clearing highlighted search {
@@ -216,21 +206,16 @@
 
 " Tabs {
   :map tt :tabnew<cr>
-  :map <S-tab> :tabprevious<cr>
-  :map <C-tab> :tabnext<cr>
   :map tc :tabclose<cr>
-  :map <C-q> <ESC>:q!<cr>
-  :imap <S-tab> <ESC>:tabprevious<cr>i
-  :imap <C-tab> <ESC>:tabnext<cr>i
 " }
 
 " move up and down lines with A-down and A-up (also works in visual mode) {
-  :nnoremap <A-down> :m+<CR>==
-  :nnoremap <A-up> :m-2<CR>==
-  :inoremap <A-down> <Esc>:m+<CR>==gi
-  :inoremap <A-up> <Esc>:m-2<CR>==gi
-  :vnoremap <A-down> :m'>+<CR>gv=gv
-  :vnoremap <A-up> :m-2<CR>gv=gv
+  :nnoremap <D-down> :m+<CR>==
+  :nnoremap <D-up> :m-2<CR>==
+  :inoremap <D-down> <Esc>:m+<CR>==gi
+  :inoremap <D-up> <Esc>:m-2<CR>==gi
+  :vnoremap <D-down> :m'>+<CR>gv=gv
+  :vnoremap <D-up> :m-2<CR>gv=gv
 " }
 
 " Sort css style {
