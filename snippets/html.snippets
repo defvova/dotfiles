@@ -1,18 +1,13 @@
-#Rails
 snippet pry
 	<%= binding.pry %>
-# teg <%= %>
 snippet =
 	<%= ${1} %>
-# teg <% %>
 snippet -
 	<% ${1} %>
-# link_to
 snippet link
 	<%= link_to ${1:name}, ${2:url} %>
-# render partial
 snippet render
-	<%= render partial: ${1:name} %>
+	<%= render ${1:name} %>
 snippet table
 	<table>
 		<tr>
@@ -21,4 +16,23 @@ snippet table
 		<tr>
 			<td>${3:Data}</td>
 		</tr>
-	</table>${4}
+	</table>
+snippet th
+	<th${1}>${2}</th>
+snippet td
+	<td${1}>${2}</td>
+snippet tr
+	<tr${1}>${2}</tr>
+snippet div
+	<div${1}>${2:Data}</div>
+snippet ul
+	<ul${1}>
+		<li${2}>${3:Data}</li>
+	</ul>
+snippet li
+	<li${1}>${2:Data}</li>
+snippet form
+	<form ${1}>
+	</form>
+snippet input
+	<input ${1} />
