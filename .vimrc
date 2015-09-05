@@ -14,42 +14,103 @@
 "                                                |___/
 "
 
-" let Vundle manage Vundle
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-" required!
-  Bundle 'gmarik/vundle'
+" let Vundle manage Vundle {
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+" }
+
+" required! {
+  Plugin 'VundleVim/Vundle.vim'
+" }
 
 " My Bundles here {
-  Bundle 'vim-scripts/endwise.vim'
-  Bundle 'Townk/vim-autoclose'
-  Bundle 'vim-scripts/L9.git'
-  Bundle 'vim-scripts/matchit.zip'
-  Bundle 'vim-scripts/ragtag.vim'
-  " Syntax highlight
-  Bundle 'slim-template/vim-slim'
-  Bundle 'cucumber.zip'
-  Bundle 'gmarik/vim-markdown'
-  Bundle 'timcharper/textile.vim'
-  Bundle 'tpope/vim-haml'
-  Bundle 'vim-less'
-  Bundle 'pangloss/vim-javascript'
-  Bundle 'kchmck/vim-coffee-script.git'
-  " Comments
-  Bundle 'vim-scripts/comments.vim'
+    Plugin 'vim-scripts/endwise.vim'
+    Plugin 'Raimondi/delimitMate'
+    Plugin 'Townk/vim-autoclose'
+    Plugin 'vim-scripts/matchit.zip'
+    Plugin 'vim-scripts/ragtag.vim'
+    Plugin 'amirh/HTML-AutoCloseTag'
+  " Syntax highlight {
+    Plugin 'briancollins/vim-jst'
+    Plugin 'slim-template/vim-slim'
+    Plugin 'cucumber.zip'
+    Plugin 'gmarik/vim-markdown'
+    Plugin 'timcharper/textile.vim'
+    Plugin 'avakhov/vim-yaml'
+    Plugin 'vim-less'
+    Plugin 'tpope/vim-haml'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'kchmck/vim-coffee-script.git'
+    Plugin 'JulesWang/css.vim'
+    Plugin 'cakebaker/scss-syntax.vim'
+    Plugin 'othree/html5-syntax.vim'
+    Plugin 'othree/html5.vim'
+  " }
+
+  " Simple color selector/picker {
+    Plugin 'KabbAmine/vCoolor.vim'
+  " }
+
+  " Devicons {
+    Plugin 'ryanoasis/vim-devicons'
+
+    let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+  " }
+
+  " Auto Pairs {
+    Plugin 'jiangmiao/auto-pairs'
+  " }
+
+  " Statusline {
+    Plugin 'bling/vim-airline'
+
+    let g:Powerline_symbols = 'fancy'
+    let g:airline_powerline_fonts=1
+    let g:airline#extensions#syntastic#enabled = 1
+    let g:airline#extensions#hunks#enabled=0
+    let g:airline#extensions#branch#enabled=1
+  " }
+
+  " Colorscheme {
+    Plugin 'flazz/vim-colorschemes'
+  " }
+
+  " Autocomplete words {
+    Plugin 'exvim/ex-autocomplpop'
+  " }
+
+  " Multiple cursors {
+    Plugin 'vim-multiple-cursors'
+  " }
+
+  " RSpec {
+    Plugin 'thoughtbot/vim-rspec'
+
+    map <Leader>t :call RunCurrentSpecFile()<CR>
+    map <Leader>s :call RunNearestSpec()<CR>
+    map <Leader>l :call RunLastSpec()<CR>
+    map <Leader>a :call RunAllSpecs()<CR>
+  " }
+
+  " Comments {
+    Plugin 'tcomment'
+
+    map <C-c> <esc>gcc<end>
+    vmap <C-c> gc
+  " }
 
   " Surround {
-    Bundle 'tpope/vim-surround'
+    Plugin 'tpope/vim-surround'
   " }
 
   " Bufexplorer {
-    Bundle "bufexplorer.zip"
+    Plugin 'jlanzarotta/bufexplorer'
 
     nnoremap <silent> <C-b> :BufExplorer<CR>
   " }
 
   " Rgrep {
-    Bundle 'vim-scripts/grep.vim'
+    Plugin 'vim-scripts/grep.vim'
 
     :map <C-f> :Rgrep<cr>
     let Grep_Skip_Files = '*.log *.sql *.png *.jpg *.jpeg *.gif'
@@ -57,7 +118,16 @@
   " }
 
   " Syntastic {
-    Bundle 'Syntastic'
+    Plugin 'scrooloose/syntastic'
+
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
 
     let g:syntastic_enable_signs=1
     let g:syntastic_quiet_messages = {'level': 'warnings'}
@@ -66,7 +136,7 @@
   " }
 
   " Command-T {
-    Bundle 'wincent/Command-T.git'
+    Plugin 'wincent/Command-T.git'
 
     set wildignore+=*.sql,*.log,*.git
     :map <A-S-i> :CommandT<cr>
@@ -77,79 +147,46 @@
     map <F9> :CommandTFlush<cr>
   " }
 
-  " FuzzyFinder {
-    Bundle 'FuzzyFinder'
-
-    let g:fuf_file_exclude =  '\v\~$|\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-    let g:fuf_coveragefile_exclude = '\v\~$|\.(bak|swp|png|jpg|jpeg|log|sql|bmp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-    let g:fuf_enumeratingLimit = 30
-    map <A-S-o> :FufCoverageFile<CR>
-    map <F4> :FufRenewCache<cr>
-  " }
-
-  " CtrlP plugin {
-    Bundle 'kien/ctrlp.vim'
-
-    let g:ctrlp_map = '<c-p>'
-    map <F5> :CtrlPClearAllCaches<CR>
-    let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_user_command = 'find %s -type f'
-    let g:ctrlp_match_window_bottom = 0
-    let g:ctrlp_extensions = ['sample']
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/log/*,*/coverage/*
-    " style Ctrlp {
-      hi CtrlPMode1 guifg=blue guibg=green
-      hi CtrlPMode2 guifg=red guibg=yellow
-    " }
-  " }
-
   " Nerdtree plugin {
-    Bundle 'scrooloose/nerdtree'
+    Plugin 'scrooloose/nerdtree'
 
     :map <F2> :NERDTreeToggle<cr>
-    :map <leader>e :NERDTreeFind<CR>
-    " Don't show pyc files {
-      :let NERDTreeIgnore=['\.pys$']
-    " }
-    :let NERDTreeShowBookmarks=1
+    :let NERDTreeIgnore=['\.pys$'] " Don't show pyc files
     :let NERDTreeChDirMode=0
     :let NERDTreeQuitOnOpen=1
-    "":let NERDTreeShowHidden=1
-    :let NERDTreeKeepTreeInNewTab=1
-
-    function! NERDTreeInitAsNeeded()
-        redir => bufoutput
-        buffers!
-        redir END
-        let idx = stridx(bufoutput, "NERD_tree")
-        if idx > -1
-            NERDTreeMirror
-            NERDTreeFind
-            wincmd l
-        endif
-    endfunction
   " }
 
   " Rails {
-    Bundle 'tpope/vim-rails'
+    Plugin 'tpope/vim-rails'
 
-    :map gv :Rview<cr>
-    :map gc :Rcontroller<cr>
-    :map gm :Rmodel<cr>
-    :map gh :Rhelper<cr>
-    :map gj :Rjavascript<CR>
-    :map gs :Rstylesheet<CR>
+    :map gv :Eview<cr>
+    :map gc :Econtroller<cr>
+    :map gm :Emodel<cr>
+    :map gh :Ehelper<cr>
+    :map gj :Ejavascript<CR>
+    :map gs :Estylesheet<CR>
   " }
 
   " Snippets {
-    Bundle 'gmarik/snipmate.vim'
+    Plugin 'gmarik/snipmate.vim'
 
     nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
+  " }
+
+  " All of your Plugins must be added before the following line {
+    filetype indent on                " required! Turn on file type detection.
+    call vundle#end()                 " required!
   " }
 " }
 
 " VIM Ui {
-  color desert                      " Vim Color
+  colorscheme hybrid
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+  set go-=L                         " Removes left hand scroll bar
+  set cpoptions+=$                  " puts a $ marker for the end of words/lines in cw/c$ commands
+  set guioptions-=T                 " Removes top toolbar
+  set guioptions-=r                 " Removes right hand scroll bar
+  set encoding=utf-8
   set t_Co=256                      " Fix colors in the terminal
   set shortmess+=I                  " Disable splash text
   set number                        " Enable line number
@@ -172,8 +209,10 @@
   set ignorecase                    " case insensitive search
   set nocompatible                  " Use ViMproved, don't emulate old vi
   set shellslash
-  filetype off " !include
-  filetype indent on                " Turn on file type detection.
+  set laststatus=2                  " StatusLine
+  set cursorline                    " Highlight the current line
+  set lines=999 columns=999
+  filetype off                      " !include
   filetype plugin indent on         " Automatically detect file types.
   syntax on                         " syntax highlighting
 
@@ -182,69 +221,47 @@
   au Bufread,BufNewFile *.feature set filetype=gherkin
   au! Syntax gherkin source ~/.vim/cucumber.vim
 
-  " move text to left/right {
-    vnoremap < <gv
-    vnoremap > >gv
-  " }
-
-  " Save {
-    :map <C-s> :w<cr>
-    :imap <C-s> <ESC>:w<cr>
-  " }
-
-  " Clearing highlighted search {
-    nnoremap <esc> :noh<return><esc>
+  " ruby {
+    autocmd FileType ruby set omnifunc=rubycomplete#Complete
+    autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
+    autocmd FileType ruby let g:rubycomplete_rails = 1
+    autocmd FileType ruby let g:rubycomplete_classes_in_global = 1
   " }
 " }
 
-" ruby {
-  autocmd FileType ruby set omnifunc=rubycomplete#Complete
-  autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
-  autocmd FileType ruby let g:rubycomplete_rails = 1
-  autocmd FileType ruby let g:rubycomplete_classes_in_global = 1
+" move text to left/right {
+  vnoremap < <gv
+  vnoremap > >gv
 " }
 
-" Tabs {
-  :map tt :tabnew<cr>
-  :map tc :tabclose<cr>
+" Save {
+  :map <C-s> :w<cr>
+  :imap <C-s> <ESC>:w<cr>
+" }
+
+" Clearing highlighted search {
+  nnoremap <leader><esc> :noh<return><esc>
 " }
 
 " move up and down lines with A-down and A-up (also works in visual mode) {
-  :nnoremap <D-down> :m+<CR>==
-  :nnoremap <D-up> :m-2<CR>==
-  :inoremap <D-down> <Esc>:m+<CR>==gi
-  :inoremap <D-up> <Esc>:m-2<CR>==gi
-  :vnoremap <D-down> :m'>+<CR>gv=gv
-  :vnoremap <D-up> :m-2<CR>gv=gv
-" }
-
-" Sort css style {
-  :map <F3> :g#\({\n\)\@<=#.,/}/sort<CR>
+  :nnoremap <S-down> :m+<CR>==
+  :nnoremap <S-up> :m-2<CR>==
+  :inoremap <S-down> <Esc>:m+<CR>==gi
+  :inoremap <S-up> <Esc>:m-2<CR>==gi
+  :vnoremap <S-down> :m'>+<CR>gv=gv
+  :vnoremap <S-up> :m-2<CR>gv=gv
 " }
 
 " reload .vimrc settings {
   autocmd! bufwritepost .vimrc source %
-  :set autoread                     " autorealod changed files
+  set autoread " autorealod changed files
 " }
 
-" WindowPopup {
-  " color
-    :highlight Pmenu guibg=slategrey gui=bold
-    :highlight Pmenu ctermbg=30 gui=bold
+" WindowPopup color {
+  :highlight Pmenu guibg=slategrey gui=bold
+  :highlight Pmenu ctermbg=30 gui=bold
 " }
 
 " Permissions {
   cmap w!! %!sudo tee > /dev/null %
-" }
-
-" Save session {
-  :map <F6> :mksession! last.vim<CR>
-" }
-
-" to start vim maximized {
-  function! Maximize_Window()
-    silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
-  endfunction!
-
-  au GUIEnter * call Maximize_Window()
 " }
