@@ -32,6 +32,7 @@
     Plugin 'amirh/HTML-AutoCloseTag'
   " Syntax highlight {
     Plugin 'briancollins/vim-jst'
+    Plugin 'mxw/vim-jsx'
     Plugin 'slim-template/vim-slim'
     Plugin 'cucumber.zip'
     Plugin 'gmarik/vim-markdown'
@@ -45,6 +46,12 @@
     Plugin 'cakebaker/scss-syntax.vim'
     Plugin 'othree/html5-syntax.vim'
     Plugin 'othree/html5.vim'
+  " }
+
+  " JShint {
+    Plugin 'wookiehangover/jshint.vim'
+
+    let JSHintUpdateWriteOnly=1
   " }
 
   " Simple color selector/picker {
@@ -76,7 +83,7 @@
   " }
 
   " Autocomplete words {
-    Plugin 'exvim/ex-autocomplpop'
+    " Plugin 'exvim/ex-autocomplpop'
   " }
 
   " Multiple cursors {
@@ -110,11 +117,11 @@
   " }
 
   " Rgrep {
-    Plugin 'vim-scripts/grep.vim'
-
-    :map <C-f> :Rgrep<cr>
-    let Grep_Skip_Files = '*.log *.sql *.png *.jpg *.jpeg *.gif'
-    let Grep_Skip_Dirs = 'tmp system coverage log solr public'
+    " Plugin 'vim-scripts/grep.vim'
+    "
+    " :map <C-f> :Rgrep<cr>
+    " let Grep_Skip_Files = '*.log *.sql *.png *.jpg *.jpeg *.gif'
+    " let Grep_Skip_Dirs = 'tmp system coverage log solr public'
   " }
 
   " Syntastic {
@@ -128,6 +135,9 @@
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+    " let g:syntastic_javascript_jshint_conf = $HOME . '/.jshint'
+    " let g:syntastic_javascript_checker = 'jshint'
+    " let g:syntastic_javascript_jshint_args = '--config /Users/vova/.rvm/gems/ruby-2.2.2/bin/jshint'
 
     let g:syntastic_enable_signs=1
     let g:syntastic_quiet_messages = {'level': 'warnings'}
@@ -144,6 +154,7 @@
     let g:CommandTCursorRightMap=['<C-r>']
     let g:CommandTAcceptSelectionTabMap=['<C-l>']
     let g:CommandTMatchWindowAtTop=1
+    let g:CommandTWildIgnore=&wildignore . ",**/tmp/*"
     map <F9> :CommandTFlush<cr>
   " }
 
@@ -159,12 +170,12 @@
   " Rails {
     Plugin 'tpope/vim-rails'
 
-    :map gv :Eview<cr>
-    :map gc :Econtroller<cr>
-    :map gm :Emodel<cr>
-    :map gh :Ehelper<cr>
-    :map gj :Ejavascript<CR>
-    :map gs :Estylesheet<CR>
+    :map mv :Eview<cr>
+    :map mc :Econtroller<cr>
+    :map mm :Emodel<cr>
+    :map mh :Ehelper<cr>
+    :map mj :Ejavascript<CR>
+    :map ms :Estylesheet<CR>
   " }
 
   " Snippets {
@@ -177,6 +188,7 @@
     filetype indent on                " required! Turn on file type detection.
     call vundle#end()                 " required!
   " }
+
 " }
 
 " VIM Ui {
@@ -216,7 +228,7 @@
   filetype plugin indent on         " Automatically detect file types.
   syntax on                         " syntax highlighting
 
-  autocmd BufWritePre *.* :%s/\s\+$//e
+  autocmd BufWritePre *.* :%s/\s\+$//e " Delete all trailing whitespace
   autocmd BufNewFile,BufRead *.html.erb set ft=eruby.html
   au Bufread,BufNewFile *.feature set filetype=gherkin
   au! Syntax gherkin source ~/.vim/cucumber.vim
@@ -264,4 +276,26 @@
 
 " Permissions {
   cmap w!! %!sudo tee > /dev/null %
+" }
+
+" Using the silver searcher with Vim {
+  " https://robots.thoughtbot.com/faster-grepping-in-vim
+  if executable('ag')
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+  endif
+
+  " bind K to grep word under cursor
+  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+  " bind \ (backward slash) to grep shortcut
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+  :map <C-f> :Ag<SPACE>
 " }
