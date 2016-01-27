@@ -48,6 +48,21 @@
     Plugin 'othree/html5.vim'
   " }
 
+  " Miscellaneous auto-load Vim scripts {
+    Plugin 'xolox/vim-misc.git'
+  " }
+
+  " Automated tag file generation and syntax highlighting of tags in Vim {
+    Plugin 'xolox/vim-easytags.git'
+
+    " Let Vim walk up directory hierarchy from CWD to root looking for tags file
+    set tags=./tags;,tags;
+    " Tell EasyTags to use the tags file found by Vim
+    let g:easytags_dynamic_files = 1
+    let g:easytags_events = ['BufWritePost']
+    let g:easytags_auto_highlight = 0
+  " }
+
   " JShint {
     Plugin 'wookiehangover/jshint.vim'
 
@@ -143,6 +158,8 @@
     let g:syntastic_quiet_messages = {'level': 'warnings'}
     let g:syntastic_error_symbol='✗'
     let g:syntastic_warning_symbol='⚠'
+    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
   " }
 
   " Command-T {
@@ -189,10 +206,34 @@
     call vundle#end()                 " required!
   " }
 
+  " Gitk {
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'gregsexton/gitv'
+  " }
 " }
 
 " VIM Ui {
-  colorscheme hybrid
+  syntax enable
+  " set background=dark " dark | light
+  function! BgToggleSol()
+    if &background == "light"
+      execute ":set background=dark"
+    else
+      execute ":set background=light"
+    endif
+  endfunction
+  map <F5> :call BgToggleSol()<cr>
+
+  let g:solarized_termcolors=256
+  let g:solarized_termtrans = 1
+  let g:solarized_degrade = 0
+  let g:solarized_bold = 1
+  let g:solarized_underline = 1
+  let g:solarized_italic = 1
+  let g:solarized_contrast = "normal"
+  let g:solarized_visibility= "normal"
+  colorscheme mac_classic "github, mac_classic
+
   set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
   set go-=L                         " Removes left hand scroll bar
   set cpoptions+=$                  " puts a $ marker for the end of words/lines in cw/c$ commands
@@ -224,6 +265,7 @@
   set laststatus=2                  " StatusLine
   set cursorline                    " Highlight the current line
   set lines=999 columns=999
+  " set autochdir
   filetype off                      " !include
   filetype plugin indent on         " Automatically detect file types.
   syntax on                         " syntax highlighting
@@ -297,5 +339,24 @@
   " bind \ (backward slash) to grep shortcut
   command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
-  :map <C-f> :Ag<SPACE>
+  :map <C-f> :Ag -i<SPACE>
+" }
+" Opt-In, Project-Specific Vim Spell-Checking and Word Completion {
+  " https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
+
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+  " Spell-check Markdown files
+  autocmd FileType markdown setlocal spell
+
+  " Spell-check Git messages
+  autocmd FileType gitcommit setlocal spell
+
+  " Set spellfile to location that is guaranteed to exist,
+  " can be symlinked to Dropbox or kept in Git
+  " and managed outside of thoughtbot/dotfiles using rcm.
+  set spellfile=$HOME/.vim-spell-en.utf-8.add
+
+  " Autocomplete with dictionary words when spell check is on
+  set complete+=kspell
 " }
