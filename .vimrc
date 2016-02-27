@@ -12,39 +12,31 @@
 "       \_/ |_|_| |_| |_|  \___\___/|_| |_|_| |_|\__, |
 "                                                 __/ |
 "                                                |___/
-"
 
-" let Vundle manage Vundle {
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-" }
-
-" Required! {
-  Plugin 'VundleVim/Vundle.vim'
-" }
+call plug#begin('~/.vim/plugged')
 
 " My Bundles here {
-    Plugin 'tpope/vim-endwise'            " Wisely add 'end' in ruby, endfunction/endif/more in vim script, etc.
-    Plugin 'Raimondi/delimitMate'         " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
+    Plug 'tpope/vim-endwise'            " Wisely add 'end' in ruby, endfunction/endif/more in vim script, etc.
+    Plug 'Raimondi/delimitMate'         " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
   " Syntax highlight {
-    Plugin 'elzr/vim-json'                " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
-    Plugin 'mxw/vim-jsx'                  " React JSX syntax highlighting and indenting for vim.
-    Plugin 'slim-template/vim-slim'       " Syntax highlighting for VIM
-    Plugin 'godlygeek/tabular'            " The TABULAR plugin must come before vim-markdown.
-    Plugin 'plasticboy/vim-markdown'      " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
-    Plugin 'tpope/vim-haml'               " Vim runtime files for Haml, Sass, and SCSS
-    Plugin 'pangloss/vim-javascript'      " Syntax highlighting for javascript
-    Plugin 'kchmck/vim-coffee-script.git' " CoffeeScript support for vim
+    Plug 'elzr/vim-json'                " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
+    Plug 'mxw/vim-jsx'                  " React JSX syntax highlighting and indenting for vim.
+    Plug 'slim-template/vim-slim'       " Syntax highlighting for VIM
+    Plug 'godlygeek/tabular'            " The TABULAR plugin must come before vim-markdown.
+    Plug 'plasticboy/vim-markdown'      " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+    Plug 'tpope/vim-haml'               " Vim runtime files for Haml, Sass, and SCSS
+    Plug 'pangloss/vim-javascript'      " Syntax highlighting for javascript
+    Plug 'kchmck/vim-coffee-script' " CoffeeScript support for vim
   " }
 
   " Devicons - font icons to programming languages, libraries, and web developer filetypes for: NERDTree, powerline, vim-airline, ctrlp, unite, lightline.vim, vim-startify, vimfiler, and flagship {
-    Plugin 'ryanoasis/vim-devicons'
+    Plug 'ryanoasis/vim-devicons'
 
     let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
   " }
 
   " Statusline - lean & mean status/tabline for vim that's light as air {
-    Plugin 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline'
 
     let g:Powerline_symbols = 'fancy'
     let g:airline_powerline_fonts=1
@@ -54,13 +46,13 @@
   " }
 
   " Statusline Themes - A collection of themes for vim-airline {
-    Plugin 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline-themes'
 
     let g:airline_theme='luna'
   " }
 
   " Comments - an extensible & universal comment vim-plugin that also handles embedded filetypes {
-    Plugin 'tomtom/tcomment_vim'
+    Plug 'tomtom/tcomment_vim'
 
     map <C-c> <esc>gcc<end>
     vmap <C-c> gc
@@ -68,17 +60,17 @@
 
   " Surround - quoting/parenthesizing made simple {
     " Example - ("Hello world!") To remove the delimiters entirely, press <ds">
-    Plugin 'tpope/vim-surround'
+    Plug 'tpope/vim-surround'
   " }
 
   " Bufexplorer - With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces {
-    Plugin 'jlanzarotta/bufexplorer'
+    Plug 'jlanzarotta/bufexplorer'
 
     nnoremap <silent> <C-b> :BufExplorer<CR>
   " }
 
   " Syntastic - syntax checking hacks for vim {
-    Plugin 'scrooloose/syntastic'
+    Plug 'scrooloose/syntastic'
 
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
@@ -101,7 +93,7 @@
   " }
 
   " Command-T - Fast file navigation for VIM {
-    Plugin 'wincent/command-t'
+    Plug 'wincent/command-t', { 'on':  'CommandT' }
 
     set wildignore+=*.sql,*.log,*.git
     nnoremap <silent> <tab> :CommandT<CR>
@@ -112,8 +104,8 @@
     map <F9> :CommandTFlush<cr>
   " }
 
-  " Nerdtree plugin - A tree explorer plugin for vim. {
-    Plugin 'scrooloose/nerdtree'
+  " Nerdtree Plugin - A tree explorer plugin for vim. {
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
     :map <F2> :NERDTreeToggle<cr>
     :let NERDTreeIgnore=['\.pys$'] " Don't show pyc files
@@ -122,7 +114,7 @@
   " }
 
   " Rails - Ruby on Rails power tools {
-    Plugin 'tpope/vim-rails'
+    Plug 'tpope/vim-rails'
 
     :map mv :Eview<cr>
     :map mc :Econtroller<cr>
@@ -134,13 +126,12 @@
 
   " Gitk - a Git wrapper so awesome, it should be illegal {
     " Gblame, Gbrowse
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'gregsexton/gitv'
+    Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
   " }
 
   " Indent Guides {
     " The default mapping to toggle the plugin is <Leader>ig
-    Plugin 'nathanaelkane/vim-indent-guides'
+    Plug 'nathanaelkane/vim-indent-guides'
 
     let g:indent_guides_auto_colors = 1
     set ts=2 sw=2 et
@@ -150,16 +141,16 @@
 
   " Search Dash.app from Vim {
     " Dash respond_to
-    Plugin 'rizzatti/dash.vim'
+    Plug 'rizzatti/dash.vim'
   " }
 
   " Lightweight support for Ruby's Bundler {
     " Go to gemfile then Bopen rails
-    Plugin 'tpope/vim-bundler'
+    Plug 'tpope/vim-bundler'
   " }
 
   " Gundo.vim is Vim plugin to visualize your Vim undo tree. {
-    Plugin 'sjl/gundo.vim'
+    Plug 'sjl/gundo.vim'
     nnoremap <F5> :GundoToggle<CR>
 
     let g:gundo_width = 60
@@ -172,12 +163,11 @@
     " #page>div.logo+ul#navigation>li*5>a{Item $}
     " and then type <c-y>,
 
-    Plugin 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim'
   " }
 
   " Snippets - vim-snipmate default snippets {
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -190,19 +180,24 @@
     let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
   " }
 
+  " A code-completion engine for Vim {
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py', 'for': 'cpp' }
+    autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_min_num_identifier_candidate_chars = 3
+    let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+
+    nnoremap <F4> :YcmForceCompileAndDiagnostics<CR>
+  " }
+
   " Other {
-    Plugin 'ervandew/supertab'      " SuperTab - Perform all your vim insert mode completions with Tab
-    Plugin 'Valloric/YouCompleteMe' " A code-completion engine for Vim
-    Plugin 'flazz/vim-colorschemes' " Colorscheme - one colorscheme pack to rule them all!
-    Plugin 'xolox/vim-misc.git'     " Miscellaneous auto-load Vim scripts
-    Plugin 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+    Plug 'ervandew/supertab'      " SuperTab - Perform all your vim insert mode completions with Tab
+    Plug 'flazz/vim-colorschemes' " Colorscheme - one colorscheme pack to rule them all!
+    Plug 'xolox/vim-misc'     " Miscellaneous auto-load Vim scripts
+    Plug 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
   " }
 " }
-
-" All of your Plugins must be added before the following line {
-  filetype indent on                " required! Turn on file type detection.
-  call vundle#end()                 " required!
-" }
+call plug#end()
 
 " VIM Ui {
   syntax enable
