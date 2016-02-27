@@ -19,72 +19,32 @@
   call vundle#begin()
 " }
 
-" required! {
+" Required! {
   Plugin 'VundleVim/Vundle.vim'
 " }
 
 " My Bundles here {
-    Plugin 'vim-scripts/endwise.vim'
-    Plugin 'Raimondi/delimitMate'
-    Plugin 'Townk/vim-autoclose'
-    Plugin 'vim-scripts/matchit.zip'
-    Plugin 'vim-scripts/ragtag.vim'
-    Plugin 'amirh/HTML-AutoCloseTag'
+    Plugin 'tpope/vim-endwise'            " Wisely add 'end' in ruby, endfunction/endif/more in vim script, etc.
+    Plugin 'Raimondi/delimitMate'         " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
   " Syntax highlight {
-    Plugin 'briancollins/vim-jst'
-    Plugin 'mxw/vim-jsx'
-    Plugin 'slim-template/vim-slim'
-    Plugin 'cucumber.zip'
-    Plugin 'gmarik/vim-markdown'
-    Plugin 'timcharper/textile.vim'
-    Plugin 'avakhov/vim-yaml'
-    Plugin 'vim-less'
-    Plugin 'tpope/vim-haml'
-    Plugin 'pangloss/vim-javascript'
-    Plugin 'kchmck/vim-coffee-script.git'
-    Plugin 'JulesWang/css.vim'
-    Plugin 'cakebaker/scss-syntax.vim'
-    Plugin 'othree/html5-syntax.vim'
-    Plugin 'othree/html5.vim'
+    Plugin 'elzr/vim-json'                " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
+    Plugin 'mxw/vim-jsx'                  " React JSX syntax highlighting and indenting for vim.
+    Plugin 'slim-template/vim-slim'       " Syntax highlighting for VIM
+    Plugin 'godlygeek/tabular'            " The TABULAR plugin must come before vim-markdown.
+    Plugin 'plasticboy/vim-markdown'      " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+    Plugin 'tpope/vim-haml'               " Vim runtime files for Haml, Sass, and SCSS
+    Plugin 'pangloss/vim-javascript'      " Syntax highlighting for javascript
+    Plugin 'kchmck/vim-coffee-script.git' " CoffeeScript support for vim
   " }
 
-  " Miscellaneous auto-load Vim scripts {
-    Plugin 'xolox/vim-misc.git'
-  " }
-
-  " Automated tag file generation and syntax highlighting of tags in Vim {
-    Plugin 'xolox/vim-easytags.git'
-
-    " Let Vim walk up directory hierarchy from CWD to root looking for tags file
-    set tags=./tags;,tags;
-    " Tell EasyTags to use the tags file found by Vim
-    let g:easytags_dynamic_files = 1
-    let g:easytags_events = ['BufWritePost']
-    let g:easytags_auto_highlight = 0
-  " }
-
-  " JShint {
-    Plugin 'wookiehangover/jshint.vim'
-
-    let JSHintUpdateWriteOnly=1
-  " }
-
-  " Simple color selector/picker {
-    Plugin 'KabbAmine/vCoolor.vim'
-  " }
-
-  " Devicons {
+  " Devicons - font icons to programming languages, libraries, and web developer filetypes for: NERDTree, powerline, vim-airline, ctrlp, unite, lightline.vim, vim-startify, vimfiler, and flagship {
     Plugin 'ryanoasis/vim-devicons'
 
     let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
   " }
 
-  " Auto Pairs {
-    Plugin 'jiangmiao/auto-pairs'
-  " }
-
-  " Statusline {
-    Plugin 'bling/vim-airline'
+  " Statusline - lean & mean status/tabline for vim that's light as air {
+    Plugin 'vim-airline/vim-airline'
 
     let g:Powerline_symbols = 'fancy'
     let g:airline_powerline_fonts=1
@@ -93,53 +53,31 @@
     let g:airline#extensions#branch#enabled=1
   " }
 
-  " Colorscheme {
-    Plugin 'flazz/vim-colorschemes'
+  " Statusline Themes - A collection of themes for vim-airline {
+    Plugin 'vim-airline/vim-airline-themes'
+
+    let g:airline_theme='luna'
   " }
 
-  " Autocomplete words {
-    " Plugin 'exvim/ex-autocomplpop'
-  " }
-
-  " Multiple cursors {
-    Plugin 'vim-multiple-cursors'
-  " }
-
-  " RSpec {
-    Plugin 'thoughtbot/vim-rspec'
-
-    map <Leader>t :call RunCurrentSpecFile()<CR>
-    map <Leader>s :call RunNearestSpec()<CR>
-    map <Leader>l :call RunLastSpec()<CR>
-    map <Leader>a :call RunAllSpecs()<CR>
-  " }
-
-  " Comments {
-    Plugin 'tcomment'
+  " Comments - an extensible & universal comment vim-plugin that also handles embedded filetypes {
+    Plugin 'tomtom/tcomment_vim'
 
     map <C-c> <esc>gcc<end>
     vmap <C-c> gc
   " }
 
-  " Surround {
+  " Surround - quoting/parenthesizing made simple {
+    " Example - ("Hello world!") To remove the delimiters entirely, press <ds">
     Plugin 'tpope/vim-surround'
   " }
 
-  " Bufexplorer {
+  " Bufexplorer - With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces {
     Plugin 'jlanzarotta/bufexplorer'
 
     nnoremap <silent> <C-b> :BufExplorer<CR>
   " }
 
-  " Rgrep {
-    " Plugin 'vim-scripts/grep.vim'
-    "
-    " :map <C-f> :Rgrep<cr>
-    " let Grep_Skip_Files = '*.log *.sql *.png *.jpg *.jpeg *.gif'
-    " let Grep_Skip_Dirs = 'tmp system coverage log solr public'
-  " }
-
-  " Syntastic {
+  " Syntastic - syntax checking hacks for vim {
     Plugin 'scrooloose/syntastic'
 
     set statusline+=%#warningmsg#
@@ -162,11 +100,10 @@
     let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
   " }
 
-  " Command-T {
-    Plugin 'wincent/Command-T.git'
+  " Command-T - Fast file navigation for VIM {
+    Plugin 'wincent/command-t'
 
     set wildignore+=*.sql,*.log,*.git
-    :map <A-S-i> :CommandT<cr>
     nnoremap <silent> <tab> :CommandT<CR>
     let g:CommandTCursorRightMap=['<C-r>']
     let g:CommandTAcceptSelectionTabMap=['<C-l>']
@@ -175,7 +112,7 @@
     map <F9> :CommandTFlush<cr>
   " }
 
-  " Nerdtree plugin {
+  " Nerdtree plugin - A tree explorer plugin for vim. {
     Plugin 'scrooloose/nerdtree'
 
     :map <F2> :NERDTreeToggle<cr>
@@ -184,7 +121,7 @@
     :let NERDTreeQuitOnOpen=1
   " }
 
-  " Rails {
+  " Rails - Ruby on Rails power tools {
     Plugin 'tpope/vim-rails'
 
     :map mv :Eview<cr>
@@ -195,34 +132,80 @@
     :map ms :Estylesheet<CR>
   " }
 
-  " Snippets {
-    Plugin 'gmarik/snipmate.vim'
-
-    nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
-  " }
-
-  " All of your Plugins must be added before the following line {
-    filetype indent on                " required! Turn on file type detection.
-    call vundle#end()                 " required!
-  " }
-
-  " Gitk {
+  " Gitk - a Git wrapper so awesome, it should be illegal {
+    " Gblame, Gbrowse
     Plugin 'tpope/vim-fugitive'
     Plugin 'gregsexton/gitv'
   " }
+
+  " Indent Guides {
+    " The default mapping to toggle the plugin is <Leader>ig
+    Plugin 'nathanaelkane/vim-indent-guides'
+
+    let g:indent_guides_auto_colors = 1
+    set ts=2 sw=2 et
+    let g:indent_guides_start_level = 2
+    let g:indent_guides_guide_size = 1
+  " }
+
+  " Search Dash.app from Vim {
+    " Dash respond_to
+    Plugin 'rizzatti/dash.vim'
+  " }
+
+  " Lightweight support for Ruby's Bundler {
+    " Go to gemfile then Bopen rails
+    Plugin 'tpope/vim-bundler'
+  " }
+
+  " Gundo.vim is Vim plugin to visualize your Vim undo tree. {
+    Plugin 'sjl/gundo.vim'
+    nnoremap <F5> :GundoToggle<CR>
+
+    let g:gundo_width = 60
+    let g:gundo_preview_height = 40
+  " }
+
+
+  " Emmet — the essential toolkit for web-developers {
+    " Example
+    " #page>div.logo+ul#navigation>li*5>a{Item $}
+    " and then type <c-y>,
+
+    Plugin 'mattn/emmet-vim'
+  " }
+
+  " Snippets - vim-snipmate default snippets {
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+    let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
+  " }
+
+  " Other {
+    Plugin 'ervandew/supertab'      " SuperTab - Perform all your vim insert mode completions with Tab
+    Plugin 'Valloric/YouCompleteMe' " A code-completion engine for Vim
+    Plugin 'flazz/vim-colorschemes' " Colorscheme - one colorscheme pack to rule them all!
+    Plugin 'xolox/vim-misc.git'     " Miscellaneous auto-load Vim scripts
+    Plugin 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+  " }
+" }
+
+" All of your Plugins must be added before the following line {
+  filetype indent on                " required! Turn on file type detection.
+  call vundle#end()                 " required!
 " }
 
 " VIM Ui {
   syntax enable
-  " set background=dark " dark | light
-  function! BgToggleSol()
-    if &background == "light"
-      execute ":set background=dark"
-    else
-      execute ":set background=light"
-    endif
-  endfunction
-  map <F5> :call BgToggleSol()<cr>
 
   let g:solarized_termcolors=256
   let g:solarized_termtrans = 1
@@ -232,9 +215,10 @@
   let g:solarized_italic = 1
   let g:solarized_contrast = "normal"
   let g:solarized_visibility= "normal"
-  colorscheme mac_classic "github, mac_classic
+  colorscheme desert " github, mac_classic
+  set background=dark " dark | light
 
-  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h14
   set go-=L                         " Removes left hand scroll bar
   set cpoptions+=$                  " puts a $ marker for the end of words/lines in cw/c$ commands
   set guioptions-=T                 " Removes top toolbar
@@ -265,15 +249,15 @@
   set laststatus=2                  " StatusLine
   set cursorline                    " Highlight the current line
   set lines=999 columns=999
+  set wildmenu
   " set autochdir
-  filetype off                      " !include
-  filetype plugin indent on         " Automatically detect file types.
+  " filetype off                      " !include
+  " filetype plugin indent on         " Automatically detect file types.
   syntax on                         " syntax highlighting
 
   autocmd BufWritePre *.* :%s/\s\+$//e " Delete all trailing whitespace
   autocmd BufNewFile,BufRead *.html.erb set ft=eruby.html
   au Bufread,BufNewFile *.feature set filetype=gherkin
-  au! Syntax gherkin source ~/.vim/cucumber.vim
 
   " ruby {
     autocmd FileType ruby set omnifunc=rubycomplete#Complete
@@ -307,8 +291,8 @@
 " }
 
 " reload .vimrc settings {
-  autocmd! bufwritepost .vimrc source %
-  set autoread " autorealod changed files
+  " autocmd! bufwritepost .vimrc source %
+  " set autoread " autorealod changed files
 " }
 
 " WindowPopup color {
@@ -340,23 +324,4 @@
   command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
   :map <C-f> :Ag -i<SPACE>
-" }
-" Opt-In, Project-Specific Vim Spell-Checking and Word Completion {
-  " https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
-
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-  " Spell-check Markdown files
-  autocmd FileType markdown setlocal spell
-
-  " Spell-check Git messages
-  autocmd FileType gitcommit setlocal spell
-
-  " Set spellfile to location that is guaranteed to exist,
-  " can be symlinked to Dropbox or kept in Git
-  " and managed outside of thoughtbot/dotfiles using rcm.
-  set spellfile=$HOME/.vim-spell-en.utf-8.add
-
-  " Autocomplete with dictionary words when spell check is on
-  set complete+=kspell
 " }
