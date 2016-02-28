@@ -13,6 +13,14 @@
 "                                                 __/ |
 "                                                |___/
 
+" Automatic installation VimPlug
+" Place the following code before plug#begin()
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -28,8 +36,10 @@ Plug 'tpope/vim-sensible'             " Think of sensible.vim as one step above 
 Plug 'elzr/vim-json'                  " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 Plug 'mxw/vim-jsx'                    " React JSX syntax highlighting and indenting for vim.
 Plug 'slim-template/vim-slim'         " Syntax highlighting for VIM
-Plug 'godlygeek/tabular'              " The TABULAR plugin must come before vim-markdown.
-Plug 'plasticboy/vim-markdown'        " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+
+" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+
 Plug 'tpope/vim-haml'                 " Vim runtime files for Haml, Sass, and SCSS
 Plug 'pangloss/vim-javascript'        " Syntax highlighting for javascript
 Plug 'kchmck/vim-coffee-script'       " CoffeeScript support for vim
@@ -60,7 +70,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'rizzatti/dash.vim'               " Search Dash.app from Vim. Example, :Dash respond_to
 Plug 'tpope/vim-bundler'               " Lightweight support for Ruby's Bundler. Go to gemfile then :Bopen rails
-Plug 'sjl/gundo.vim'                   " Gundo.vim is Vim plugin to visualize your Vim undo tree.
+Plug 'mbbill/undotree'                 " The ultimate undo history visualizer for VIM
 
 " Emmet — the essential toolkit for web-developers {
 " Example, #page>div.logo+ul#navigation>li*5>a{Item $} and then type <c-y>,.
@@ -186,13 +196,15 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 """"""""""""""""""""""""""""""""""""""""""""
-"  Gundo                                   "
+"  Undotree                                "
 """"""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F5> :UndotreeToggle<cr>
 
-let g:gundo_width = 60
-let g:gundo_preview_height = 40
+if has("persistent_undo")
+  set undodir=~/.undodir/
+  set undofile
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""
 "  Snippets                                "
@@ -246,12 +258,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""""""""""""""
-"  YouCompleteMe                           "
-""""""""""""""""""""""""""""""""""""""""""""
-
-autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
-
-""""""""""""""""""""""""""""""""""""""""""""
 "  VIM UI                                  "
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -302,56 +308,43 @@ augroup END
 "  Custom mappings                         "
 """"""""""""""""""""""""""""""""""""""""""""
 
-" move text to left/right {
-  vnoremap < <gv
-  vnoremap > >gv
-" }
+" move text to left/right
+vnoremap < <gv
+vnoremap > >gv
 
-" Save {
-  map <C-s> :w<cr>
-  imap <C-s> <ESC>:w<cr>
-" }
+" Save
+map <C-s> :w<cr>
+imap <C-s> <ESC>:w<cr>
 
-" Clearing highlighted search {
-  nnoremap <leader><esc> :noh<return><esc>
-" }
+" Clearing highlighted search
+nnoremap <leader><esc> :noh<return><esc>
 
-" move up and down lines with A-down and A-up (also works in visual mode) {
-  nnoremap <S-down> :m+<CR>==
-  nnoremap <S-up> :m-2<CR>==
-  inoremap <S-down> <Esc>:m+<CR>==gi
-  inoremap <S-up> <Esc>:m-2<CR>==gi
-  vnoremap <S-down> :m'>+<CR>gv=gv
-  vnoremap <S-up> :m-2<CR>gv=gv
-" }
+" move up and down lines with A-down and A-up (also works in visual mode)
+nnoremap <S-down> :m+<CR>==
+nnoremap <S-up> :m-2<CR>==
+inoremap <S-down> <Esc>:m+<CR>==gi
+inoremap <S-up> <Esc>:m-2<CR>==gi
+vnoremap <S-down> :m'>+<CR>gv=gv
+vnoremap <S-up> :m-2<CR>gv=gv
 
-" reload .vimrc settings {
-  " autocmd! bufwritepost .vimrc source %
-  " set autoread " autorealod changed files
-" }
+" WindowPopup color
+:highlight Pmenu guibg=slategrey gui=bold
+:highlight Pmenu ctermbg=30 gui=bold
 
-" WindowPopup color {
-  :highlight Pmenu guibg=slategrey gui=bold
-  :highlight Pmenu ctermbg=30 gui=bold
-" }
+" Permissions
+cmap w!! %!sudo tee > /dev/null %
 
-" Permissions {
-  cmap w!! %!sudo tee > /dev/null %
-" }
+" Using the silver searcher with Vim
+" https://robots.thoughtbot.com/faster-grepping-in-vim
+" Also need ack (>= 2.0), of course. To install it follow the http://beyondgrep.com/install/
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
-" Using the silver searcher with Vim {
-  " https://robots.thoughtbot.com/faster-grepping-in-vim
-  " Also need ack (>= 2.0), of course. To install it follow the http://beyondgrep.com/install/
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-  if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-  endif
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
-  " bind K to grep word under cursor
-  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-  " bind \ (backward slash) to grep shortcut
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-  map <C-f> :Ag -i<SPACE>
-" }
+map <C-f> :Ag -i<SPACE>
