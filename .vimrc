@@ -65,9 +65,10 @@ Plug 'xolox/vim-session'       " Extended session management for Vim
 Plug 'tpope/vim-sensible'      " Think of sensible.vim as one step above 'nocompatible' mode: a universal set of defaults that (hopefully) everyone can agree on.
 Plug 'tpope/vim-haml'          " Vim runtime files for Haml, Sass, and SCSS
 Plug 'tpope/vim-endwise'       " Wisely add 'end' in ruby, endfunction/endif/more in vim script, etc.
-Plug 'tpope/vim-rails', { 'on': [] }                      " Rails - Ruby on Rails power tools
+Plug 'tpope/vim-rails'         " Rails - Ruby on Rails power tools
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' } " Comment stuff out
 Plug 'rizzatti/dash.vim', { 'on': [] }                    " Search Dash.app from Vim. Example, :Dash respond_to
+Plug 'wincent/command-t', { 'do': 'rake make', 'on': ['CommandT', '<Plug>(CommandT)'] } " Command-T - Fast file navigation for VIM
 
 " Surround - quoting/parenthesizing made simple.
 " Example, 'Hello world!' to remove the delimiters entirely, press <ds'>
@@ -81,9 +82,6 @@ Plug 'tpope/vim-bundler', { 'on': [] } " Lightweight support for Ruby's Bundler.
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-
-" A command-line fuzzy finder written in Go
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 
 " Indent Line
 " The default mapping to toggle the plugin is <Leader>ig
@@ -110,19 +108,11 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Loading plugins
 augroup load_plugins
   autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'emmet-vim', 'dash.vim', 'vim-bundler', 'vim-rails')
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'emmet-vim', 'dash.vim', 'vim-bundler')
                      \| call youcompleteme#Enable() | autocmd! load_plugins
 augroup END
 
 call plug#end()
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  FZF                                                                 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-nnoremap <silent> <Leader><Enter>  :Buffers<CR>
-nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  vim-devicons                                                        "
@@ -152,6 +142,21 @@ let g:airline_theme='luna'
 
 map <C-c> <Plug>CommentaryLine
 vmap <C-c> <Plug>Commentary
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  CommandT                                                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set wildignore+=*.sql,*.log
+set wildignore+=*.o,*.obj,.git,*.pyc,*.so,blaze*,READONLY,llvm,Library*
+set wildignore+=CMakeFiles,packages/*,**/packages/*,**/node_modules/*
+
+let g:CommandTWildIgnore=&wildignore . ",**/tmp/*"
+let g:CommandTMatchWindowAtTop=1
+
+nnoremap <silent> <tab> :CommandT<CR>
+map <F9> :CommandTFlush<cr>
+map <Leader><Enter> :CommandTBuffer<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Syntastic                                                           "
