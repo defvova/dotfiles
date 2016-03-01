@@ -57,6 +57,7 @@ augroup END
 " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 
+Plug 'majutsushi/tagbar'       " Vim plugin that displays tags in a window, ordered by scope
 Plug 'ervandew/supertab'       " SuperTab - Perform all your vim insert mode completions with Tab
 Plug 'flazz/vim-colorschemes'  " Colorscheme - one colorscheme pack to rule them all!
 Plug 'airblade/vim-gitgutter'  " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
@@ -119,6 +120,12 @@ augroup load_plugins
 augroup END
 
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  TagbarToggle                                                        "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <F8> :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  vim-devicons                                                        "
