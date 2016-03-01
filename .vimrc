@@ -1,17 +1,17 @@
-"__         __  ________  __         __   __
-"\ \       / / |  ____  | \ \       / /  /  \
-" \ \     / /  | |    | |  \ \     / /  /  _ \
-"  \ \   / /   | |    | |   \ \   / /  /  /_\ \
-"   \ \_/ /    | |____| |    \ \_/ /  /  ____  \
-"    \___/     |________|     \___/  /__/    \__\
-"            _                              __ _
-"           (_)                            / _(_)
-"     __   ___ _ __ ___     ___ ___  _ __ | |_ _  __ _
-"     \ \ / / | '_ ` _ \   / __/ _ \| '_ \|  _| |/ _` |
-"      \ V /| | | | | | | | (_| (_) | | | | | | | (_| |
-"       \_/ |_|_| |_| |_|  \___\___/|_| |_|_| |_|\__, |
-"                                                 __/ |
-"                                                |___/
+"                                                      __         __  ________  __         __   __
+"                                                      \ \       / / |  ____  | \ \       / /  /  \
+"                                                       \ \     / /  | |    | |  \ \     / /  /  _ \
+"                                                        \ \   / /   | |    | |   \ \   / /  /  /_\ \
+"                                                         \ \_/ /    | |____| |    \ \_/ /  /  ____  \
+"                                                          \___/     |________|     \___/  /__/    \__\
+"                                                                  _                              __ _
+"                                                                 (_)                            / _(_)
+"                                                           __   ___ _ __ ___     ___ ___  _ __ | |_ _  __ _
+"                                                           \ \ / / | '_ ` _ \   / __/ _ \| '_ \|  _| |/ _` |
+"                                                            \ V /| | | | | | | | (_| (_) | | | | | | | (_| |
+"                                                             \_/ |_|_| |_| |_|  \___\___/|_| |_|_| |_|\__, |
+"                                                                                                       __/ |
+"                                                                                                      |___/
 
 " Automatic installation VimPlug
 " Place the following code before plug#begin()
@@ -72,6 +72,12 @@ Plug 'wincent/command-t', { 'do': 'rake make', 'on': ['CommandT', '<Plug>(Comman
 
 " Surround - quoting/parenthesizing made simple.
 " Example, 'Hello world!' to remove the delimiters entirely, press <ds'>
+" Old text                  Command     New text ~
+" 'Hello *world!'           ds'         Hello world!
+" [123+4*56]/2              cs])        (123+456)/2
+" 'Look ma, I'm *HTML!'     cs'<q>      <q>Look ma, I'm HTML!</q>
+" if *x>3 {                 ysW(        if ( x>3 ) {
+" my $str = *whee!;         vllllS'     my $str = 'whee!';
 Plug 'tpope/vim-surround'
 
 " Gitk - a Git wrapper so awesome, it should be illegal.
