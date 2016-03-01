@@ -57,6 +57,7 @@ augroup END
 " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 
+Plug 'jlanzarotta/bufexplorer' " Bufexplorer - With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces
 Plug 'majutsushi/tagbar'       " Vim plugin that displays tags in a window, ordered by scope
 Plug 'ervandew/supertab'       " SuperTab - Perform all your vim insert mode completions with Tab
 Plug 'flazz/vim-colorschemes'  " Colorscheme - one colorscheme pack to rule them all!
@@ -122,6 +123,12 @@ augroup END
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Bufexplorer                                                         "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <silent> <Leader><Enter> :BufExplorer<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  TagbarToggle                                                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -169,7 +176,6 @@ let g:CommandTMatchWindowAtTop=1
 
 nnoremap <silent> <tab> :CommandT<CR>
 map <F9> :CommandTFlush<cr>
-map <Leader><Enter> :CommandTBuffer<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Syntastic                                                           "
