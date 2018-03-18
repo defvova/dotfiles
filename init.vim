@@ -204,16 +204,10 @@ let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 1
-" cycle through location list
-nmap <silent> <leader>n <Plug>(ale_next_wrap)
-
-let g:ale_rust_cargo_use_check = 1
-
-if has('nvim')
-  set inccommand=split
-endif
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_enter = 1
+let g:ale_fix_on_save = 1
+let g:lint_on_insert_leave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Editorconfig                                                        "
@@ -240,6 +234,14 @@ nnoremap <D-p> :FZF<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  VIM UI                                                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+augroup vimrc
+  " Reset the vimrc augroup. Autocommands are added to this group throughout the file
+  autocmd!
+
+  " Automatically delete trailing DOS-returns and whitespace on file open and write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+augroup END
 
 " My favorite colors (hybrid, github, mac_classic, desert, onedark)
 colorscheme quantum
@@ -319,6 +321,14 @@ inoremap <S-down> <Esc>:m+<CR>
 inoremap <S-up> <Esc>:m-2<CR>
 vnoremap <S-down> :m'>+<CR>gv
 vnoremap <S-up> :m-2<CR>gv
+
+" Tabs
+nnoremap <D-S-{> :tabprevious<CR>
+nnoremap <D-S-}> :tabnext<CR>
+nnoremap <D-t>   :tabnew<CR>
+inoremap <D-S-{> <Esc>:tabprevious<CR>i
+inoremap <D-S-}> <Esc>:tabnext<CR>i
+inoremap <D-t>   <Esc>:tabnew<CR>
 
 " Permissions
 cmap w!! %!sudo tee > /dev/null %
