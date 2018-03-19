@@ -78,7 +78,7 @@ call plug#begin('~/.vim/plugged')
 
   " Gitk - a Git wrapper so awesome, it should be illegal.
   " Example, :GV, :GV!, :Gbrowse
-  Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
+  Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim' | Plug 'tpope/vim-rhubarb'
 
   " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
@@ -315,12 +315,12 @@ imap <C-s> <ESC>:w<cr>
 nnoremap <leader><esc> :noh<return><esc>
 
 " Move up and down lines with A-down and A-up (also works in visual mode)
-nnoremap <S-down> :m+<CR>
-nnoremap <S-up> :m-2<CR>
-inoremap <S-down> <Esc>:m+<CR>
-inoremap <S-up> <Esc>:m-2<CR>
-vnoremap <S-down> :m'>+<CR>gv
-vnoremap <S-up> :m-2<CR>gv
+nnoremap <D-S-down> :m+<CR>
+nnoremap <D-S-up> :m-2<CR>
+inoremap <D-S-down> <Esc>:m+<CR>
+inoremap <D-S-up> <Esc>:m-2<CR>
+vnoremap <D-S-down> :m'>+<CR>gv
+vnoremap <D-S-up> :m-2<CR>gv
 
 " Tabs
 nnoremap <D-S-{> :tabprevious<CR>
