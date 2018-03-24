@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'   " A light and configurable statusline/tabline plugin for Vim
   Plug 'mhinz/vim-startify'      " The fancy start screen for Vim.
   Plug 'joshdick/onedark.vim'    " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
+  Plug 'ap/vim-css-color' 	 " A plugin to color colornames and codes
 
   Plug 'ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files
   Plug 'tyrannicaltoucan/vim-quantum' " A Material color scheme for Vim.
@@ -274,6 +275,7 @@ set smartcase
 set nocompatible                  " Use ViMproved, don't emulate old vi
 set shellslash
 set lines=999 columns=999
+set colorcolumn=120
 
 let g:quantum_italics = 1
 
