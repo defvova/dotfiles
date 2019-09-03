@@ -133,6 +133,7 @@ let NERDTreeIgnore=['\.pys$'] " Don't show pyc files
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
+let g:NERDTreeWinSize=90
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Rails                                                               "
