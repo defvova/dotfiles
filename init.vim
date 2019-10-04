@@ -33,6 +33,10 @@ call plug#begin('~/.vim/plugged')
 
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Dark powered asynchronous completion framework for neovim/Vim8
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
   Plug 'mxw/vim-jsx'                    " React JSX syntax highlighting and indenting for vim.
@@ -277,7 +281,7 @@ set smartcase
 set nocompatible                  " Use ViMproved, don't emulate old vi
 set shellslash
 set lines=999 columns=999
-set colorcolumn=120
+set colorcolumn=80
 
 let g:quantum_italics = 1
 
