@@ -41,10 +41,12 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'mxw/vim-jsx'                    " React JSX syntax highlighting and indenting for vim.
   Plug 'pangloss/vim-javascript'        " Syntax highlighting for javascript
+  Plug 'kchmck/vim-coffee-script'       " Syntax highlighting for coffee
   Plug 'Raimondi/delimitMate'           " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 
   " Nerdtree Plugin - A tree explorer plugin for vim.
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   augroup nerd_loader
     autocmd!
     autocmd VimEnter * silent! autocmd! FileExplorer
@@ -73,7 +75,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'   " A light and configurable statusline/tabline plugin for Vim
   Plug 'mhinz/vim-startify'      " The fancy start screen for Vim.
   Plug 'joshdick/onedark.vim'    " A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
-  Plug 'ap/vim-css-color' 	 " A plugin to color colornames and codes
+  Plug 'ap/vim-css-color'        " A plugin to color colornames and codes
 
   Plug 'ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files
   Plug 'tyrannicaltoucan/vim-quantum' " A Material color scheme for Vim.
@@ -95,7 +97,24 @@ call plug#begin('~/.vim/plugged')
   " A command-line fuzzy finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+
+  " UltiSnips - The ultimate snippet solution for Vim
+  Plug 'SirVer/ultisnips'
+
+  " Improved nginx vim plugin (incl. syntax highlighting)
+  Plug 'chr4/nginx.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'kristijanhusak/vim-carbon-now-sh'
+
+  " A Vim plugin for Prettier
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips                                                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:UltiSnipsExpandTrigger = '<C-n>'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  VimEsearch                                                          "
@@ -206,6 +225,7 @@ set statusline+=C%02v
 "  Ale                                                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let b:ale_fixers = ['prettier', 'eslint', 'stylelint']
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
@@ -229,7 +249,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:deoplete#auto_completion_start_length = 1
-let g:deoplete#auto_complete_delay = 50
+let g:deoplete#auto_complete_delay = 10
+let g:deoplete#num_processes = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  FZF                                                                 "
@@ -256,6 +277,7 @@ set termguicolors
 set background=dark " dark | light
 
 set title                         " change the terminal's title
+set encoding=UTF-8
 set go-=L                         " Removes left hand scroll bar
 set guioptions-=T                 " Removes top toolbar
 set guioptions-=r                 " Removes right hand scroll bar
