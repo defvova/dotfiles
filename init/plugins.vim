@@ -40,7 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'easymotion/vim-easymotion'
 
   " Intellisense code engine, auto-completion, linting, code fixing
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
   " A command-line fuzzy finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -95,9 +95,17 @@ call plug#begin('~/.config/nvim/plugged')
   " The fancy start screen for Vim.
   Plug 'mhinz/vim-startify'
 
+  Plug 'rizzatti/dash.vim'
+
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+  " Vim bundle for styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+  " vim-tsx will do all the coloring for jsx in the .tsx file
+  Plug 'ianks/vim-tsx'
 
   " A Vim plugin that always highlights the enclosing html/xml tags
   Plug 'Valloric/MatchTagAlways'

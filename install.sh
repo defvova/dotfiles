@@ -27,6 +27,7 @@ packages=(
   "fzf"
   "z"
   "htop"
+  "archey"
 )
 for i in "${packages[@]}"
 do
