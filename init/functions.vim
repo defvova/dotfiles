@@ -23,7 +23,15 @@ augroup vimrc
   autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 augroup END
 
-" My favorite colors (hybrid, github, mac_classic, desert, onedark)
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" My favorite colors (OceanicNext, hybrid, github, mac_classic, desert, onedark)
 try
   colorscheme OceanicNext
 catch
