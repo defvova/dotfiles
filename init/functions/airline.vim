@@ -38,6 +38,7 @@ let g:airline_highlighting_cache = 1
 
 " Vim airline theme
 " let g:airline_theme='oceanicnext'
+let g:airline_theme = 'palenight'
 
 " Define custom airline symbols
 if !exists('g:airline_symbols')

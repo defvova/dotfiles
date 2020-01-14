@@ -31,9 +31,9 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" My favorite colors (OceanicNext, hybrid, github, mac_classic, desert, onedark)
+" My favorite colors (palenight, OceanicNext, hybrid, github, mac_classic, desert, onedark)
 try
-  colorscheme OceanicNext
+  colorscheme palenight
 catch
   colorscheme slate
 endtry

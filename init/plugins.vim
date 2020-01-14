@@ -74,9 +74,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-  " Colorscheme - one colorscheme pack to rule them all!
-  Plug 'flazz/vim-colorschemes'
-
   " Find And Replace Vim plugin
   Plug 'brooth/far.vim'
 
@@ -96,6 +93,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mhinz/vim-startify'
 
   Plug 'rizzatti/dash.vim'
+
+  " Colorscheme - one colorscheme pack to rule them all!
+  Plug 'flazz/vim-colorschemes'
+
+  " Colorschemes for Vim
+  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'rakr/vim-one'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "

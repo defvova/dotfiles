@@ -16,7 +16,7 @@ function! NERDTreeToggleInCurDir()
 endfunction
 
 " Hide certain files and directories from NERDTree
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$', 'node_modules']
 
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
@@ -25,10 +25,11 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI=1
 
 " Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
+" let g:NERDTreeDirArrowExpandable = '⬏'
+" let g:NERDTreeDirArrowCollapsible = '⬎'
 
 let g:NERDTreeWinSize=60
+let NERDTreeAutoDeleteBuffer = 1
 
 catch
   echo 'NERDTree not installed. It should work after running :PlugInstall'
