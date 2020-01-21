@@ -101,6 +101,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'rakr/vim-one'
 
+  " The open source plugin for productivity metrics, goals, leaderboards, and automatic time tracking.
+  Plug 'wakatime/vim-wakatime'
+
+  " Plugin highlighting word under cursor and all of its occurrences.
+  Plug 'dominikduda/vim_current_word'
+
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

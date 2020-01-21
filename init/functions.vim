@@ -140,6 +140,8 @@ let g:jsx_ext_required = 0
 " or 'The only match'
 set shortmess+=c
 
+set tags=./tags
+
 " coc.nvim color changes
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
