@@ -51,6 +51,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Snippets are separated from the engine.
   Plug 'honza/vim-snippets'
+  Plug 'mlaursen/vim-react-snippets'
 
   " Print function signatures in echo area
   Plug 'Shougo/echodoc.vim'
@@ -106,6 +107,12 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Plugin highlighting word under cursor and all of its occurrences.
   Plug 'dominikduda/vim_current_word'
+
+  " Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
+  Plug 'luochen1990/rainbow'
+
+  " Vim plugin, insert or delete brackets, parens, quotes in pair
+  Plug 'jiangmiao/auto-pairs'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
