@@ -114,6 +114,12 @@ call plug#begin('~/.config/nvim/plugged')
   " Vim plugin, insert or delete brackets, parens, quotes in pair
   Plug 'jiangmiao/auto-pairs'
 
+  " Like Rails.vim for Node
+  Plug 'moll/vim-node'
+
+  " A Vim plugin that manages your tag files
+  Plug 'ludovicchabant/vim-gutentags'
+
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
