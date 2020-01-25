@@ -24,9 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
   " These need to come before the configuration options for the plugins since
   " VimPlug will add the plugin folders to the runtimepath only after it has seen the plugin's Plugin command.
 
-  " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
-  Plug 'Raimondi/delimitMate'
-
   " Wisely add 'end' in ruby, endfunction/endif/more in vim script, etc.
   Plug 'tpope/vim-endwise'
 

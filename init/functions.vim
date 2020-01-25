@@ -38,6 +38,8 @@ catch
   colorscheme slate
 endtry
 
+filetype indent off
+
 " Don't show last command
 set noshowcmd
 
@@ -68,9 +70,6 @@ set guioptions-=T
 " Removes right hand scroll bar
 set guioptions-=r
 
-" Disable splash text
-set shortmess+=I
-
 " Enable line number
 set number
 
@@ -96,9 +95,6 @@ set nobackup
 set nowritebackup
 " Disable swp files
 set noswapfile
-
-" Disable intro message
-set shortmess=filmnrxtTI
 
 " Remove the buffer after tab close
 set nohidden
@@ -131,11 +127,23 @@ set autoread
 set shellslash
 set colorcolumn=80
 
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" always show signcolumns
+set signcolumn=yes
+
 let g:quantum_italics = 1
 
 " Highlight jsx syntax even in non .jsx files
 let g:jsx_ext_required = 0
 
+" Disable splash text
+" set shortmess+=I
+"
+" Disable intro message
+" set shortmess=filmnrxtTI
+"
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
 set shortmess+=c

@@ -1,26 +1,18 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "diagnostic.errorSign": "•",
-  "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•",
+  "codeLens.enable": false,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "➤",
+  "diagnostic.infoSign": "⚠",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "graphql",
-    "javascript",
-    "javascriptreact",
     "json",
     "markdown",
-    "scss",
-    "typescript",
-    "typescriptreact"
+    "scss"
   ],
-  "eslint.run": "onSave",
-  "eslint.autoFixOnSave": false,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ]
+  "yaml.schemas": {
+    "http://javascript.schemastore.org/react.intellisense.js": "/*"
+  }
 }
