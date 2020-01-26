@@ -117,6 +117,15 @@ call plug#begin('~/.config/nvim/plugged')
   " A Vim plugin that manages your tag files
   Plug 'ludovicchabant/vim-gutentags'
 
+  " Auto close html tags
+  Plug 'alvan/vim-closetag'
+
+  " The plugin provides mappings to easily delete, change and add such surroundings in pairs.
+  Plug 'machakann/vim-sandwich'
+
+  " The interactive scratchpad for hackers.
+  Plug 'metakirby5/codi.vim'
+
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
