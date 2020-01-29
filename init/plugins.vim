@@ -101,6 +101,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " The open source plugin for productivity metrics, goals, leaderboards, and automatic time tracking.
   Plug 'wakatime/vim-wakatime'
+  Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 
   " Plugin highlighting word under cursor and all of its occurrences.
   Plug 'dominikduda/vim_current_word'
@@ -125,6 +126,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   " The interactive scratchpad for hackers.
   Plug 'metakirby5/codi.vim'
+
+  Plug 'chrisbra/Colorizer'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
