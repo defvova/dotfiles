@@ -20,5 +20,6 @@
   ],
   "yaml.schemas": {
     "http://javascript.schemastore.org/react.intellisense.js": "/*"
-  }
+  },
+  "git.addGBlameToVirtualText": true
 }
