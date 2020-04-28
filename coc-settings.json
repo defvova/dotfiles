@@ -1,0 +1,26 @@
+{
+  "coc.preferences.colorSupport": false,
+
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.snippetIndicator": " ⭐︎",
+  //"suggest.timeout": 5000,
+
+  "codeLens.enable": false,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "➤",
+  "diagnostic.infoSign": "⚠",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "graphql",
+    "json",
+    "markdown",
+    "scss"
+  ],
+  "yaml.schemas": {
+    "http://javascript.schemastore.org/react.intellisense.js": "/*"
+  },
+  "git.addGBlameToVirtualText": true,
+  "git.enableGutters": false
+}
