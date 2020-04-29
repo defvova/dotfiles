@@ -147,6 +147,7 @@ let g:jsx_ext_required = 0
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
 set shortmess+=c
+set shortmess-=F
 
 set tags=./tags
 
@@ -198,3 +199,5 @@ if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
 
+" LSP plugin to start the analysis server
+let g:lsc_auto_map = v:true
