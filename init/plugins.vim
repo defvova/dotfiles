@@ -50,9 +50,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'honza/vim-snippets'
   Plug 'mlaursen/vim-react-snippets'
 
-  " Print function signatures in echo area
-  Plug 'Shougo/echodoc.vim'
-
   " Gitk - a Git wrapper so awesome, it should be illegal.
   " Example, :GV, :GV!, :Gbrowse
   Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim' | Plug 'tpope/vim-rhubarb'
@@ -128,6 +125,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'metakirby5/codi.vim'
 
   Plug 'chrisbra/Colorizer'
+
+  " Display the import size of the JavaScript packages in Vim!
+  Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
+
+  " Vim commands for Flutter, including hot-reload-on-save and more
+  Plug 'dart-lang/dart-vim-plugin'
+  Plug 'thosakwe/vim-flutter'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "

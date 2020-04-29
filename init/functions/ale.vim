@@ -18,7 +18,7 @@ let g:lint_on_insert_leave = 1
 
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
-\   'ruby': ['rubocop'],
+\   'ruby': ['rubocop']
 \}
 
 " Enable signs showing in the gutter to reduce interruptive visuals

@@ -22,5 +22,8 @@
     "http://javascript.schemastore.org/react.intellisense.js": "/*"
   },
   "git.addGBlameToVirtualText": true,
-  "git.enableGutters": false
+  "git.enableGutters": false,
+  //"coc.preferences.formatOnSaveFiletypes": [
+  //  "dart"
+  //]
 }

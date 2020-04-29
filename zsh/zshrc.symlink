@@ -116,6 +116,8 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 alias vim="nvim"
 alias top="vtop --theme=wizard"
 alias ls="colorls -lA --sd"
+alias addkey="eval $(ssh-agent) && ssh-add" # SSH Agent and Private Keys
+alias s="du -sch ./*"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,3 +127,12 @@ prompt spaceship
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_GIT_STATUS_STASHED=''
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$PATH:/Users/vova/flutter/bin"
+export PATH="$PATH":"$HOME/flutter/.pub-cache/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
