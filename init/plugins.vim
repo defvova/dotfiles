@@ -57,17 +57,12 @@ call plug#begin('~/.config/nvim/plugged')
   " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
   Plug 'airblade/vim-gitgutter'
 
-  " Nerdtree Plugin - A tree explorer plugin for vim.
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-
   " Customized vim status line
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
   " Icons
   Plug 'ryanoasis/vim-devicons'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " Find And Replace Vim plugin
   Plug 'brooth/far.vim'
@@ -134,6 +129,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'natebosch/vim-lsc'
   Plug 'natebosch/vim-lsc-dart'
 
+  Plug 'francoiscabrol/ranger.vim'
+  Plug 'rbgrouleff/bclose.vim'
+  " Plug 'mcchrish/nnn.vim'
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
