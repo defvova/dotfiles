@@ -119,7 +119,7 @@ call plug#begin('~/.config/nvim/plugged')
   " The interactive scratchpad for hackers.
   Plug 'metakirby5/codi.vim'
 
-  Plug 'chrisbra/Colorizer'
+  Plug 'norcalli/nvim-colorizer.lua'
 
   " Display the import size of the JavaScript packages in Vim!
   Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
