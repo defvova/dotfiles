@@ -70,8 +70,8 @@ call plug#begin('~/.config/nvim/plugged')
   " SuperTab - Perform all your vim insert mode completions with Tab
   Plug 'ervandew/supertab'
 
-  " Vim plugin that displays tags in a window, ordered by scope
-  Plug 'majutsushi/tagbar'
+  " Viewer & Finder for LSP symbols and tags
+  Plug 'liuchengxu/vista.vim'
 
   " Asynchronous Lint Engine
   Plug 'w0rp/ale'

@@ -2,7 +2,7 @@
 try
 
 " Enable extensions
-let g:airline_extensions = ['branch', 'hunks', 'coc', 'tagbar', 'ale']
+let g:airline_extensions = ['branch', 'hunks', 'coc', 'vista', 'ale']
 
 " Update section z to just have line number
 " let g:airline_section_z = airline#section#create(['linenr'])
@@ -45,6 +45,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
+let g:airline#extensions#vista#enabled = 1
 " Don't show git changes to current file in airline
 let g:airline#extensions#hunks#enabled=0
 

@@ -61,7 +61,6 @@ let g:which_key_map.l = {
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
       \ 't' : [':FloatermNew --wintype=popup --height=6', 'open terminal'],
-      \ 'v' : [':FloatermNew htop', 'open vtop'],
       \ 'h' : [':FloatermNew htop', 'open htop'],
       \ }
 
