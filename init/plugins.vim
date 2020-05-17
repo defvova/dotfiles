@@ -64,9 +64,6 @@ call plug#begin('~/.config/nvim/plugged')
   " Icons
   Plug 'ryanoasis/vim-devicons'
 
-  " Find And Replace Vim plugin
-  Plug 'brooth/far.vim'
-
   " Comment stuff out
   Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 
@@ -129,9 +126,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'natebosch/vim-lsc'
   Plug 'natebosch/vim-lsc-dart'
 
-  Plug 'francoiscabrol/ranger.vim'
-  Plug 'rbgrouleff/bclose.vim'
-  " Plug 'mcchrish/nnn.vim'
+  " Ranger integration in vim and neovim
+  Plug 'francoiscabrol/ranger.vim' | Plug 'rbgrouleff/bclose.vim'
+  " Plug 'mcchrish/nnn.vim' " it's better then ranger
+
+  " A Vim Automatic Window Resizing Plugin
+  Plug 'camspiers/animate.vim'
+  Plug 'camspiers/lens.vim'
+
+  " Vim plugin that shows keybindings in popup
+  Plug 'liuchengxu/vim-which-key'
+
+  " Use with nvim/vim's builtin terminal in the floating/popup window
+  Plug 'voldikss/vim-floaterm'
+
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

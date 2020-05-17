@@ -23,6 +23,8 @@
   },
   "git.addGBlameToVirtualText": true,
   "git.enableGutters": false,
+
+  "flutter.provider.enableSnippet": false
   //"coc.preferences.formatOnSaveFiletypes": [
   //  "dart"
   //]

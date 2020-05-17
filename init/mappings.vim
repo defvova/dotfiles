@@ -23,11 +23,10 @@ map mj :Ejavascript<CR>
 map ms :Estylesheet<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  Far                                                                 "
+"  RG search                                                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap Ï :Farp<cr>
-nnoremap ƒ :F <c-r>=expand("<cword>")<cr>
+nnoremap ƒ :Rg <c-r>=expand("<cword>")<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  FZF                                                                 "
@@ -95,7 +94,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 "   <Space> - PageDown
 "   -       - PageUp
-noremap <Space> <PageDown>
+noremap = <PageDown>
 noremap - <PageUp>
 
 " Select all

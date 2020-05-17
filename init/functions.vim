@@ -204,3 +204,5 @@ let g:lsc_auto_map = v:true
 let g:lsc_enable_autocomplete = v:false
 
 lua require'colorizer'.setup()
+
+let g:ruby_host_prog = '/Users/vova/.rvm/gems/ruby-2.6.0/bin/neovim-ruby-host'
