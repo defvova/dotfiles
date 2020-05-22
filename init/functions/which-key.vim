@@ -1,6 +1,6 @@
 " Map leader to which_key
 nnoremap <silent> <Space> :<c-u>WhichKey '<Space>'<CR>
-" vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+vnoremap <silent> <Space> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
 " Create map to add keys to
 let g:which_key_map =  {}
@@ -31,6 +31,28 @@ let g:which_key_map['.'] = [ ':e $MYVIMRC', 'open init' ]
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'v' : [':Vista!!', 'tag viewer'],
+      \ 'w' : [':WakaTimeToday', 'total coding activity for Today'],
+      \ 'c' : [':Codi', 'total coding activity for Today'],
+      \ }
+
+let g:which_key_map.s = {
+      \ 'name': '+surroundings',
+      \ 'a': ['saiw', 'add'],
+      \ 'A': ['sai', 'add (for visual mode)'],
+      \ 'd': ['sd', 'delete/visual mode'],
+      \ 'r': ['sr', 'replace'],
+      \ 'f': ['saiwf', 'function surroundings'],
+      \ 'i': ['saiwi', 'instant surroundings'],
+      \ 't': ['saiwt', 'html style tags'],
+      \ }
+
+let g:which_key_map.r = {
+      \ 'name': '+rails',
+      \ 'v': [':Eview', 'go to view'],
+      \ 'm': [':Emodel', 'go to model'],
+      \ 'c': [':Econtroller', 'go to controller'],
+      \ 'M': [':Emigration', 'go to last migration'],
+      \ 'o': ['gf', 'go to class/gem etc'],
       \ }
 
 " g is for git
@@ -40,6 +62,7 @@ let g:which_key_map.g = {
       \ 'c' : [':BCommits', 'buffer commits'],
       \ 'V' : [':GV', 'view commits'],
       \ 'v' : [':GV!', 'view buffer commits'],
+      \ 'd' : [':Git difftool', 'load changesets']
       \ }
 
 " l is for language server protocol

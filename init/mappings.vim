@@ -15,12 +15,12 @@ nmap <silent> « :Ranger<cr>
 "  Rails                                                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map mv :Eview<cr>
-map mc :Econtroller<cr>
-map mm :Emodel<cr>
-map mh :Ehelper<cr>
-map mj :Ejavascript<CR>
-map ms :Estylesheet<CR>
+" map mv :Eview<cr>
+" map mc :Econtroller<cr>
+" map mm :Emodel<cr>
+" map mh :Ehelper<cr>
+" map mj :Ejavascript<CR>
+" map ms :Estylesheet<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  RG search                                                           "
@@ -42,6 +42,9 @@ endif
 
 " Fzf Buffers
 nnoremap <silent> ; :Buffers<CR>
+
+" nnoremap <S-Tab> :Windows<CR>
+" inoremap <S-Tab> <Esc>:Windows<CR>i
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easy-motion shortcuts                                                "
@@ -80,9 +83,20 @@ vnoremap <A-up> :m-2<CR>gv
 
 " Tabs
 " nnoremap <D-S-{> :tabprevious<CR>
-nnoremap <S-Tab> :tabnext<CR>
 nnoremap tt :tabnew<CR>
-inoremap <S-Tab> <Esc>:tabnext<CR>i
+" nnoremap <S-Tab> :tabnext<CR>
+" inoremap <S-Tab> <Esc>:tabnext<CR>i
+" Go to tab by number
+noremap 1 1gt
+noremap 2 2gt
+noremap 3 3gt
+noremap 4 4gt
+noremap 5 5gt
+noremap 6 6gt
+noremap 7 7gt
+noremap 8 8gt
+noremap 9 9gt
+noremap 0 :tablast<cr>
 
 " Permissions
 cmap w!! %!sudo tee > /dev/null %
