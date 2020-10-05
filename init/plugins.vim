@@ -96,7 +96,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'dominikduda/vim_current_word'
 
   " Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
-  Plug 'luochen1990/rainbow'
+  " Plug 'luochen1990/rainbow'
 
   " Vim plugin, insert or delete brackets, parens, quotes in pair
   Plug 'jiangmiao/auto-pairs'
@@ -139,6 +139,11 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Use with nvim/vim's builtin terminal in the floating/popup window
   Plug 'voldikss/vim-floaterm'
+
+  Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
+
+  Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "

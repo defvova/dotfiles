@@ -1,4 +1,6 @@
 {
+  "tsserver.enable": true,
+  "tsserver.npm": "/usr/local/bin/npm",
   "coc.preferences.colorSupport": false,
 
   "suggest.echodocSupport": true,
