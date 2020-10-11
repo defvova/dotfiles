@@ -95,11 +95,10 @@ call plug#begin('~/.config/nvim/plugged')
   " Plugin highlighting word under cursor and all of its occurrences.
   Plug 'dominikduda/vim_current_word'
 
-  " Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
-  " Plug 'luochen1990/rainbow'
-
   " Vim plugin, insert or delete brackets, parens, quotes in pair
-  Plug 'jiangmiao/auto-pairs'
+  " Plug 'jiangmiao/auto-pairs'
+  Plug 'cohama/lexima.vim'
+  " Plug 'Raimondi/delimitMate'
 
   " Like Rails.vim for Node
   Plug 'moll/vim-node'
@@ -127,8 +126,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'natebosch/vim-lsc-dart'
 
   " Ranger integration in vim and neovim
-  Plug 'francoiscabrol/ranger.vim' | Plug 'rbgrouleff/bclose.vim'
-  " Plug 'mcchrish/nnn.vim' " it's better then ranger
+  " Plug 'francoiscabrol/ranger.vim' | Plug 'rbgrouleff/bclose.vim'
+  Plug 'mcchrish/nnn.vim' " it's better then ranger
 
   " A Vim Automatic Window Resizing Plugin
   Plug 'camspiers/animate.vim'
@@ -140,10 +139,14 @@ call plug#begin('~/.config/nvim/plugged')
   " Use with nvim/vim's builtin terminal in the floating/popup window
   Plug 'voldikss/vim-floaterm'
 
+  " Dadbod is a Vim plugin for interacting with databases.
   Plug 'tpope/vim-dadbod'
   Plug 'kristijanhusak/vim-dadbod-ui'
 
   Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+
+  " Multi cursor
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
@@ -152,20 +155,18 @@ call plug#begin('~/.config/nvim/plugged')
   " Vim bundle for styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-  " vim-tsx will do all the coloring for jsx in the .tsx file
-  Plug 'ianks/vim-tsx'
-
   " A Vim plugin that always highlights the enclosing html/xml tags
   Plug 'Valloric/MatchTagAlways'
 
   " Improved syntax highlighting and indentation
-  Plug 'othree/yajs.vim'
+  " Plug 'othree/yajs.vim'
 
   " Typescript syntax highlighting
   Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
 
   " ReactJS JSX syntax highlighting
-  Plug 'mxw/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
 
   " Improved nginx vim plugin (incl. syntax highlighting)
   Plug 'chr4/nginx.vim'

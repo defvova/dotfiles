@@ -38,7 +38,14 @@ catch
   colorscheme slate
 endtry
 
-filetype indent off
+filetype indent on
+set shiftwidth=2
+set tabstop=2
+set expandtab
+" set autoindent
+" set smartindent
+" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+" autocmd FileType javascriptreact setlocal shiftwidth=2 tabstop=2
 
 " Don't show last command
 set noshowcmd

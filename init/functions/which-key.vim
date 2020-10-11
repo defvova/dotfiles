@@ -32,7 +32,14 @@ let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'v' : [':Vista!!', 'tag viewer'],
       \ 'w' : [':WakaTimeToday', 'total coding activity for Today'],
-      \ 'c' : [':Codi', 'total coding activity for Today'],
+      \ 'c' : [':Codi', 'the interactive scratchpad'],
+      \ 'd' : [':Dash', 'queries for Dash.app'],
+      \ 'i' : {
+        \ 'name' : '+cost import',
+        \ 'i' : [':ImportCost', 'cost'],
+        \ 's' : [':ImportCostSingle', 'current line'],
+        \ 'c' : [':ImportCostClear', 'clear the virtual text'],
+        \}
       \ }
 
 let g:which_key_map.s = {
@@ -83,7 +90,7 @@ let g:which_key_map.l = {
 " t is for terminal
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
-      \ 't' : [':FloatermNew --wintype=popup --height=6', 'open terminal'],
+      \ 't' : [':FloatermNew --wintype=floating', 'open terminal'],
       \ 'h' : [':FloatermNew htop', 'open htop'],
       \ }
 
