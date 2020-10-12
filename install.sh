@@ -29,6 +29,12 @@ packages=(
   "htop"
   "archey"
   "highligh"
+  "nnn"
+  "gnu-sed"
+  "trash-cli"
+  "unzip"
+  "gnu-tar"
+  "neofetch"
 )
 for i in "${packages[@]}"
 do

@@ -108,6 +108,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Set default editor to nvim
 export EDITOR='nvim'
+export VISUAL='nvim'
+export NNN_TRASH=1
+export NNN_BMS='D:~/Downloads'
 
 # Enabled true color support for terminals
 export NVIM_TUI_ENABLE_TRUE_COLOR=1

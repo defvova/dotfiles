@@ -76,15 +76,10 @@ let g:which_key_map.g = {
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
       \ '.' : [':CocConfig'                          , 'config'],
-      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
       \ 'c' : [':CocList commands'                   , 'commands'],
-      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
-      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
       \ 'e' : [':CocList extensions'                 , 'extensions'],
+      \ 'm' : [':CocList marketplace'                , 'marketplace'],
       \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
-      \ 's' : [':CocList -I symbols'                 , 'references'],
-      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
       \ }
 
 " t is for terminal
