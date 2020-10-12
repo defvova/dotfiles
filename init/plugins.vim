@@ -45,7 +45,6 @@ call plug#begin('~/.config/nvim/plugged')
 
   " UltiSnips - The ultimate snippet solution for Vim
   Plug 'SirVer/ultisnips'
-
   " Snippets are separated from the engine.
   Plug 'honza/vim-snippets'
   Plug 'mlaursen/vim-react-snippets'
@@ -143,14 +142,16 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-dadbod'
   Plug 'kristijanhusak/vim-dadbod-ui'
 
-  Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
-
   " Multi cursor
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+  " Plug 'sheerun/vim-polyglot'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "  Highlighting                                                        "
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+  Plug 'andymass/vim-matchup'
 
   " Vim bundle for styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }

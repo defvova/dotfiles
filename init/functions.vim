@@ -210,3 +210,7 @@ let g:lsc_enable_autocomplete = v:false
 lua require'colorizer'.setup()
 
 let g:ruby_host_prog = '/Users/vova/.rvm/gems/ruby-2.6.0/bin/neovim-ruby-host'
+
+" Highlighting for large files
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear

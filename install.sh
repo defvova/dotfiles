@@ -26,6 +26,7 @@ packages=(
   "ripgrep"
   "fzf"
   "z"
+  "universal-ctags/universal-ctags/universal-ctags"
   "htop"
   "archey"
   "highligh"

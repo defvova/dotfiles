@@ -69,7 +69,8 @@ let g:which_key_map.g = {
       \ 'c' : [':BCommits', 'buffer commits'],
       \ 'V' : [':GV', 'view commits'],
       \ 'v' : [':GV!', 'view buffer commits'],
-      \ 'd' : [':Git difftool', 'load changesets']
+      \ 'd' : [':Git difftool', 'load changesets'],
+      \ 'b' : [':CocList branches', 'display branches']
       \ }
 
 " l is for language server protocol
@@ -80,6 +81,15 @@ let g:which_key_map.l = {
       \ 'e' : [':CocList extensions'                 , 'extensions'],
       \ 'm' : [':CocList marketplace'                , 'marketplace'],
       \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
+      \ 'd' : [':CocList diagnostics'                , 'diagnostics'],
+      \ 'f' : ['<Plug>(coc-codeaction)'              , 'code actions'],
+      \ }
+
+" f is for searching
+let g:which_key_map.f = {
+      \ 'name' : '+searching' ,
+      \ 's' : [':CocList symbols', 'symbols'],
+      \ 'f' : [':CocList grep'   , 'grep text']
       \ }
 
 " t is for terminal
@@ -87,8 +97,8 @@ let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
       \ 't' : [':FloatermNew --wintype=floating', 'open terminal'],
       \ 'h' : [':FloatermNew htop', 'open htop'],
+      \ 'v' : [':FloatermNew vtop', 'open vtop'],
       \ }
-
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
