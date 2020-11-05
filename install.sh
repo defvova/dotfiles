@@ -16,26 +16,32 @@ else
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing oh-my-zsh.$(tput sgr 0)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+  echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: oh-my-zsh already $(tput setaf 2)installed.$(tput sgr 0)"
+fi
+
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing system packages.$(tput sgr 0)"
 packages=(
   "git"
-  "node"
   "neovim"
-  "python3"
-  "zsh"
   "ripgrep"
   "fzf"
-  "z"
-  "universal-ctags/universal-ctags/universal-ctags"
-  "htop"
-  "archey"
-  "highligh"
   "nnn"
   "gnu-sed"
   "trash-cli"
   "unzip"
   "gnu-tar"
-  "neofetch"
+  "bat"
+  "clementtsang/bottom/bottom"
+  "lsd"
+  "procs"
+  "starship"
+  "zoxide"
+  "muesli/tap/duf"
+  "zsh-autosuggestions"
 )
 for i in "${packages[@]}"
 do
@@ -48,38 +54,16 @@ if ! [[ -f "$localGit" ]]; then
   exit 1
 fi
 
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing Python NeoVim client.$(tput sgr 0)"
-pip3 install neovim
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing node neovim package$(tput sgr 0)"
-npm install -g neovim
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing oh-my-zsh.$(tput sgr 0)"
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-else
-  echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: oh-my-zsh already $(tput setaf 2)installed.$(tput sgr 0)"
-fi
-
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing spaceship prompt$(tput sgr 0)"
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH/custom/themes/spaceship-prompt"
 ln -s "$ZSH/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH/custom/themes/spaceship.zsh-theme"
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing vim linter (vint)$(tput sgr 0)"
-pip3 install vim-vint
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing bash language server$(tput sgr 0)"
-npm i -g bash-language-server
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing system fonts.$(tput sgr 0)"
 brew tap homebrew/cask-fonts
 brew cask install font-hack-nerd-font
 
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing zsh-autosuggestions.$(tput sgr 0)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing vtop.$(tput sgr 0)"
-npm install -g vtop
+echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing universal ctags.$(tput sgr 0)"
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing Neovim plugins and linking dotfiles.$(tput sgr 0)"
 
