@@ -93,12 +93,12 @@ let g:which_key_map.f = {
       \ }
 
 " t is for terminal
-let g:which_key_map.t = {
-      \ 'name' : '+terminal' ,
-      \ 't' : [':FloatermNew --wintype=floating', 'open terminal'],
-      \ 'h' : [':FloatermNew htop', 'open htop'],
-      \ 'v' : [':FloatermNew vtop', 'open vtop'],
-      \ }
+" let g:which_key_map.t = {
+"       \ 'name' : '+terminal' ,
+"       \ 't' : [':FloatermNew --wintype=floating', 'open terminal'],
+"       \ 'h' : [':FloatermNew htop', 'open htop'],
+"       \ 'v' : [':FloatermNew vtop', 'open vtop'],
+"       \ }
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")

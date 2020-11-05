@@ -89,7 +89,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " The open source plugin for productivity metrics, goals, leaderboards, and automatic time tracking.
   Plug 'wakatime/vim-wakatime'
-  Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
+  " Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 
   " Plugin highlighting word under cursor and all of its occurrences.
   Plug 'dominikduda/vim_current_word'
@@ -136,7 +136,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'liuchengxu/vim-which-key'
 
   " Use with nvim/vim's builtin terminal in the floating/popup window
-  Plug 'voldikss/vim-floaterm'
+  " Plug 'voldikss/vim-floaterm'
 
   " Dadbod is a Vim plugin for interacting with databases.
   Plug 'tpope/vim-dadbod'
