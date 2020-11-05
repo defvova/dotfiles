@@ -29,6 +29,7 @@ packages=(
   "neovim"
   "ripgrep"
   "fzf"
+  "yarn"
   "nnn"
   "gnu-sed"
   "trash-cli"
@@ -54,6 +55,12 @@ if ! [[ -f "$localGit" ]]; then
   exit 1
 fi
 
+echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing Python NeoVim client.$(tput sgr 0)"
+pip3 install neovim
+
+echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing node neovim package$(tput sgr 0)"
+yarn global add neovim
+
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing spaceship prompt$(tput sgr 0)"
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH/custom/themes/spaceship-prompt"
 ln -s "$ZSH/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH/custom/themes/spaceship.zsh-theme"
@@ -66,17 +73,9 @@ echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing universal ctags.$(t
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing Neovim plugins and linking dotfiles.$(tput sgr 0)"
-
 source install/link.sh
 nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing Space vim-airline theme.$(tput sgr 0)"
-cp ~/.config/nvim/space.vim ~/.local/share/nvim/plugged/vim-airline-themes/autoload/airline/themes/space.vim
-
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Switching shell to zsh. You may need to logout.$(tput sgr 0)"
-sudo sh -c "echo $(which zsh) >> /etc/shells"
-chsh -s $(which zsh)
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: System update complete. Enjoy.$(tput sgr 0)"
 
