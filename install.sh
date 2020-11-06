@@ -43,6 +43,7 @@ packages=(
   "zoxide"
   "muesli/tap/duf"
   "zsh-autosuggestions"
+  "romkatv/powerlevel10k/powerlevel10k"
 )
 for i in "${packages[@]}"
 do
@@ -61,9 +62,8 @@ pip3 install neovim
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing node neovim package$(tput sgr 0)"
 yarn global add neovim
 
-echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing spaceship prompt$(tput sgr 0)"
-git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH/custom/themes/spaceship-prompt"
-ln -s "$ZSH/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH/custom/themes/spaceship.zsh-theme"
+echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing powerlevel10k.$(tput sgr 0)"
+echo 'source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing system fonts.$(tput sgr 0)"
 brew tap homebrew/cask-fonts
@@ -71,6 +71,9 @@ brew cask install font-hack-nerd-font
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing universal ctags.$(tput sgr 0)"
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing syntax highlighting.$(tput sgr 0)"
+git clone https://github.com/zdharma/fast-syntax-highlighting.git ~ZSH_CUSTOM/plugins/fast-syntax-highlighting
 
 echo "$(tput setaf 2)=====> $(tput setaf 3)R2-D2: Installing Neovim plugins and linking dotfiles.$(tput sgr 0)"
 source install/link.sh
