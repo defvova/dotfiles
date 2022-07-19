@@ -4,6 +4,7 @@ if not present then
   return
 end
 
+-- FIXME: map default keys
 local options = {
   -- whether or not to map default key bindings, (true/false)
   map_defaults = false,

@@ -24,6 +24,7 @@ dashboard.section.header.val = {
   [[         \/          \/          \/      ]],
 }
 
+-- FIXME: Update buttons
 dashboard.section.buttons.val = {
   dashboard.button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
   dashboard.button("SPC f o", "  Recent File  ", ":Telescope oldfiles<CR>"),

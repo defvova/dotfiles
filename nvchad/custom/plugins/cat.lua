@@ -1,4 +1,4 @@
-local present, cat = pcall(require, "catppuccinOrg")
+local present, cat = pcall(require, "catppuccin")
 
 if not present then
   return

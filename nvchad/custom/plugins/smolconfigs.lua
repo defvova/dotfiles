@@ -1,7 +1,40 @@
 local M = {}
 
+M.todo = function()
+  local present, todo = pcall(require, "todo-comments")
+
+  if present then
+    todo.setup()
+  end
+end
+
+M.trouble = function()
+  local present, trouble = pcall(require, "trouble")
+
+  if present then
+    vim.cmd [[packadd telescope.nvim]]
+
+    local telescope = require "telescope"
+    local provider = require "trouble.providers.telescope"
+
+    trouble.setup {
+      auto_open = false,
+      use_diagnostic_signs = true, -- en
+    }
+
+    telescope.setup {
+      defaults = {
+        mappings = {
+          i = { ["<c-q>"] = provider.open_with_trouble },
+          n = { ["<c-q>"] = provider.open_with_trouble },
+        },
+      },
+    }
+  end
+end
+
 M.lightbulb = function()
-  local present, lightbulb = pcall(require, "kosayoda/nvim-lightbulb")
+  local present, lightbulb = pcall(require, "nvim-lightbulb")
 
   if present then
     lightbulb.setup { autocmd = { enabled = true } }
@@ -20,13 +53,13 @@ M.illuminate = function()
   local present, _ = pcall(require, "vim-illuminate")
 
   if present then
-    vim.g.Illuminate_ftblacklist = { "NvimTree" }
+    vim.g.Illuminate_ftblacklist = { "NvimTree", "Neogit" }
     vim.g.Illuminate_delay = 100
   end
 end
 
 M.project = function()
-  local present, project = pcall(require, "telescope-project")
+  local present, _ = pcall(require, "telescope-project")
 
   if present then
     vim.cmd [[packadd telescope.nvim]]
@@ -67,36 +100,11 @@ M.autotag = function()
   end
 end
 
-M.endwise = function()
-  local present, _ = pcall(require, "nvim-treesitter-endwise")
-
-  if present then
-    require("nvim-treesitter.configs").setup {
-      endwise = {
-        enable = true,
-      },
-    }
-  end
-end
-
 M.matchup = function()
   local present, _ = pcall(require, "vim-matchup")
 
   if present then
     vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    require("nvim-treesitter.configs").setup {
-      matchup = {
-        enable = true, -- mandatory, false will disable the whole extension
-      },
-    }
-  end
-end
-
-M.rainbow = function()
-  local present, _ = pcall(require, "nvim-ts-rainbow")
-
-  if present then
-    require("nvim-treesitter.configs").setup { rainbow = { enable = true, extended_mode = true } }
   end
 end
 

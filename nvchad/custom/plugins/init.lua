@@ -1,29 +1,115 @@
 return {
-  ["b0o/schemastore.nvim"] = {},
-  ["ludovicchabant/vim-gutentags"] = {},
-  ["weilbith/nvim-code-action-menu"] = {
-    cmd = "CodeActionMenu",
-  },
-  ["kosayoda/nvim-lightbulb"] = {
-    requires = "antoinemadec/FixCursorHold.nvim",
+  ["filipdutescu/renamer.nvim"] = {
+    branch = "master",
+    requires = { { "nvim-lua/plenary.nvim" } },
     config = function()
-      require("custom.plugins.smolconfigs").lightbulb()
+      require "custom.plugins.renamer"
     end,
   },
+  -- ["SmiteshP/nvim-navic"] = {
+  --   requires = "neovim/nvim-lspconfig",
+  --   config = function()
+  --     require("nvim-navic").setup()
+  --   end,
+  -- },
+  ["antoinemadec/FixCursorHold.nvim"] = {
+    event = "BufReadPre",
+    config = function()
+      vim.g.cursorhold_updatetime = 100
+    end,
+  },
+  ["chaoren/vim-wordmotion"] = {},
+  ["unblevable/quick-scope"] = {
+    event = "CursorMoved",
+  },
+  -- ["ggandor/leap.nvim"] = {
+  --   keys = { "s", "S", "f", "F", "t", "T" },
+  --   requires = "tpope/vim-repeat",
+  --   config = function()
+  --     require("leap").setup()
+  --   end,
+  -- },
+  ["folke/todo-comments.nvim"] = {
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("custom.plugins.smolconfigs").todo()
+    end,
+  },
+  -- ["edluffy/specs.nvim"] = {
+  --   after = "neoscroll.nvim",
+  --   config = function()
+  --     require "custom.plugins.specs"
+  --   end,
+  -- },
+  -- ["TimUntersberger/neogit"] = {
+  --   cmd = "Neogit",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     require "custom.plugins.neogit"
+  --   end,
+  -- },
+  ["nvim-treesitter/nvim-treesitter-refactor"] = {},
+  ["jose-elias-alvarez/typescript.nvim"] = {
+    after = "nvim-lsp-installer",
+    module = "typescript",
+  },
+  -- ["ThePrimeagen/refactoring.nvim"] = {
+  --   module = { "refactoring", "telescope" },
+  --   wants = { "telescope.nvim" },
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require "custom.plugins.refactoring"
+  --   end,
+  -- },
+  ["narutoxy/dim.lua"] = {
+    requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+    config = function()
+      require("dim").setup {}
+    end,
+  },
+  -- ["vuki656/package-info.nvim"] = {
+  --   opt = true,
+  --   requires = "MunifTanjim/nui.nvim",
+  --   wants = { "nui.nvim" },
+  --   module = { "package-info" },
+  --   ft = { "json" },
+  --   config = function()
+  --     require "custom.plugins.package-info"
+  --   end,
+  -- },
+  -- ["lewis6991/impatient.nvim"] = {},
+  ["b0o/schemastore.nvim"] = {},
+  -- ["ludovicchabant/vim-gutentags"] = {},
+  -- ["weilbith/nvim-code-action-menu"] = {
+  --   cmd = "CodeActionMenu",
+  -- },
+  -- ["kosayoda/nvim-lightbulb"] = {
+  --   requires = "antoinemadec/FixCursorHold.nvim",
+  --   config = function()
+  --     require("custom.plugins.smolconfigs").lightbulb()
+  --   end,
+  -- },
   ["ur4ltz/surround.nvim"] = {
     event = "BufRead",
     config = function()
       require("custom.plugins.smolconfigs").surround()
     end,
   },
-  ["RRethy/vim-illuminate"] = {
-    event = { "BufEnter", "BufNewFile" },
-    config = function()
-      require("custom.plugins.smolconfigs").illuminate()
-    end,
-  },
+  -- ["RRethy/vim-illuminate"] = {
+  --   event = { "CursorHold" },
+  --   module = "illuminate",
+  --   config = function()
+  --     require("custom.plugins.smolconfigs").illuminate()
+  --   end,
+  -- },
   ["karb94/neoscroll.nvim"] = {
     event = "WinScrolled",
+    keys = { "<C-u>", "<C-d>", "gg", "G" },
     config = function()
       require "custom.plugins.neoscroll"
     end,
@@ -56,7 +142,12 @@ return {
     event = { "BufRead Cargo.toml" },
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("crates").setup()
+      require("crates").setup {
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        },
+      }
     end,
   },
   ["folke/persistence.nvim"] = {
@@ -98,8 +189,10 @@ return {
   },
   ["simrat39/rust-tools.nvim"] = {
     ft = { "rust", "rs" },
-    requires = { "RishabhRD/popfix", "hood/popui.nvim" },
+    requires = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim" },
     after = { "nvim-lspconfig" },
+    opt = true,
+    module = "rust-tools",
     config = function()
       require "custom.plugins.rust-tools"
     end,
@@ -114,13 +207,6 @@ return {
   ["JoosepAlviste/nvim-ts-context-commentstring"] = {
     event = "BufReadPost",
     opt = true,
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        context_commentstring = {
-          enable = true,
-        },
-      }
-    end,
   },
   ["m-demare/hlargs.nvim"] = {
     opt = true,
@@ -135,75 +221,47 @@ return {
     event = { "CursorHold", "CursorHoldI" },
     -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     -- cmd = "Rainbow",
-    config = function()
-      require("custom.plugins.smolconfigs").matchup()
-    end,
   },
   ["folke/trouble.nvim"] = {
+    event = "BufReadPre",
     cmd = { "Trouble", "TroubleToggle" },
     config = function()
-      require("trouble").setup {}
+      require("custom.plugins.smolconfigs").trouble()
     end,
   },
-  ["nvim-telescope/telescope-frecency.nvim"] = {
-    -- keys = { "<M>", "<Leader>" },
-    -- after = { "telescope.nvim" },
-    -- cmd = {'Telescope'},
-    requires = { "tami5/sqlite.lua", module = "sqlite", opt = true },
-    -- opt = true,
-    config = function()
-      require "custom.plugins.frecency"
-    end,
-  },
-  ["sindrets/diffview.nvim"] = {
-    event = "BufRead",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewFileHistory",
-      "DiffviewFocusFiles",
-      "DiffviewToggleFiles",
-      "DiffviewRefresh",
-    },
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require "custom.plugins.diffview"
-    end,
-  },
-  ["catppuccin/nvim"] = {
-    opt = true,
-    as = "catppuccinOrg",
-    config = function()
-      require "custom.plugins.cat"
-    end,
-  },
-  ["phaazon/hop.nvim"] = {
-    event = "BufRead",
-    as = "hop",
-    cmd = {
-      "HopWord",
-      "HopWordMW",
-      "HopWordAC",
-      "HopWordBC",
-      "HopLine",
-      "HopChar1",
-      "HopChar1MW",
-      "HopChar1AC",
-      "HopChar1BC",
-      "HopChar2",
-      "HopChar2MW",
-      "HopChar2AC",
-      "HopChar2BC",
-      "HopPattern",
-      "HopPatternAC",
-      "HopPatternBC",
-      "HopChar1CurrentLineAC",
-      "HopChar1CurrentLineBC",
-      "HopChar1CurrentLine",
-    },
-    config = function()
-      require("hop").setup()
-    end,
-  },
+  -- ["sindrets/diffview.nvim"] = {
+  --   event = "BufRead",
+  --   -- cmd = {
+  --   --   "DiffviewOpen",
+  --   --   "DiffviewFileHistory",
+  --   --   "DiffviewFocusFiles",
+  --   --   "DiffviewToggleFiles",
+  --   --   "DiffviewRefresh",
+  --   -- },
+  --   module = "diffview",
+  --   requires = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     require "custom.plugins.diffview"
+  --   end,
+  -- },
+  -- ["catppuccin/nvim"] = {
+  --   opt = true,
+  --   as = "catppuccinOrg",
+  --   config = function()
+  --     require "custom.plugins.cat"
+  --   end,
+  -- },
+  -- ["phaazon/hop.nvim"] = {
+  --   event = "BufRead",
+  --   as = "hop",
+  --   cmd = {
+  --     "HopWord",
+  --     "HopChar1",
+  --   },
+  --   config = function()
+  --     require("hop").setup()
+  --   end,
+  -- },
   ["booperlv/nvim-gomove"] = {
     event = { "CursorMoved", "CursorMovedI" },
     config = function()
@@ -217,16 +275,17 @@ return {
     end,
   },
   ["RRethy/nvim-treesitter-endwise"] = {
+    event = "InsertEnter",
     ft = { "ruby", "lua" },
     after = "nvim-treesitter",
-    config = function()
-      require("custom.plugins.smolconfigs").endwise()
-    end,
   },
   ["windwp/nvim-spectre"] = {
     event = "BufRead",
     opt = true,
-    requires = "nvim-lua/plenary.nvim",
+    module = "spectre",
+    wants = { "plenary.nvim", "popup.nvim" },
+    keys = { "<leader>sf", "<leader>sF" },
+    requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
     config = function()
       require "custom.plugins.spectre"
     end,
@@ -286,8 +345,14 @@ return {
       require "custom.plugins.pretty-fold"
     end,
   },
+  ["folke/lua-dev.nvim"] = {
+    after = "nvim-lsp-installer",
+    ft = "lua",
+    module = "lua-dev",
+  },
   ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = "nvim-lspconfig",
+    after = "nvim-lsp-installer",
+    module = "null-ls",
     config = function()
       require "custom.plugins.null-ls"
     end,

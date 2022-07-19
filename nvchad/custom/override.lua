@@ -23,6 +23,50 @@ M.treesitter = {
     "rust",
     "yaml",
   },
+  context_commentstring = {
+    enable = true,
+  },
+  rainbow = { enable = true, extended_mode = true },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25,
+    persist_queries = false,
+  },
+  matchup = {
+    enable = true, -- mandatory, false will disable the whole extension
+  },
+  endwise = {
+    enable = true,
+  },
+  refactor = {
+    navigation = {
+      enable = false,
+      keymaps = {
+        goto_definition = "gnd", -- FIXME: update keymaps
+        list_definitions = "gnD",
+        list_definitions_toc = "gO",
+        goto_next_usage = "<a-*>",
+        goto_previous_usage = "<a-#>",
+      },
+    },
+    smart_rename = {
+      enable = false,
+      keymaps = {
+        smart_rename = "grr",
+      },
+    },
+    highlight_current_scope = { enable = false },
+    highlight_definitions = {
+      enable = false,
+      -- Set to false if you have an `updatetime` of ~100.
+      clear_on_cursor_move = true,
+    },
+  },
+}
+
+M.packer = {
+  max_jobs = 50,
 }
 
 M.nvimtree = {
@@ -103,6 +147,16 @@ M.telescope = {
       "%tags",
       "tags",
     },
+  },
+}
+
+M.gitsigns = {
+  current_line_blame = true,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    delay = 100,
+    ignore_whitespace = false,
   },
 }
 

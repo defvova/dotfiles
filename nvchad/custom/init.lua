@@ -1,6 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
 
+-- autocmd("FileType", "toml", lua require('cmp').setup.buffer { sources = { { name = 'crates' } } })
+
 autocmd("FileType", {
   pattern = "norg",
   callback = function()
@@ -17,6 +19,10 @@ autocmd({ "BufRead", "BufWritePre", "FileWritePre" }, {
   pattern = "*",
   command = [[silent! %s/[\r \t]\+$//]],
 })
+-- autocmd({ "au TextYankPost" }, {
+--   pattern = "*",
+--   command = [[lua vim.highlight.on_yank {}]],
+-- })
 
 -- Equalize window dimensions when resizing vim window
 autocmd("VimResized", {
@@ -24,14 +30,15 @@ autocmd("VimResized", {
   command = [[tabdo wincmd =]],
 })
 
-autocmd("FocusGained", {
-  pattern = "*",
-  command = [[NvimTreeRefresh]],
-})
-autocmd("CursorHold", {
-  pattern = "*",
-  command = [[lua vim.diagnostic.open_float(nil, { focusable = false })]],
-})
+-- autocmd("FocusGained", {
+--   pattern = "*",
+--   command = [[NvimTreeRefresh]],
+-- })
+-- autocmd("CursorHold", {
+--   pattern = "*",
+--   command = [[lua vim.diagnostic.open_float(nil, { focusable = false })]],
+-- })
+opt.shiftwidth = 2
 
 opt.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
 opt.swapfile = false
@@ -45,5 +52,3 @@ opt.foldcolumn = "auto:2"
 opt.foldlevelstart = 99
 opt.foldnestmax = 20
 opt.foldminlines = 4
-
-vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
