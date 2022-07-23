@@ -1,3 +1,6 @@
+require("custom.utils").reset_gui_font()
+require("custom.utils").setup_neovide()
+
 local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
 
@@ -47,8 +50,6 @@ autocmd("VimResized", {
 --   command = [[lua vim.diagnostic.open_float(nil, { focusable = false })]],
 -- })
 opt.shiftwidth = 2
-
-opt.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
 opt.swapfile = false
 opt.wildignore = "*/cache/*,*/tmp/*"
 

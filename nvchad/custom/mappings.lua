@@ -1,6 +1,10 @@
 local M = {}
 
 M.disabled = {
+  t = {
+    ["<A-h>"] = "",
+    ["<A-v>"] = "",
+  },
   n = {
     ["<leader>e"] = "",
     ["<C-s>"] = "",
@@ -31,6 +35,8 @@ M.disabled = {
     ["<leader>tp"] = "",
     ["<leader>th"] = "",
     ["<leader>ls"] = "",
+    ["<A-h>"] = "",
+    ["<A-v>"] = "",
   },
 }
 
@@ -42,24 +48,29 @@ M.disabled = {
 M.general = {
   i = {
     -- Move current line / block with Alt-j/k a la vscode.
-    ["<A-k>"] = { "<Esc> <cmd> m .-2<CR>==gi", "   move text up" },
-    ["<A-j>"] = { "<Esc> <cmd> m .+1<CR>==gi", "   move text down" },
+    ["<D-k>"] = { "<Esc> <cmd> m .-2<CR>==gi", "   move text up" },
+    ["<D-j>"] = { "<Esc> <cmd> m .+1<CR>==gi", "   move text down" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
+    ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
+    ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
   },
   n = {
+    ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
+    ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
     ["q"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<A-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
+    ["<D-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Resize with arrows
-    ["<A-Up>"] = { "<cmd> resize -2<CR>", "ﭕ   decrease height" },
-    ["<A-Down>"] = { "<cmd> resize +2<CR>", "ﭕ   increase height" },
-    ["<A-Left>"] = { "<cmd> vertical resize -2<CR>", "ﭕ   decrease width" },
-    ["<A-Right>"] = { "<cmd> vertical resize +2<CR>", "ﭕ   increase width" },
+    ["<D-Up>"] = { "<cmd> resize -2<CR>", "ﭕ   decrease height" },
+    ["<D-Down>"] = { "<cmd> resize +2<CR>", "ﭕ   increase height" },
+    ["<D-Left>"] = { "<cmd> vertical resize -2<CR>", "ﭕ   decrease width" },
+    ["<D-Right>"] = { "<cmd> vertical resize +2<CR>", "ﭕ   increase width" },
 
     -- Move current line / block with Alt-j/k a la vscode.
-    ["<A-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
-    ["<A-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
-
+    -- ["<A-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
+    -- ["<A-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
+    ["<D-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
+    ["<D-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
     -- QuickFix
     -- ["]q"] = { "<cmd> cnext<CR>", "   next error" },
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
@@ -67,7 +78,7 @@ M.general = {
   },
   v = {
     ["q"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<A-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
+    ["<D-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Better indenting
     ["<"] = { "<gv", "   dedent" },
@@ -76,8 +87,8 @@ M.general = {
   x = {
     ["q"] = { "<cmd> HopWord<CR>", "hop word" },
     -- Move current line / block with Alt-j/k ala vscode.
-    ["<A-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
-    ["<A-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
+    ["<D-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
+    ["<D-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
   },
 }
 
@@ -88,7 +99,35 @@ M.nvimtree = {
 }
 
 M.nvterm = {
+  t = {
+    ["<D-h>"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "   toggle horizontal term",
+    },
+
+    ["<D-v>"] = {
+      function()
+        require("nvterm.terminal").toggle "vertical"
+      end,
+      "   toggle vertical term",
+    },
+  },
   n = {
+    ["<D-h>"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "   toggle horizontal term",
+    },
+    ["<D-v>"] = {
+      function()
+        require("nvterm.terminal").toggle "vertical"
+      end,
+      "   toggle vertical term",
+    },
+
     ["<leader>th"] = {
       function()
         require("nvterm.terminal").new "horizontal"
