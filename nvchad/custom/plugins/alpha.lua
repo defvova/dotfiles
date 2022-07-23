@@ -23,15 +23,23 @@ dashboard.section.header.val = {
   [[      \/\\//\/    \/\\//\/    \/\\//\/   ]],
   [[         \/          \/          \/      ]],
 }
+dashboard.section.header.opts = {
+  position = "center",
+  hl = "AlphaHeader",
+}
 
 -- FIXME: Update buttons
 dashboard.section.buttons.val = {
-  dashboard.button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
-  dashboard.button("SPC f o", "  Recent File  ", ":Telescope oldfiles<CR>"),
-  dashboard.button("SPC f w", "  Find Word  ", ":Telescope live_grep<CR>"),
-  dashboard.button("SPC b m", "  Bookmarks  ", ":Telescope marks<CR>"),
-  dashboard.button("SPC t h", "  Themes  ", ":Telescope themes<CR>"),
-  dashboard.button("SPC e s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
+  dashboard.button("SPC f  ", "  Find File  ", ":Telescope find_files<CR>", {}),
+  dashboard.button("SPC s o", "  Recent File  ", ":Telescope oldfiles<CR>", {}),
+  dashboard.button("SPC s t", "  Find Word  ", ":Telescope live_grep<CR>", {}),
+  dashboard.button("SPC s p", "  Recent Projects  ", ":Telescope project<CR>", {}),
+  dashboard.button("SPC S l", "缾 Restore last session", ":lua require('persistence').load({ last = true })<CR>", {}),
+  dashboard.button("SPC u s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>", {}),
+}
+dashboard.section.buttons.type = "group"
+dashboard.section.buttons.opts = {
+  spacing = 1,
 }
 
 local function footer()
@@ -62,7 +70,5 @@ dashboard.section.footer.val = footer()
 dashboard.section.footer.opts.hl = "Type"
 dashboard.section.header.opts.hl = "Include"
 dashboard.section.buttons.opts.hl = "Keyword"
-
-dashboard.opts.opts.noautocmd = true
 
 alpha.setup(dashboard.opts)

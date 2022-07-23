@@ -8,12 +8,18 @@ M.setup_lsp = function(attach, capabilities)
   local border_opts = { border = "single", focusable = false, scope = "line" }
   vim.diagnostic.config { virtual_text = false, float = border_opts }
 
+  -- Improve compatibility with nvim-cmp completions
+  local has_cmp_nvim_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if has_cmp_nvim_lsp then
+    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+  end
+
   capabilities.textDocument.codeAction = {
     dynamicRegistration = true,
     codeActionLiteralSupport = {
       codeActionKind = {
         valueSet = (function()
-          local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
+          local res = vim.tbl_values(lsp.protocol.CodeActionKind)
           table.sort(res)
           return res
         end)(),
@@ -81,6 +87,8 @@ M.setup_lsp = function(attach, capabilities)
     },
     dockerls = {},
     yamlls = {},
+    bashls = {},
+    emmet_ls = {},
   }
   local other_servers = {
     tsserver = {},
@@ -103,27 +111,6 @@ M.setup_lsp = function(attach, capabilities)
   for server, opts in pairs(other_servers) do
     opts = vim.tbl_deep_extend("force", {}, options, opts or {})
     require("custom.plugins.lsp." .. server).setup(opts)
-  end
-
-  do
-    local methodDocument = "textDocument/publishDiagnostics"
-    local default_handler = lsp.handlers[methodDocument]
-    lsp.handlers[methodDocument] = function(err, method, result, client_id, bufnr, config)
-      default_handler(err, method, result, client_id, bufnr, config)
-      local diagnostics = lsp.diagnostic.get_all()
-      local qflist = {}
-      for buf, diagnostic in pairs(diagnostics) do
-        for _, d in ipairs(diagnostic) do
-          d.bufnr = buf
-          d.lnum = d.range.start.line + 1
-          d.col = d.range.start.character + 1
-          d.text = d.message
-          table.insert(qflist, d)
-        end
-      end
-      lsp.util.set_qflist(qflist)
-      -- vim.diagnostic.setqflist(qflist)
-    end
   end
 end
 

@@ -22,6 +22,7 @@ M.treesitter = {
     "css",
     "rust",
     "yaml",
+    "markdown",
   },
   context_commentstring = {
     enable = true,
@@ -72,7 +73,7 @@ M.packer = {
 M.nvimtree = {
   filters = {
     dotfiles = false,
-    custom = { "node_modules", ".cache", "tags.lock", ".tags", "tags.temp", "tags" },
+    custom = { "node_modules", ".cache" },
   },
   trash = {
     cmd = "trash",
@@ -142,11 +143,12 @@ M.whichkey = {
 M.telescope = {
   defaults = {
     prompt_prefix = "   ",
-    file_ignore_patterns = {
-      "%.tags",
-      "%tags",
-      "tags",
-    },
+  },
+  extensions_list = {
+    "file_browser",
+    "project",
+    "themes",
+    "terms",
   },
 }
 

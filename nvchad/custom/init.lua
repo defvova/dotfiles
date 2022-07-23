@@ -1,28 +1,36 @@
 local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
 
--- autocmd("FileType", "toml", lua require('cmp').setup.buffer { sources = { { name = 'crates' } } })
-
-autocmd("FileType", {
-  pattern = "norg",
-  callback = function()
-    -- vim.opt.laststatus = 0
-    opt.number = false
-    opt.showtabline = 0
-    opt.cole = 1
-    opt.foldlevel = 10
-  end,
+autocmd({ "FileType" }, {
+  pattern = "toml",
+  command = [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]],
 })
+-- vim.cmd "au FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })"
+-- autocmd("FileType", {
+--   pattern = "sql,mysql,plsql",
+--   command = [[lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })]],
+-- })
+
+-- autocmd("FileType", {
+--   pattern = "norg",
+--   callback = function()
+--     -- vim.opt.laststatus = 0
+--     opt.number = false
+--     opt.showtabline = 0
+--     opt.cole = 1
+--     opt.foldlevel = 10
+--   end,
+-- })
 
 -- Automatically delete trailing DOS-returns and whitespace on file open and write.
 autocmd({ "BufRead", "BufWritePre", "FileWritePre" }, {
   pattern = "*",
   command = [[silent! %s/[\r \t]\+$//]],
 })
--- autocmd({ "au TextYankPost" }, {
---   pattern = "*",
---   command = [[lua vim.highlight.on_yank {}]],
--- })
+autocmd("TextYankPost", {
+  pattern = "*",
+  command = [[silent! lua vim.highlight.on_yank()]],
+})
 
 -- Equalize window dimensions when resizing vim window
 autocmd("VimResized", {

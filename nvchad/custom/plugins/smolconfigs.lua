@@ -12,34 +12,20 @@ M.trouble = function()
   local present, trouble = pcall(require, "trouble")
 
   if present then
-    vim.cmd [[packadd telescope.nvim]]
-
-    local telescope = require "telescope"
-    local provider = require "trouble.providers.telescope"
-
     trouble.setup {
       auto_open = false,
       use_diagnostic_signs = true, -- en
     }
-
-    telescope.setup {
-      defaults = {
-        mappings = {
-          i = { ["<c-q>"] = provider.open_with_trouble },
-          n = { ["<c-q>"] = provider.open_with_trouble },
-        },
-      },
-    }
   end
 end
 
-M.lightbulb = function()
-  local present, lightbulb = pcall(require, "nvim-lightbulb")
-
-  if present then
-    lightbulb.setup { autocmd = { enabled = true } }
-  end
-end
+-- M.lightbulb = function()
+--   local present, lightbulb = pcall(require, "nvim-lightbulb")
+--
+--   if present then
+--     lightbulb.setup { autocmd = { enabled = true } }
+--   end
+-- end
 
 M.surround = function()
   local present, surround = pcall(require, "surround")
@@ -55,17 +41,6 @@ M.illuminate = function()
   if present then
     vim.g.Illuminate_ftblacklist = { "NvimTree", "Neogit" }
     vim.g.Illuminate_delay = 100
-  end
-end
-
-M.project = function()
-  local present, _ = pcall(require, "telescope-project")
-
-  if present then
-    vim.cmd [[packadd telescope.nvim]]
-
-    require("telescope").load_extension "file_browser"
-    require("telescope").load_extension "project"
   end
 end
 

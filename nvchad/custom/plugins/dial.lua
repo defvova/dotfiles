@@ -1,4 +1,4 @@
-local present, dial = pcall(require, "dial")
+local present, _ = pcall(require, "dial")
 
 if not present then
   return
