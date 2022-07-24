@@ -91,10 +91,10 @@ return {
   -- },
   -- FIXME: Investigate
   ["nvim-treesitter/nvim-treesitter-refactor"] = {},
-  ["jose-elias-alvarez/typescript.nvim"] = {
-    after = "nvim-lsp-installer",
-    module = "typescript",
-  },
+  -- ["jose-elias-alvarez/typescript.nvim"] = {
+  --   after = "nvim-lsp-installer",
+  --   module = "typescript",
+  -- },
   -- FIXME: works incorrect
   -- ["ThePrimeagen/refactoring.nvim"] = {
   --   module = { "refactoring", "telescope" },
@@ -125,7 +125,9 @@ return {
   --   end,
   -- },
   -- ["lewis6991/impatient.nvim"] = {},
-  ["b0o/schemastore.nvim"] = {},
+  -- ["b0o/schemastore.nvim"] = {
+  --   after = "nvim-lsp-installer",
+  -- },
   -- ["ludovicchabant/vim-gutentags"] = {},
   -- ["weilbith/nvim-code-action-menu"] = {
   --   cmd = "CodeActionMenu",
@@ -216,16 +218,16 @@ return {
       vim.g.did_load_filetypes = 1
     end,
   },
-  ["simrat39/rust-tools.nvim"] = {
-    ft = { "rust", "rs" },
-    requires = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim" },
-    after = { "nvim-lspconfig" },
-    opt = true,
-    module = "rust-tools",
-    config = function()
-      require "custom.plugins.rust-tools"
-    end,
-  },
+  -- ["simrat39/rust-tools.nvim"] = {
+  --   ft = { "rust", "rs" },
+  --   requires = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim", "mfussenegger/nvim-dap" },
+  --   after = { "nvim-lspconfig" },
+  --   opt = true,
+  --   module = "rust-tools",
+  --   config = function()
+  --     require "custom.plugins.rust-tools"
+  --   end,
+  -- },
   ["simrat39/symbols-outline.nvim"] = {
     opt = true,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
@@ -369,10 +371,29 @@ return {
     module = "lua-dev",
   },
   ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = "nvim-lsp-installer",
+    -- after = "nvim-lsp-installer",
+    after = { "nvim-lspconfig" },
     module = "null-ls",
     config = function()
       require "custom.plugins.null-ls"
+    end,
+  },
+  ["neovim/nvim-lspconfig"] = {
+    requires = {
+      "jose-elias-alvarez/typescript.nvim",
+      "b0o/schemastore.nvim",
+      {
+        "simrat39/rust-tools.nvim",
+        requires = {
+          "nvim-lua/plenary.nvim",
+          "rust-lang/rust.vim",
+          "mfussenegger/nvim-dap",
+        },
+      },
+    },
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.lspconfig"
     end,
   },
 }

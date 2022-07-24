@@ -3,11 +3,6 @@ local M = {}
 local override = require "custom.override"
 
 M.plugins = {
-  options = {
-    lspconfig = {
-      setup_lspconf = "custom.plugins.lspconfig",
-    },
-  },
   user = require "custom.plugins",
   override = {
     ["wbthomason/packer.nvim"] = override.packer,
@@ -21,7 +16,7 @@ M.plugins = {
 }
 
 M.ui = {
-  theme = "catppuccin_latte",
+  theme = "catppuccin",
   -- hl_add = require "custom.highlights",
   theme_toggle = { "catppuccin", "catppuccin_latte" },
 }

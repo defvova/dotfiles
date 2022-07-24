@@ -4,22 +4,25 @@ if not present then
   return
 end
 
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local has_cmp_nvim_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+-- if has_cmp_nvim_lsp then
+--   capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+-- end
+
 local options = {
   tools = {
-    autoSetHints = true,
-    hover_with_actions = true,
-    runnables = {
-      use_telescope = true,
-    },
     hover_actions = {
-      auto_focus = true,
+      border = "double",
+    },
+    inlay_hints = {
+      auto = true,
+      only_current_line = false,
     },
   },
-  -- server = {
-  --   cmd = { nvim_path .. "lsp_servers/rust/rust-analyzer" },
-  --   on_attach = require("lvim.lsp").common_on_attach,
-  --   on_init = require("lvim.lsp").common_on_init,
-  -- },
+  server = {
+    -- capabilities = capabilities,
+  },
 }
 
 rust_tools.setup(options)
