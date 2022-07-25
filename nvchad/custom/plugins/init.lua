@@ -41,13 +41,6 @@ return {
       require "custom.plugins.renamer"
     end,
   },
-  -- FIXME: it doesn't work
-  -- ["SmiteshP/nvim-navic"] = {
-  --   requires = "neovim/nvim-lspconfig",
-  --   config = function()
-  --     require("nvim-navic").setup()
-  --   end,
-  -- },
   ["antoinemadec/FixCursorHold.nvim"] = {
     event = "BufReadPre",
     config = function()
@@ -74,12 +67,6 @@ return {
       require("custom.plugins.smolconfigs").todo()
     end,
   },
-  -- ["edluffy/specs.nvim"] = {
-  --   after = "neoscroll.nvim",
-  --   config = function()
-  --     require "custom.plugins.specs"
-  --   end,
-  -- },
   -- ["TimUntersberger/neogit"] = {
   --   cmd = "Neogit",
   --   requires = {
@@ -91,10 +78,6 @@ return {
   -- },
   -- FIXME: Investigate
   ["nvim-treesitter/nvim-treesitter-refactor"] = {},
-  -- ["jose-elias-alvarez/typescript.nvim"] = {
-  --   after = "nvim-lsp-installer",
-  --   module = "typescript",
-  -- },
   -- FIXME: works incorrect
   -- ["ThePrimeagen/refactoring.nvim"] = {
   --   module = { "refactoring", "telescope" },
@@ -125,10 +108,6 @@ return {
   --   end,
   -- },
   -- ["lewis6991/impatient.nvim"] = {},
-  -- ["b0o/schemastore.nvim"] = {
-  --   after = "nvim-lsp-installer",
-  -- },
-  -- ["ludovicchabant/vim-gutentags"] = {},
   -- ["weilbith/nvim-code-action-menu"] = {
   --   cmd = "CodeActionMenu",
   -- },
@@ -144,6 +123,7 @@ return {
       require("custom.plugins.smolconfigs").surround()
     end,
   },
+  -- FIXME: highlight word
   -- ["RRethy/vim-illuminate"] = {
   --   event = { "CursorHold" },
   --   module = "illuminate",
@@ -181,7 +161,9 @@ return {
     end,
   },
   ["saecki/crates.nvim"] = {
-    event = { "BufRead Cargo.toml" },
+    -- event = { "BufRead Cargo.toml" },
+    ft = "toml",
+    opt = true,
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("crates").setup {
@@ -218,16 +200,6 @@ return {
       vim.g.did_load_filetypes = 1
     end,
   },
-  -- ["simrat39/rust-tools.nvim"] = {
-  --   ft = { "rust", "rs" },
-  --   requires = { "nvim-lua/plenary.nvim", "rust-lang/rust.vim", "mfussenegger/nvim-dap" },
-  --   after = { "nvim-lspconfig" },
-  --   opt = true,
-  --   module = "rust-tools",
-  --   config = function()
-  --     require "custom.plugins.rust-tools"
-  --   end,
-  -- },
   ["simrat39/symbols-outline.nvim"] = {
     opt = true,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
@@ -365,11 +337,6 @@ return {
       require "custom.plugins.pretty-fold"
     end,
   },
-  ["folke/lua-dev.nvim"] = {
-    after = "nvim-lsp-installer",
-    ft = "lua",
-    module = "lua-dev",
-  },
   ["jose-elias-alvarez/null-ls.nvim"] = {
     -- after = "nvim-lsp-installer",
     after = { "nvim-lspconfig" },
@@ -380,15 +347,27 @@ return {
   },
   ["neovim/nvim-lspconfig"] = {
     requires = {
-      "jose-elias-alvarez/typescript.nvim",
       "b0o/schemastore.nvim",
       {
+        "jose-elias-alvarez/typescript.nvim",
+        module = "typescript",
+      },
+      {
         "simrat39/rust-tools.nvim",
+        ft = { "rust", "rs" },
+        opt = true,
+        module = "rust-tools",
         requires = {
           "nvim-lua/plenary.nvim",
           "rust-lang/rust.vim",
           "mfussenegger/nvim-dap",
         },
+      },
+      {
+        "folke/lua-dev.nvim",
+        ft = "lua",
+        opt = true,
+        module = "lua-dev",
       },
     },
     config = function()
