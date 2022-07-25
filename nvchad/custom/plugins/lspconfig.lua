@@ -87,8 +87,27 @@ local servers = {
   bashls = {},
   emmet_ls = {},
 }
+
 local other_servers = {
-  tsserver = {},
+  tsserver = {
+    disable_formatting = true,
+    debug = false,
+    server = {
+      settings = {
+        javascript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
+      },
+    },
+  },
 }
 
 local options = {
@@ -106,6 +125,5 @@ for server, opts in pairs(servers) do
 end
 
 for server, opts in pairs(other_servers) do
-  opts = vim.tbl_deep_extend("force", {}, options, opts or {})
-  require("custom.plugins.lsp." .. server).setup(opts)
+  require("custom.plugins.lsp." .. server).setup(opts, options)
 end
