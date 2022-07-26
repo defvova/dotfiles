@@ -12,11 +12,12 @@ M.plugins = {
     ["folke/which-key.nvim"] = override.whichkey,
     ["nvim-telescope/telescope.nvim"] = override.telescope,
     ["lewis6991/gitsigns.nvim"] = override.gitsigns,
+    ["williamboman/mason"] = override.mason,
   },
 }
 
 M.ui = {
-  theme = "catppuccin",
+  theme = "catppuccin_latte",
   -- hl_add = require "custom.highlights",
   theme_toggle = { "catppuccin", "catppuccin_latte" },
 }

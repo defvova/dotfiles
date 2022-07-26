@@ -162,4 +162,22 @@ M.gitsigns = {
   },
 }
 
+M.mason = {
+  ensure_installed = {
+    "solargraph",
+    "rust-analyzer",
+    "lua-language-server",
+    "stylua",
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "emmet-ls",
+    "json-lsp",
+    "eslint-lsp",
+    "dockerfile-language-server",
+    "bash-language-server",
+    "yaml-language-server",
+  },
+}
+
 return M

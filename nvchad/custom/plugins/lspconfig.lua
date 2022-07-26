@@ -4,6 +4,19 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 local schemastore = require "schemastore"
 
+local setup_auto_format = require("custom.utils").setup_auto_format
+local filetypes = {
+  "lua",
+  "rb",
+  "js",
+  "ts",
+  "rs",
+}
+
+for _, ft in pairs(filetypes) do
+  setup_auto_format(ft, "FormatWrite")
+end
+
 local border_opts = { border = "single", focusable = false, scope = "line" }
 vim.diagnostic.config { virtual_text = false, float = border_opts }
 

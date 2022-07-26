@@ -329,7 +329,6 @@ return {
       require "custom.plugins.alpha"
     end,
   },
-  -- FIXME: doesn't work
   ["anuvyklack/fold-preview.nvim"] = {
     -- event = "BufRead",
     requires = "anuvyklack/keymap-amend.nvim",
@@ -337,17 +336,15 @@ return {
       require "custom.plugins.pretty-fold"
     end,
   },
-  ["jose-elias-alvarez/null-ls.nvim"] = {
-    -- after = "nvim-lsp-installer",
-    after = { "nvim-lspconfig" },
-    module = "null-ls",
-    config = function()
-      require "custom.plugins.null-ls"
-    end,
-  },
   ["neovim/nvim-lspconfig"] = {
     requires = {
-      "b0o/schemastore.nvim",
+      { "b0o/schemastore.nvim", module = "schemastore" },
+      {
+        "mhartington/formatter.nvim",
+        config = function()
+          require "custom.plugins.formatter"
+        end,
+      },
       {
         "jose-elias-alvarez/typescript.nvim",
         module = "typescript",
