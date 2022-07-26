@@ -37,6 +37,10 @@ M.disabled = {
     ["<leader>ls"] = "",
     ["<A-h>"] = "",
     ["<A-v>"] = "",
+    ["K"] = "",
+    ["<leader>pt"] = "",
+    ["gr"] = "",
+    ["<leader>ra"] = "",
   },
 }
 
@@ -54,13 +58,14 @@ M.general = {
     ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
     ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
     ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
+    ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
   },
   n = {
     ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
     ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
     ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
     ["q"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<D-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
+    ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Resize with arrows
     ["<D-Up>"] = { "<cmd> resize -2<CR>", "ﭕ   decrease height" },
@@ -80,7 +85,7 @@ M.general = {
   },
   v = {
     ["q"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<D-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
+    ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Better indenting
     ["<"] = { "<gv", "   dedent" },
@@ -91,6 +96,7 @@ M.general = {
     -- Move current line / block with Alt-j/k ala vscode.
     ["<D-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
     ["<D-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
+    ["<D-cr>"] = { "<cmd><c-u>Lspsaga range_code_action<CR>", "   range code action menu" },
   },
 }
 
@@ -206,6 +212,9 @@ M.git = {
 
 M.lspconfig = {
   n = {
+    ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "   lsp hover" },
+    ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
+    ["<leader>la"] = { "<cmd>Lspsaga rename<CR>", "   lsp rename" },
     ["<leader>lwa"] = {
       function()
         vim.lsp.buf.add_workspace_folder()

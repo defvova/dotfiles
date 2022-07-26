@@ -1,12 +1,19 @@
 return {
-  -- TODO: Investigate
-  -- ["glepnir/lspsaga.nvim"] = {
-  --   branch = "main",
+  ["kkharji/lspsaga.nvim"] = {
+    config = function()
+      require "custom.plugins.lspsaga"
+    end,
+  },
+  -- ["fgheng/winbar.nvim"] = {
   --   config = function()
-  --     local saga = require "lspsaga"
-  --     saga.init_lsp_saga {}
+  --     require("winbar").setup()
   --   end,
   -- },
+  ["b0o/incline.nvim"] = {
+    config = function()
+      require("incline").setup()
+    end,
+  },
   ["j-hui/fidget.nvim"] = {
     event = "BufReadPre",
     config = function()
