@@ -53,10 +53,12 @@ M.general = {
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
     ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
+    ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
   },
   n = {
     ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
     ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
+    ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
     ["q"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<D-cr>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
