@@ -1,9 +1,15 @@
 return {
+  ["yamatsum/nvim-cursorline"] = {
+    config = function()
+      require "custom.plugins.cursorline"
+    end,
+  },
   ["kkharji/lspsaga.nvim"] = {
     config = function()
       require "custom.plugins.lspsaga"
     end,
   },
+  -- FIXME: will work in nvim 0.8
   -- ["fgheng/winbar.nvim"] = {
   --   config = function()
   --     require("winbar").setup()
@@ -130,14 +136,6 @@ return {
       require("custom.plugins.smolconfigs").surround()
     end,
   },
-  -- FIXME: highlight word
-  -- ["RRethy/vim-illuminate"] = {
-  --   event = { "CursorHold" },
-  --   module = "illuminate",
-  --   config = function()
-  --     require("custom.plugins.smolconfigs").illuminate()
-  --   end,
-  -- },
   ["karb94/neoscroll.nvim"] = {
     event = "WinScrolled",
     keys = { "<C-u>", "<C-d>", "gg", "G" },
@@ -173,12 +171,7 @@ return {
     opt = true,
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("crates").setup {
-        -- null_ls = {
-        --   enabled = true,
-        --   name = "crates.nvim",
-        -- },
-      }
+      require("crates").setup {}
     end,
   },
   ["folke/persistence.nvim"] = {
