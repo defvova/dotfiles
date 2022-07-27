@@ -1,4 +1,10 @@
 return {
+  ["ruifm/gitlinker.nvim"] = {
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require "custom.plugins.gitlinker"
+    end,
+  },
   ["yamatsum/nvim-cursorline"] = {
     config = function()
       require "custom.plugins.cursorline"

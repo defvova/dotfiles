@@ -195,6 +195,15 @@ M.telescope = {
 }
 
 M.git = {
+  v = {
+    ["<leader>gY"] = {
+      function()
+        -- require("gitlinker.actions").copy_to_clipboard()
+        require("gitlinker").get_buf_range_url("v", { action_callback = require("gitlinker.actions").open_in_browser })
+      end,
+      "   open lines in browser",
+    },
+  },
   n = {
     ["<leader>gd"] = { "<cmd> Gitsigns diffthis HEAD <CR>", "   git diff" },
     ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "   git commits" },
@@ -206,7 +215,20 @@ M.git = {
     ["<leader>gr"] = { "<cmd> lua require 'gitsigns'.reset_hunk() <CR>", "   reset hunk" },
     ["<leader>gR"] = { "<cmd> lua require 'gitsigns'.reset_buffer() <CR>", "   reset buffer" },
     ["<leader>gs"] = { "<cmd> lua require 'gitsigns'.stage_hunk() <CR>", "樂  stage hunk" },
-    ["<leader>gu"] = { "<cmd> lua require 'gitsigns'.undo_stage_hunk() <CR>", "    undo stage hunk" },
+    ["<leader>gu"] = { "<cmd> lua require 'gitsigns'.undo_stage_hunk() <CR>", "   undo stage hunk" },
+    ["<leader>gY"] = {
+      function()
+        -- require("gitlinker.actions").copy_to_clipboard()
+        require("gitlinker").get_buf_range_url("n", { action_callback = require("gitlinker.actions").open_in_browser })
+      end,
+      "   open line in browser",
+    },
+    ["<leader>gB"] = {
+      function()
+        require("gitlinker").get_repo_url { action_callback = require("gitlinker.actions").open_in_browser }
+      end,
+      "   open repo in browser",
+    },
   },
 }
 
