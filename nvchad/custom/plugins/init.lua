@@ -1,4 +1,13 @@
 return {
+  ["kdheepak/lazygit.nvim"] = {
+    module = "lazygit",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+  },
   ["luukvbaal/stabilize.nvim"] = {
     config = function()
       require("stabilize").setup()
