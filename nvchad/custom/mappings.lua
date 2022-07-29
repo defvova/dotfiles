@@ -64,7 +64,7 @@ M.general = {
     ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
     ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
     ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
-    ["q"] = { "<cmd> HopWord<CR>", "hop word" },
+    ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Resize with arrows
@@ -84,7 +84,7 @@ M.general = {
     ["<C-q>"] = { "<cmd> Trouble document_diagnostics<CR>", "   open doc diagnostics" },
   },
   v = {
-    ["q"] = { "<cmd> HopWord<CR>", "hop word" },
+    ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Better indenting
@@ -92,7 +92,7 @@ M.general = {
     [">"] = { ">gv", "   indent" },
   },
   x = {
-    ["q"] = { "<cmd> HopWord<CR>", "hop word" },
+    ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     -- Move current line / block with Alt-j/k ala vscode.
     ["<D-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
     ["<D-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
