@@ -1,4 +1,9 @@
 return {
+  ["luukvbaal/stabilize.nvim"] = {
+    config = function()
+      require("stabilize").setup()
+    end,
+  },
   ["ruifm/gitlinker.nvim"] = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
