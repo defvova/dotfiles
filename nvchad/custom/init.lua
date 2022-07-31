@@ -1,6 +1,3 @@
-require("custom.utils").reset_gui_font()
-require("custom.utils").setup_neovide()
-
 local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
 

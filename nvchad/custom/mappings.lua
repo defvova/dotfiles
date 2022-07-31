@@ -1,10 +1,6 @@
 local M = {}
 
 M.disabled = {
-  t = {
-    ["<A-h>"] = "",
-    ["<A-v>"] = "",
-  },
   n = {
     ["<leader>e"] = "",
     ["<C-s>"] = "",
@@ -52,32 +48,26 @@ M.disabled = {
 M.general = {
   i = {
     -- Move current line / block with Alt-j/k a la vscode.
-    ["<D-k>"] = { "<Esc> <cmd> m .-2<CR>==gi", "   move text up" },
-    ["<D-j>"] = { "<Esc> <cmd> m .+1<CR>==gi", "   move text down" },
+    ["<A-k>"] = { "<Esc> <cmd> m .-2<CR>==gi", "   move text up" },
+    ["<A-j>"] = { "<Esc> <cmd> m .+1<CR>==gi", "   move text down" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
-    ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
-    ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
-    ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
-    ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
+    ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
   },
   n = {
-    ["<C-=>"] = { "<cmd> lua require('custom.utils').resize_gui_font(1)<CR>", "increase font size" },
-    ["<C-->"] = { "<cmd> lua require('custom.utils').resize_gui_font(-1)<CR>", "decrease font size" },
-    ["<C-0>"] = { "<cmd> lua require('custom.utils').reset_gui_font()<CR>", "reset font" },
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
+    ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Resize with arrows
-    ["<D-Up>"] = { "<cmd> resize -2<CR>", "ﭕ   decrease height" },
-    ["<D-Down>"] = { "<cmd> resize +2<CR>", "ﭕ   increase height" },
-    ["<D-Left>"] = { "<cmd> vertical resize -2<CR>", "ﭕ   decrease width" },
-    ["<D-Right>"] = { "<cmd> vertical resize +2<CR>", "ﭕ   increase width" },
+    ["<A-Up>"] = { "<cmd> resize -2<CR>", "ﭕ   decrease height" },
+    ["<A-Down>"] = { "<cmd> resize +2<CR>", "ﭕ   increase height" },
+    ["<A-Left>"] = { "<cmd> vertical resize -2<CR>", "ﭕ   decrease width" },
+    ["<A-Right>"] = { "<cmd> vertical resize +2<CR>", "ﭕ   increase width" },
 
     -- Move current line / block with Alt-j/k a la vscode.
     -- ["<A-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
     -- ["<A-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
-    ["<D-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
-    ["<D-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
+    ["<A-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
+    ["<A-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
     -- QuickFix
     -- ["]q"] = { "<cmd> cnext<CR>", "   next error" },
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
@@ -85,7 +75,7 @@ M.general = {
   },
   v = {
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<D-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
+    ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Better indenting
     ["<"] = { "<gv", "   dedent" },
@@ -94,9 +84,9 @@ M.general = {
   x = {
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     -- Move current line / block with Alt-j/k ala vscode.
-    ["<D-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
-    ["<D-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
-    ["<D-cr>"] = { "<cmd><c-u>Lspsaga range_code_action<CR>", "   range code action menu" },
+    ["<A-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
+    ["<A-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
+    ["<A-cr>"] = { "<cmd><c-u>Lspsaga range_code_action<CR>", "   range code action menu" },
   },
 }
 
@@ -108,14 +98,14 @@ M.nvimtree = {
 
 M.nvterm = {
   t = {
-    ["<D-h>"] = {
+    ["<A-h>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "   toggle horizontal term",
     },
 
-    ["<D-v>"] = {
+    ["<A-v>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
@@ -123,13 +113,13 @@ M.nvterm = {
     },
   },
   n = {
-    ["<D-h>"] = {
+    ["<A-h>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "   toggle horizontal term",
     },
-    ["<D-v>"] = {
+    ["<A-v>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
