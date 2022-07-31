@@ -158,9 +158,9 @@ M.whichkey = {
     },
     ["<leader>q"] = { "<cmd>lua require('custom.utils').smart_quit()<CR>", "   quit" },
     ["<leader>up"] = { "<cmd> PackerSync <CR>", "異 update plugins" },
-    ["<leader>hr"] = { "<Plug>RestNvim <CR>", "異  run http" },
-    ["<leader>hp"] = { "<Plug>RestNvimPreview <CR>", "   preview http" },
-    ["<leader>hR"] = { "<Plug>RestNvimLast <CR>", "菱  re-run the last http" },
+    ["<leader>Hr"] = { "<Plug>RestNvim <CR>", "異  run http" },
+    ["<leader>Hp"] = { "<Plug>RestNvimPreview <CR>", "   preview http" },
+    ["<leader>Hl"] = { "<Plug>RestNvimLast <CR>", "菱  re-run the last http" },
 
     ["<leader>Tr"] = { "<cmd>lua require('neotest').run.run() <CR>", "ﭧ   run single test" },
     ["<leader>Tl"] = { "<cmd>lua require('neotest').run.run_last() <CR>", "ﭧ   run last test" },
