@@ -231,16 +231,13 @@ M.git = {
   },
   n = {
     ["<leader>gd"] = { "<cmd> Gitsigns diffthis HEAD <CR>", "   git diff" },
-    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "   git commits" },
-    ["<leader>gC"] = { "<cmd> Telescope git_bcommits <CR>", "   git commits(for current file)" },
-    ["<leader>go"] = { "<cmd> Telescope git_status <CR>", "   git status" },
-    ["<leader>gO"] = { "<cmd> Telescope git_stash <CR>", "ﱲ   git stash" },
-    ["<leader>gb"] = { "<cmd> Telescope git_branches <CR>", "   git branches" },
-    ["<leader>gp"] = { "<cmd> lua require 'gitsigns'.preview_hunk() <CR>", "   preview hunk" },
-    ["<leader>gr"] = { "<cmd> lua require 'gitsigns'.reset_hunk() <CR>", "   reset hunk" },
-    ["<leader>gR"] = { "<cmd> lua require 'gitsigns'.reset_buffer() <CR>", "   reset buffer" },
-    ["<leader>gs"] = { "<cmd> lua require 'gitsigns'.stage_hunk() <CR>", "樂  stage hunk" },
-    ["<leader>gu"] = { "<cmd> lua require 'gitsigns'.undo_stage_hunk() <CR>", "   undo stage hunk" },
+    ["<leader>gc"] = { "<cmd> LazyGitFilter <CR>", "   git commits" },
+    ["<leader>gC"] = { "<cmd> LazyGitFilterCurrentFile <CR>", "   git commits(for current file)" },
+    ["<leader>gg"] = { "<cmd> LazyGit <CR>", "   git" },
+    ["<leader>gS"] = { "<cmd> LazyGitStash <CR>", "ﱲ   git stash" },
+    ["<leader>gb"] = { "<cmd> LazyGitBranch <CR>", "   git branches" },
+    ["<leader>gs"] = { "<cmd> LazyGitStatus <CR>", "   git status" },
+    ["<leader>gl"] = { "<cmd> LazyGitLog <CR>", "   git log" },
     ["<leader>gY"] = {
       function()
         -- require("gitlinker.actions").copy_to_clipboard()

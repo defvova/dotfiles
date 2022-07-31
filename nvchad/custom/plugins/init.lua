@@ -56,7 +56,14 @@ return {
       "LazyGitConfig",
       "LazyGitFilter",
       "LazyGitFilterCurrentFile",
+      "LazyGitBranch",
+      "LazyGitStash",
+      "LazyGitStatus",
+      "LazyGitLog",
     },
+    config = function()
+      require "custom.plugins.lazygit"
+    end,
   },
   ["luukvbaal/stabilize.nvim"] = {
     config = function()
