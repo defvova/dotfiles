@@ -171,6 +171,27 @@ M.whichkey = {
     ["<leader>hr"] = { "<Plug>RestNvim <CR>", "異  run http" },
     ["<leader>hp"] = { "<Plug>RestNvimPreview <CR>", "   preview http" },
     ["<leader>hR"] = { "<Plug>RestNvimLast <CR>", "菱  re-run the last http" },
+
+    ["<leader>Tr"] = { "<cmd>lua require('neotest').run.run() <CR>", "ﭧ   run single test" },
+    ["<leader>Tl"] = { "<cmd>lua require('neotest').run.run_last() <CR>", "ﭧ   run last test" },
+    ["<leader>TR"] = { "<cmd>lua require('neotest').run.run(vim.fn.getcwd()) <CR>", "ﱔ   run all tests" },
+    ["<leader>Tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%')) <CR>", "   run current file" },
+    ["<leader>TS"] = { "<cmd>lua require('neotest').run.stop() <CR>", "栗  stop test" },
+    ["<leader>To"] = { "<cmd>lua require('neotest').output.open({ enter = true }) <CR>", "   output of tests" },
+    ["<leader>TO"] = {
+      "<cmd>lua require('neotest').output.open({ enter = true, short = true }) <CR>",
+      "   output of tests",
+    },
+    ["<leader>Ts"] = { "<cmd>lua require('neotest').summary.toggle() <CR>", "ﱔ   display test suite structure" },
+    ["<leader>TA"] = {
+      function()
+        local neotest = require "neotest"
+        for _, adapter_id in ipairs(neotest.run.adapters()) do
+          neotest.run.run { suite = true, adapter = adapter_id }
+        end
+      end,
+      "ﱔ   run all adapters",
+    },
   },
 }
 

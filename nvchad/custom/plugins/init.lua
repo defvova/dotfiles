@@ -1,4 +1,28 @@
 return {
+  ["nvim-neotest/neotest"] = {
+    requires = {
+      "olimorris/neotest-rspec",
+      "haydenmeade/neotest-jest",
+      "rouge8/neotest-rust",
+    },
+    config = function()
+      require("neotest").setup {
+        status = {
+          virtual_text = true,
+        },
+        strategies = {
+          integrated = {
+            width = 180,
+          },
+        },
+        adapters = {
+          require "neotest-rspec",
+          require "neotest-jest",
+          require "neotest-rust",
+        },
+      }
+    end,
+  },
   ["gelguy/wilder.nvim"] = {
     config = function()
       local wilder = require "wilder"
