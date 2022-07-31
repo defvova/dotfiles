@@ -53,6 +53,7 @@ opt.shiftwidth = 2
 opt.swapfile = false
 opt.wildignore = "*/cache/*,*/tmp/*"
 
+vim.g.rust_clip_command = "pbcopy"
 -- opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"

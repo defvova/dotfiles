@@ -370,17 +370,6 @@ return {
         module = "typescript",
       },
       {
-        "simrat39/rust-tools.nvim",
-        ft = { "rust", "rs" },
-        opt = true,
-        module = "rust-tools",
-        requires = {
-          "nvim-lua/plenary.nvim",
-          "rust-lang/rust.vim",
-          "mfussenegger/nvim-dap",
-        },
-      },
-      {
         "folke/lua-dev.nvim",
         ft = "lua",
         opt = true,
@@ -390,6 +379,21 @@ return {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.plugins.lspconfig"
+    end,
+  },
+  ["simrat39/rust-tools.nvim"] = {
+    -- ft = { "rust", "rs" },
+    -- opt = true,
+    requires = {
+      "mattn/webapi-vim",
+      "felipec/vim-sanegx",
+      "rust-lang/rust.vim",
+      "nvim-lua/plenary.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    after = "nvim-lspconfig",
+    config = function()
+      require "custom.plugins.lsp.rust_analyzer"
     end,
   },
 }

@@ -35,29 +35,6 @@ end
 
 local servers = {
   solargraph = {},
-  rust_analyzer = require("custom.plugins.lsp.rust_analyzer").setup({
-    tools = {
-      hover_actions = {
-        border = "double",
-      },
-      inlay_hints = {
-        auto = true,
-        only_current_line = false,
-      },
-    },
-    server = {
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            loadOutDirsFromCheck = true,
-          },
-          procMacro = {
-            enable = true,
-          },
-        },
-      },
-    },
-  }, capabilities),
   sumneko_lua = require("lua-dev").setup {
     settings = {
       Lua = {

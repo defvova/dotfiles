@@ -14,6 +14,9 @@ M.plugins = {
     ["lewis6991/gitsigns.nvim"] = override.gitsigns,
     ["williamboman/mason"] = override.mason,
   },
+  remove = {
+    "goolord/alpha-nvim"
+  }
 }
 
 M.ui = {

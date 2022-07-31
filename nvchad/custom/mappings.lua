@@ -167,6 +167,7 @@ M.whichkey = {
       "﯒   replace in current file (Spectre)",
     },
     ["<leader>q"] = { "<cmd>lua require('custom.utils').smart_quit()<CR>", "   quit" },
+    ["<leader>up"] = { "<cmd> PackerSync <CR>", "異 update plugins" },
   },
 }
 
