@@ -1,5 +1,10 @@
 local M = {}
 
+local spotify = require("fterm"):new {
+  ft = "fterm_spotify",
+  cmd = "ncspot",
+}
+
 M.disabled = {
   n = {
     ["<leader>e"] = "",
@@ -93,6 +98,25 @@ M.general = {
 M.nvimtree = {
   n = {
     ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "   toggle nvimtree" },
+  },
+}
+
+M.fterm = {
+  t = {
+    ["<A-m>"] = {
+      function()
+        spotify:toggle()
+      end,
+      "   spotify",
+    },
+  },
+  n = {
+    ["<A-m>"] = {
+      function()
+        spotify:toggle()
+      end,
+      "   spotify",
+    },
   },
 }
 

@@ -1,4 +1,9 @@
 return {
+  ["numToStr/FTerm.nvim"] = {
+    config = function()
+      require "custom.plugins.fterm"
+    end,
+  },
   ["nvim-neotest/neotest"] = {
     requires = {
       "olimorris/neotest-rspec",
