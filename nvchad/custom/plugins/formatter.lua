@@ -25,7 +25,6 @@ local options = {
       require("formatter.filetypes.rust").rustfmt,
     },
     json = {
-      -- FIXME: doesn't work
       require("formatter.filetypes.json").jq,
     },
     typescript = {

@@ -269,10 +269,13 @@ M.git = {
 }
 
 M.lspconfig = {
+  v = {
+    ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
+  },
   n = {
     ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "   lsp hover" },
     ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
-    ["<leader>la"] = { "<cmd>Lspsaga rename<CR>", "   lsp rename" },
+    ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
     ["<leader>lwa"] = {
       function()
         vim.lsp.buf.add_workspace_folder()
