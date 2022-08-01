@@ -202,7 +202,6 @@ return {
     end,
   },
   ["monaqa/dial.nvim"] = {
-    event = "BufRead",
     config = function()
       require "custom.plugins.dial"
     end,

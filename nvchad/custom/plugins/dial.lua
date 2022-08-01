@@ -1,9 +1,3 @@
-local present, _ = pcall(require, "dial")
-
-if not present then
-  return
-end
-
 local augend = require "dial.augend"
 local config = require "dial.config"
 config.augends:register_group {
@@ -42,7 +36,6 @@ config.augends:register_group {
   },
 }
 
--- FIXME: Update keymaps
 vim.api.nvim_set_keymap("n", "<C-z>", require("dial.map").inc_normal(), { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-z>", require("dial.map").inc_visual(), { noremap = true })
