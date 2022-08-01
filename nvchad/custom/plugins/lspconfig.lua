@@ -11,6 +11,7 @@ local filetypes = {
   "js",
   "ts",
   "rs",
+  "json",
 }
 
 for _, ft in pairs(filetypes) do
