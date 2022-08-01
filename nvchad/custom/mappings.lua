@@ -52,9 +52,6 @@ M.disabled = {
 -- }
 M.general = {
   i = {
-    -- Move current line / block with Alt-j/k a la vscode.
-    ["<A-k>"] = { "<Esc> <cmd> m .-2<CR>==gi", "   move text up" },
-    ["<A-j>"] = { "<Esc> <cmd> m .+1<CR>==gi", "   move text down" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
   },
@@ -68,11 +65,6 @@ M.general = {
     ["<A-Left>"] = { "<cmd> vertical resize -2<CR>", "ﭕ   decrease width" },
     ["<A-Right>"] = { "<cmd> vertical resize +2<CR>", "ﭕ   increase width" },
 
-    -- Move current line / block with Alt-j/k a la vscode.
-    -- ["<A-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
-    -- ["<A-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
-    ["<A-j>"] = { "<cmd> m .+1<CR>==", "   move text down" },
-    ["<A-k>"] = { "<cmd> m .-2<CR>==", "   move text up" },
     -- QuickFix
     -- ["]q"] = { "<cmd> cnext<CR>", "   next error" },
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
@@ -88,9 +80,6 @@ M.general = {
   },
   x = {
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
-    -- Move current line / block with Alt-j/k ala vscode.
-    ["<A-j>"] = { ":m '>+1<CR>gv=gv", "   move text down" },
-    ["<A-k>"] = { ":m '<-2<CR>gv=gv", "   move text up" },
     ["<A-cr>"] = { "<cmd><c-u>Lspsaga range_code_action<CR>", "   range code action menu" },
   },
 }
