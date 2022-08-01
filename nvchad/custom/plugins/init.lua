@@ -162,17 +162,6 @@ return {
       require("custom.plugins.smolconfigs").todo()
     end,
   },
-  -- ["TimUntersberger/neogit"] = {
-  --   cmd = "Neogit",
-  --   requires = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  --   config = function()
-  --     require "custom.plugins.neogit"
-  --   end,
-  -- },
-  -- FIXME: Investigate
-  ["nvim-treesitter/nvim-treesitter-refactor"] = {},
   -- FIXME: works incorrect
   -- ["ThePrimeagen/refactoring.nvim"] = {
   --   module = { "refactoring", "telescope" },

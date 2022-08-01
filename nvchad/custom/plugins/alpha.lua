@@ -28,7 +28,6 @@ dashboard.section.header.opts = {
   hl = "AlphaHeader",
 }
 
--- FIXME: Update buttons
 dashboard.section.buttons.val = {
   dashboard.button("SPC f  ", "  Find File  ", ":Telescope find_files<CR>", {}),
   dashboard.button("SPC s o", "  Recent File  ", ":Telescope oldfiles<CR>", {}),

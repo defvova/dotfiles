@@ -46,30 +46,6 @@ M.treesitter = {
   endwise = {
     enable = true,
   },
-  refactor = {
-    navigation = {
-      enable = false,
-      keymaps = {
-        goto_definition = "gnd", -- FIXME: update keymaps
-        list_definitions = "gnD",
-        list_definitions_toc = "gO",
-        goto_next_usage = "<a-*>",
-        goto_previous_usage = "<a-#>",
-      },
-    },
-    smart_rename = {
-      enable = false,
-      keymaps = {
-        smart_rename = "grr",
-      },
-    },
-    highlight_current_scope = { enable = false },
-    highlight_definitions = {
-      enable = false,
-      -- Set to false if you have an `updatetime` of ~100.
-      clear_on_cursor_move = true,
-    },
-  },
 }
 
 M.packer = {
