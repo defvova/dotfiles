@@ -13,16 +13,17 @@ M.plugins = {
     ["nvim-telescope/telescope.nvim"] = override.telescope,
     ["lewis6991/gitsigns.nvim"] = override.gitsigns,
     ["williamboman/mason"] = override.mason,
+    ["NvChad/ui"] = override.ui,
   },
   remove = {
-    "goolord/alpha-nvim"
-  }
+    "goolord/alpha-nvim",
+  },
 }
 
 M.ui = {
-  theme = "catppuccin_latte",
+  theme = "one_light",
   -- hl_add = require "custom.highlights",
-  theme_toggle = { "catppuccin", "catppuccin_latte" },
+  theme_toggle = { "palenight", "one_light" },
 }
 
 M.mappings = require "custom.mappings"

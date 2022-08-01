@@ -1,5 +1,11 @@
 local M = {}
 
+M.ui = {
+  statusline = {
+    separator_style = "arrow", -- default/round/block/arrow
+  },
+}
+
 M.treesitter = {
   ensure_installed = {
     "norg",
