@@ -263,6 +263,8 @@ M.lspconfig = {
   },
   n = {
     ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "   lsp hover" },
+    ["<C-u>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", "smart scroll up" },
+    ["<C-d>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", "smart scroll down" },
     ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
     ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
     ["<leader>lwa"] = {

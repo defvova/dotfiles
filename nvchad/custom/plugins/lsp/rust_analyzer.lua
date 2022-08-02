@@ -1,5 +1,7 @@
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local utils = require "core.utils"
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 require("rust-tools").setup {
   tools = {
@@ -17,7 +19,11 @@ require("rust-tools").setup {
   --     "/home/simrat39/.vscode/extensions/vadimcn.vscode-lldb-1.7.0/lldb/lib/liblldb.so"
   --   ),
   -- },
-  -- server = {
-  --   capabilities = capabilities,
-  -- },
+  server = {
+    capabilities = capabilities,
+    on_attach = function(_, bufnr)
+      local lsp_mappings = utils.load_config().mappings.lspconfig
+      utils.load_mappings({ lsp_mappings }, { buffer = bufnr })
+    end,
+  },
 }

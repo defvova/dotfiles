@@ -383,7 +383,8 @@ return {
     end,
   },
   ["simrat39/rust-tools.nvim"] = {
-    ft = { "rust", "rs" },
+    -- INFO: lazyload doesn't work
+    -- ft = { "rust", "rs" },
     -- opt = true,
     requires = {
       "mattn/webapi-vim",

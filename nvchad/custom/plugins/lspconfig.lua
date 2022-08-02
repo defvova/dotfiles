@@ -28,10 +28,6 @@ end
 
 local function on_attach(client, bufnr)
   attach(client, bufnr)
-
-  local map = vim.api.nvim_buf_set_keymap
-  map(0, "n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", {})
-  map(0, "n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", {})
 end
 
 local servers = {
