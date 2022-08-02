@@ -36,7 +36,7 @@ return {
   ["gennaro-tedesco/nvim-jqx"] = {},
   ["NTBBloodbath/rest.nvim"] = {
     requires = { "nvim-lua/plenary.nvim" },
-    -- ft = "http",
+    ft = "http",
     config = function()
       require("rest-nvim").setup()
     end,
@@ -149,18 +149,6 @@ return {
       require("custom.plugins.smolconfigs").todo()
     end,
   },
-  -- FIXME: works incorrect
-  -- ["ThePrimeagen/refactoring.nvim"] = {
-  --   module = { "refactoring", "telescope" },
-  --   wants = { "telescope.nvim" },
-  --   requires = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require "custom.plugins.refactoring"
-  --   end,
-  -- },
   ["narutoxy/dim.lua"] = {
     requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
     config = function()
@@ -179,15 +167,6 @@ return {
   --   end,
   -- },
   -- ["lewis6991/impatient.nvim"] = {},
-  -- ["weilbith/nvim-code-action-menu"] = {
-  --   cmd = "CodeActionMenu",
-  -- },
-  -- ["kosayoda/nvim-lightbulb"] = {
-  --   requires = "antoinemadec/FixCursorHold.nvim",
-  --   config = function()
-  --     require("custom.plugins.smolconfigs").lightbulb()
-  --   end,
-  -- },
   ["ur4ltz/surround.nvim"] = {
     event = "BufRead",
     config = function()
@@ -288,21 +267,6 @@ return {
       require("custom.plugins.smolconfigs").trouble()
     end,
   },
-  -- ["sindrets/diffview.nvim"] = {
-  --   event = "BufRead",
-  --   -- cmd = {
-  --   --   "DiffviewOpen",
-  --   --   "DiffviewFileHistory",
-  --   --   "DiffviewFocusFiles",
-  --   --   "DiffviewToggleFiles",
-  --   --   "DiffviewRefresh",
-  --   -- },
-  --   module = "diffview",
-  --   requires = "nvim-lua/plenary.nvim",
-  --   config = function()
-  --     require "custom.plugins.diffview"
-  --   end,
-  -- },
   -- ["catppuccin/nvim"] = {
   --   opt = true,
   --   as = "catppuccin",
@@ -419,7 +383,7 @@ return {
     end,
   },
   ["simrat39/rust-tools.nvim"] = {
-    -- ft = { "rust", "rs" },
+    ft = { "rust", "rs" },
     -- opt = true,
     requires = {
       "mattn/webapi-vim",
