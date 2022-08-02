@@ -42,6 +42,8 @@ M.disabled = {
     ["<leader>pt"] = "",
     ["gr"] = "",
     ["<leader>ra"] = "",
+    ["H"] = "",
+    ["L"] = "",
   },
 }
 
@@ -69,18 +71,6 @@ M.general = {
     -- ["]q"] = { "<cmd> cnext<CR>", "   next error" },
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
     ["<C-q>"] = { "<cmd> Trouble document_diagnostics<CR>", "   open doc diagnostics" },
-    ["L"] = {
-      function()
-        require("core.utils").tabuflineNext()
-      end,
-      "  goto next buffer",
-    },
-    ["H"] = {
-      function()
-        require("core.utils").tabuflinePrev()
-      end,
-      "  goto prev buffer",
-    },
   },
   v = {
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
@@ -213,8 +203,18 @@ M.whichkey = {
 M.tabufline = {
   n = {
     [";"] = { "<cmd> Telescope buffers<CR>", "﬘   open buffers" },
-    ["L"] = { "<cmd> Tbufnext <CR>", "  goto next buffer" },
-    ["H"] = { "<cmd> Tbufprev <CR> ", "  goto prev buffer" },
+    ["L"] = {
+      function()
+        require("core.utils").tabuflineNext()
+      end,
+      "  goto next buffer",
+    },
+    ["H"] = {
+      function()
+        require("core.utils").tabuflinePrev()
+      end,
+      "  goto prev buffer",
+    },
   },
 }
 

@@ -3,6 +3,19 @@ local utils = require "core.utils"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+local function show_documentation()
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "help" }, filetype) then
+    vim.cmd("h " .. vim.fn.expand "<cword>")
+  elseif vim.tbl_contains({ "man" }, filetype) then
+    vim.cmd("Man " .. vim.fn.expand "<cword>")
+  elseif vim.fn.expand "%:t" == "Cargo.toml" then
+    require("crates").show_popup()
+  else
+    require("lspsaga.hover").render_hover_doc()
+  end
+end
+
 require("rust-tools").setup {
   tools = {
     hover_actions = {
@@ -24,6 +37,7 @@ require("rust-tools").setup {
     on_attach = function(_, bufnr)
       local lsp_mappings = utils.load_config().mappings.lspconfig
       utils.load_mappings({ lsp_mappings }, { buffer = bufnr })
+      vim.keymap.set("n", "K", show_documentation, { noremap = true, silent = true })
     end,
   },
 }
