@@ -16,6 +16,17 @@ local function show_documentation()
   end
 end
 
+local mappings = {
+  n = {
+    ["<leader>rr"] = { "<cmd>RustRun<cr>", "異  run app" },
+    ["<leader>rp"] = { "<cmd>RustRunnables<cr>", "   runnables" },
+    ["<leader>rR"] = { "<cmd>RustReloadWorkspace<cr>", "勒  reload workspace" },
+    ["<leader>ry"] = { "<cmd>RustPlay<cr>", "奈  copy to play" },
+    ["<leader>ro"] = { "<cmd>RustParentModule<cr>", "倫  go to parent" },
+    ["<leader>rc"] = { "<cmd>RustOpenCargo<cr>", "   go to cargo" },
+  },
+}
+
 require("rust-tools").setup {
   tools = {
     hover_actions = {
@@ -36,7 +47,8 @@ require("rust-tools").setup {
     capabilities = capabilities,
     on_attach = function(_, bufnr)
       local lsp_mappings = utils.load_config().mappings.lspconfig
-      utils.load_mappings({ lsp_mappings }, { buffer = bufnr })
+      utils.load_mappings({ lsp_mappings, mappings }, { buffer = bufnr })
+
       vim.keymap.set("n", "K", show_documentation, { noremap = true, silent = true })
     end,
   },
