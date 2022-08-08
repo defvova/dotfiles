@@ -44,6 +44,7 @@ M.disabled = {
     ["<leader>ra"] = "",
     ["H"] = "",
     ["L"] = "",
+    ["<leader>D"] = "",
   },
 }
 
@@ -269,6 +270,25 @@ M.git = {
   },
 }
 
+M.crates = {
+  n = {
+    ["<leader>cd"] = { "<cmd>lua require('crates').open_documentation() <cr>", "open documentation" },
+    ["<leader>cr"] = { "<cmd>lua require('crates').open_repository() <cr>", "open repository" },
+    ["<leader>ch"] = { "<cmd>lua require('crates').open_homepage() <cr>", "open homepage" },
+    ["<leader>cc"] = { "<cmd>lua require('crates').open_crates_io() <cr>", "open crates.io" },
+    ["<leader>cu"] = { "<cmd>lua require('crates').update_crate() <cr>", "update crate" },
+    ["<leader>ca"] = { "<cmd>lua require('crates').update_all_crates() <cr>", "update all crates" },
+    ["<leader>cU"] = { "<cmd>lua require('crates').upgrade_crate() <cr>", "upgrade crate" },
+    ["<leader>cA"] = { "<cmd>lua require('crates').upgrade_all_crates() <cr>", "upgrade all crates" },
+    ["<leader>ct"] = { "<cmd>lua require('crates').toggle() <cr>", "toggle UI elements" },
+    ["<leader>cR"] = { "<cmd>lua require('crates').reload() <cr>", "reload data" },
+  },
+  v = {
+    ["<leader>cu"] = { "<cmd>lua require('crates').update_creates() <cr>", "update crates" },
+    ["<leader>cU"] = { "<cmd>lua require('crates').upgrade_crates() <cr>", "upgrade crates" },
+  },
+}
+
 M.lspconfig = {
   v = {
     ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
@@ -279,25 +299,47 @@ M.lspconfig = {
     ["<C-d>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", "smart scroll down" },
     ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
     ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
+
+    ["<leader>rr"] = { "<cmd>RustDebuggables<cr>", "   runnables" },
+    ["<leader>rR"] = { "<cmd>RustReloadWorkspace<cr>", "勒  reload workspace" },
+    ["<leader>ry"] = { "<cmd>RustPlay<cr>", "奈  copy to play" },
+    ["<leader>ro"] = { "<cmd>RustParentModule<cr>", "倫  go to parent" },
+    ["<leader>rc"] = { "<cmd>RustOpenCargo<cr>", "   go to cargo" },
+
     ["<leader>lwa"] = {
       function()
         vim.lsp.buf.add_workspace_folder()
       end,
       "   add workspace folder",
     },
-
     ["<leader>lwr"] = {
       function()
         vim.lsp.buf.remove_workspace_folder()
       end,
       "   remove workspace folder",
     },
-
     ["<leader>lwl"] = {
       function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
       "   list workspace folders",
+    },
+  },
+}
+
+M.dap = {
+  n = {
+    ["<leader>Db"] = {
+      "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+      "toggle breakpoint",
+    },
+    ["<leader>Dc"] = {
+      "<cmd>lua require'dap'.continue()<cr>",
+      "continue",
+    },
+    ["<leader>Do"] = {
+      "<cmd>lua require('dapui').toggle()<cr>",
+      "open ui",
     },
   },
 }

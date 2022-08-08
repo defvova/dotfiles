@@ -1,4 +1,7 @@
 return {
+  ["folke/which-key.nvim"] = {
+    disable = false,
+  },
   ["numToStr/FTerm.nvim"] = {
     config = function()
       require "custom.plugins.fterm"
@@ -358,7 +361,15 @@ return {
     end,
   },
   ["neovim/nvim-lspconfig"] = {
+    wants = {
+      "mason.nvim",
+      "mason-lspconfig.nvim",
+      "mason-tool-installer.nvim",
+    },
     requires = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "b0o/schemastore.nvim", module = "schemastore" },
       {
         "mhartington/formatter.nvim",
@@ -376,26 +387,25 @@ return {
         opt = true,
         module = "lua-dev",
       },
+      {
+        "simrat39/rust-tools.nvim",
+        requires = {
+          "mattn/webapi-vim",
+          "felipec/vim-sanegx",
+          "rust-lang/rust.vim",
+          "nvim-lua/plenary.nvim",
+          {
+            "rcarriga/nvim-dap-ui",
+            requires = { "mfussenegger/nvim-dap" },
+            config = function()
+              require "custom.plugins.dap"
+            end,
+          },
+        },
+      },
     },
     config = function()
-      require "plugins.configs.lspconfig"
       require "custom.plugins.lspconfig"
-    end,
-  },
-  ["simrat39/rust-tools.nvim"] = {
-    -- INFO: lazyload doesn't work
-    -- ft = { "rust", "rs" },
-    -- opt = true,
-    requires = {
-      "mattn/webapi-vim",
-      "felipec/vim-sanegx",
-      "rust-lang/rust.vim",
-      "nvim-lua/plenary.nvim",
-      "mfussenegger/nvim-dap",
-    },
-    after = "nvim-lspconfig",
-    config = function()
-      require "custom.plugins.lsp.rust_analyzer"
     end,
   },
 }

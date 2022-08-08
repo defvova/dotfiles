@@ -17,11 +17,13 @@ M.plugins = {
   },
   remove = {
     "goolord/alpha-nvim",
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
   },
 }
 
 M.ui = {
-  theme = "one_light",
+  theme = "palenight",
   -- hl_add = require "custom.highlights",
   theme_toggle = { "palenight", "one_light" },
 }

@@ -52,10 +52,10 @@ opt.wildignore = "*/cache/*,*/tmp/*"
 
 vim.g.rust_clip_command = "pbcopy"
 -- opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldcolumn = "auto:2"
--- opt.foldcolumn = "1"
-opt.foldlevelstart = 99
-opt.foldnestmax = 20
-opt.foldminlines = 4
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldcolumn = "auto:2"
+-- -- opt.foldcolumn = "1"
+-- opt.foldlevelstart = 99
+-- opt.foldnestmax = 20
+-- opt.foldminlines = 4
