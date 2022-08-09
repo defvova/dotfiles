@@ -5,6 +5,7 @@ return {
   ["numToStr/FTerm.nvim"] = {
     config = function()
       require "custom.plugins.fterm"
+      require "custom.plugins.lazygit"
     end,
   },
   ["nvim-neotest/neotest"] = {
@@ -42,22 +43,6 @@ return {
     ft = "http",
     config = function()
       require("rest-nvim").setup()
-    end,
-  },
-  ["kdheepak/lazygit.nvim"] = {
-    module = "lazygit",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-      "LazyGitBranch",
-      "LazyGitStash",
-      "LazyGitStatus",
-      "LazyGitLog",
-    },
-    config = function()
-      require "custom.plugins.lazygit"
     end,
   },
   ["luukvbaal/stabilize.nvim"] = {
