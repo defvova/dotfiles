@@ -397,15 +397,13 @@ return {
           {
             "rcarriga/nvim-dap-ui",
             requires = { "mfussenegger/nvim-dap" },
-            config = function()
-              require "custom.plugins.dap"
-            end,
           },
         },
       },
     },
     config = function()
       require "custom.plugins.lspconfig"
+      require "custom.plugins.dap"
     end,
   },
 }

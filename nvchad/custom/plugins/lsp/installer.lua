@@ -43,15 +43,15 @@ function M.setup(servers, options)
 
   require("mason-lspconfig").setup_handlers {
     function(server_name)
-      local opts = vim.tbl_deep_extend("force", servers[server_name] or {}, options)
+      local opts = vim.tbl_deep_extend("force", options, servers[server_name] or {})
       lspconfig[server_name].setup { opts }
     end,
     ["sumneko_lua"] = function()
-      local opts = vim.tbl_deep_extend("force", servers["sumneko_lua"] or {}, options)
+      local opts = vim.tbl_deep_extend("force", options, servers["sumneko_lua"] or {})
       lspconfig.sumneko_lua.setup(require("lua-dev").setup { opts })
     end,
     ["rust_analyzer"] = function()
-      local opts = vim.tbl_deep_extend("force", servers["rust_analyzer"] or {}, options)
+      local opts = vim.tbl_deep_extend("force", options, servers["rust_analyzer"] or {})
 
       -- DAP settings - https://github.com/simrat39/rust-tools.nvim#a-better-debugging-experience
       local extension_path = install_root_dir .. "/packages/codelldb/extension/"
@@ -89,7 +89,7 @@ function M.setup(servers, options)
       -- require("custom.plugins.dap.rust").setup()
     end,
     ["tsserver"] = function()
-      local opts = vim.tbl_deep_extend("force", servers["tsserver"] or {}, options)
+      local opts = vim.tbl_deep_extend("force", options, servers["tsserver"] or {})
       require("typescript").setup {
         disable_commands = false,
         debug = false,

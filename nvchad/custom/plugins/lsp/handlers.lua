@@ -41,10 +41,12 @@ function M.setup()
       },
     },
   }
+  -- local border_opts = { border = "single", focusable = false, scope = "line" }
 
   -- Diagnostic configuration
   vim.diagnostic.config(config.diagnostic)
 
+  -- Disable inline diagnostics error
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
   })
