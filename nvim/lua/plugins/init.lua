@@ -528,22 +528,12 @@ local plugins = {
       require("core.utils").load_mappings "whichkey"
     end,
   },
-
-  -- ["kevinhwang91/nvim-ufo"] = {
-  --   opt = false,
-  --   event = { "BufReadPre" },
-  --   wants = { "promise-async" },
-  --   requires = "kevinhwang91/promise-async",
-  --   config = function()
-  --     require("ufo").setup {
-  --       provider_selector = function(bufnr, filetype)
-  --         return { "lsp", "treesitter", "indent" }
-  --       end,
-  --     }
-  --     vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-  --     vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-  --   end,
-  -- },
+  ["mfussenegger/nvim-ts-hint-textobject"] = {
+    config = function()
+      vim.cmd [[omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>]]
+      vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
+    end,
+  }
 }
 
 require("core.packer").run(plugins)
