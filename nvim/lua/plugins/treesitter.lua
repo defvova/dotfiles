@@ -48,6 +48,14 @@ local options = {
   endwise = {
     enable = true,
   },
+  textsubjects = {
+    enable = true,
+    prev_selection = ',',
+    keymaps = {
+      ['.'] = 'textsubjects-smart',
+      [';'] = 'textsubjects-container-outer',
+    }
+  },
 }
 
 treesitter.setup(options)

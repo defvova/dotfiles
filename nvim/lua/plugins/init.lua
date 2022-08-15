@@ -89,6 +89,7 @@ local plugins = {
     module = "nvim-treesitter",
     run = ":TSUpdate",
     requires = {
+      'RRethy/nvim-treesitter-textsubjects',
       {
         "p00f/nvim-ts-rainbow",
         opt = false,
