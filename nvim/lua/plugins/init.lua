@@ -1,11 +1,139 @@
-return {
+-- vim.cmd "packadd packer.nvim"
+
+local plugins = {
+    -- Speed up deffered plugins
+  ["lewis6991/impatient.nvim"] = {},
+  
+  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
+  ["wbthomason/packer.nvim"] = {
+    cmd = require("core.lazy_load").packer_cmds,
+    config = function()
+      require "plugins"
+    end,
+  },
+  ["numToStr/Comment.nvim"] = {
+    module = "Comment",
+    keys = { "gc", "gb" },
+    config = function()
+      require "plugins.comment"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "comment"
+    end,
+  },
+  ["windwp/nvim-autopairs"] = {
+    after = "nvim-cmp",
+    config = function()
+      require "plugins.autopairs"
+    end,
+  },
+  ["norcalli/nvim-colorizer.lua"] = {
+    config = function()
+      require "plugins.colorizer"
+    end,
+  },
+  ["nvim-telescope/telescope.nvim"] = {
+    cmd = "Telescope",
+    config = function()
+      require "plugins.telescope"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "telescope"
+    end,
+  },
+  ["lukas-reineke/indent-blankline.nvim"] = {
+    config = function()
+      require "plugins.blankline"
+    end,
+  },
+  ["rafamadriz/friendly-snippets"] = {
+    module = { "cmp", "cmp_nvim_lsp" },
+    event = "InsertEnter",
+    requires = {
+      {
+        "hrsh7th/nvim-cmp",
+        -- opt = true,
+        requires = {
+          "hrsh7th/cmp-buffer",
+          "hrsh7th/cmp-nvim-lsp",
+          "hrsh7th/cmp-path",
+          "onsails/lspkind-nvim",
+          "hrsh7th/cmp-nvim-lsp-document-symbol",
+          "hrsh7th/cmp-cmdline",
+          -- "ray-x/cmp-treesitter",
+          -- "hrsh7th/cmp-emoji",
+          -- "f3fora/cmp-spell",
+          -- "hrsh7th/cmp-calc",
+          -- "octaltree/cmp-look",
+        },
+      },
+    },
+    config = function()
+      require "plugins.cmp"
+    end,
+  },
+
+  ["L3MON4D3/LuaSnip"] = {
+    wants = "friendly-snippets",
+    after = "nvim-cmp",
+    requires = {
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lua",
+    },
+    config = function()
+      require "plugins.luasnip"
+    end,
+  },
+
+  ["nvim-treesitter/nvim-treesitter"] = {
+    module = "nvim-treesitter",
+    run = ":TSUpdate",
+    requires = {
+      {
+        "p00f/nvim-ts-rainbow",
+        opt = false,
+        event = { "CursorHold", "CursorHoldI" },
+      },
+    },
+    config = function()
+      require "plugins.treesitter"
+    end,
+  },
+  ["kyazdani42/nvim-tree.lua"] = {
+    ft = "alpha",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    setup = function()
+      require("core.utils").load_mappings "nvimtree"
+    end,
+    config = function()
+      require "plugins.nvimtree"
+    end,
+  },
+  ["nvim-lualine/lualine.nvim"] = {
+    requires = { "kyazdani42/nvim-web-devicons" },
+    config = function()
+      require "plugins.lualine"
+    end,
+  },
+  ["lewis6991/gitsigns.nvim"] = {
+    config = function()
+      require "plugins.gitsigns"
+    end,
+  },
+  ["akinsho/bufferline.nvim"] = {
+    tag = "v2.*",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require "plugins.bufferline"
+    end,
+  },
   ["folke/which-key.nvim"] = {
     disable = false,
   },
   ["numToStr/FTerm.nvim"] = {
     config = function()
-      require "custom.plugins.fterm"
-      require "custom.plugins.lazygit"
+      require "plugins.fterm"
+      require "plugins.lazygit"
     end,
   },
   ["nvim-neotest/neotest"] = {
@@ -34,7 +162,7 @@ return {
   },
   ["gelguy/wilder.nvim"] = {
     config = function()
-      require "custom.plugins.wilder"
+      require "plugins.wilder"
     end,
   },
   ["gennaro-tedesco/nvim-jqx"] = {},
@@ -53,17 +181,17 @@ return {
   ["ruifm/gitlinker.nvim"] = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require "custom.plugins.gitlinker"
+      require "plugins.gitlinker"
     end,
   },
   ["yamatsum/nvim-cursorline"] = {
     config = function()
-      require "custom.plugins.cursorline"
+      require "plugins.cursorline"
     end,
   },
   ["kkharji/lspsaga.nvim"] = {
     config = function()
-      require "custom.plugins.lspsaga"
+      require "plugins.lspsaga"
     end,
   },
   -- FIXME: will work in nvim 0.8
@@ -87,14 +215,14 @@ return {
   --   event = "VimEnter",
   --   requires = { "kristijanhusak/vim-dadbod-ui", "kristijanhusak/vim-dadbod-completion", "tpope/vim-dotenv" },
   --   config = function()
-  --     require "custom.plugins.dadbod"
+  --     require "plugins.dadbod"
   --   end,
   -- },
   ["mg979/vim-visual-multi"] = {
     event = "BufReadPre",
   },
   ["abecodes/tabout.nvim"] = {
-    opt = true,
+    opt = false,
     wants = { "nvim-treesitter" },
     after = { "nvim-cmp" },
     config = function()
@@ -106,9 +234,9 @@ return {
   },
   ["filipdutescu/renamer.nvim"] = {
     branch = "master",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    requires = "nvim-lua/plenary.nvim",
     config = function()
-      require "custom.plugins.renamer"
+      require "plugins.renamer"
     end,
   },
   ["antoinemadec/FixCursorHold.nvim"] = {
@@ -134,7 +262,7 @@ return {
     requires = "nvim-lua/plenary.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     config = function()
-      require("custom.plugins.smolconfigs").todo()
+      require("plugins.smolconfigs").todo()
     end,
   },
   ["narutoxy/dim.lua"] = {
@@ -151,26 +279,25 @@ return {
   --   module = { "package-info" },
   --   ft = { "json" },
   --   config = function()
-  --     require "custom.plugins.package-info"
+  --     require "plugins.package-info"
   --   end,
   -- },
-  -- ["lewis6991/impatient.nvim"] = {},
   ["ur4ltz/surround.nvim"] = {
     event = "BufRead",
     config = function()
-      require("custom.plugins.smolconfigs").surround()
+      require("plugins.smolconfigs").surround()
     end,
   },
   ["karb94/neoscroll.nvim"] = {
     event = "WinScrolled",
     keys = { "<C-u>", "<C-d>", "gg", "G" },
     config = function()
-      require "custom.plugins.neoscroll"
+      require "plugins.neoscroll"
     end,
   },
   ["monaqa/dial.nvim"] = {
     config = function()
-      require "custom.plugins.dial"
+      require "plugins.dial"
     end,
   },
   ["nvim-telescope/telescope-project.nvim"] = {
@@ -181,18 +308,17 @@ return {
   },
   ["romgrk/nvim-treesitter-context"] = {
     config = function()
-      require "custom.plugins.tree-context"
+      require "plugins.tree-context"
     end,
   },
   ["stevearc/dressing.nvim"] = {
     config = function()
-      require("custom.plugins.smolconfigs").dressing()
+      require("plugins.smolconfigs").dressing()
     end,
   },
   ["saecki/crates.nvim"] = {
-    -- event = { "BufRead Cargo.toml" },
-    ft = "toml",
-    opt = true,
+    event = { "BufRead Cargo.toml" },
+    opt = false,
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("crates").setup {}
@@ -202,7 +328,7 @@ return {
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     module = "persistence",
     config = function()
-      require("custom.plugins.smolconfigs").persistence()
+      require("plugins.smolconfigs").persistence()
     end,
   },
   ["ray-x/lsp_signature.nvim"] = {
@@ -212,20 +338,20 @@ return {
     end,
   },
   ["andymass/vim-matchup"] = {
-    opt = true,
+    opt = false,
     event = { "CursorMoved", "CursorMovedI" },
     config = function()
-      require("custom.plugins.smolconfigs").matchup()
+      require("plugins.smolconfigs").matchup()
     end,
   },
-  ["nathom/filetype.nvim"] = {
-    -- event = {'BufEnter'},
-    setup = function()
-      vim.g.did_load_filetypes = 1
-    end,
-  },
+  -- ["nathom/filetype.nvim"] = {
+  --   -- event = {'BufEnter'},
+  --   setup = function()
+  --     vim.g.did_load_filetypes = 1
+  --   end,
+  -- },
   ["simrat39/symbols-outline.nvim"] = {
-    opt = true,
+    opt = false,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
     config = function()
       require("symbols-outline").setup {}
@@ -233,39 +359,34 @@ return {
   },
   ["JoosepAlviste/nvim-ts-context-commentstring"] = {
     event = "BufReadPost",
-    opt = true,
+    opt = false,
   },
   ["m-demare/hlargs.nvim"] = {
-    opt = true,
+    opt = false,
     after = "nvim-treesitter",
     config = function()
       require("hlargs").setup()
     end,
-  },
-  ["p00f/nvim-ts-rainbow"] = {
-    opt = true,
-    after = "nvim-treesitter",
-    event = { "CursorHold", "CursorHoldI" },
   },
   ["folke/trouble.nvim"] = {
     event = "BufReadPre",
     cmd = { "Trouble", "TroubleToggle" },
     module = "trouble",
     config = function()
-      require("custom.plugins.smolconfigs").trouble()
+      require("plugins.smolconfigs").trouble()
     end,
   },
-  -- ["catppuccin/nvim"] = {
-  --   opt = true,
-  --   as = "catppuccin",
-  --   config = function()
-  --     require "custom.plugins.cat"
-  --   end,
-  -- },
+  ["catppuccin/nvim"] = {
+    as = "catppuccin",
+    -- run = ":CatppuccinCompile",
+    config = function()
+      require "plugins.theme"
+    end,
+  },
   ["booperlv/nvim-gomove"] = {
     event = { "CursorMoved", "CursorMovedI" },
     config = function()
-      require "custom.plugins.gomove"
+      require "plugins.gomove"
     end,
   },
   ["dstein64/vim-startuptime"] = {
@@ -281,22 +402,22 @@ return {
   },
   ["windwp/nvim-spectre"] = {
     event = "BufRead",
-    opt = true,
+    opt = false,
     module = "spectre",
     wants = { "plenary.nvim", "popup.nvim" },
     keys = { "<leader>sf", "<leader>sF" },
     requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
     config = function()
-      require "custom.plugins.spectre"
+      require "plugins.spectre"
     end,
   },
   ["kevinhwang91/nvim-bqf"] = {
     event = { "CmdlineEnter", "QuickfixCmdPre" },
     -- ft = "qf",
-    opt = true,
-    requires = { "junegunn/fzf", opt = true },
+    opt = false,
+    requires = { "junegunn/fzf", opt = false },
     config = function()
-      require "custom.plugins.nvim-bqf"
+      require "plugins.nvim-bqf"
     end,
     run = function()
       vim.fn["fzf#install"]()
@@ -305,20 +426,20 @@ return {
   ["nacro90/numb.nvim"] = {
     event = "BufRead",
     config = function()
-      require "custom.plugins.numb"
+      require "plugins.numb"
     end,
   },
   ["windwp/nvim-ts-autotag"] = {
     event = "InsertEnter",
-    opt = true,
+    opt = false,
     ft = { "html", "javascriptreact" },
     after = "nvim-treesitter",
     config = function()
-      require("custom.plugins.smolconfigs").autotag()
+      require("plugins.smolconfigs").autotag()
     end,
   },
   ["nvim-treesitter/playground"] = {
-    opt = true,
+    opt = false,
     cmd = { "TSCaptureUnderCursor", "TSPlaygroundToggle" },
     config = function()
       require("nvim-treesitter.configs").setup()
@@ -328,24 +449,25 @@ return {
   --   ft = "norg",
   --   after = "nvim-treesitter",
   --   config = function()
-  --     require "custom.plugins.neorg"
+  --     require "plugins.neorg"
   --   end,
   --   requires = { "nvim-neorg/neorg-telescope", ft = { "norg" } },
   -- },
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function()
-      require "custom.plugins.alpha"
+      require "plugins.alpha"
     end,
   },
   ["anuvyklack/fold-preview.nvim"] = {
     -- event = "BufRead",
     requires = "anuvyklack/keymap-amend.nvim",
     config = function()
-      require "custom.plugins.pretty-fold"
+      require "plugins.pretty-fold"
     end,
   },
   ["neovim/nvim-lspconfig"] = {
+    after = "cmp-nvim-lsp",
     wants = {
       "mason.nvim",
       "mason-lspconfig.nvim",
@@ -359,7 +481,7 @@ return {
       {
         "mhartington/formatter.nvim",
         config = function()
-          require "custom.plugins.formatter"
+          require "plugins.formatter"
         end,
       },
       {
@@ -369,7 +491,7 @@ return {
       {
         "folke/lua-dev.nvim",
         ft = "lua",
-        opt = true,
+        opt = false,
         module = "lua-dev",
       },
       {
@@ -387,8 +509,36 @@ return {
       },
     },
     config = function()
-      require "custom.plugins.lspconfig"
-      require "custom.plugins.dap"
+      require "plugins.lspconfig"
+      require "plugins.dap"
     end,
   },
+  ["folke/which-key.nvim"] = {
+    module = "which-key",
+    keys = "<leader>",
+    config = function()
+      require "plugins.whichkey"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "whichkey"
+    end,
+  },
+
+  -- ["kevinhwang91/nvim-ufo"] = {
+  --   opt = false,
+  --   event = { "BufReadPre" },
+  --   wants = { "promise-async" },
+  --   requires = "kevinhwang91/promise-async",
+  --   config = function()
+  --     require("ufo").setup {
+  --       provider_selector = function(bufnr, filetype)
+  --         return { "lsp", "treesitter", "indent" }
+  --       end,
+  --     }
+  --     vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+  --     vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+  --   end,
+  -- },
 }
+
+require("core.packer").run(plugins)

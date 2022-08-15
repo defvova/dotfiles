@@ -1,64 +1,85 @@
+-- n, v, i, t = mode names
+
+local function termcodes(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local spotify = {}
+local present, fterm = pcall(require, "fterm")
+
+if present then
+  spotify = fterm:new {
+    ft = "fterm_spotify",
+    cmd = "ncspot",
+  }
+end
+
+local function show_documentation()
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "help" }, filetype) then
+    vim.cmd("h " .. vim.fn.expand "<cword>")
+  elseif vim.tbl_contains({ "man" }, filetype) then
+    vim.cmd("Man " .. vim.fn.expand "<cword>")
+  elseif vim.fn.expand "%:t" == "Cargo.toml" then
+    require("crates").show_popup()
+  else
+    require("lspsaga.hover").render_hover_doc()
+  end
+end
+
 local M = {}
 
-local spotify = require("fterm"):new {
-  ft = "fterm_spotify",
-  cmd = "ncspot",
-}
-
-M.disabled = {
-  n = {
-    ["<leader>e"] = "",
-    ["<C-s>"] = "",
-    ["<leader>wK"] = "",
-    ["<leader>wk"] = "",
-    ["<leader>wa"] = "",
-    ["<leader>wr"] = "",
-    ["<leader>wl"] = "",
-    ["<leader>bc"] = "",
-    ["<leader>v"] = "",
-    ["<leader>h"] = "",
-    ["<leader>n"] = "",
-    ["<leader>ff"] = "",
-    ["<leader>fa"] = "",
-    ["<leader>fw"] = "",
-    ["<leader>fb"] = "",
-    ["<leader>fh"] = "",
-    ["<leader>fo"] = "",
-    ["<leader>fm"] = "",
-    ["<TAB>"] = "",
-    ["<S-Tab>"] = "",
-    ["<leader>q"] = "",
-    ["<leader>ca"] = "",
-    ["<leader>cm"] = "",
-    ["<leader>gt"] = "",
-    ["<leader>tk"] = "",
-    ["<leader>tn"] = "",
-    ["<leader>tp"] = "",
-    ["<leader>th"] = "",
-    ["<leader>ls"] = "",
-    ["<A-h>"] = "",
-    ["<A-v>"] = "",
-    ["K"] = "",
-    ["<leader>pt"] = "",
-    ["gr"] = "",
-    ["<leader>ra"] = "",
-    ["H"] = "",
-    ["L"] = "",
-    ["<leader>D"] = "",
-  },
-}
-
--- M.treesitter = {
---   n = {
---     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "  find media" },
---   },
--- }
 M.general = {
   i = {
+    -- go to  beginning and end
+    ["<C-b>"] = { "<ESC>^i", "beginning of line" },
+    ["<C-e>"] = { "<End>", "end of line" },
+
+    -- navigate within insert mode
+    ["<C-h>"] = { "<Left>", "move left" },
+    ["<C-l>"] = { "<Right>", "move right" },
+    ["<C-j>"] = { "<Down>", "move down" },
+    ["<C-k>"] = { "<Up>", "move up" },
+
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
   },
+
   n = {
+    ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
+
+    -- switch between windows
+    ["<C-h>"] = { "<C-w>h", "window left" },
+    ["<C-l>"] = { "<C-w>l", "window right" },
+    ["<C-j>"] = { "<C-w>j", "window down" },
+    ["<C-k>"] = { "<C-w>k", "window up" },
+
+    -- Copy all
+    ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
+
+    -- line numbers
+    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
+
+    -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
+    -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
+    -- empty mode is same as using <cmd> :map
+    -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
+    ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
+    ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
+    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
+    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
+
+    -- new buffer
+    ["<S-b>"] = { "<cmd> enew <CR>", "new buffer" },
+
+    -- close buffer + hide terminal buffer
+    ["<leader>x"] = {
+      function()
+        require("core.utils").close_buffer()
+      end,
+      "close buffer",
+    },
+
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
@@ -72,8 +93,28 @@ M.general = {
     -- ["]q"] = { "<cmd> cnext<CR>", "   next error" },
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
     ["<C-q>"] = { "<cmd> Trouble document_diagnostics<CR>", "   open doc diagnostics" },
+    ["L"] = {
+      "<cmd> BufferLineCycleNext<CR>",
+      "  goto next buffer",
+    },
+    ["H"] = {
+      "<cmd> BufferLineCyclePrev<CR>",
+      "  goto prev buffer",
+    },
+    [";"] = { "<cmd> Telescope buffers<CR>", "﬘   open buffers" },
   },
+
+  t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
+
   v = {
+    ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
+    ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
+    ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
+    ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
+    -- Don't copy the replaced text after pasting in visual mode
+    -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
+    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
+
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
@@ -81,9 +122,126 @@ M.general = {
     ["<"] = { "<gv", "   dedent" },
     [">"] = { ">gv", "   indent" },
   },
+
   x = {
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<A-cr>"] = { "<cmd><c-u>Lspsaga range_code_action<CR>", "   range code action menu" },
+  },
+}
+
+M.comment = {
+  -- toggle comment in both modes
+  n = {
+    ["<leader>/"] = {
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      "toggle comment",
+    },
+  },
+
+  v = {
+    ["<leader>/"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "toggle comment",
+    },
+  },
+}
+
+M.lspconfig = {
+  -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
+  v = {
+    ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
+  },
+  n = {
+    ["gD"] = {
+      function()
+        vim.lsp.buf.declaration()
+      end,
+      "lsp declaration",
+    },
+
+    ["gd"] = {
+      function()
+        vim.lsp.buf.definition()
+      end,
+      "lsp definition",
+    },
+
+    ["K"] = {
+      function()
+        show_documentation()
+      end,
+      "lsp hover",
+    },
+
+    ["<C-u>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", "smart scroll up" },
+    ["<C-d>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", "smart scroll down" },
+
+    ["gi"] = {
+      function()
+        vim.lsp.buf.implementation()
+      end,
+      "lsp implementation",
+    },
+
+    -- ["<leader>D"] = {
+    --   function()
+    --     vim.lsp.buf.type_definition()
+    --   end,
+    --   "lsp definition type",
+    -- },
+
+    ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
+
+    -- ["<leader>ca"] = {
+    --   function()
+    --     vim.lsp.buf.code_action()
+    --   end,
+    --   "lsp code_action",
+    -- },
+
+    ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
+
+    -- ["<leader>f"] = {
+    --   function()
+    --     vim.diagnostic.open_float()
+    --   end,
+    --   "floating diagnostic",
+    -- },
+
+    -- ["<leader>q"] = {
+    --   function()
+    --     vim.diagnostic.setloclist()
+    --   end,
+    --   "diagnostic setloclist",
+    -- },
+
+    -- ["<leader>fm"] = {
+    --   function()
+    --     vim.lsp.buf.formatting {}
+    --   end,
+    --   "lsp formatting",
+    -- },
+
+    ["<leader>lwa"] = {
+      function()
+        vim.lsp.buf.add_workspace_folder()
+      end,
+      "   add workspace folder",
+    },
+    ["<leader>lwr"] = {
+      function()
+        vim.lsp.buf.remove_workspace_folder()
+      end,
+      "   remove workspace folder",
+    },
+    ["<leader>lwl"] = {
+      function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end,
+      "   list workspace folders",
+    },
   },
 }
 
@@ -112,48 +270,68 @@ M.fterm = {
   },
 }
 
-M.nvterm = {
-  t = {
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "   toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "   toggle vertical term",
-    },
+M.telescope = {
+  v = {
+    ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
+    ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
   },
   n = {
+    ["<leader>st"] = { "<cmd> Telescope live_grep <CR>", "   live grep" },
+    ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
+    ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
+    ["<leader>f"] = { "<cmd> Telescope find_files <CR>", "   find files" },
+    ["<leader>so"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
+    ["<leader>tT"] = { "<cmd> Telescope themes <CR>", "   themes" },
+    ["<leader>sp"] = { "<cmd> Telescope project <CR>", "   show projects" },
+  },
+}
+
+M.nvterm = {
+  t = {
+    -- toggle in terminal mode
+    ["<A-i>"] = {
+      function()
+        require("nvterm.terminal").toggle "float"
+      end,
+      "toggle floating term",
+    },
+
     ["<A-h>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
-      "   toggle horizontal term",
+      "toggle horizontal term",
     },
+
     ["<A-v>"] = {
       function()
         require("nvterm.terminal").toggle "vertical"
       end,
-      "   toggle vertical term",
+      "toggle vertical term",
+    },
+  },
+
+  n = {
+    -- toggle in normal mode
+    ["<A-i>"] = {
+      function()
+        require("nvterm.terminal").toggle "float"
+      end,
+      "toggle floating term",
     },
 
-    ["<leader>th"] = {
+    ["<A-h>"] = {
       function()
-        require("nvterm.terminal").new "horizontal"
+        require("nvterm.terminal").toggle "horizontal"
       end,
-      "   new horizontal term",
+      "toggle horizontal term",
     },
 
-    ["<leader>tv"] = {
+    ["<A-v>"] = {
       function()
-        require("nvterm.terminal").new "vertical"
+        require("nvterm.terminal").toggle "vertical"
       end,
-      "   new vertical term",
+      "toggle vertical term",
     },
   },
 }
@@ -172,7 +350,7 @@ M.whichkey = {
       "viw<cmd>lua require('spectre').open_file_search()<cr>",
       "﯒   replace in current file (Spectre)",
     },
-    ["<leader>q"] = { "<cmd>lua require('custom.utils').smart_quit()<CR>", "   quit" },
+    ["<leader>q"] = { "<cmd>lua require('core.utils').smart_quit()<CR>", "   quit" },
     ["<leader>up"] = { "<cmd> PackerSync <CR>", "異 update plugins" },
     ["<leader>Hr"] = { "<Plug>RestNvim <CR>", "異  run http" },
     ["<leader>Hp"] = { "<Plug>RestNvimPreview <CR>", "   preview http" },
@@ -198,40 +376,6 @@ M.whichkey = {
       end,
       "ﱔ   run all adapters",
     },
-  },
-}
-
-M.tabufline = {
-  n = {
-    [";"] = { "<cmd> Telescope buffers<CR>", "﬘   open buffers" },
-    ["L"] = {
-      function()
-        require("core.utils").tabuflineNext()
-      end,
-      "  goto next buffer",
-    },
-    ["H"] = {
-      function()
-        require("core.utils").tabuflinePrev()
-      end,
-      "  goto prev buffer",
-    },
-  },
-}
-
-M.telescope = {
-  v = {
-    ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
-    ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
-  },
-  n = {
-    ["<leader>st"] = { "<cmd> Telescope live_grep <CR>", "   live grep" },
-    ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
-    ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
-    ["<leader>f"] = { "<cmd> Telescope find_files <CR>", "   find files" },
-    ["<leader>so"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
-    ["<leader>tT"] = { "<cmd> Telescope themes <CR>", "   nvchad themes" },
-    ["<leader>sp"] = { "<cmd> Telescope project <CR>", "   show projects" },
   },
 }
 
@@ -286,44 +430,6 @@ M.crates = {
   v = {
     ["<leader>cu"] = { "<cmd>lua require('crates').update_creates() <cr>", "update crates" },
     ["<leader>cU"] = { "<cmd>lua require('crates').upgrade_crates() <cr>", "upgrade crates" },
-  },
-}
-
-M.lspconfig = {
-  v = {
-    ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
-  },
-  n = {
-    ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "   lsp hover" },
-    ["<C-u>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", "smart scroll up" },
-    ["<C-d>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", "smart scroll down" },
-    ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
-    ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
-
-    ["<leader>rr"] = { "<cmd>RustDebuggables<cr>", "   runnables" },
-    ["<leader>rR"] = { "<cmd>RustReloadWorkspace<cr>", "勒  reload workspace" },
-    ["<leader>ry"] = { "<cmd>RustPlay<cr>", "奈  copy to play" },
-    ["<leader>ro"] = { "<cmd>RustParentModule<cr>", "倫  go to parent" },
-    ["<leader>rc"] = { "<cmd>RustOpenCargo<cr>", "   go to cargo" },
-
-    ["<leader>lwa"] = {
-      function()
-        vim.lsp.buf.add_workspace_folder()
-      end,
-      "   add workspace folder",
-    },
-    ["<leader>lwr"] = {
-      function()
-        vim.lsp.buf.remove_workspace_folder()
-      end,
-      "   remove workspace folder",
-    },
-    ["<leader>lwl"] = {
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      "   list workspace folders",
-    },
   },
 }
 

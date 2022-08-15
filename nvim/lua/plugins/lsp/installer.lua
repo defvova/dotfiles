@@ -86,7 +86,7 @@ function M.setup(servers, options)
         --   },
         -- },
       }
-      -- require("custom.plugins.dap.rust").setup()
+      -- require("plugins.dap.rust").setup()
     end,
     ["tsserver"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["tsserver"] or {})

@@ -9,7 +9,6 @@ local schemastore = require "schemastore"
 
 local M = {}
 
-local setup_auto_format = require("custom.utils").setup_auto_format
 local filetypes = {
   "lua",
   "rb",
@@ -20,7 +19,7 @@ local filetypes = {
 }
 
 for _, ft in pairs(filetypes) do
-  setup_auto_format(ft, "FormatWrite")
+  utils.setup_auto_format(ft, "FormatWrite")
 end
 
 M.on_attach = function(client, bufnr)
@@ -28,10 +27,6 @@ M.on_attach = function(client, bufnr)
   client.server_capabilities.documentRangeFormattingProvider = false
 
   utils.load_mappings("lspconfig", { buffer = bufnr })
-  require("custom.plugins.lsp.mappings").setup(bufnr)
-  -- if client.server_capabilities.signatureHelpProvider then
-  --   require("nvchad_ui.signature").setup(client)
-  -- end
 
   if client.server_capabilities.definitionProvider then
     vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
@@ -154,5 +149,5 @@ local servers = {
 
 lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, options)
 
-require("custom.plugins.lsp.handlers").setup()
-require("custom.plugins.lsp.installer").setup(servers, options)
+require("plugins.lsp.handlers").setup()
+require("plugins.lsp.installer").setup(servers, options)

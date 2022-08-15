@@ -1,4 +1,4 @@
-local utils = require "custom.gitroot"
+local utils = require "core.gitroot"
 
 if utils.is_lazygit_available() ~= true then
   print "Please install lazygit. Check documentation for more information"
@@ -29,6 +29,7 @@ local lazygit_filter = fterm:new {
   },
 }
 
+-- FIXME: doesnt work
 local lazygit_filter_current_file = fterm:new {
   ft = "fterm_lazygit",
   cmd = "lazygit -f " .. current_file,

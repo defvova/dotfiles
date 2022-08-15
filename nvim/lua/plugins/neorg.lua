@@ -4,7 +4,7 @@ if not present then
   return
 end
 
--- local icons = require "custom.plugins.icons"
+-- local icons = require "plugins.icons"
 
 local options = {
   load = {
