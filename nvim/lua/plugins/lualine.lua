@@ -6,6 +6,7 @@ end
 
 local options = {
   theme = "catppuccin",
+  icons_enabled = true,
   disabled_filetypes = {
     statusline = {},
     winbar = {

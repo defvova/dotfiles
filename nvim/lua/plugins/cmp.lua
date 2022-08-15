@@ -46,7 +46,7 @@ local options = {
   formatting = {
     format = require("lspkind").cmp_format({
       with_text = true,
-      mode = 'symbol',
+      mode = 'symbol_text',
       maxwidth = 50,
     })
   },

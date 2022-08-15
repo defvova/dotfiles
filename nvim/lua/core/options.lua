@@ -15,7 +15,7 @@ end
 
 opt.termguicolors = true
 g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
-vim.cmd [[colorscheme catppuccin]]
+vim.cmd("colorscheme catppuccin")
 
 opt.swapfile = false
 opt.wildignore = "*/cache/*,*/tmp/*"
@@ -95,9 +95,9 @@ local default_plugins = {
   "ftplugin",
 }
 
--- for _, plugin in pairs(default_plugins) do
---   g["loaded_" .. plugin] = 1
--- end
+for _, plugin in pairs(default_plugins) do
+  g["loaded_" .. plugin] = 1
+end
 
 local default_providers = {
   "node",

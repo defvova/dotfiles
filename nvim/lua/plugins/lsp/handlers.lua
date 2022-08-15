@@ -1,13 +1,9 @@
 local M = {}
 
 function M.setup()
-  local diagnostics = {
-    Error = " ",
-    Hint = " ",
-    Information = " ",
-    Question = " ",
-    Warning = " ",
-  }
+  -- local signs = { Error = " ", Warn = " ", Info = " ", Hint = "" }
+  -- local signs = { Error = ' ', Warn = ' ', Info = ' ', Hint = ' ' }
+  local diagnostics = { Error = " ", Warning = " ", Information = " ", Hint = " " }
   local signs = {
     { name = "DiagnosticSignError", text = diagnostics.Error },
     { name = "DiagnosticSignWarn", text = diagnostics.Warning },
@@ -27,12 +23,13 @@ function M.setup()
     },
 
     diagnostic = {
-      virtual_text = false,
+      -- virtual_text = false,
       -- virtual_text = { spacing = 4, prefix = "●" },
       virtual_text = { severity = vim.diagnostic.severity.ERROR },
-      signs = {
-        active = signs,
-      },
+      -- signs = {
+      --   active = signs,
+      -- },
+      signs = true,
       underline = true,
       update_in_insert = false,
       severity_sort = true,

@@ -136,6 +136,11 @@ local plugins = {
       require "plugins.lazygit"
     end,
   },
+  ["dinhhuy258/git.nvim"] = {
+    config = function()
+      require("git.config").setup()
+    end
+  },
   ["nvim-neotest/neotest"] = {
     requires = {
       "olimorris/neotest-rspec",
@@ -344,12 +349,12 @@ local plugins = {
       require("plugins.smolconfigs").matchup()
     end,
   },
-  -- ["nathom/filetype.nvim"] = {
-  --   -- event = {'BufEnter'},
-  --   setup = function()
-  --     vim.g.did_load_filetypes = 1
-  --   end,
-  -- },
+  ["nathom/filetype.nvim"] = {
+    -- event = {'BufEnter'},
+    setup = function()
+      vim.g.did_load_filetypes = 1
+    end,
+  },
   ["simrat39/symbols-outline.nvim"] = {
     opt = false,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },

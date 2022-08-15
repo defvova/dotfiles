@@ -77,7 +77,7 @@ M.general = {
       function()
         require("core.utils").close_buffer()
       end,
-      "close buffer",
+      "   close buffer",
     },
 
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
@@ -136,14 +136,14 @@ M.comment = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
-      "toggle comment",
+      "   toggle comment",
     },
   },
 
   v = {
     ["<leader>/"] = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "toggle comment",
+      "   toggle comment",
     },
   },
 }
@@ -283,6 +283,11 @@ M.telescope = {
     ["<leader>so"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
     ["<leader>tT"] = { "<cmd> Telescope themes <CR>", "   themes" },
     ["<leader>sp"] = { "<cmd> Telescope project <CR>", "   show projects" },
+    ["<leader>ss"] = { "<cmd>lua require('spectre').open()<cr>", "﯒   find & replace (Spectre)" },
+    ["<leader>sS"] = {
+      "<cmd>lua require('spectre').open_file_search()<cr>",
+      "﯒   replace in current file (Spectre)",
+    },
   },
 }
 
@@ -345,11 +350,6 @@ M.whichkey = {
     ["<leader>Sc"] = { "<cmd>lua require('persistence').load()<cr>", "ﭯ   restore last session for current dir" },
     ["<leader>Sl"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "ﮦ   restore last session" },
     ["<leader>SQ"] = { "<cmd>lua require('persistence').stop()<cr>", "   quit without saving session" },
-    ["<leader>sf"] = { "viw<cmd>lua require('spectre').open()<cr>", "﯒   find & replace (Spectre)" },
-    ["<leader>sF"] = {
-      "viw<cmd>lua require('spectre').open_file_search()<cr>",
-      "﯒   replace in current file (Spectre)",
-    },
     ["<leader>q"] = { "<cmd>lua require('core.utils').smart_quit()<CR>", "   quit" },
     ["<leader>up"] = { "<cmd> PackerSync <CR>", "異 update plugins" },
     ["<leader>Hr"] = { "<Plug>RestNvim <CR>", "異  run http" },
@@ -391,6 +391,7 @@ M.git = {
   },
   n = {
     ["<leader>gd"] = { "<cmd> Gitsigns diffthis HEAD <CR>", "   git diff" },
+    ["<leader>gD"] = { "<CMD>lua require('git.blame').blame()<CR>", "ﲀ   git blame" },
     ["<leader>gc"] = { "<cmd> LazyGitFilter <CR>", "   git commits" },
     ["<leader>gC"] = { "<cmd> LazyGitFilterCurrentFile <CR>", "   git commits(for current file)" },
     ["<leader>gg"] = { "<cmd> LazyGit <CR>", "   git" },

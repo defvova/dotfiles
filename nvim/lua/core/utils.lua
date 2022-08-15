@@ -3,7 +3,7 @@ local api = vim.api
 
 local merge_tb = vim.tbl_deep_extend
 
-function M.setup_auto_format(ft, command)
+M.setup_auto_format = function(ft, command)
   if not command then
     command = "lua vim.lsp.buf.formatting_sync()"
   end
@@ -14,7 +14,7 @@ function M.setup_auto_format(ft, command)
   })
 end
 
-function M.smart_quit()
+M.smart_quit = function()
   local bufnr = vim.api.nvim_get_current_buf()
   local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
   if modified then
@@ -79,10 +79,10 @@ end
 
 M.load_mappings = function(section, mapping_opt)
   local function set_section_map(section_values)
-    if section_values.plugin then
-      return
-    end
-    section_values.plugin = nil
+    -- if section_values.plugin then
+    --   return
+    -- end
+    -- section_values.plugin = nil
 
     for mode, mode_values in pairs(section_values) do
       local default_opts = merge_tb("force", { mode = mode }, mapping_opt or {})
@@ -101,7 +101,7 @@ M.load_mappings = function(section, mapping_opt)
   local mappings = require "core.mappings"
 
   if type(section) == "string" then
-    mappings[section]["plugin"] = nil
+    -- mappings[section]["plugin"] = nil
     mappings = { mappings[section] }
   end
 
