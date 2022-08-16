@@ -10,7 +10,10 @@ local options = {
   offsets = {
     {
       filetype = "NvimTree",
-      text = "",
+      text = function()
+        local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+        return "EXPLORER: " .. dir_name
+      end,
       highlight = "Directory",
       text_align = "left",
     },

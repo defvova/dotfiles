@@ -7,7 +7,7 @@ end
 local options = {
   filters = {
     dotfiles = false,
-    custom = { "node_modules", ".cache" },
+    custom = { "node_modules", ".cache", "^.git$" },
   },
   trash = {
     cmd = "trash",
@@ -43,6 +43,7 @@ local options = {
   git = {
     enable = true,
     ignore = true,
+    timeout = 200,
   },
   filesystem_watchers = {
     enable = true,
