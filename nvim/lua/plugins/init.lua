@@ -549,6 +549,15 @@ local plugins = {
       require "plugins.lazygit"
     end,
   },
+  -- ["bennypowers/nvim-regexplainer"] = {
+  --   config = function()
+  --     require "plugins.regexplainer"
+  --   end,
+  --   requires = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  -- },
 }
 
 require("core.packer").run(plugins)
