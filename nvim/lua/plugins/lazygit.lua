@@ -9,70 +9,49 @@ end
 -- local current_file = vim.fn.expand "%"
 local current_file = vim.fn.expand "%:p"
 
-local fterm = require "FTerm"
+local Terminal = require("toggleterm.terminal").Terminal
 
-local lazygit = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit = Terminal:new {
   cmd = "lazygit",
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
-local lazygit_filter = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit_filter = Terminal:new {
   cmd = "lazygit -f " .. utils.project_root_dir(),
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
 -- FIXME: doesnt work
-local lazygit_filter_current_file = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit_filter_current_file = Terminal:new {
   cmd = "lazygit -f " .. current_file,
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
-local lazygit_branch = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit_branch = Terminal:new {
   cmd = "lazygit branch",
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
-local lazygit_stash = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit_stash = Terminal:new {
   cmd = "lazygit stash",
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
-local lazygit_status = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit_status = Terminal:new {
   cmd = "lazygit status",
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
-local lazygit_log = fterm:new {
-  ft = "fterm_lazygit",
+local lazygit_log = Terminal:new {
   cmd = "lazygit log",
-  dimensions = {
-    height = 0.9,
-    width = 0.9,
-  },
+  direction = "float",
+  hidden = true,
 }
 
 vim.api.nvim_create_user_command("LazyGit", function()

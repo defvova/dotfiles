@@ -7,7 +7,7 @@ end
 local options = {
   filters = {
     dotfiles = false,
-    custom = { "node_modules", ".cache", "^.git$" },
+    custom = { "node_modules", ".cache", "^.git$", ".DS_Store" },
   },
   trash = {
     cmd = "trash",

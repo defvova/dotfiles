@@ -29,14 +29,18 @@ cmp_window.info = function(self)
 end
 
 local options = {
+  -- window = {
+  --   completion = {
+  --     border = border "CmpBorder",
+  --     winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+  --   },
+  --   documentation = {
+  --     border = border "CmpDocBorder",
+  --   },
+  -- },
   window = {
-    completion = {
-      border = border "CmpBorder",
-      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-    },
-    documentation = {
-      border = border "CmpDocBorder",
-    },
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   snippet = {
     expand = function(args)
@@ -44,11 +48,11 @@ local options = {
     end,
   },
   formatting = {
-    format = require("lspkind").cmp_format({
+    format = require("lspkind").cmp_format {
       with_text = true,
-      mode = 'symbol_text',
+      mode = "symbol_text",
       maxwidth = 50,
-    })
+    },
   },
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -100,11 +104,11 @@ cmp.setup(options)
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(":", {
-sources = cmp.config.sources({
+  sources = cmp.config.sources({
     { name = "path", max_item_count = 5 },
-}, {
+  }, {
     { name = "cmdline", max_item_count = 15 },
-}),
+  }),
 })
 
 -- lsp_document_symbols

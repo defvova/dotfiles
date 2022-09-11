@@ -4,16 +4,6 @@ local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local spotify = {}
-local present, fterm = pcall(require, "fterm")
-
-if present then
-  spotify = fterm:new {
-    ft = "fterm_spotify",
-    cmd = "ncspot",
-  }
-end
-
 local function show_documentation()
   local filetype = vim.bo.filetype
   if vim.tbl_contains({ "vim", "help" }, filetype) then
@@ -251,25 +241,6 @@ M.nvimtree = {
   },
 }
 
-M.fterm = {
-  t = {
-    ["<A-m>"] = {
-      function()
-        spotify:toggle()
-      end,
-      "   spotify",
-    },
-  },
-  n = {
-    ["<A-m>"] = {
-      function()
-        spotify:toggle()
-      end,
-      "   spotify",
-    },
-  },
-}
-
 M.telescope = {
   v = {
     ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
@@ -280,7 +251,7 @@ M.telescope = {
     ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
     ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
     ["<leader>f"] = { "<cmd> Telescope find_files <CR>", "   find files" },
-    ["<leader>so"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
+    ["<leader>sr"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
     ["<leader>tT"] = { "<cmd> Telescope themes <CR>", "   themes" },
     ["<leader>sp"] = { "<cmd> Telescope project <CR>", "   show projects" },
     ["<leader>ss"] = { "<cmd>lua require('spectre').open()<cr>", "﯒   find & replace (Spectre)" },
@@ -291,58 +262,66 @@ M.telescope = {
   },
 }
 
-M.nvterm = {
+M.toggleterm = {
   t = {
     -- toggle in terminal mode
     ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
+      "<cmd> ToggleTerm direction=float<cr>",
       "toggle floating term",
     },
 
     ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
+      "<cmd> ToggleTerm size=40 direction=horizontal<cr>",
       "toggle horizontal term",
     },
 
     ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
+      "<cmd> ToggleTerm size=90 direction=vertical<cr>",
       "toggle vertical term",
     },
   },
 
+  v = {
+    ["<A-/>"] = {
+      "<cmd> ToggleTermSendVisualLines <cr>",
+      "sends all of the (whole) lines",
+    },
+  },
+
+  -- x = {
+  --   ["<A-/>"] = {
+  --     "<cmd> ToggleTermSendVisualSelection <cr>",
+  --     "sends only the visually selected text",
+  --   },
+  -- },
+
   n = {
     -- toggle in normal mode
     ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
+      "<cmd> ToggleTerm direction=float<cr>",
       "toggle floating term",
     },
 
     ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
+      "<cmd> ToggleTerm size=40 direction=horizontal<cr>",
       "toggle horizontal term",
     },
 
     ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
+      "<cmd> ToggleTerm size=90 direction=vertical<cr>",
       "toggle vertical term",
+    },
+    ["<A-/>"] = {
+      "<cmd> ToggleTermSendCurrentLine<cr>",
+      "sends the whole line",
     },
   },
 }
 
 M.whichkey = {
   n = {
+    ["<leader>tt"] = { "<cmd>lua require('core.utils').toggle_theme()<cr>", "toggle theme" },
+
     ["<leader>us"] = { "<cmd> e $MYVIMRC | :cd %:p:h <CR>", "  settings" },
     ["<leader>;"] = { "<cmd> Alpha <CR>", "舘  dashboard" },
     ["<leader>w"] = { "<cmd> w! <CR>", "﬚   save file" },
@@ -357,7 +336,7 @@ M.whichkey = {
     ["<leader>Hl"] = { "<Plug>RestNvimLast <CR>", "菱  re-run the last http" },
 
     ["<leader>Tr"] = { "<cmd>lua require('neotest').run.run() <CR>", "ﭧ   run single test" },
-    ["<leader>Tl"] = { "<cmd>lua require('neotest').run.run_last() <CR>", "ﭧ   run last test" },
+    ["<leader>Tl"] = { "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' }) <CR>", "ﭧ   run last test" },
     ["<leader>TR"] = { "<cmd>lua require('neotest').run.run(vim.fn.getcwd()) <CR>", "ﱔ   run all tests" },
     ["<leader>Tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%')) <CR>", "   run current file" },
     ["<leader>TS"] = { "<cmd>lua require('neotest').run.stop() <CR>", "栗  stop test" },
@@ -448,6 +427,22 @@ M.dap = {
       "<cmd>lua require('dapui').toggle()<cr>",
       "open ui",
     },
+  },
+}
+
+M.overseer = {
+  n = {
+    ["<leader>oC"] = { "<cmd>OverseerClose<cr>", "OverseerClose" },
+    ["<leader>oa"] = { "<cmd>OverseerTaskAction<cr>", "OverseerTaskAction" },
+    ["<leader>ob"] = { "<cmd>OverseerBuild<cr>", "OverseerBuild" },
+    ["<leader>oc"] = { "<cmd>OverseerRunCmd<cr>", "OverseerRunCmd" },
+    ["<leader>od"] = { "<cmd>OverseerDeleteBundle<cr>", "OverseerDeleteBundle" },
+    ["<leader>ol"] = { "<cmd>OverseerLoadBundle<cr>", "OverseerLoadBundle" },
+    ["<leader>oo"] = { "<cmd>OverseerOpen!<cr>", "OverseerOpen" },
+    ["<leader>oq"] = { "<cmd>OverseerQuickAction<cr>", "OverseerQuickAction" },
+    ["<leader>or"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
+    ["<leader>os"] = { "<cmd>OverseerSaveBundle<cr>", "OverseerSaveBundle" },
+    ["<leader>ot"] = { "<cmd>OverseerToggle!<cr>", "OverseerToggle" },
   },
 }
 

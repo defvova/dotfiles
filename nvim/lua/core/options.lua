@@ -1,9 +1,10 @@
 local opt = vim.opt
 local g = vim.g
+local ui = require("core.theme").ui
 
 g.vim_version = vim.version().minor
--- g.nvchad_theme = config.ui.theme
--- g.toggle_theme_icon = "   "
+g.theme_mode = ui.theme_mode
+g.toggle_theme_icon = "   "
 -- g.transparency = config.ui.transparency
 -- g.theme_switcher_loaded = false
 
@@ -14,8 +15,12 @@ if g.vim_version < 8 then
 end
 
 opt.termguicolors = true
-g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
-vim.cmd("colorscheme catppuccin")
+
+vim.cmd("colorscheme " .. (vim.g.theme_mode == "light" and ui.light_theme or ui.dark_theme))
+
+-- opt.background = "light"
+-- g.colors_name = "light_theme"
+-- require('lush')(require('lush_theme.light_theme'))
 
 opt.swapfile = false
 opt.wildignore = "*/cache/*,*/tmp/*"
@@ -42,7 +47,8 @@ opt.smartcase = true
 opt.mouse = "a"
 
 -- Numbers
-opt.number = true
+-- opt.number = true
+opt.relativenumber = true
 opt.numberwidth = 2
 opt.ruler = false
 

@@ -1,9 +1,9 @@
 -- vim.cmd "packadd packer.nvim"
 
 local plugins = {
-    -- Speed up deffered plugins
+  -- Speed up deffered plugins
   ["lewis6991/impatient.nvim"] = {},
-  
+
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
@@ -89,7 +89,7 @@ local plugins = {
     module = "nvim-treesitter",
     run = ":TSUpdate",
     requires = {
-      'RRethy/nvim-treesitter-textsubjects',
+      "RRethy/nvim-treesitter-textsubjects",
       {
         "p00f/nvim-ts-rainbow",
         opt = false,
@@ -110,10 +110,15 @@ local plugins = {
       require "plugins.nvimtree"
     end,
   },
-  ["nvim-lualine/lualine.nvim"] = {
-    requires = { "kyazdani42/nvim-web-devicons" },
+  -- ["nvim-lualine/lualine.nvim"] = {
+  --   requires = { "kyazdani42/nvim-web-devicons" },
+  --   config = function()
+  --     require "plugins.lualine"
+  --   end,
+  -- },
+  ["windwp/windline.nvim"] = {
     config = function()
-      require "plugins.lualine"
+      require "plugins.windline"
     end,
   },
   ["lewis6991/gitsigns.nvim"] = {
@@ -128,42 +133,30 @@ local plugins = {
       require "plugins.bufferline"
     end,
   },
-  ["folke/which-key.nvim"] = {
-    disable = false,
-  },
-  ["numToStr/FTerm.nvim"] = {
-    config = function()
-      require "plugins.fterm"
-      require "plugins.lazygit"
-    end,
-  },
+  ["folke/which-key.nvim"] = {},
   ["dinhhuy258/git.nvim"] = {
     config = function()
       require("git.config").setup()
-    end
+    end,
   },
   ["nvim-neotest/neotest"] = {
+    wants = {
+      "plenary.nvim",
+      "nvim-treesitter",
+      "FixCursorHold.nvim",
+      "neotest-rspec",
+      "neotest-jest",
+      "neotest-rust",
+      "overseer.nvim",
+    },
     requires = {
       "olimorris/neotest-rspec",
       "haydenmeade/neotest-jest",
       "rouge8/neotest-rust",
     },
+    module = { "neotest", "neotest.async" },
     config = function()
-      require("neotest").setup {
-        status = {
-          virtual_text = true,
-        },
-        strategies = {
-          integrated = {
-            width = 180,
-          },
-        },
-        adapters = {
-          require "neotest-rspec",
-          require "neotest-jest",
-          require "neotest-rust",
-        },
-      }
+      require "plugins.neotest"
     end,
   },
   ["gelguy/wilder.nvim"] = {
@@ -382,9 +375,8 @@ local plugins = {
       require("plugins.smolconfigs").trouble()
     end,
   },
-  ["catppuccin/nvim"] = {
-    as = "catppuccin",
-    -- run = ":CatppuccinCompile",
+  ["EdenEast/nightfox.nvim"] = {
+    run = ":NightfoxCompile",
     config = function()
       require "plugins.theme"
     end,
@@ -534,7 +526,34 @@ local plugins = {
       vim.cmd [[omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>]]
       vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
     end,
-  }
+  },
+  ["stevearc/overseer.nvim"] = {
+    opt = true,
+    cmd = {
+      "OverseerToggle",
+      "OverseerOpen",
+      "OverseerRun",
+      "OverseerBuild",
+      "OverseerClose",
+      "OverseerLoadBundle",
+      "OverseerSaveBundle",
+      "OverseerDeleteBundle",
+      "OverseerRunCmd",
+      "OverseerQuickAction",
+      "OverseerTaskAction",
+    },
+    config = function()
+      require("overseer").setup()
+    end,
+  },
+  ["rktjmp/lush.nvim"] = {},
+  ["akinsho/toggleterm.nvim"] = {
+    tag = "v2.*",
+    config = function()
+      require "plugins.toggleterm"
+      require "plugins.lazygit"
+    end,
+  },
 }
 
 require("core.packer").run(plugins)

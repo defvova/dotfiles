@@ -2,9 +2,18 @@
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "data" .. "/mason/bin"
 
+local ui = require("core.theme").ui
+
 -- autocmds
 local autocmd = vim.api.nvim_create_autocmd
 local api = vim.api
+
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "background",
+  callback = function()
+    vim.cmd("colorscheme " .. (vim.g.theme_mode == "light" and ui.light_theme or ui.dark_theme))
+  end,
+})
 
 -- dont list quickfix buffers
 autocmd("FileType", {
