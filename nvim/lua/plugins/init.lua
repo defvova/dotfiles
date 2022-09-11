@@ -110,15 +110,10 @@ local plugins = {
       require "plugins.nvimtree"
     end,
   },
-  -- ["nvim-lualine/lualine.nvim"] = {
-  --   requires = { "kyazdani42/nvim-web-devicons" },
-  --   config = function()
-  --     require "plugins.lualine"
-  --   end,
-  -- },
-  ["windwp/windline.nvim"] = {
+  ["nvim-lualine/lualine.nvim"] = {
+    requires = { "kyazdani42/nvim-web-devicons" },
     config = function()
-      require "plugins.windline"
+      require "plugins.lualine"
     end,
   },
   ["lewis6991/gitsigns.nvim"] = {
@@ -126,11 +121,16 @@ local plugins = {
       require "plugins.gitsigns"
     end,
   },
-  ["akinsho/bufferline.nvim"] = {
-    tag = "v2.*",
-    requires = "kyazdani42/nvim-web-devicons",
+  -- ["akinsho/bufferline.nvim"] = {
+  --   tag = "v2.*",
+  --   requires = "kyazdani42/nvim-web-devicons",
+  --   config = function()
+  --     require "plugins.bufferline"
+  --   end,
+  -- },
+  ["nanozuki/tabby.nvim"] = {
     config = function()
-      require "plugins.bufferline"
+      require "plugins.tabby"
     end,
   },
   ["folke/which-key.nvim"] = {},
@@ -199,11 +199,6 @@ local plugins = {
   --     require("winbar").setup()
   --   end,
   -- },
-  ["b0o/incline.nvim"] = {
-    config = function()
-      require("incline").setup()
-    end,
-  },
   ["j-hui/fidget.nvim"] = {
     event = "BufReadPre",
     config = function()
