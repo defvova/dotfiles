@@ -205,12 +205,15 @@ local plugins = {
       require("fidget").setup {}
     end,
   },
+  -- INFO: https://alpha2phi.medium.com/neovim-for-beginners-database-explorer-7db3d3910876
   -- ["tpope/vim-dadbod"] = {
-  --   event = "VimEnter",
+  --   -- event = "VimEnter",
+  --   opt = true,
   --   requires = { "kristijanhusak/vim-dadbod-ui", "kristijanhusak/vim-dadbod-completion", "tpope/vim-dotenv" },
   --   config = function()
   --     require "plugins.dadbod"
   --   end,
+  --   cmd = { "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer", "DBUIRenameBuffer", "DBUILastQueryInfo" },
   -- },
   ["mg979/vim-visual-multi"] = {
     event = "BufReadPre",
