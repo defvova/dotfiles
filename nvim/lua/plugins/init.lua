@@ -111,7 +111,7 @@ local plugins = {
     end,
   },
   ["nvim-lualine/lualine.nvim"] = {
-    requires = { "kyazdani42/nvim-web-devicons" },
+    requires = { "kyazdani42/nvim-web-devicons", "SmiteshP/nvim-navic" },
     config = function()
       require "plugins.lualine"
     end,
@@ -193,12 +193,6 @@ local plugins = {
       require "plugins.lspsaga"
     end,
   },
-  -- FIXME: will work in nvim 0.8
-  -- ["fgheng/winbar.nvim"] = {
-  --   config = function()
-  --     require("winbar").setup()
-  --   end,
-  -- },
   ["j-hui/fidget.nvim"] = {
     event = "BufReadPre",
     config = function()

@@ -1,5 +1,6 @@
 local present, lualine = pcall(require, "lualine")
 local ui = require("core.theme").ui
+local winbar = require "plugins.winbar"
 
 if not present then
   return
@@ -25,6 +26,23 @@ local options = {
       "toggleterm",
     },
   },
+  winbar = {
+    lualine_a = { winbar.show_winbar },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
+  extensions = { "quickfix", "toggleterm", "symbols-outline", "nvim-tree", "fugitive" },
 }
 
 lualine.setup {

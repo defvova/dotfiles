@@ -25,6 +25,8 @@ vim.cmd("colorscheme " .. (vim.g.theme_mode == "light" and ui.light_theme or ui.
 opt.swapfile = false
 opt.wildignore = "*/cache/*,*/tmp/*"
 
+opt.winbar = "%{%v:lua.require'plugins.winbar'.show_winbar()%}"
+
 g.rust_clip_command = "pbcopy"
 
 opt.laststatus = 3 -- global statusline

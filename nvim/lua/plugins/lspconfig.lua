@@ -1,4 +1,5 @@
 local present, lspconfig = pcall(require, "lspconfig")
+local navic = require "nvim-navic"
 
 if not present then
   return
@@ -27,6 +28,10 @@ M.on_attach = function(client, bufnr)
   client.server_capabilities.documentRangeFormattingProvider = false
 
   utils.load_mappings("lspconfig", { buffer = bufnr })
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 
   if client.server_capabilities.definitionProvider then
     vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
