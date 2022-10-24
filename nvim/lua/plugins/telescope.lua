@@ -4,12 +4,13 @@ if not present then
   return
 end
 
-vim.g.theme_switcher_loaded = true
+-- vim.g.theme_switcher_loaded = true
 
 local options = {
   defaults = {
     vimgrep_arguments = {
       "rg",
+      "-L",
       "--color=never",
       "--no-heading",
       "--with-filename",

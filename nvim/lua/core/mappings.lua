@@ -62,14 +62,6 @@ M.general = {
     -- new buffer
     ["<S-b>"] = { "<cmd> enew <CR>", "new buffer" },
 
-    -- close buffer + hide terminal buffer
-    ["<leader>x"] = {
-      function()
-        require("core.utils").close_buffer()
-      end,
-      "   close buffer",
-    },
-
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },

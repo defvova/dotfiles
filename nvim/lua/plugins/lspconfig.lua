@@ -1,10 +1,11 @@
 local present, lspconfig = pcall(require, "lspconfig")
-local navic = require "nvim-navic"
+local tw_present, tw_highlight = pcall(require, "tailwind-highlight")
 
 if not present then
   return
 end
 
+local navic = require "nvim-navic"
 local utils = require "core.utils"
 local schemastore = require "schemastore"
 
@@ -28,6 +29,14 @@ M.on_attach = function(client, bufnr)
   client.server_capabilities.documentRangeFormattingProvider = false
 
   utils.load_mappings("lspconfig", { buffer = bufnr })
+
+  if tw_present then
+    tw_highlight.setup(client, bufnr, {
+      single_column = false,
+      mode = "background",
+      debounce = 200,
+    })
+  end
 
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
@@ -62,7 +71,7 @@ capabilities.textDocument.completion.completionItem = {
   },
 }
 
-M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local options = {
   on_attach = M.on_attach,
@@ -85,6 +94,7 @@ local servers = {
       },
     },
   },
+  tailwindcss = {},
   solargraph = {},
   sumneko_lua = {
     settings = {

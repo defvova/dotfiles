@@ -28,12 +28,13 @@ M.run = function(plugins)
   plugins = require("core.utils").merge_plugins(plugins)
 
   packer.init(M.options)
+  packer.startup { plugins }
 
-  packer.startup(function(use)
-    for _, v in pairs(plugins) do
-      use(v)
-    end
-  end)
+  -- packer.startup(function(use)
+  --   for _, v in pairs(plugins) do
+  --     use(v)
+  --   end
+  -- end)
 end
 
 return M

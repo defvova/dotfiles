@@ -32,6 +32,9 @@ local options = {
     enable = true,
     use_languagetree = true,
   },
+  indent = {
+    enable = true,
+  },
   context_commentstring = {
     enable = true,
   },
@@ -50,11 +53,11 @@ local options = {
   },
   textsubjects = {
     enable = true,
-    prev_selection = ',',
+    prev_selection = ",",
     keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-    }
+      ["."] = "textsubjects-smart",
+      [";"] = "textsubjects-container-outer",
+    },
   },
 }
 

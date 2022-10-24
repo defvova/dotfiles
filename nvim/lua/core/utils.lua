@@ -32,26 +32,14 @@ M.smart_quit = function()
   end
 end
 
-M.close_buffer = function(bufnr)
-  if vim.bo.buftype == "terminal" then
-    vim.cmd(vim.bo.buflisted and "set nobl | enew" or "hide")
-  elseif vim.bo.modified then
-    print "save the file bruh"
-  else
-    bufnr = bufnr or api.nvim_get_current_buf()
-    require("core.utils").tabuflinePrev()
-    vim.cmd("bd" .. bufnr)
-  end
-end
-
-M.remove_disabled_keys = function(chadrc_mappings, default_mappings)
-  if not chadrc_mappings then
+M.remove_disabled_keys = function(maps, default_mappings)
+  if not maps then
     return default_mappings
   end
 
   -- store keys in a array with true value to compare
   local keys_to_disable = {}
-  for _, mappings in pairs(chadrc_mappings) do
+  for _, mappings in pairs(maps) do
     for mode, section_keys in pairs(mappings) do
       if not keys_to_disable[mode] then
         keys_to_disable[mode] = {}
@@ -81,11 +69,6 @@ end
 
 M.load_mappings = function(section, mapping_opt)
   local function set_section_map(section_values)
-    -- if section_values.plugin then
-    --   return
-    -- end
-    -- section_values.plugin = nil
-
     for mode, mode_values in pairs(section_values) do
       local default_opts = merge_tb("force", { mode = mode }, mapping_opt or {})
       for keybind, mapping_info in pairs(mode_values) do
@@ -103,7 +86,6 @@ M.load_mappings = function(section, mapping_opt)
   local mappings = require "core.mappings"
 
   if type(section) == "string" then
-    -- mappings[section]["plugin"] = nil
     mappings = { mappings[section] }
   end
 
@@ -121,57 +103,6 @@ M.merge_plugins = function(default_plugins)
   end
 
   return final_table
-end
-
-M.bufilter = function()
-  local bufs = vim.t.bufs
-
-  for i = #bufs, 1, -1 do
-    if not vim.api.nvim_buf_is_valid(bufs[i]) then
-      table.remove(bufs, i)
-    end
-  end
-
-  return bufs
-end
-
-M.tabuflineNext = function()
-  local bufs = M.bufilter() or {}
-
-  for i, v in ipairs(bufs) do
-    if api.nvim_get_current_buf() == v then
-      vim.cmd(i == #bufs and "b" .. bufs[1] or "b" .. bufs[i + 1])
-      break
-    end
-  end
-end
-
-M.tabuflinePrev = function()
-  local bufs = M.bufilter() or {}
-
-  for i, v in ipairs(bufs) do
-    if api.nvim_get_current_buf() == v then
-      vim.cmd(i == 1 and "b" .. bufs[#bufs] or "b" .. bufs[i - 1])
-      break
-    end
-  end
-end
-
--- closes tab + all of its buffers
-M.closeAllBufs = function(action)
-  local bufs = vim.t.bufs
-
-  if action == "closeTab" then
-    vim.cmd "tabclose"
-  end
-
-  for _, buf in ipairs(bufs) do
-    M.close_buffer(buf)
-  end
-
-  if action ~= "closeTab" then
-    vim.cmd "enew"
-  end
 end
 
 M.file = function(mode, filepath, content)

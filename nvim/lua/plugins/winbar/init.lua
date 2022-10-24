@@ -67,7 +67,7 @@ local winbar_file = function()
       hl_winbar_file_icon = "DevIcon" .. file_type
     end
 
-    file_icon = "%#" .. hl_winbar_file_icon .. "#" .. file_icon .. " %*"
+    file_icon = "%#" .. hl_winbar_file_icon .. "#" .. (file_icon or icons.ui.file_icon_default) .. " %*"
 
     value = " "
 

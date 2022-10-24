@@ -4,7 +4,8 @@ if not present then
   return
 end
 
-vim.opt.completeopt = "menuone,noselect"
+-- vim.opt.completeopt = "menu,menuone,noselect"
+vim.o.completeopt = "menu,menuone,noselect"
 
 local function border(hl_name)
   return {

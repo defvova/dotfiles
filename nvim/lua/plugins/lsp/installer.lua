@@ -11,6 +11,7 @@ function M.setup(servers, options)
         package_uninstalled = " ﮊ",
       },
     },
+    max_concurrent_installers = 10,
   }
 
   require("mason-tool-installer").setup {

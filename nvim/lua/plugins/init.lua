@@ -467,6 +467,7 @@ local plugins = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "princejoogie/tailwind-highlight.nvim",
       { "b0o/schemastore.nvim", module = "schemastore" },
       {
         "mhartington/formatter.nvim",
