@@ -480,10 +480,10 @@ local plugins = {
         module = "typescript",
       },
       {
-        "folke/lua-dev.nvim",
+        "folke/neodev.nvim",
         ft = "lua",
         opt = false,
-        module = "lua-dev",
+        module = "neodev",
       },
       {
         "simrat39/rust-tools.nvim",

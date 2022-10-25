@@ -49,7 +49,8 @@ function M.setup(servers, options)
     end,
     ["sumneko_lua"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["sumneko_lua"] or {})
-      lspconfig.sumneko_lua.setup(require("lua-dev").setup { opts })
+      require("neodev").setup {}
+      lspconfig.sumneko_lua.setup { opts }
     end,
     ["rust_analyzer"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["rust_analyzer"] or {})
