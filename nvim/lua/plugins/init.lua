@@ -74,7 +74,7 @@ local plugins = {
                       -- Node version must be < 18
                       -- .. "/.fnm/node-versions/v17.4.0/installation/bin/node",
                       copilot_node_command = vim.fn.expand "$HOME"
-                          .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
+                        .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
                       filetypes = {
                         markdown = false,
                         ["*"] = true,
@@ -520,13 +520,6 @@ local plugins = {
   --   end,
   -- },
   -- ["rktjmp/lush.nvim"] = {},
-  ["akinsho/toggleterm.nvim"] = {
-    tag = "v2.*",
-    config = function()
-      require "plugins.toggleterm"
-      require "plugins.lazygit"
-    end,
-  },
   ["folke/noice.nvim"] = {
     config = function()
       require "plugins.noice"
@@ -534,6 +527,22 @@ local plugins = {
     requires = {
       "MunifTanjim/nui.nvim",
     },
+  },
+  ["kdheepak/lazygit.nvim"] = {
+    module = "lazygit",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+      "LazyGitBranch",
+      "LazyGitStash",
+      "LazyGitStatus",
+      "LazyGitLog",
+    },
+    config = function()
+      require "plugins.lazygit"
+    end,
   },
 }
 

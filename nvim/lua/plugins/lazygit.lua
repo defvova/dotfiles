@@ -1,77 +1,89 @@
-local utils = require "core.gitroot"
+local present, lazygit = pcall(require, "lazygit")
 
-if utils.is_lazygit_available() ~= true then
-  print "Please install lazygit. Check documentation for more information"
+if not present then
   return
 end
 
--- _ = utils.project_root_dir()
--- local current_file = vim.fn.expand "%"
-local current_file = vim.fn.expand "%:p"
+local open_floating_window = require("lazygit.window").open_floating_window
+local is_lazygit_available = require("lazygit.utils").is_lazygit_available
 
-local Terminal = require("toggleterm.terminal").Terminal
+vim.g.lazygit_use_neovim_remote = 0
 
-local lazygit = Terminal:new {
-  cmd = "lazygit",
-  direction = "float",
-  hidden = true,
-}
+LAZYGIT_BUFFER = nil
+LAZYGIT_LOADED = false
+vim.g.lazygit_opened = 0
+local prev_win = -1
 
-local lazygit_filter = Terminal:new {
-  cmd = "lazygit -f " .. utils.project_root_dir(),
-  direction = "float",
-  hidden = true,
-}
+local function on_exit(job_id, code, event)
+  if code ~= 0 then
+    return
+  end
 
--- FIXME: doesnt work
-local lazygit_filter_current_file = Terminal:new {
-  cmd = "lazygit -f " .. current_file,
-  direction = "float",
-  hidden = true,
-}
+  vim.cmd "silent! :q"
+  LAZYGIT_BUFFER = nil
+  LAZYGIT_LOADED = false
+  vim.g.lazygit_opened = 0
+  vim.cmd "silent! :checktime"
+  if vim.api.nvim_win_is_valid(prev_win) then
+    vim.api.nvim_set_current_win(prev_win)
+    prev_win = -1
+  end
+end
 
-local lazygit_branch = Terminal:new {
-  cmd = "lazygit branch",
-  direction = "float",
-  hidden = true,
-}
+local function exec_lazygit_command(cmd)
+  if LAZYGIT_LOADED == false then
+    -- ensure that the buffer is closed on exit
+    vim.g.lazygit_opened = 1
+    vim.fn.termopen(cmd, { on_exit = on_exit })
+  end
+  vim.cmd "startinsert"
+end
 
-local lazygit_stash = Terminal:new {
-  cmd = "lazygit stash",
-  direction = "float",
-  hidden = true,
-}
+local function lazygit_branch()
+  if is_lazygit_available() ~= true then
+    print "Please install lazygit. Check documentation for more information"
+    return
+  end
+  prev_win = vim.api.nvim_get_current_win()
+  open_floating_window()
+  local cmd = "lazygit branch"
+  exec_lazygit_command(cmd)
+end
 
-local lazygit_status = Terminal:new {
-  cmd = "lazygit status",
-  direction = "float",
-  hidden = true,
-}
+local function lazygit_stash()
+  if is_lazygit_available() ~= true then
+    print "Please install lazygit. Check documentation for more information"
+    return
+  end
+  prev_win = vim.api.nvim_get_current_win()
+  open_floating_window()
+  local cmd = "lazygit stash"
+  exec_lazygit_command(cmd)
+end
 
-local lazygit_log = Terminal:new {
-  cmd = "lazygit log",
-  direction = "float",
-  hidden = true,
-}
+local function lazygit_status(path)
+  if is_lazygit_available() ~= true then
+    print "Please install lazygit. Check documentation for more information"
+    return
+  end
+  prev_win = vim.api.nvim_get_current_win()
+  open_floating_window()
+  local cmd = "lazygit status"
+  exec_lazygit_command(cmd)
+end
 
-vim.api.nvim_create_user_command("LazyGit", function()
-  lazygit:toggle()
-end, { bang = true })
-vim.api.nvim_create_user_command("LazyGitFilter", function()
-  lazygit_filter:toggle()
-end, { bang = true })
-vim.api.nvim_create_user_command("LazyGitFilterCurrentFile", function()
-  lazygit_filter_current_file:toggle()
-end, { bang = true })
-vim.api.nvim_create_user_command("LazyGitBranch", function()
-  lazygit_branch:toggle()
-end, { bang = true })
-vim.api.nvim_create_user_command("LazyGitStash", function()
-  lazygit_stash:toggle()
-end, { bang = true })
-vim.api.nvim_create_user_command("LazyGitStatus", function()
-  lazygit_status:toggle()
-end, { bang = true })
-vim.api.nvim_create_user_command("LazyGitLog", function()
-  lazygit_log:toggle()
-end, { bang = true })
+local function lazygit_log()
+  if is_lazygit_available() ~= true then
+    print "Please install lazygit. Check documentation for more information"
+    return
+  end
+  prev_win = vim.api.nvim_get_current_win()
+  open_floating_window()
+  local cmd = "lazygit log"
+  exec_lazygit_command(cmd)
+end
+
+vim.api.nvim_create_user_command("LazyGitBranch", lazygit_branch, { bang = true })
+vim.api.nvim_create_user_command("LazyGitStash", lazygit_stash, { bang = true })
+vim.api.nvim_create_user_command("LazyGitStatus", lazygit_status, { bang = true })
+vim.api.nvim_create_user_command("LazyGitLog", lazygit_log, { bang = true })
