@@ -36,7 +36,7 @@ M.general = {
   },
 
   n = {
-    ["tt"] = { "<cmd>tabnew <CR>", "new tab" },
+    ["tt"] = { "<cmd>$tabnew<CR>", "new tab" },
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
     -- switch between windows
@@ -77,12 +77,12 @@ M.general = {
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
     ["<C-q>"] = { "<cmd> Trouble document_diagnostics<CR>", "   open doc diagnostics" },
     ["L"] = {
-      "<cmd> BufferLineCycleNext<CR>",
-      "  goto next buffer",
+      "<cmd> tabn<CR>",
+      "  goto next tab",
     },
     ["H"] = {
-      "<cmd> BufferLineCyclePrev<CR>",
-      "  goto prev buffer",
+      "<cmd> tabp<CR>",
+      "  goto prev tab",
     },
     [";"] = { "<cmd> Telescope buffers<CR>", "﬘   open buffers" },
   },
