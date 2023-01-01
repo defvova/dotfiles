@@ -6,7 +6,6 @@ if not present then
 end
 require("lsp-format").setup {}
 
--- local navic = require "nvim-navic"
 local utils = require "core.utils"
 local schemastore = require "schemastore"
 
@@ -22,10 +21,6 @@ M.on_attach = function(client, bufnr)
       debounce = 200,
     })
   end
-
-  -- if client.server_capabilities.documentSymbolProvider then
-  --   navic.attach(client, bufnr)
-  -- end
 
   if client.server_capabilities.definitionProvider then
     vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")

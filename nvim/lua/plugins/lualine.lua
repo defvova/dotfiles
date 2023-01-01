@@ -1,6 +1,5 @@
 local present, lualine = pcall(require, "lualine")
 local custom_config = require "core.custom"
--- local winbar = require "plugins.winbar"
 
 if not present then
   return
@@ -67,20 +66,6 @@ local options = {
   icons_enabled = true,
   disabled_filetypes = {
     statusline = {},
-    winbar = {
-      "help",
-      "startify",
-      "dashboard",
-      "packer",
-      "neogitstatus",
-      "NvimTree",
-      "Trouble",
-      "alpha",
-      "lir",
-      "Outline",
-      "spectre_panel",
-      "toggleterm",
-    },
   },
   sections = {
     lualine_a = { "mode" },
@@ -107,45 +92,6 @@ local options = {
     lualine_x = { "filename", "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
-  },
-  -- tabline = {
-  --   lualine_a = {},
-  --   lualine_b = {},
-  --   lualine_c = { require 'tabline'.tabline_buffers },
-  --   lualine_x = { require 'tabline'.tabline_tabs },
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
-  -- winbar = {
-  --   lualine_a = { winbar.show_winbar },
-  --   lualine_b = {},
-  --   lualine_c = {},
-  --   lualine_x = {
-  --     {
-  --       "diagnostics",
-  --       sources = { "nvim_diagnostic" },
-  --       diagnostics_color = {
-  --         error = "DiagnosticError",
-  --         warn = "DiagnosticWarn",
-  --         info = "DiagnosticInfo",
-  --         hint = "DiagnosticHint",
-  --       },
-  --       colored = true,
-  --       on_click = function()
-  --         vim.diagnostic.setloclist()
-  --       end,
-  --     },
-  --   },
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
-  inactive_winbar = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
   },
   extensions = { "quickfix", "toggleterm", "symbols-outline", "nvim-tree", "fugitive" },
 }
