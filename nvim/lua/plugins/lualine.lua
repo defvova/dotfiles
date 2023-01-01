@@ -33,7 +33,6 @@ local function lsp_client(msg)
     return msg
   end
 
-  local buf_ft = vim.bo.filetype
   local buf_client_names = {}
 
   -- add client
@@ -43,29 +42,17 @@ local function lsp_client(msg)
     end
   end
 
-  -- add formatter
-  local formatters = require "plugins.lsp.null-ls.formatters"
-  local supported_formatters = formatters.list_registered(buf_ft)
-  vim.list_extend(buf_client_names, supported_formatters)
-
-  -- add linter
-  local linters = require "plugins.lsp.null-ls.linters"
-  local supported_linters = linters.list_registered(buf_ft)
-  vim.list_extend(buf_client_names, supported_linters)
-
-  -- add hover
-  local hovers = require "plugins.lsp.null-ls.hovers"
-  local supported_hovers = hovers.list_registered(buf_ft)
-  vim.list_extend(buf_client_names, supported_hovers)
-
   return "[" .. table.concat(buf_client_names, ", ") .. "]"
 end
 
 local options = {
-  theme = custom_config.current_theme(),
-  icons_enabled = true,
-  disabled_filetypes = {
-    statusline = {},
+  options = {
+    theme = custom_config.current_theme(),
+    icons_enabled = true,
+    disabled_filetypes = {
+      statusline = {},
+    },
+    globalstatus = true,
   },
   sections = {
     lualine_a = { "mode" },
@@ -74,28 +61,19 @@ local options = {
       "diff",
       {
         "diagnostics",
-        sources = { "nvim_diagnostic" },
+        sources = { "nvim_lsp" },
         symbols = { error = " ", warn = " ", info = " ", hint = " " },
-        colored = false,
+        colored = true,
       },
     },
     lualine_c = {
-      { separator },
       { lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },
-      -- { lsp_progress },
-      -- {
-      --   gps.get_location,
-      --   cond = gps.is_available,
-      --   color = { fg = colors.green },
-      -- },
     },
-    lualine_x = { "filename", "encoding", "fileformat", "filetype" },
-    lualine_y = { "progress" },
+    lualine_x = {},
+    lualine_y = { "searchcount", "progress" },
     lualine_z = { "location" },
   },
-  extensions = { "quickfix", "toggleterm", "symbols-outline", "nvim-tree", "fugitive" },
+  extensions = { "quickfix", "toggleterm", "symbols-outline", "nvim-tree" },
 }
 
-lualine.setup {
-  options = options,
-}
+lualine.setup(options)

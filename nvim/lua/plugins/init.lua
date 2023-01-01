@@ -74,7 +74,7 @@ local plugins = {
                       -- Node version must be < 18
                       -- .. "/.fnm/node-versions/v17.4.0/installation/bin/node",
                       copilot_node_command = vim.fn.expand "$HOME"
-                        .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
+                          .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
                       filetypes = {
                         markdown = false,
                         ["*"] = true,
@@ -347,9 +347,6 @@ local plugins = {
   },
   ["rebelot/kanagawa.nvim"] = {
     opt = true,
-    -- config = function()
-    --   require "plugins.theme"
-    -- end,
   },
   -- ["EdenEast/nightfox.nvim"] = {
   --   run = ":NightfoxCompile",
@@ -419,14 +416,6 @@ local plugins = {
       require("nvim-treesitter.configs").setup()
     end,
   },
-  -- ["nvim-neorg/neorg"] = {
-  --   ft = "norg",
-  --   after = "nvim-treesitter",
-  --   config = function()
-  --     require "plugins.neorg"
-  --   end,
-  --   requires = { "nvim-neorg/neorg-telescope", ft = { "norg" } },
-  -- },
   ["goolord/alpha-nvim"] = {
     disable = false,
     config = function()
@@ -500,26 +489,6 @@ local plugins = {
       vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
     end,
   },
-  -- ["stevearc/overseer.nvim"] = {
-  --   opt = true,
-  --   cmd = {
-  --     "OverseerToggle",
-  --     "OverseerOpen",
-  --     "OverseerRun",
-  --     "OverseerBuild",
-  --     "OverseerClose",
-  --     "OverseerLoadBundle",
-  --     "OverseerSaveBundle",
-  --     "OverseerDeleteBundle",
-  --     "OverseerRunCmd",
-  --     "OverseerQuickAction",
-  --     "OverseerTaskAction",
-  --   },
-  --   config = function()
-  --     require("overseer").setup()
-  --   end,
-  -- },
-  -- ["rktjmp/lush.nvim"] = {},
   ["folke/noice.nvim"] = {
     config = function()
       require "plugins.noice"
