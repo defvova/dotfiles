@@ -2,3 +2,4 @@ plugged/
 autoload/
 sessions/
 tags
+.DS_Store

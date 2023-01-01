@@ -13,7 +13,7 @@ local function show_documentation()
   elseif vim.fn.expand "%:t" == "Cargo.toml" then
     require("crates").show_popup()
   else
-    require("lspsaga.hover").render_hover_doc()
+    require("lspsaga.hover"):render_hover_doc()
   end
 end
 
@@ -36,6 +36,7 @@ M.general = {
   },
 
   n = {
+    ["tt"] = { "<cmd>tabnew <CR>", "new tab" },
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
     -- switch between windows
@@ -107,7 +108,6 @@ M.general = {
 
   x = {
     ["f"] = { "<cmd> HopWord<CR>", "hop word" },
-    ["<A-cr>"] = { "<cmd><c-u>Lspsaga range_code_action<CR>", "   range code action menu" },
   },
 }
 
@@ -157,9 +157,6 @@ M.lspconfig = {
       "lsp hover",
     },
 
-    ["<C-u>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", "smart scroll up" },
-    ["<C-d>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", "smart scroll down" },
-
     ["gi"] = {
       function()
         vim.lsp.buf.implementation()
@@ -167,44 +164,9 @@ M.lspconfig = {
       "lsp implementation",
     },
 
-    -- ["<leader>D"] = {
-    --   function()
-    --     vim.lsp.buf.type_definition()
-    --   end,
-    --   "lsp definition type",
-    -- },
-
     ["<leader>la"] = { "<cmd>lua require('renamer').rename()<CR>", "   lsp rename" },
 
-    -- ["<leader>ca"] = {
-    --   function()
-    --     vim.lsp.buf.code_action()
-    --   end,
-    --   "lsp code_action",
-    -- },
-
     ["gr"] = { "<cmd>Lspsaga lsp_finder<CR>", "   lsp references" },
-
-    -- ["<leader>f"] = {
-    --   function()
-    --     vim.diagnostic.open_float()
-    --   end,
-    --   "floating diagnostic",
-    -- },
-
-    -- ["<leader>q"] = {
-    --   function()
-    --     vim.diagnostic.setloclist()
-    --   end,
-    --   "diagnostic setloclist",
-    -- },
-
-    -- ["<leader>fm"] = {
-    --   function()
-    --     vim.lsp.buf.formatting {}
-    --   end,
-    --   "lsp formatting",
-    -- },
 
     ["<leader>lwa"] = {
       function()
@@ -279,13 +241,6 @@ M.toggleterm = {
       "sends all of the (whole) lines",
     },
   },
-
-  -- x = {
-  --   ["<A-/>"] = {
-  --     "<cmd> ToggleTermSendVisualSelection <cr>",
-  --     "sends only the visually selected text",
-  --   },
-  -- },
 
   n = {
     -- toggle in normal mode

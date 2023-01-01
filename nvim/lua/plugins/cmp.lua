@@ -20,6 +20,14 @@ local function border(hl_name)
   }
 end
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+    return false
+  end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match "^%s*$" == nil
+end
+
 local cmp_window = require "cmp.utils.window"
 
 cmp_window.info_ = cmp_window.info
@@ -28,6 +36,8 @@ cmp_window.info = function(self)
   info.scrollable = false
   return info
 end
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 local options = {
   -- window = {
@@ -50,9 +60,10 @@ local options = {
   },
   formatting = {
     format = require("lspkind").cmp_format {
-      with_text = true,
+      -- with_text = true,
       mode = "symbol_text",
       maxwidth = 50,
+      symbol_map = { Copilot = "" },
     },
   },
   mapping = {
@@ -67,8 +78,9 @@ local options = {
       select = false,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+        -- cmp.select_next_item()
       elseif require("luasnip").expand_or_jumpable() then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
       else
@@ -92,12 +104,19 @@ local options = {
     }),
   },
   sources = {
+    { name = "copilot", max_item_count = 3 },
     { name = "luasnip", max_item_count = 5 },
     { name = "nvim_lsp", max_item_count = 10 },
     { name = "buffer", keyword_length = 3, max_item_count = 5 },
     { name = "nvim_lua", max_item_count = 5 },
     { name = "path" },
     { name = "crates" },
+  },
+  sorting = {
+    comparators = {
+      require("copilot_cmp.comparators").prioritize,
+      require("copilot_cmp.comparators").score,
+    },
   },
 }
 

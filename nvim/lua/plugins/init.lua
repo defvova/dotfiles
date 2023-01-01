@@ -46,6 +46,8 @@ local plugins = {
       require "plugins.blankline"
     end,
   },
+  -- INFO: It needs to setup copilot configs
+  -- ["github/copilot.vim"] = {},
   ["rafamadriz/friendly-snippets"] = {
     module = { "cmp", "cmp_nvim_lsp" },
     event = "InsertEnter",
@@ -54,6 +56,43 @@ local plugins = {
         "hrsh7th/nvim-cmp",
         -- opt = true,
         requires = {
+          {
+            "zbirenbaum/copilot-cmp",
+            -- after = { "copilot.lua" },
+            config = function()
+              require("copilot_cmp").setup {
+                method = "getCompletionsCycling",
+              }
+            end,
+            requires = {
+              {
+                "zbirenbaum/copilot.lua",
+                event = "VimEnter",
+                config = function()
+                  vim.defer_fn(function()
+                    require("copilot").setup {
+                      -- Node version must be < 18
+                      -- .. "/.fnm/node-versions/v17.4.0/installation/bin/node",
+                      copilot_node_command = vim.fn.expand "$HOME"
+                          .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
+                      filetypes = {
+                        markdown = false,
+                        ["*"] = true,
+                        server_opts_overrides = {
+                          settings = {
+                            advanced = {
+                              listCount = 10, -- #completions for panel
+                              inlineSuggestCount = 6, -- #completions for getCompletions
+                            },
+                          },
+                        },
+                      },
+                    }
+                  end, 100)
+                end,
+              },
+            },
+          },
           "hrsh7th/cmp-buffer",
           "hrsh7th/cmp-nvim-lsp",
           "hrsh7th/cmp-path",
@@ -100,9 +139,10 @@ local plugins = {
       require "plugins.treesitter"
     end,
   },
-  ["kyazdani42/nvim-tree.lua"] = {
-    ft = "alpha",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  ["nvim-tree/nvim-web-devicons"] = {},
+  ["nvim-tree/nvim-tree.lua"] = {
+    -- ft = "alpha",
+    -- cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     setup = function()
       require("core.utils").load_mappings "nvimtree"
     end,
@@ -111,7 +151,7 @@ local plugins = {
     end,
   },
   ["nvim-lualine/lualine.nvim"] = {
-    requires = { "kyazdani42/nvim-web-devicons", "SmiteshP/nvim-navic" },
+    requires = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require "plugins.lualine"
     end,
@@ -121,57 +161,17 @@ local plugins = {
       require "plugins.gitsigns"
     end,
   },
-  -- ["akinsho/bufferline.nvim"] = {
-  --   tag = "v2.*",
-  --   requires = "kyazdani42/nvim-web-devicons",
-  --   config = function()
-  --     require "plugins.bufferline"
-  --   end,
-  -- },
   ["nanozuki/tabby.nvim"] = {
     config = function()
       require "plugins.tabby"
     end,
   },
-  ["folke/which-key.nvim"] = {},
   ["dinhhuy258/git.nvim"] = {
     config = function()
       require("git.config").setup()
     end,
   },
-  ["nvim-neotest/neotest"] = {
-    wants = {
-      "plenary.nvim",
-      "nvim-treesitter",
-      "FixCursorHold.nvim",
-      "neotest-rspec",
-      "neotest-jest",
-      "neotest-rust",
-      "overseer.nvim",
-    },
-    requires = {
-      "olimorris/neotest-rspec",
-      "haydenmeade/neotest-jest",
-      "rouge8/neotest-rust",
-    },
-    module = { "neotest", "neotest.async" },
-    config = function()
-      require "plugins.neotest"
-    end,
-  },
-  ["gelguy/wilder.nvim"] = {
-    config = function()
-      require "plugins.wilder"
-    end,
-  },
   ["gennaro-tedesco/nvim-jqx"] = {},
-  ["NTBBloodbath/rest.nvim"] = {
-    requires = { "nvim-lua/plenary.nvim" },
-    ft = "http",
-    config = function()
-      require("rest-nvim").setup()
-    end,
-  },
   ["luukvbaal/stabilize.nvim"] = {
     config = function()
       require("stabilize").setup()
@@ -188,15 +188,9 @@ local plugins = {
       require "plugins.cursorline"
     end,
   },
-  ["kkharji/lspsaga.nvim"] = {
+  ["glepnir/lspsaga.nvim"] = {
     config = function()
       require "plugins.lspsaga"
-    end,
-  },
-  ["j-hui/fidget.nvim"] = {
-    event = "BufReadPre",
-    config = function()
-      require("fidget").setup {}
     end,
   },
   -- INFO: https://alpha2phi.medium.com/neovim-for-beginners-database-explorer-7db3d3910876
@@ -322,12 +316,6 @@ local plugins = {
       require("plugins.smolconfigs").persistence()
     end,
   },
-  ["ray-x/lsp_signature.nvim"] = {
-    event = "BufRead",
-    config = function()
-      require("lsp_signature").setup()
-    end,
-  },
   ["andymass/vim-matchup"] = {
     opt = false,
     event = { "CursorMoved", "CursorMovedI" },
@@ -367,12 +355,21 @@ local plugins = {
       require("plugins.smolconfigs").trouble()
     end,
   },
-  ["EdenEast/nightfox.nvim"] = {
-    run = ":NightfoxCompile",
-    config = function()
-      require "plugins.theme"
-    end,
+  ["sainnhe/edge"] = {
+    opt = true,
   },
+  ["rebelot/kanagawa.nvim"] = {
+    opt = true,
+    -- config = function()
+    --   require "plugins.theme"
+    -- end,
+  },
+  -- ["EdenEast/nightfox.nvim"] = {
+  --   run = ":NightfoxCompile",
+  --   config = function()
+  --     require "plugins.theme"
+  --   end,
+  -- },
   ["booperlv/nvim-gomove"] = {
     event = { "CursorMoved", "CursorMovedI" },
     config = function()
@@ -462,19 +459,15 @@ local plugins = {
       "mason.nvim",
       "mason-lspconfig.nvim",
       "mason-tool-installer.nvim",
+      "null-ls.nvim",
     },
     requires = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "princejoogie/tailwind-highlight.nvim",
+      { "jose-elias-alvarez/null-ls.nvim", requires = { "lukas-reineke/lsp-format.nvim" } },
       { "b0o/schemastore.nvim", module = "schemastore" },
-      {
-        "mhartington/formatter.nvim",
-        config = function()
-          require "plugins.formatter"
-        end,
-      },
       {
         "jose-elias-alvarez/typescript.nvim",
         module = "typescript",
@@ -520,26 +513,26 @@ local plugins = {
       vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
     end,
   },
-  ["stevearc/overseer.nvim"] = {
-    opt = true,
-    cmd = {
-      "OverseerToggle",
-      "OverseerOpen",
-      "OverseerRun",
-      "OverseerBuild",
-      "OverseerClose",
-      "OverseerLoadBundle",
-      "OverseerSaveBundle",
-      "OverseerDeleteBundle",
-      "OverseerRunCmd",
-      "OverseerQuickAction",
-      "OverseerTaskAction",
-    },
-    config = function()
-      require("overseer").setup()
-    end,
-  },
-  ["rktjmp/lush.nvim"] = {},
+  -- ["stevearc/overseer.nvim"] = {
+  --   opt = true,
+  --   cmd = {
+  --     "OverseerToggle",
+  --     "OverseerOpen",
+  --     "OverseerRun",
+  --     "OverseerBuild",
+  --     "OverseerClose",
+  --     "OverseerLoadBundle",
+  --     "OverseerSaveBundle",
+  --     "OverseerDeleteBundle",
+  --     "OverseerRunCmd",
+  --     "OverseerQuickAction",
+  --     "OverseerTaskAction",
+  --   },
+  --   config = function()
+  --     require("overseer").setup()
+  --   end,
+  -- },
+  -- ["rktjmp/lush.nvim"] = {},
   ["akinsho/toggleterm.nvim"] = {
     tag = "v2.*",
     config = function()
@@ -547,15 +540,14 @@ local plugins = {
       require "plugins.lazygit"
     end,
   },
-  -- ["bennypowers/nvim-regexplainer"] = {
-  --   config = function()
-  --     require "plugins.regexplainer"
-  --   end,
-  --   requires = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  -- },
+  ["folke/noice.nvim"] = {
+    config = function()
+      require "plugins.noice"
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+    },
+  },
 }
 
 require("core.packer").run(plugins)

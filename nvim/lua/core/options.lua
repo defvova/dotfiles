@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
-local ui = require("core.theme").ui
+local custom_config = require "core.custom"
+local ui = custom_config.ui
 
 -- g.vim_version = vim.version().minor
 g.theme_mode = ui.theme_mode
@@ -8,18 +9,15 @@ g.toggle_theme_icon = "   "
 -- g.transparency = config.ui.transparency
 -- g.theme_switcher_loaded = false
 
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
+
 opt.termguicolors = true
-
-vim.cmd("colorscheme " .. (vim.g.theme_mode == "light" and ui.light_theme or ui.dark_theme))
-
--- opt.background = "light"
--- g.colors_name = "light_theme"
--- require('lush')(require('lush_theme.light_theme'))
 
 opt.swapfile = false
 opt.wildignore = "*/cache/*,*/tmp/*"
 
-opt.winbar = "%{%v:lua.require'plugins.winbar'.show_winbar()%}"
+-- opt.winbar = "%{%v:lua.require'plugins.winbar'.show_winbar()%}"
 
 g.rust_clip_command = "pbcopy"
 

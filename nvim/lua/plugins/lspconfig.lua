@@ -4,30 +4,15 @@ local tw_present, tw_highlight = pcall(require, "tailwind-highlight")
 if not present then
   return
 end
+require("lsp-format").setup {}
 
-local navic = require "nvim-navic"
+-- local navic = require "nvim-navic"
 local utils = require "core.utils"
 local schemastore = require "schemastore"
 
 local M = {}
 
-local filetypes = {
-  "lua",
-  "rb",
-  "js",
-  "ts",
-  "rs",
-  "json",
-}
-
-for _, ft in pairs(filetypes) do
-  utils.setup_auto_format(ft, "FormatWrite")
-end
-
 M.on_attach = function(client, bufnr)
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
-
   utils.load_mappings("lspconfig", { buffer = bufnr })
 
   if tw_present then
@@ -38,13 +23,15 @@ M.on_attach = function(client, bufnr)
     })
   end
 
-  if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
-  end
+  -- if client.server_capabilities.documentSymbolProvider then
+  --   navic.attach(client, bufnr)
+  -- end
 
   if client.server_capabilities.definitionProvider then
     vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
   end
+
+  require("lsp-format").on_attach(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -165,4 +152,5 @@ local servers = {
 lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, options)
 
 require("plugins.lsp.handlers").setup()
+require("plugins.lsp.null-ls").setup(options)
 require("plugins.lsp.installer").setup(servers, options)

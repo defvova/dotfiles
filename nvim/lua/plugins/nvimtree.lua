@@ -62,6 +62,7 @@ local options = {
     },
 
     icons = {
+      webdev_colors = true,
       show = {
         file = true,
         folder = true,

@@ -5,20 +5,9 @@ local g = vim.g
 
 local merge_tb = vim.tbl_deep_extend
 
-M.setup_auto_format = function(ft, command)
-  if not command then
-    command = "lua vim.lsp.buf.formatting_sync()"
-  end
-  -- vim.cmd(string.format("autocmd BufWritePost *.%s %s", ft, command))
-  vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    pattern = string.format("*.%s", ft),
-    command = command,
-  })
-end
-
 M.smart_quit = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+  local bufnr = api.nvim_get_current_buf()
+  local modified = api.nvim_buf_get_option(bufnr, "modified")
   if modified then
     vim.ui.input({
       prompt = "You have unsaved changes. Quit anyway? (y/n) ",
@@ -134,7 +123,7 @@ end
 
 M.write_data = function(old_data, new_data)
   local file_fn = M.file
-  local file = fn.stdpath "config" .. "/lua/core/" .. "theme.lua"
+  local file = fn.stdpath "config" .. "/lua/core/" .. "custom.lua"
   local data = file_fn("r", file)
 
   local content = string.gsub(data, old_data, new_data)
@@ -163,12 +152,13 @@ M.change_theme = function(current_theme, new_theme)
   M.write_data(old_theme_txt, new_theme_txt)
 end
 
-M.reload_theme = function()
-  vim.cmd("set background=" .. g.theme_mode)
+M.reload_theme = function(mode)
+  vim.opt.background = mode
+  vim.cmd("colorscheme " .. require("core.custom").current_theme())
 end
 
 M.toggle_theme = function()
-  local themes = require("core.theme").ui.toggle_mode
+  local themes = require("core.custom").ui.toggle_mode
 
   local theme1 = themes[1]
   local theme2 = themes[2]
@@ -184,25 +174,31 @@ M.toggle_theme = function()
   if g.theme_mode == theme1 then
     g.theme_mode = theme2
 
-    M.reload_theme()
     M.change_theme(theme1, theme2)
+    M.reload_theme(theme2)
   elseif g.theme_mode == theme2 then
     g.theme_mode = theme1
 
-    M.reload_theme()
     M.change_theme(theme2, theme1)
+    M.reload_theme(theme1)
   else
     vim.notify "Set your current theme to one of those mentioned in the toggle_mode table (chadrc)"
   end
 end
 
 M.get_buf_option = function(opt)
-  local status_ok, buf_option = pcall(vim.api.nvim_buf_get_option, 0, opt)
+  local status_ok, buf_option = pcall(api.nvim_buf_get_option, 0, opt)
   if not status_ok then
     return nil
   else
     return buf_option
   end
+end
+
+M.log = function(msg, hl, name)
+  name = name or "Neovim"
+  hl = hl or "Todo"
+  api.nvim_echo({ { name .. ": ", hl }, { msg } }, true, {})
 end
 
 return M
