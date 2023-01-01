@@ -14,8 +14,8 @@ local options = {
     min_length = 2,
     hl = {
       underline = false,
-      fg = palette.fg,
-      bg = palette.bg,
+      fg = palette.fg_cursor_hl,
+      bg = palette.bg_cursor_hl,
     },
   },
 }

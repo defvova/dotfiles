@@ -1,35 +1,47 @@
-local themes = {
-  dark = function()
-    vim.cmd "packadd kanagawa.nvim"
-    vim.opt.background = "dark"
-    vim.cmd "colorscheme kanagawa"
-    local spec = require("kanagawa.colors").setup {
-      theme = "dragon",
-    }
-    return {
-      accent = "#d65d0e", -- orange
-      accent_sec = "#a89984", -- fg4
-      bg = spec.bg_search, -- bg1
-      bg_sec = "#504945", -- bg2
-      fg = spec.fg, -- fg2
-      fg_sec = spec.fg_sec, -- fg3
-    }
-  end,
+local function kanagawa()
+  vim.cmd "packadd kanagawa.nvim"
+  local spec = require("kanagawa.colors").setup {
+    theme = "dragon",
+    dimInactive = true,
+  }
+  vim.opt.background = "dark"
+  vim.cmd "colorscheme kanagawa"
+  return {
+    accent = spec.crystalBlue,
+    accent_sec = spec.winterBlue,
+    bg = spec.sumiInk2,
+    bg_sec = spec.winterBlue,
+    fg = spec.sumiInk0,
+    fg_sec = spec.fujiWhite,
+    fg3 = spec.crystalBlue,
+    fg_cursor_hl = spec.fujiWhite,
+    bg_cursor_hl = spec.waveBlue2,
+  }
+end
 
-  light = function()
-    vim.cmd "packadd edge"
-    vim.opt.background = "light"
-    vim.g.edge_enable_italic = 1
-    vim.cmd "colorscheme edge"
-    return {
-      accent = "#bf75d6", -- bg_purple
-      accent_sec = "#8790a0", -- grey
-      bg = "#eef1f4", -- bg1
-      bg_sec = "#dde2e7", -- bg4
-      fg = "#33353f", -- default:bg1
-      fg_sec = "#4b505b", -- fg
-    }
-  end,
+local function edge()
+  vim.cmd "packadd edge"
+  vim.g.edge_enable_italic = 1
+  -- vim.g.edge_better_performance = 1
+  vim.opt.background = "light"
+  vim.cmd "colorscheme edge"
+
+  return {
+    accent = "#bf75d6",
+    accent_sec = "#dde2e7",
+    bg = "#eef1f4",
+    bg_sec = "#dde2e7",
+    fg = "#fafafa",
+    fg_sec = "#4b505b",
+    fg3 = "#4b505b",
+    fg_cursor_hl = "#fafafa",
+    bg_cursor_hl = "#76af6f",
+  }
+end
+
+local themes = {
+  dark = kanagawa,
+  light = edge,
 
   -- rose_pine_dawn = function()
   --   vim.cmd('packadd rose-pine')

@@ -1,17 +1,16 @@
+local palette = require("core.theme").palette
 local theme = {
-  fill = "TabLineFill",
-  -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
-  head = "TabLine",
-  current_tab = "TabLineSel",
-  -- current_tab = { fg = '#F8FBF6', bg = '#896a98', style = 'italic' },
-  tab = "TabLine",
-  win = "TabLine",
-  tail = "TabLine",
+  fill = { fg = palette.fg_sec, bg = palette.bg },
+  head = { fg = palette.fg_sec, bg = palette.bg, style = "italic" },
+  current_tab = { fg = palette.fg, bg = palette.accent, style = "bold" },
+  tab = { fg = palette.fg3, bg = palette.accent_sec, style = "bold" },
+  win = { fg = palette.fg, bg = palette.bg_sec },
+  tail = { fg = palette.bg, bg = palette.accent_sec, style = "bold" },
 }
 
 vim.opt.showtabline = 2
 require("tabby.tabline").set(function(line)
-  local cwd = "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
+  local cwd = " ﱮ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
   return {
     {
       { cwd, hl = theme.head },
@@ -22,7 +21,7 @@ require("tabby.tabline").set(function(line)
       return {
         line.sep("", hl, theme.fill),
         tab.is_current() and "  " or "  ",
-        -- tab.number(),
+        tab.number(),
         tab.name(),
         -- tab.close_btn(' '), -- show a close button
         line.sep("", hl, theme.fill),
