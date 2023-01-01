@@ -8,17 +8,6 @@ M.todo = function()
   end
 end
 
-M.trouble = function()
-  local present, trouble = pcall(require, "trouble")
-
-  if present then
-    trouble.setup {
-      auto_open = false,
-      use_diagnostic_signs = true, -- en
-    }
-  end
-end
-
 -- M.lightbulb = function()
 --   local present, lightbulb = pcall(require, "nvim-lightbulb")
 --
@@ -32,15 +21,6 @@ M.surround = function()
 
   if present then
     surround.setup { mappings_style = "sandwich" }
-  end
-end
-
-M.illuminate = function()
-  local present, _ = pcall(require, "vim-illuminate")
-
-  if present then
-    vim.g.Illuminate_ftblacklist = { "NvimTree", "Neogit" }
-    vim.g.Illuminate_delay = 100
   end
 end
 

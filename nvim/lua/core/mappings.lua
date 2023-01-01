@@ -75,7 +75,6 @@ M.general = {
     -- QuickFix
     -- ["]q"] = { "<cmd> cnext<CR>", "   next error" },
     -- ["[q"] = { "<cmd> cprev<CR>", "   prev error" },
-    ["<C-q>"] = { "<cmd> Trouble document_diagnostics<CR>", "   open doc diagnostics" },
     ["L"] = {
       "<cmd> tabn<CR>",
       "  goto next tab",

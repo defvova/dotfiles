@@ -74,7 +74,7 @@ local plugins = {
                       -- Node version must be < 18
                       -- .. "/.fnm/node-versions/v17.4.0/installation/bin/node",
                       copilot_node_command = vim.fn.expand "$HOME"
-                          .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
+                        .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
                       filetypes = {
                         markdown = false,
                         ["*"] = true,
@@ -345,14 +345,6 @@ local plugins = {
     after = "nvim-treesitter",
     config = function()
       require("hlargs").setup()
-    end,
-  },
-  ["folke/trouble.nvim"] = {
-    event = "BufReadPre",
-    cmd = { "Trouble", "TroubleToggle" },
-    module = "trouble",
-    config = function()
-      require("plugins.smolconfigs").trouble()
     end,
   },
   ["sainnhe/edge"] = {
