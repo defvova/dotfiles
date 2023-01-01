@@ -8,31 +8,11 @@ M.todo = function()
   end
 end
 
--- M.lightbulb = function()
---   local present, lightbulb = pcall(require, "nvim-lightbulb")
---
---   if present then
---     lightbulb.setup { autocmd = { enabled = true } }
---   end
--- end
-
 M.surround = function()
   local present, surround = pcall(require, "surround")
 
   if present then
     surround.setup { mappings_style = "sandwich" }
-  end
-end
-
-M.dressing = function()
-  local present, dressing = pcall(require, "dressing")
-
-  if present then
-    dressing.setup {
-      input = {
-        winblend = 0,
-      },
-    }
   end
 end
 

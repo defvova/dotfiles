@@ -74,7 +74,7 @@ local plugins = {
                       -- Node version must be < 18
                       -- .. "/.fnm/node-versions/v17.4.0/installation/bin/node",
                       copilot_node_command = vim.fn.expand "$HOME"
-                        .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
+                          .. "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node",
                       filetypes = {
                         markdown = false,
                         ["*"] = true,
@@ -294,11 +294,6 @@ local plugins = {
   ["romgrk/nvim-treesitter-context"] = {
     config = function()
       require "plugins.tree-context"
-    end,
-  },
-  ["stevearc/dressing.nvim"] = {
-    config = function()
-      require("plugins.smolconfigs").dressing()
     end,
   },
   ["saecki/crates.nvim"] = {
