@@ -37,6 +37,8 @@ M.general = {
 
   n = {
     ["tt"] = { "<cmd>$tabnew<CR>", "new tab" },
+    ["<C-S-h>"] = { "<cmd>-tabmove<CR>", "move current tab to prev position" },
+    ["<C-S-l>"] = { "<cmd>+tabmove<CR>", "move current tab to next position" },
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
     -- switch between windows
