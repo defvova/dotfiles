@@ -1,3 +1,4 @@
+https://github.com/jose-elias-alvarez/dotfiles
 **Installation:**
 
 1) Clone repository and put it in the `~/.vim` directory.
