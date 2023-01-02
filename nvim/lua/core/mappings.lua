@@ -279,30 +279,6 @@ M.whichkey = {
     ["<leader>SQ"] = { "<cmd>lua require('persistence').stop()<cr>", "   quit without saving session" },
     ["<leader>q"] = { "<cmd>lua require('core.utils').smart_quit()<CR>", "   quit" },
     ["<leader>up"] = { "<cmd> PackerSync <CR>", "異 update plugins" },
-    ["<leader>Hr"] = { "<Plug>RestNvim <CR>", "異  run http" },
-    ["<leader>Hp"] = { "<Plug>RestNvimPreview <CR>", "   preview http" },
-    ["<leader>Hl"] = { "<Plug>RestNvimLast <CR>", "菱  re-run the last http" },
-
-    ["<leader>Tr"] = { "<cmd>lua require('neotest').run.run() <CR>", "ﭧ   run single test" },
-    ["<leader>Tl"] = { "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' }) <CR>", "ﭧ   run last test" },
-    ["<leader>TR"] = { "<cmd>lua require('neotest').run.run(vim.fn.getcwd()) <CR>", "ﱔ   run all tests" },
-    ["<leader>Tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%')) <CR>", "   run current file" },
-    ["<leader>TS"] = { "<cmd>lua require('neotest').run.stop() <CR>", "栗  stop test" },
-    ["<leader>To"] = { "<cmd>lua require('neotest').output.open({ enter = true }) <CR>", "   output of tests" },
-    ["<leader>TO"] = {
-      "<cmd>lua require('neotest').output.open({ enter = true, short = true }) <CR>",
-      "   output of tests",
-    },
-    ["<leader>Ts"] = { "<cmd>lua require('neotest').summary.toggle() <CR>", "ﱔ   display test suite structure" },
-    ["<leader>TA"] = {
-      function()
-        local neotest = require "neotest"
-        for _, adapter_id in ipairs(neotest.run.adapters()) do
-          neotest.run.run { suite = true, adapter = adapter_id }
-        end
-      end,
-      "ﱔ   run all adapters",
-    },
   },
 }
 
@@ -375,22 +351,6 @@ M.dap = {
       "<cmd>lua require('dapui').toggle()<cr>",
       "open ui",
     },
-  },
-}
-
-M.overseer = {
-  n = {
-    ["<leader>oC"] = { "<cmd>OverseerClose<cr>", "OverseerClose" },
-    ["<leader>oa"] = { "<cmd>OverseerTaskAction<cr>", "OverseerTaskAction" },
-    ["<leader>ob"] = { "<cmd>OverseerBuild<cr>", "OverseerBuild" },
-    ["<leader>oc"] = { "<cmd>OverseerRunCmd<cr>", "OverseerRunCmd" },
-    ["<leader>od"] = { "<cmd>OverseerDeleteBundle<cr>", "OverseerDeleteBundle" },
-    ["<leader>ol"] = { "<cmd>OverseerLoadBundle<cr>", "OverseerLoadBundle" },
-    ["<leader>oo"] = { "<cmd>OverseerOpen!<cr>", "OverseerOpen" },
-    ["<leader>oq"] = { "<cmd>OverseerQuickAction<cr>", "OverseerQuickAction" },
-    ["<leader>or"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
-    ["<leader>os"] = { "<cmd>OverseerSaveBundle<cr>", "OverseerSaveBundle" },
-    ["<leader>ot"] = { "<cmd>OverseerToggle!<cr>", "OverseerToggle" },
   },
 }
 

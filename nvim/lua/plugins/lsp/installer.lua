@@ -34,6 +34,19 @@ function M.setup(servers, options)
     run_on_start = true,
   }
 
+  require("mason-null-ls").setup {
+    ensure_installed = {
+      "stylua",
+      "jq",
+      "rome",
+      "fixjson",
+      "rust_analyzer",
+      "rubocop",
+    },
+    automatic_installation = false,
+    automatic_setup = true, -- Recommended, but optional
+  }
+
   require("mason-lspconfig").setup {
     ensure_installed = vim.tbl_keys(servers),
     automatic_installation = false,

@@ -442,7 +442,10 @@ local plugins = {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "princejoogie/tailwind-highlight.nvim",
-      { "jose-elias-alvarez/null-ls.nvim", requires = { "lukas-reineke/lsp-format.nvim" } },
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = { "lukas-reineke/lsp-format.nvim", "jayp0521/mason-null-ls.nvim" },
+      },
       { "b0o/schemastore.nvim", module = "schemastore" },
       {
         "jose-elias-alvarez/typescript.nvim",
@@ -463,7 +466,7 @@ local plugins = {
           "nvim-lua/plenary.nvim",
           {
             "rcarriga/nvim-dap-ui",
-            requires = { "mfussenegger/nvim-dap" },
+            requires = { "mfussenegger/nvim-dap", "jayp0521/mason-nvim-dap.nvim" },
           },
         },
       },

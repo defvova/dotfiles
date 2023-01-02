@@ -57,6 +57,7 @@ function M.setup(opts)
     on_attach = opts.on_attach,
     root_dir = nls_utils.root_pattern ".git",
   }
+  require("mason-null-ls").setup_handlers()
 end
 
 return M
