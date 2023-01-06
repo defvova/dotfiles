@@ -1,5 +1,3 @@
--- vim.cmd "packadd packer.nvim"
-
 local plugins = {
   -- Speed up deffered plugins
   ["lewis6991/impatient.nvim"] = {},
@@ -518,4 +516,4 @@ local plugins = {
   },
 }
 
-require("core.packer").run(plugins)
+return require("core.utils").merge_plugins(plugins)

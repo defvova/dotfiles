@@ -1,28 +1,38 @@
-local present, bqf = pcall(require, "nvim-bqf")
-
-if not present then
-  return
-end
-
-local options = {
-  auto_enable = true,
-  preview = {
-    win_height = 12,
-    win_vheight = 12,
-    delay_syntax = 80,
-    border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-  },
-  func_map = {
-    vsplit = "",
-    ptogglemode = "z,",
-    stoggleup = "",
-  },
-  filter = {
-    fzf = {
-      action_for = { ["ctrl-s"] = "split" },
-      extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-    },
-  },
+local M = {
+  "kevinhwang91/nvim-bqf",
+  -- event = { "CmdlineEnter", "QuickfixCmdPre" },
+  ft = "qf",
+  dependencies = { "junegunn/fzf" },
+  build = function()
+    vim.fn["fzf#install"]()
+  end,
 }
 
-bqf.setup(options)
+function M.config()
+  local bqf = require "bqf"
+
+  local options = {
+    auto_enable = true,
+    preview = {
+      win_height = 12,
+      win_vheight = 12,
+      delay_syntax = 80,
+      border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+    },
+    func_map = {
+      vsplit = "",
+      ptogglemode = "z,",
+      stoggleup = "",
+    },
+    filter = {
+      fzf = {
+        action_for = { ["ctrl-s"] = "split" },
+        extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+      },
+    },
+  }
+
+  bqf.setup(options)
+end
+
+return M

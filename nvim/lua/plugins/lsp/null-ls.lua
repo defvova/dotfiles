@@ -21,8 +21,10 @@ end
 local sources = {
   -- formatting
   -- b.formatting.prettierd,
+  -- with_root_file(b.formatting.prettierd, { ".prettierrc.json", "prettierrc.js" }),
+  b.formatting.standardjs,
   -- b.formatting.rome,
-  with_root_file(b.formatting.rome, { "rome.json" }),
+  -- b.formatting.rome,
   -- b.formatting.shfmt,
   b.formatting.fixjson,
   b.formatting.rustfmt,

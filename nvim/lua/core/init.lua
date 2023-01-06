@@ -11,7 +11,7 @@ local api = vim.api
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "background",
   callback = function()
-    vim.cmd("packadd " .. custom_config.current_packer_theme())
+    -- vim.cmd("packadd " .. custom_config.current_packer_theme())
     vim.cmd("colorscheme " .. custom_config.current_theme())
   end,
 })

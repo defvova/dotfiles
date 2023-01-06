@@ -19,6 +19,8 @@ opt.wildignore = "*/cache/*,*/tmp/*"
 
 g.rust_clip_command = "pbcopy"
 
+-- opt.splitkeep = "screen" -- keeps the same screen screen lines in all split windows and is the most "stable" to me.
+-- opt.splitkeep = "topline" -- keeps the same topline as an alternative.
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
@@ -60,8 +62,6 @@ opt.updatetime = 250
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
-
-g.mapleader = " "
 
 -- disable some builtin vim plugins
 local default_plugins = {

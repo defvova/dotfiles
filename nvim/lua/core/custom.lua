@@ -8,11 +8,11 @@ M.ui = {
 }
 
 M.current_theme = function()
-  return vim.g.theme_mode == "light" and M.ui.light_theme[1] or M.ui.dark_theme[1]
+  return M.ui.theme_mode == "light" and M.ui.light_theme[1] or M.ui.dark_theme[1]
 end
 
 M.current_packer_theme = function()
-  return vim.g.theme_mode == "light" and M.ui.light_theme[2] or M.ui.dark_theme[2]
+  return M.ui.theme_mode == "light" and M.ui.light_theme[2] or M.ui.dark_theme[2]
 end
 
 return M

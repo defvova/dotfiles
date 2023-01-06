@@ -1,9 +1,16 @@
-local present, nvim_comment = pcall(require, "Comment")
+local M = {
+  "numToStr/Comment.nvim",
+  keys = {
+    { "gc", "gb", desc = "Comment/Uncomment" },
+  },
+}
 
-if not present then
-  return
+function M.config()
+  local nvim_comment = require "Comment"
+
+  local options = {}
+
+  nvim_comment.setup(options)
 end
 
-local options = {}
-
-nvim_comment.setup(options)
+return M

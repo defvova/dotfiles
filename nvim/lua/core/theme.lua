@@ -1,11 +1,12 @@
 local function kanagawa()
-  vim.cmd "packadd kanagawa.nvim"
+  -- vim.cmd "packadd kanagawa.nvim"
   local spec = require("kanagawa.colors").setup {
     theme = "dragon",
     dimInactive = true,
   }
   vim.opt.background = "dark"
   vim.cmd "colorscheme kanagawa"
+
   return {
     accent = spec.crystalBlue,
     accent_sec = spec.winterBlue,
@@ -20,7 +21,7 @@ local function kanagawa()
 end
 
 local function edge()
-  vim.cmd "packadd edge"
+  -- vim.cmd "packadd edge"
   vim.g.edge_enable_italic = 1
   -- vim.g.edge_better_performance = 1
   vim.opt.background = "light"

@@ -38,12 +38,13 @@ function M.setup(servers, options)
     ensure_installed = {
       "stylua",
       "jq",
-      "rome",
+      -- "rome",
       "fixjson",
       "rust_analyzer",
       "rubocop",
+      "prettier",
     },
-    automatic_installation = false,
+    automatic_installation = true,
     automatic_setup = true, -- Recommended, but optional
   }
 

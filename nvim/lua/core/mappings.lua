@@ -278,7 +278,7 @@ M.whichkey = {
     ["<leader>Sl"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "ﮦ   restore last session" },
     ["<leader>SQ"] = { "<cmd>lua require('persistence').stop()<cr>", "   quit without saving session" },
     ["<leader>q"] = { "<cmd>lua require('core.utils').smart_quit()<CR>", "   quit" },
-    ["<leader>up"] = { "<cmd> PackerSync <CR>", "異 update plugins" },
+    ["<leader>up"] = { "<cmd> Lazy sync <CR>", "異 update plugins" },
   },
 }
 
