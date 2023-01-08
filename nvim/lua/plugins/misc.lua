@@ -1,5 +1,4 @@
 return {
-  { "nvim-tree/nvim-web-devicons" },
   {
     "dinhhuy258/git.nvim",
     config = function()
