@@ -39,6 +39,7 @@ function M.config()
       "yaml",
       "markdown",
       "markdown_inline",
+      "vim",
     },
     highlight = {
       enable = true,
