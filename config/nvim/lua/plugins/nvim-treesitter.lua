@@ -38,6 +38,7 @@ function M.config()
       "rust",
       "yaml",
       "markdown",
+      "markdown_inline",
     },
     highlight = {
       enable = true,
