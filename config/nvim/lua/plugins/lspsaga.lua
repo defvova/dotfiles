@@ -1,13 +1,13 @@
 local M = {
   "glepnir/lspsaga.nvim",
-  event = "VeryLazy",
+  event = "BufRead",
 }
 
 function M.config()
   local lspsaga = require "lspsaga"
 
   local options = {
-    code_action_lightbulb = {
+    lightbulb = {
       enable = false,
       enable_in_insert = true,
       cache_code_action = true,
@@ -30,7 +30,7 @@ function M.config()
     },
   }
 
-  lspsaga.init_lsp_saga(options)
+  lspsaga.setup(options)
 end
 
 return M
