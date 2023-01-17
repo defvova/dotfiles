@@ -1,27 +1,3 @@
-local function setup_copilot()
-  vim.defer_fn(function()
-    -- Node version must be < 18
-    -- .. "/.fnm/node-versions/v17.4.0/installation/bin/node",
-    local node_path = "/Library/Application Support/fnm/node-versions/v17.4.0/installation/bin/node"
-
-    require("copilot").setup {
-      copilot_node_command = vim.fn.expand "$HOME" .. node_path,
-      filetypes = {
-        markdown = false,
-        ["*"] = true,
-        server_opts_overrides = {
-          settings = {
-            advanced = {
-              listCount = 10,
-              inlineSuggestCount = 6,
-            },
-          },
-        },
-      },
-    }
-  end, 100)
-end
-
 local M = {
   "rafamadriz/friendly-snippets",
   event = "InsertEnter",
@@ -31,22 +7,6 @@ local M = {
       "hrsh7th/nvim-cmp",
       event = "InsertEnter",
       dependencies = {
-        {
-          "zbirenbaum/copilot-cmp",
-          event = "VeryLazy",
-          config = function()
-            require("copilot_cmp").setup {
-              method = "getCompletionsCycling",
-            }
-          end,
-          dependencies = {
-            {
-              "zbirenbaum/copilot.lua",
-              event = "VimEnter",
-              config = setup_copilot(),
-            },
-          },
-        },
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
@@ -99,8 +59,6 @@ function M.config()
     return info
   end
 
-  vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
   local options = {
     -- window = {
     --   completion = {
@@ -125,7 +83,6 @@ function M.config()
         -- with_text = true,
         mode = "symbol_text",
         maxwidth = 50,
-        symbol_map = { Copilot = "" },
       },
     },
     mapping = {
@@ -166,19 +123,12 @@ function M.config()
       }),
     },
     sources = {
-      { name = "copilot", max_item_count = 3 },
       { name = "luasnip", max_item_count = 5 },
       { name = "nvim_lsp", max_item_count = 10 },
       { name = "buffer", keyword_length = 3, max_item_count = 5 },
       { name = "nvim_lua", max_item_count = 5 },
       { name = "path" },
       { name = "crates" },
-    },
-    sorting = {
-      comparators = {
-        require("copilot_cmp.comparators").prioritize,
-        require("copilot_cmp.comparators").score,
-      },
     },
   }
 
