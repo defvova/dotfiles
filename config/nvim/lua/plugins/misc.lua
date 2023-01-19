@@ -118,7 +118,7 @@ return {
   },
   {
     "m-demare/hlargs.nvim",
-    event = "BufRead",
+    event = "VeryLazy",
     config = function()
       require("hlargs").setup()
     end,
