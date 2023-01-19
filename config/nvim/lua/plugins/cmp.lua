@@ -1,7 +1,6 @@
 local M = {
   "rafamadriz/friendly-snippets",
   event = "InsertEnter",
-  -- event = "VeryLazy",
   dependencies = {
     {
       "hrsh7th/nvim-cmp",
@@ -14,10 +13,6 @@ local M = {
         "hrsh7th/cmp-nvim-lsp-document-symbol",
         "hrsh7th/cmp-cmdline",
         -- "ray-x/cmp-treesitter",
-        -- "hrsh7th/cmp-emoji",
-        -- "f3fora/cmp-spell",
-        -- "hrsh7th/cmp-calc",
-        -- "octaltree/cmp-look",
       },
     },
   },
@@ -25,22 +20,6 @@ local M = {
 
 function M.config()
   local cmp = require "cmp"
-
-  -- vim.opt.completeopt = "menu,menuone,noselect"
-  vim.o.completeopt = "menu,menuone,noselect"
-
-  local function border(hl_name)
-    return {
-      { "╭", hl_name },
-      { "─", hl_name },
-      { "╮", hl_name },
-      { "│", hl_name },
-      { "╯", hl_name },
-      { "─", hl_name },
-      { "╰", hl_name },
-      { "│", hl_name },
-    }
-  end
 
   local has_words_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -50,28 +29,13 @@ function M.config()
     return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match "^%s*$" == nil
   end
 
-  local cmp_window = require "cmp.utils.window"
-
-  cmp_window.info_ = cmp_window.info
-  cmp_window.info = function(self)
-    local info = self:info_()
-    info.scrollable = false
-    return info
-  end
-
   local options = {
-    -- window = {
-    --   completion = {
-    --     border = border "CmpBorder",
-    --     winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-    --   },
-    --   documentation = {
-    --     border = border "CmpDocBorder",
-    --   },
-    -- },
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
+    },
+    completion = {
+      completeopt = "menu,menuone,noinsert",
     },
     snippet = {
       expand = function(args)
@@ -88,10 +52,10 @@ function M.config()
     mapping = {
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-n>"] = cmp.mapping.select_next_item(),
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping.complete(),
-      ["<C-e>"] = cmp.mapping.close(),
+      ["<C-e>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
@@ -136,6 +100,7 @@ function M.config()
 
   -- Use cmdline & path source for ':'.
   cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = "path", max_item_count = 5 },
     }, {
@@ -145,10 +110,11 @@ function M.config()
 
   -- lsp_document_symbols
   cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
+      { name = "nvim_lsp_document_symbol", max_item_count = 8 },
     }, {
-      { name = "buffer", max_item_count = 5, keyword_length = 5 },
+      { name = "buffer", max_item_count = 5 },
     }),
   })
 
