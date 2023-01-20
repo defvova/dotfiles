@@ -86,6 +86,18 @@ M.general = {
       "  goto prev tab",
     },
     [";"] = { "<cmd> Telescope buffers<CR>", "﬘   open buffers" },
+    ["<leader>Fc"] = {
+      function()
+        require("core.cht").cht()
+      end,
+      "  Cheatsheets",
+    },
+    ["<leader>Fs"] = {
+      function()
+        require("core.cht").stack_overflow()
+      end,
+      "  Stack Overflow",
+    },
   },
 
   t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
