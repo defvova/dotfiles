@@ -26,6 +26,7 @@
     - fnm
     - frum
     - fd
+    - so
 
 - create:
     - ~/.config/nvim
