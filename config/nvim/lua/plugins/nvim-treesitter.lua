@@ -1,4 +1,4 @@
-local M = {
+return {
   "nvim-treesitter/nvim-treesitter",
   event = "BufRead",
   build = ":TSUpdate",
@@ -10,12 +10,7 @@ local M = {
     { "RRethy/nvim-treesitter-textsubjects", event = "VeryLazy" },
     { "p00f/nvim-ts-rainbow", event = { "CursorHold", "CursorHoldI" } },
   },
-}
-
-function M.config()
-  local treesitter = require "nvim-treesitter.configs"
-
-  local options = {
+  opts = {
     ensure_installed = {
       "norg",
       "cmake",
@@ -64,6 +59,9 @@ function M.config()
     endwise = {
       enable = true,
     },
+    autotag = {
+      enable = true,
+    },
     textsubjects = {
       enable = true,
       prev_selection = ",",
@@ -72,9 +70,8 @@ function M.config()
         [";"] = "textsubjects-container-outer",
       },
     },
-  }
-
-  treesitter.setup(options)
-end
-
-return M
+  },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end,
+}

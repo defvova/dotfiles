@@ -1,112 +1,101 @@
 return {
   {
     "dinhhuy258/git.nvim",
-    config = function()
-      require("git.config").setup()
-    end,
+    -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
+    config = true,
   },
   { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
   {
     "ruifm/gitlinker.nvim",
-    event = "VeryLazy",
+    keys = {
+      "<leader>gY",
+      "<leader>gB",
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
   },
   {
     "mg979/vim-visual-multi",
-    event = "BufReadPre",
-  },
-  {
-    "filipdutescu/renamer.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+    keys = {
+      "<C-n>",
+      "<C-Up>",
+      "<C-Down>",
     },
-    config = function()
-      require("renamer").setup()
-    end,
   },
+  -- {
+  --   "filipdutescu/renamer.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     require("renamer").setup()
+  --   end,
+  -- },
   {
     "chaoren/vim-wordmotion",
-    event = "BufReadPre",
+    event = "VeryLazy",
   },
   {
     "phaazon/hop.nvim",
     name = "hop",
+    keys = { "f" },
     cmd = {
       "HopWord",
       "HopChar1",
     },
-    config = function()
-      require("hop").setup()
-    end,
+    config = true,
   },
   {
     "folke/todo-comments.nvim",
-    event = "BufReadPost",
+    event = "VeryLazy",
     cmd = { "TodoTrouble", "TodoTelescope" },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    config = function()
-      require("todo-comments").setup()
-    end,
+    config = true,
   },
   {
     "narutoxy/dim.lua",
-    event = "BufReadPre",
+    event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "neovim/nvim-lspconfig",
     },
-    config = function()
-      require("dim").setup {}
-    end,
+    config = true,
   },
   {
     "ur4ltz/surround.nvim",
-    event = "BufRead",
-    config = function()
-      require("surround").setup { mappings_style = "sandwich" }
-    end,
-  },
-  {
-    "nvim-telescope/telescope-project.nvim",
-    event = "BufWinEnter",
-    dependencies = { "nvim-telescope/telescope-file-browser.nvim" },
+    event = "VeryLazy",
+    opts = {
+      mappings_style = "sandwich",
+    },
   },
   {
     "saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
+    event = { "BufReadPre Cargo.toml" },
     dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("crates").setup {}
-    end,
+    opts = {
+      null_ls = {
+        enabled = true,
+        name = "crates.nvim",
+      },
+    },
   },
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    config = function()
-      local persistence = require "persistence"
-      persistence.setup {
-        dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
-        options = { "buffers", "curdir", "tabpages", "winsize" },
-      }
-    end,
+    opts = {
+      dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+      options = { "buffers", "curdir", "tabpages", "winsize" },
+    },
   },
   {
     "andymass/vim-matchup",
-    event = { "CursorMoved", "CursorMovedI" },
+    event = "VeryLazy",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
-  },
-  {
-    "nathom/filetype.nvim",
-    lazy = false,
-    init = function()
-      vim.g.did_load_filetypes = 1
     end,
   },
   {
@@ -119,16 +108,17 @@ return {
   {
     "m-demare/hlargs.nvim",
     event = "VeryLazy",
-    config = function()
-      require("hlargs").setup()
-    end,
+    config = true,
   },
   {
     "booperlv/nvim-gomove",
-    event = { "CursorMoved", "CursorMovedI" },
-    config = function()
-      require("gomove").setup()
-    end,
+    keys = {
+      "<A-h>",
+      "<A-j>",
+      "<A-k>",
+      "<A-l>",
+    },
+    config = true,
   },
   {
     "dstein64/vim-startuptime",
@@ -144,21 +134,17 @@ return {
   },
   {
     "nacro90/numb.nvim",
-    event = "BufRead",
-    config = function()
-      require("numb").setup {
-        show_numbers = true, -- Enable 'number' for the window while peeking
-        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-      }
-    end,
+    event = "VeryLazy",
+    opts = {
+      show_numbers = true, -- Enable 'number' for the window while peeking
+      show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+    },
+    config = true,
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
     ft = { "html", "javascriptreact" },
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
+    event = "InsertEnter",
   },
   -- {
   --   "nvim-treesitter/playground",
@@ -168,18 +154,22 @@ return {
   --   end,
   -- }
   {
-    "anuvyklack/fold-preview.nvim",
-    event = "VeryLazy",
-    dependencies = "anuvyklack/keymap-amend.nvim",
-    config = function()
-      require("fold-preview").setup()
-    end,
-  },
-  {
-    "mfussenegger/nvim-ts-hint-textobject",
-    config = function()
-      vim.cmd [[omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>]]
-      vim.cmd [[vnoremap <silent> m :lua require('tsht').nodes()<CR>]]
-    end,
+    "mfussenegger/nvim-treehopper",
+    keys = {
+      {
+        "m",
+        ":<C-U>lua require('tsht').nodes()<CR>",
+        desc = "Treehopper Visual",
+        mode = { "v" },
+        silent = true,
+      },
+      {
+        "m",
+        ":lua require('tsht').nodes()<CR>",
+        mode = { "o" },
+        desc = "Treehopper",
+        silent = true,
+      },
+    },
   },
 }
