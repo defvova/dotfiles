@@ -1,6 +1,6 @@
 local M = {
   "nanozuki/tabby.nvim",
-  event = "VeryLazy",
+  event = "BufReadPre",
 }
 
 function M.config()

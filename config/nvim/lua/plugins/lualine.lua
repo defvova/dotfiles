@@ -3,7 +3,7 @@ local M = {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  event = "VeryLazy",
+  event = "BufReadPre",
 }
 
 function M.config()
