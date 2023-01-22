@@ -1,14 +1,9 @@
-local M = {
+return {
   "folke/which-key.nvim",
   keys = "<leader>",
-}
-
-function M.config()
-  local wk = require "which-key"
-
-  local options = {
-    marks = false,
-    registers = false,
+  opts = {
+    marks = true,
+    registers = true,
     ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
     show_help = true, -- show help message on the command line when the popup is visible
     triggers = "auto", -- automatically setup triggers
@@ -38,16 +33,12 @@ function M.config()
       align = "left", -- align columns left, center or right
     },
 
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
+    -- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
 
     triggers_blacklist = {
       -- list of mode / prefixes that should never be hooked by WhichKey
       i = { "j", "k" },
       v = { "j", "k" },
     },
-  }
-
-  wk.setup(options)
-end
-
-return M
+  },
+}

@@ -4,6 +4,14 @@ local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+-- local function rename()
+--   if pcall(require, "inc_rename") then
+--     return ":IncRename " .. vim.fn.expand "<cword>"
+--   else
+--     vim.lsp.buf.rename()
+--   end
+-- end
+
 local function show_documentation()
   local filetype = vim.bo.filetype
   if vim.tbl_contains({ "vim", "help" }, filetype) then
@@ -65,7 +73,6 @@ M.general = {
     -- new buffer
     ["<S-b>"] = { "<cmd> enew <CR>", "new buffer" },
 
-    ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Resize with arrows
@@ -111,35 +118,11 @@ M.general = {
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
     ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', opts = { silent = true } },
 
-    ["f"] = { "<cmd> HopWord<CR>", "hop word" },
     ["<A-cr>"] = { "<cmd>Lspsaga code_action<CR>", "   code action menu" },
     ["<C-a>"] = { "<ESC> ggVG<CR>", "礪  select all" },
     -- Better indenting
     ["<"] = { "<gv", "   dedent" },
     [">"] = { ">gv", "   indent" },
-  },
-
-  x = {
-    ["f"] = { "<cmd> HopWord<CR>", "hop word" },
-  },
-}
-
-M.comment = {
-  -- toggle comment in both modes
-  n = {
-    ["<leader>/"] = {
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      "   toggle comment",
-    },
-  },
-
-  v = {
-    ["<leader>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "   toggle comment",
-    },
   },
 }
 
@@ -202,12 +185,6 @@ M.lspconfig = {
   },
 }
 
-M.nvimtree = {
-  n = {
-    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "   toggle nvimtree" },
-  },
-}
-
 M.telescope = {
   v = {
     ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
@@ -221,11 +198,6 @@ M.telescope = {
     ["<leader>sr"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
     ["<leader>tT"] = { "<cmd> Telescope themes <CR>", "   themes" },
     ["<leader>sp"] = { "<cmd> Telescope project <CR>", "   show projects" },
-    ["<leader>ss"] = { "<cmd>lua require('spectre').open()<cr>", "﯒   find & replace (Spectre)" },
-    ["<leader>sS"] = {
-      "<cmd>lua require('spectre').open_file_search()<cr>",
-      "﯒   replace in current file (Spectre)",
-    },
   },
 }
 
@@ -295,15 +267,6 @@ M.whichkey = {
 }
 
 M.git = {
-  v = {
-    ["<leader>gY"] = {
-      function()
-        -- require("gitlinker.actions").copy_to_clipboard()
-        require("gitlinker").get_buf_range_url("v", { action_callback = require("gitlinker.actions").open_in_browser })
-      end,
-      "   open lines in browser",
-    },
-  },
   n = {
     ["<leader>gd"] = { "<cmd> Gitsigns diffthis HEAD <CR>", "   git diff" },
     ["<leader>gD"] = { "<CMD>lua require('git.blame').blame()<CR>", "ﲀ   git blame" },
@@ -314,19 +277,6 @@ M.git = {
     ["<leader>gb"] = { "<cmd> LazyGitBranch <CR>", "   git branches" },
     ["<leader>gs"] = { "<cmd> LazyGitStatus <CR>", "   git status" },
     ["<leader>gl"] = { "<cmd> LazyGitLog <CR>", "   git log" },
-    ["<leader>gY"] = {
-      function()
-        -- require("gitlinker.actions").copy_to_clipboard()
-        require("gitlinker").get_buf_range_url("n", { action_callback = require("gitlinker.actions").open_in_browser })
-      end,
-      "   open line in browser",
-    },
-    ["<leader>gB"] = {
-      function()
-        require("gitlinker").get_repo_url { action_callback = require("gitlinker.actions").open_in_browser }
-      end,
-      "   open repo in browser",
-    },
   },
 }
 

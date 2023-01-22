@@ -1,18 +1,17 @@
-local M = {
+return {
   "windwp/nvim-spectre",
-  event = "BufRead",
+  keys = {
+    { "<leader>sf", "<cmd>lua require('spectre').open()<cr>", desc = "﯒   find & replace (Spectre)" },
+    {
+      "<leader>sF",
+      "<cmd>lua require('spectre').open_file_search()<cr>",
+      desc = "﯒   replace in current file (Spectre)",
+    },
+  },
+  cmd = { "Spectre" },
   dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
-}
-
-function M.config()
-  local spectre = require "spectre"
-
-  local options = {
+  opts = {
     line_sep_start = "┌--------------------------------------------------------",
     line_sep = "└--------------------------------------------------------",
-  }
-
-  spectre.setup(options)
-end
-
-return M
+  },
+}

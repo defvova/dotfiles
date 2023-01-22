@@ -1,15 +1,51 @@
 return {
   {
     "dinhhuy258/git.nvim",
+    event = "VeryLazy",
     -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
+    -- keys = {
+    --   {
+    --     "<leader>gD",
+    --     "<CMD>lua require('git.blame').blame()<CR>",
+    --     desc = "ﲀ   git blame",
+    --   },
+    -- },
     config = true,
   },
   { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
   {
     "ruifm/gitlinker.nvim",
     keys = {
-      "<leader>gY",
-      "<leader>gB",
+      {
+        "<leader>gY",
+        function()
+          -- require("gitlinker.actions").copy_to_clipboard()
+          require("gitlinker").get_buf_range_url(
+            "n",
+            { action_callback = require("gitlinker.actions").open_in_browser }
+          )
+        end,
+        desc = "   open line in browser",
+      },
+      {
+        "<leader>gY",
+        function()
+          -- require("gitlinker.actions").copy_to_clipboard()
+          require("gitlinker").get_buf_range_url(
+            "v",
+            { action_callback = require("gitlinker.actions").open_in_browser }
+          )
+        end,
+        desc = "   open lines in browser",
+        mode = "v",
+      },
+      {
+        "<leader>gB",
+        function()
+          require("gitlinker").get_repo_url { action_callback = require("gitlinker.actions").open_in_browser }
+        end,
+        desc = "   open repo in browser",
+      },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -40,7 +76,9 @@ return {
   {
     "phaazon/hop.nvim",
     name = "hop",
-    keys = { "f" },
+    keys = {
+      { "f", "<cmd> HopWord<CR>", desc = "hop word", mode = { "n", "x", "v" } },
+    },
     cmd = {
       "HopWord",
       "HopChar1",
@@ -58,7 +96,7 @@ return {
   },
   {
     "narutoxy/dim.lua",
-    event = "VeryLazy",
+    event = "BufReadPre",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "neovim/nvim-lspconfig",
@@ -67,7 +105,7 @@ return {
   },
   {
     "ur4ltz/surround.nvim",
-    event = "VeryLazy",
+    keys = { { "s", mode = { "v", "x" } } },
     opts = {
       mappings_style = "sandwich",
     },

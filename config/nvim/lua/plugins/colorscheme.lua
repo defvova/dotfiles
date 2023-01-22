@@ -1,5 +1,5 @@
 return {
-  { "sainnhe/edge", lazy = false },
-  { "rebelot/kanagawa.nvim", lazy = false },
+  { "sainnhe/edge", lazy = true },
+  { "rebelot/kanagawa.nvim", lazy = true },
   -- { "EdenEast/nightfox.nvim" }
 }

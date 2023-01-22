@@ -1,7 +1,19 @@
 local M = {
   "numToStr/Comment.nvim",
   keys = {
-    { "gc", "gb", desc = "Comment/Uncomment" },
+    {
+      "<leader>/",
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      desc = "   toggle comment",
+    },
+    {
+      "<leader>/",
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      desc = "   toggle comment",
+      mode = "v",
+    },
   },
 }
 

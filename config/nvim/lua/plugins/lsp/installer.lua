@@ -44,8 +44,8 @@ function M.setup(servers, options)
       "rubocop",
       "prettier",
     },
-    automatic_installation = true,
-    automatic_setup = true, -- Recommended, but optional
+    automatic_installation = false,
+    automatic_setup = false, -- Recommended, but optional
   }
   require("mason-null-ls").setup_handlers()
 

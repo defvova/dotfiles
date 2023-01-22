@@ -1,7 +1,6 @@
 local M = {
   "karb94/neoscroll.nvim",
-  event = "WinScrolled",
-  keys = { "<C-u>", "<C-d>", "gg", "G" },
+  keys = { "<C-u>", "<C-d>", "<C-f>", "<C-b>" },
 }
 
 function M.config()

@@ -1,6 +1,7 @@
 local M = {
   "rafamadriz/friendly-snippets",
-  event = "InsertEnter",
+  -- event = "InsertEnter",
+  event = "InsertCharPre",
   dependencies = {
     {
       "hrsh7th/nvim-cmp",

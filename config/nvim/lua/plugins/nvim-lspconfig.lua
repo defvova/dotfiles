@@ -1,10 +1,18 @@
 local M = {
   "neovim/nvim-lspconfig",
-  event = "VeryLazy",
+  -- event = "VeryLazy",
+  event = "BufReadPre",
   dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+    { "smjonas/inc-rename.nvim", config = true },
+    {
+      "williamboman/mason.nvim",
+      cmd = "Mason",
+      dependencies = {
+        "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+      },
+    },
     "princejoogie/tailwind-highlight.nvim",
     {
       "jose-elias-alvarez/null-ls.nvim",
@@ -105,7 +113,7 @@ function M.config()
         ["rust-analyzer"] = {
           cargo = { allFeatures = true },
           checkOnSave = {
-            command = "clippy",
+            command = "cargo clippy",
             extraArgs = { "--no-deps" },
           },
         },

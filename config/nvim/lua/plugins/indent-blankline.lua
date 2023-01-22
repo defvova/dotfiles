@@ -1,5 +1,6 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
+  enabled = false,
 }
 
 function M.config()

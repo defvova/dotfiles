@@ -1,6 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
-  cmd = { "ToggleTerm", "TermExec" },
+  cmd = { "ToggleTerm", "TermExec", "ToggleTermSendVisualLines" },
   opts = {
     size = 20,
     hide_numbers = true,

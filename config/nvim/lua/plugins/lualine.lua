@@ -55,7 +55,14 @@ function M.config()
         },
       },
       lualine_c = {
-        { lsp_client, icon = " ", color = { fg = palette.accent, gui = "bold" } },
+        {
+          lsp_client,
+          icon = " ",
+          color = { fg = palette.accent, gui = "bold" },
+          on_click = function()
+            vim.cmd [[LspInfo]]
+          end,
+        },
       },
       lualine_x = {},
       lualine_y = { "progress" },
