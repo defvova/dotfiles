@@ -15,18 +15,22 @@ g.toggle_theme_icon = "   "
 opt.termguicolors = true
 
 opt.swapfile = false
-opt.wildignore = "*/cache/*,*/tmp/*"
 
 g.rust_clip_command = "pbcopy"
 
--- opt.splitkeep = "screen" -- keeps the same screen screen lines in all split windows and is the most "stable" to me.
--- opt.splitkeep = "topline" -- keeps the same topline as an alternative.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 opt.laststatus = 3 -- global statusline
-opt.showmode = false
 
 opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cul = true -- cursor line
+-- opt.confirm = true -- confirm to save changes before exiting modified buffer
+opt.formatoptions = "jcroqlnt" -- tcqj
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.hidden = true -- Enable modified buffers in background
 
 -- Indenting
 opt.expandtab = true
@@ -45,16 +49,20 @@ opt.mouse = "a"
 opt.relativenumber = true
 opt.numberwidth = 2
 opt.ruler = false
+opt.guifont = "FiraCode Nerd Font:h14"
 
 -- disable nvim intro
 opt.shortmess:append "sI"
 
+opt.showmode = false -- dont show mode since we have a statusline
+opt.spelllang = { "en" }
 opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true
-opt.timeoutlen = 400
+opt.timeoutlen = 300
 opt.undofile = true
+opt.undolevels = 10000
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
@@ -62,6 +70,14 @@ opt.updatetime = 250
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
+
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.wildignore = "*/cache/*,*/tmp/*"
+
+if vim.fn.has "nvim-0.9.0" == 1 then
+  opt.splitkeep = "screen"
+  opt.shortmess = "filnxtToOFWIcC"
+end
 
 -- disable some builtin vim plugins
 local default_plugins = {
@@ -103,5 +119,5 @@ local default_providers = {
 }
 
 for _, provider in ipairs(default_providers) do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
+  g["loaded_" .. provider .. "_provider"] = 0
 end

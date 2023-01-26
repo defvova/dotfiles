@@ -32,7 +32,6 @@ local M = {
         "mattn/webapi-vim",
         "felipec/vim-sanegx",
         "rust-lang/rust.vim",
-        "nvim-lua/plenary.nvim",
         {
           "rcarriga/nvim-dap-ui",
           dependencies = { "mfussenegger/nvim-dap", "jayp0521/mason-nvim-dap.nvim" },

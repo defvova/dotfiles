@@ -1,14 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = "BufReadPre",
+  event = "BufReadPost",
   build = ":TSUpdate",
   dependencies = {
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "BufReadPost",
-    },
-    { "RRethy/nvim-treesitter-textsubjects", event = "VeryLazy" },
-    { "p00f/nvim-ts-rainbow", event = { "CursorHold", "CursorHoldI" } },
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    "RRethy/nvim-treesitter-textsubjects",
+    "p00f/nvim-ts-rainbow",
   },
   opts = {
     ensure_installed = {

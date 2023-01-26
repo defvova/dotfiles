@@ -1,6 +1,12 @@
+-- return {
+--   "glepnir/dashboard-nvim",
+--   lazy = false,
+-- }
+
 local M = {
   "goolord/alpha-nvim",
-  lazy = false,
+  event = "VimEnter",
+  -- enabled = true,
 }
 
 function M.config()

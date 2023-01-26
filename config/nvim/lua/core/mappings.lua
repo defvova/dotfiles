@@ -47,7 +47,6 @@ M.general = {
     ["tt"] = { "<cmd>$tabnew<CR>", "new tab" },
     ["<C-S-h>"] = { "<cmd>-tabmove<CR>", "move current tab to prev position" },
     ["<C-S-l>"] = { "<cmd>+tabmove<CR>", "move current tab to next position" },
-    ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "window left" },
@@ -92,7 +91,6 @@ M.general = {
       "<cmd> tabp<CR>",
       "  goto prev tab",
     },
-    [";"] = { "<cmd> Telescope buffers<CR>", "﬘   open buffers" },
     ["<leader>Fc"] = {
       function()
         require("core.cht").cht()
@@ -185,22 +183,6 @@ M.lspconfig = {
   },
 }
 
-M.telescope = {
-  v = {
-    ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
-    ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
-  },
-  n = {
-    ["<leader>st"] = { "<cmd> Telescope live_grep <CR>", "   live grep" },
-    ["<leader>sK"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
-    ["<leader>sC"] = { "<cmd> Telescope commands <CR>", "   show commands" },
-    ["<leader>f"] = { "<cmd> Telescope find_files <CR>", "   find files" },
-    ["<leader>sr"] = { "<cmd> Telescope oldfiles <CR>", "   recent files" },
-    ["<leader>tT"] = { "<cmd> Telescope themes <CR>", "   themes" },
-    ["<leader>sp"] = { "<cmd> Telescope project <CR>", "   show projects" },
-  },
-}
-
 M.toggleterm = {
   t = {
     -- toggle in terminal mode
@@ -258,9 +240,6 @@ M.whichkey = {
     ["<leader>;"] = { "<cmd> Alpha <CR>", "舘  dashboard" },
     ["<leader>w"] = { "<cmd> w! <CR>", "﬚   save file" },
     ["<leader>d"] = { "<cmd>SymbolsOutline<CR>", "   toggle symbols outline" },
-    ["<leader>Sc"] = { "<cmd>lua require('persistence').load()<cr>", "ﭯ   restore last session for current dir" },
-    ["<leader>Sl"] = { "<cmd>lua require('persistence').load({ last = true })<cr>", "ﮦ   restore last session" },
-    ["<leader>SQ"] = { "<cmd>lua require('persistence').stop()<cr>", "   quit without saving session" },
     ["<leader>q"] = { "<cmd>lua require('core.utils').smart_quit()<CR>", "   quit" },
     ["<leader>up"] = { "<cmd> Lazy sync <CR>", "異 update plugins" },
   },

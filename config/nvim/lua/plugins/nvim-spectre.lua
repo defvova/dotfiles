@@ -9,7 +9,6 @@ return {
     },
   },
   cmd = { "Spectre" },
-  dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
   opts = {
     line_sep_start = "┌--------------------------------------------------------",
     line_sep = "└--------------------------------------------------------",

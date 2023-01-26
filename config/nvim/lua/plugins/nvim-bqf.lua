@@ -1,6 +1,5 @@
 local M = {
   "kevinhwang91/nvim-bqf",
-  -- event = { "CmdlineEnter", "QuickfixCmdPre" },
   ft = "qf",
   dependencies = { "junegunn/fzf" },
   build = function()

@@ -4,25 +4,25 @@ vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "da
 
 local custom_config = require "core.custom"
 
--- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
-
--- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
-  end,
-})
-
 -- autocmds
 local autocmd = vim.api.nvim_create_autocmd
 local api = vim.api
 
-vim.api.nvim_create_autocmd("OptionSet", {
+-- Check if we need to reload the file when it changed
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+
+-- go to last loc when opening a buffer
+autocmd("BufReadPost", {
+  callback = function()
+    local mark = api.nvim_buf_get_mark(0, '"')
+    local lcount = api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+autocmd("OptionSet", {
   pattern = "background",
   callback = function()
     -- vim.cmd("packadd " .. custom_config.current_packer_theme())
@@ -65,23 +65,27 @@ autocmd({ "BufRead", "BufWritePre", "FileWritePre" }, {
   command = [[silent! %s/[\r \t]\+$//]],
 })
 
+-- Highlight on yank
 autocmd("TextYankPost", {
-  pattern = "*",
-  command = [[silent! lua vim.highlight.on_yank()]],
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- Equalize window dimensions when resizing vim window
-autocmd("VimResized", {
-  pattern = "*",
-  command = [[tabdo wincmd =]],
+autocmd({ "VimResized" }, {
+  callback = function()
+    vim.cmd "tabdo wincmd ="
+  end,
 })
 
 -- windows to close
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   pattern = {
     "git",
     "help",
     "lspinfo",
+    "notify",
     "man",
     "qf",
     "spectre_panel",

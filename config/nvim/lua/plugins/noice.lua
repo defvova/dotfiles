@@ -1,25 +1,44 @@
-local M = {
+return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  dependencies = {
-    "MunifTanjim/nui.nvim",
+  keys = {
+    {
+      "<c-f>",
+      function()
+        if not require("noice.lsp").scroll(4) then
+          return "<c-f>"
+        end
+      end,
+      silent = true,
+      expr = true,
+      desc = "Scroll forward",
+    },
+    {
+      "<c-b>",
+      function()
+        if not require("noice.lsp").scroll(-4) then
+          return "<c-b>"
+        end
+      end,
+      silent = true,
+      expr = true,
+      desc = "Scroll backward",
+    },
   },
-}
-
-function M.config()
-  local noice = require "noice"
-
-  local options = {
+  opts = {
     notify = {
-      enabled = false,
+      enabled = true,
     },
     messages = {
-      enabled = false,
+      enabled = true,
     },
     popupmenu = {
       enabled = false,
     },
     lsp = {
+      progress = {
+        enabled = false,
+      },
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
@@ -33,9 +52,5 @@ function M.config()
       inc_rename = true, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = true, -- add a border to hover docs and signature help
     },
-  }
-
-  noice.setup(options)
-end
-
-return M
+  },
+}

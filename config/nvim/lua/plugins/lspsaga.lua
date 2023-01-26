@@ -1,7 +1,11 @@
 return {
   "glepnir/lspsaga.nvim",
-  cmd = { "Lspsaga" },
+  event = "BufReadPre",
   opts = {
+    ui = {
+      colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
+      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+    },
     lightbulb = {
       enable = false,
       enable_in_insert = true,

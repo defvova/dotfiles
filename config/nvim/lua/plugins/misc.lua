@@ -47,9 +47,6 @@ return {
         desc = "   open repo in browser",
       },
     },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
   },
   {
     "mg979/vim-visual-multi",
@@ -62,9 +59,6 @@ return {
   -- {
   --   "filipdutescu/renamer.nvim",
   --   event = "VeryLazy",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
   --   config = function()
   --     require("renamer").setup()
   --   end,
@@ -87,12 +81,13 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
     cmd = { "TodoTrouble", "TodoTelescope" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    event = "BufReadPost",
     config = true,
+    keys = {
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+    },
   },
   {
     "narutoxy/dim.lua",
@@ -113,7 +108,6 @@ return {
   {
     "saecki/crates.nvim",
     event = { "BufReadPre Cargo.toml" },
-    dependencies = "nvim-lua/plenary.nvim",
     opts = {
       null_ls = {
         enabled = true,
@@ -126,7 +120,30 @@ return {
     event = "BufReadPre",
     opts = {
       dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
-      options = { "buffers", "curdir", "tabpages", "winsize" },
+      options = { "buffers", "curdir", "tabpages", "winsize", "help" },
+    },
+    keys = {
+      {
+        "<leader>Sc",
+        function()
+          require("persistence").load()
+        end,
+        desc = "ﭯ   restore last session for current dir",
+      },
+      {
+        "<leader>Sl",
+        function()
+          require("persistence").load { last = true }
+        end,
+        desc = "ﮦ   restore last session",
+      },
+      {
+        "<leader>SQ",
+        function()
+          require("persistence").stop()
+        end,
+        desc = "   quit without saving session",
+      },
     },
   },
   {
@@ -151,10 +168,10 @@ return {
   {
     "booperlv/nvim-gomove",
     keys = {
-      "<A-h>",
-      "<A-j>",
-      "<A-k>",
-      "<A-l>",
+      { "<A-h>", mode = { "n", "x", "v" } },
+      { "<A-j>", mode = { "n", "x", "v" } },
+      { "<A-k>", mode = { "n", "x", "v" } },
+      { "<A-l>", mode = { "n", "x", "v" } },
     },
     config = true,
   },
@@ -210,4 +227,10 @@ return {
       },
     },
   },
+
+  -- library used by other plugins
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
+  { "MunifTanjim/nui.nvim" },
+  { "nvim-lua/popup.nvim" },
 }

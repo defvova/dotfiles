@@ -1,12 +1,7 @@
-local M = {
+return {
   "lewis6991/gitsigns.nvim",
   event = "BufReadPre",
-}
-
-function M.config()
-  local gitsigns = require "gitsigns"
-
-  local options = {
+  opts = {
     signcolumn = true,
     numhl = true,
     linehl = false,
@@ -38,9 +33,5 @@ function M.config()
       [9] = "₉",
       ["+"] = "₊",
     },
-  }
-
-  gitsigns.setup(options)
-end
-
-return M
+  },
+}
