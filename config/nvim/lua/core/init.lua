@@ -22,13 +22,16 @@ autocmd("BufReadPost", {
   end,
 })
 
-autocmd("OptionSet", {
-  pattern = "background",
-  callback = function()
-    -- vim.cmd("packadd " .. custom_config.current_packer_theme())
-    vim.cmd("colorscheme " .. custom_config.current_theme())
-  end,
-})
+-- autocmd("OptionSet", {
+--   pattern = "background",
+--   -- pattern = "*",
+--   callback = function()
+--     -- package.loaded["catppuccin"] = nil
+--     -- package.loaded["catppuccin.groups.integrations.feline"] = nil
+--     -- vim.cmd "Lazy load catppuccin"
+--     -- vim.cmd "colorscheme catppuccin"
+--   end,
+-- })
 
 -- dont list quickfix buffers
 autocmd("FileType", {

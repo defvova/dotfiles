@@ -4,7 +4,7 @@ M.ui = {
   toggle_mode = { "dark", "light" },
   theme_mode = "dark",
   light_theme = { "edge", "edge" },
-  dark_theme = { "kanagawa", "kanagawa.nvim" },
+  dark_theme = { "catppuccin", "catppuccin" },
 }
 
 M.current_theme = function()
