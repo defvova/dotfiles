@@ -1,7 +1,6 @@
 return {
   "feline-nvim/feline.nvim",
-  -- event = "BufReadPre",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = function()
     require("feline").setup {
       components = require("catppuccin.groups.integrations.feline").get(),
