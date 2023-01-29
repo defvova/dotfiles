@@ -90,12 +90,8 @@ return {
     },
   },
   {
-    "narutoxy/dim.lua",
+    "zbirenbaum/neodim",
     event = "BufReadPre",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "neovim/nvim-lspconfig",
-    },
     config = true,
   },
   {
