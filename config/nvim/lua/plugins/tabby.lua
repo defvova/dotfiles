@@ -1,6 +1,6 @@
 return {
   "nanozuki/tabby.nvim",
-  event = "BufReadPre",
+  event = { "BufReadPre", "BufAdd", "BufNewFile" },
   config = function()
     local palette = require("core.theme").palette
     local theme = {

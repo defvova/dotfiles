@@ -1,6 +1,6 @@
 return {
   "glepnir/lspsaga.nvim",
-  event = "BufReadPre",
+  event = { "BufReadPost", "BufAdd", "BufNewFile" },
   opts = {
     ui = {
       colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),

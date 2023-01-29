@@ -1,6 +1,7 @@
 local M = {
   "norcalli/nvim-colorizer.lua",
-  event = "VeryLazy",
+  -- event = "VeryLazy",
+  ft = { "lua", "css", "html", "sass", "less", "typescriptreact" },
 }
 
 function M.config()
