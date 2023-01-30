@@ -27,6 +27,7 @@
     - frum
     - fd
     - so
+    - git-delta
 
 - create:
     - ~/.config/nvim
