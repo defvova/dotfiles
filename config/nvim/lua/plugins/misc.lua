@@ -1,5 +1,9 @@
 return {
   {
+    "chrisbra/csv.vim",
+    ft = "csv",
+  },
+  {
     "dinhhuy258/git.nvim",
     event = "VeryLazy",
     -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
@@ -91,7 +95,8 @@ return {
   },
   {
     "zbirenbaum/neodim",
-    event = "BufReadPre",
+    -- event = "BufReadPre",
+    event = "LspAttach",
     config = true,
   },
   {

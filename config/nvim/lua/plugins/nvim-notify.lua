@@ -16,7 +16,7 @@ return {
     render = "compact",
     stages = "fade",
     timeout = 3000,
-    fps = 60,
+    fps = 30,
     ---@usage notifications with level lower than this would be ignored. [ERROR > WARN > INFO > DEBUG > TRACE]
     level = "WARN",
     max_height = function()
