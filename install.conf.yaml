@@ -28,6 +28,7 @@
     - fd
     - so
     - git-delta
+    - gnu-sed
 
 - create:
     - ~/.config/nvim
