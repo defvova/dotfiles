@@ -10,8 +10,8 @@ return {
     },
     opts = {
       history = true,
-      -- updateevents = "TextChanged,TextChangedI",
-      delete_check_events = "TextChanged",
+      updateevents = "TextChanged,TextChangedI",
+      -- delete_check_events = "TextChanged",
     },
     config = function(_, opts)
       local luasnip = require "luasnip"
@@ -30,7 +30,8 @@ return {
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
+      "lukas-reineke/cmp-rg",
+      { "hrsh7th/cmp-nvim-lua", ft = "lua" },
       -- "ray-x/cmp-treesitter",
     },
     config = function()
@@ -64,30 +65,37 @@ return {
           end,
         },
         formatting = {
-          format = require("lspkind").cmp_format {
-            mode = "symbol_text",
-            preset = "codicons",
-            maxwidth = 50,
-          },
+          -- format = require("lspkind").cmp_format {
+          --   mode = "symbol_text",
+          --   preset = "codicons",
+          --   maxwidth = 50,
+          -- },
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50, preset = "codicons" })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            -- kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+            return kind
+          end,
         },
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-Space>"] = cmp.mapping.complete {},
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
           },
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            if cmp.visible() and has_words_before() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
             else
               fallback()
             end
@@ -111,12 +119,21 @@ return {
           }),
         },
         sources = {
-          { name = "luasnip", max_item_count = 5 },
-          { name = "nvim_lsp", max_item_count = 10 },
-          { name = "buffer", keyword_length = 3, max_item_count = 5 },
-          { name = "nvim_lua", max_item_count = 5 },
-          { name = "path" },
-          { name = "crates" },
+          { name = "path", priority_weight = 110 },
+          { name = "crates", priority_weight = 110 },
+          { name = "nvim_lsp", max_item_count = 10, priority_weight = 100 },
+          { name = "nvim_lua", max_item_count = 5, priority_weight = 90 },
+          { name = "luasnip", max_item_count = 5, priority_weight = 80 },
+          { name = "buffer", keyword_length = 3, max_item_count = 5, priority_weight = 70 },
+          {
+            name = "rg",
+            keyword_length = 5,
+            max_item_count = 5,
+            priority_weight = 60,
+            option = {
+              additional_arguments = "--smart-case --hidden",
+            },
+          },
         },
       }
 
