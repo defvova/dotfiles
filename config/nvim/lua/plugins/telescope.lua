@@ -22,14 +22,6 @@ return {
     { "<leader>sC", "<cmd> Telescope commands <CR>", "   show commands", mode = "v" },
   },
   opts = {
-    extensions = {
-      fzf = {
-        fuzzy = false,
-        override_generic_sorter = true,
-        override_file_sorter = true,
-        case_mode = "smart_case",
-      },
-    },
     defaults = {
       prompt_prefix = "   ",
       selection_caret = "  ",
@@ -46,6 +38,18 @@ return {
       set_env = { ["COLORTERM"] = "truecolor" },
       mappings = {},
     },
+    pickers = {
+      find_files = {
+        results_title = false,
+        previewer = false,
+        layout_config = {
+          width = 80,
+        },
+      },
+    },
+    extensions = {
+      fzf = {},
+    },
   },
   config = function(_, opts)
     local extensions_list = {
@@ -56,15 +60,7 @@ return {
     }
     local telescope = require "telescope"
     local actions = require "telescope.actions"
-    local previewers = require "telescope.previewers"
-    local sorters = require "telescope.sorters"
 
-    opts.defaults.file_previewer = previewers.vim_buffer_cat.new
-    opts.defaults.grep_previewer = previewers.vim_buffer_vimgrep.new
-    opts.defaults.qflist_previewer = previewers.vim_buffer_qflist.new
-    opts.defaults.buffer_previewer_maker = previewers.buffer_previewer_maker
-    opts.defaults.file_sorter = sorters.get_fuzzy_file
-    opts.defaults.generic_sorter = sorters.get_generic_fuzzy_sorter
     opts.defaults.mappings.n = { ["q"] = actions.close }
     telescope.setup(opts)
 
