@@ -41,12 +41,12 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("BufUnload", {
-  buffer = 0,
-  callback = function()
-    vim.opt.laststatus = 3
-  end,
-})
+-- autocmd("BufUnload", {
+--   buffer = 0,
+--   callback = function()
+--     vim.opt.laststatus = 3
+--   end,
+-- })
 
 -- Don't auto commenting new lines
 autocmd("BufEnter", {

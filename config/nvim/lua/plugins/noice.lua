@@ -30,10 +30,10 @@ return {
       enabled = true,
     },
     messages = {
-      enabled = true,
+      enabled = false,
     },
     popupmenu = {
-      enabled = false,
+      backend = "cmp",
     },
     lsp = {
       progress = {
