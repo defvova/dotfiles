@@ -10,7 +10,16 @@ return {
   },
   cmd = { "Spectre" },
   opts = {
+    open_cmd = "new",
+    is_insert_mode = true,
     line_sep_start = "┌--------------------------------------------------------",
     line_sep = "└--------------------------------------------------------",
+    mapping = {
+      ["send_to_qf"] = {
+        map = "<leader>q",
+        cmd = "<cmd>close<CR>",
+        desc = "close spectre",
+      },
+    },
   },
 }
