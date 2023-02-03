@@ -7,79 +7,65 @@ return {
       local datetime = os.date "%d-%m-%Y %H:%M:%S"
       local stats = require("lazy").stats()
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-      local plugins_text = " ⚡Neovim loaded "
+      local plugins_text = "⚡Neovim loaded "
           .. stats.count
           .. " plugins in "
           .. ms
           .. "ms"
-          .. "   v"
+          .. "     v"
           .. vim.version().major
           .. "."
           .. vim.version().minor
           .. "."
           .. vim.version().patch
-          .. "   "
+          .. "     "
           .. datetime
 
       local fortune = require "core.fortune"
       local quote = fortune()
 
       table.insert(quote, 1, plugins_text)
+      table.insert(quote, 1, "")
       return quote
     end
 
     local opts = {
-      theme = "doom",
+      theme = "hyper",
       hide = {
         tabline = false,
       },
       config = {
-        header = {
-          "",
-          "",
-          "      Glory to Ukraine",
-          "",
-          "",
-        },
         week_header = {
-          enable = false,
+          enable = true,
+          -- concat = "",
+          append = { "", "GLORY TO UKRAINE" },
         },
-        center = {
+        packages = { enable = false },
+        shortcut = {
+          { desc = " Update", group = "@property", action = "Lazy update", key = "u" },
           {
-            icon = "  ",
-            desc = "Find File",
-            action = "Telescope find_files find_command=rg,--hidden,--files",
-            key = "SPC f  ",
+            desc = " Files",
+            group = "Label",
+            action = "Telescope find_files",
+            key = "f",
           },
           {
-            icon = "  ",
-            desc = "Recently opened files",
-            action = "Telescope oldfiles",
-            key = "SPC s o",
-          },
-          {
-            icon = "  ",
-            desc = "Find Word",
-            action = "Telescope live_grep",
-            key = "SPC s t",
-          },
-          {
-            icon = "  ",
-            desc = "Find Projects",
+            desc = " Projects",
+            group = "DiagnosticHint",
             action = "Telescope project",
-            key = "SPC s p",
+            key = "p",
           },
           {
-            icon = "  ",
-            desc = "Restore last session",
-            key = "SPC S l",
+            desc = " Last session",
+            group = "DiagnosticHint",
             action = "lua require('persistence').load({ last = true })",
+            key = "r",
           },
           {
-            icon = "  ",
-            desc = "Open Personal dotfiles",
+            desc = " Dotfiles",
+            group = "Number",
             action = "e $MYVIMRC | :cd %:p:h",
-            key = "SPC u s",
+            key = "d",
           },
         },
       },
