@@ -18,8 +18,10 @@ alias df='duf'
 alias docker='podman'
 alias docker-compose='podman-compose'
 alias reload='exec fish'
-alias speedtest='networkquality'
+# alias speedtest='networkquality'
+alias speedtest='speedtest-cli'
 alias weather='curl wttr.in/cherkasy'
+alias youtube='youtube-dl'
 
 function npm-login
   if grep -q "codeartifact" ~/.npmrc

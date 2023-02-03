@@ -29,6 +29,9 @@
     - so
     - git-delta
     - gnu-sed
+    - speedtest-cli
+    - youtube-dl
+    - mplayer
 
 - create:
     - ~/.config/nvim
