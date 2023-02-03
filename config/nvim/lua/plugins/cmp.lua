@@ -2,6 +2,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     event = "InsertEnter",
+    build = "make install_jsregexp",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -11,7 +12,6 @@ return {
     opts = {
       history = true,
       updateevents = "TextChanged,TextChangedI",
-      -- delete_check_events = "TextChanged",
     },
     config = function(_, opts)
       local luasnip = require "luasnip"
@@ -23,7 +23,7 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-buffer",
+      -- "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "onsails/lspkind-nvim",
@@ -32,7 +32,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "lukas-reineke/cmp-rg",
       { "hrsh7th/cmp-nvim-lua", ft = "lua" },
-      -- "ray-x/cmp-treesitter",
+      "ray-x/cmp-treesitter",
     },
     config = function()
       local cmp = require "cmp"
@@ -47,13 +47,10 @@ return {
       end
 
       local options = {
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
         completion = {
           completeopt = "menu,menuone,noinsert,noselect",
         },
+        preselect = cmp.PreselectMode.None,
         experimental = {
           ghost_text = {
             hl_group = "LspCodeLens",
@@ -65,20 +62,21 @@ return {
           end,
         },
         formatting = {
-          -- format = require("lspkind").cmp_format {
-          --   mode = "symbol_text",
-          --   preset = "codicons",
-          --   maxwidth = 50,
-          -- },
-          fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50, preset = "codicons" })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. (strings[1] or "") .. " "
-            -- kind.menu = "    (" .. (strings[2] or "") .. ")"
-
-            return kind
-          end,
+          fields = { "abbr", "kind", "menu" },
+          format = require("lspkind").cmp_format {
+            mode = "symbol_text",
+            preset = "codicons",
+            menu = {
+              buffer = "[Buffer]",
+              rg = "[RG]",
+              nvim_lsp = "[LSP]",
+              luasnip = "[LuaSnip]",
+              nvim_lua = "[Lua]",
+              treesitter = "[TS]",
+              path = "[Path]",
+              crates = "[Crates]",
+            },
+          },
         },
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -93,7 +91,7 @@ return {
           },
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() and has_words_before() then
-              cmp.select_next_item()
+              cmp.select_next_item { behavior = cmp.SelectBehavior, count = 1 }
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
@@ -106,7 +104,7 @@ return {
           }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_prev_item()
+              cmp.select_prev_item { behavior = cmp.SelectBehavior, count = 1 }
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
@@ -120,11 +118,11 @@ return {
         },
         sources = {
           { name = "path", priority_weight = 110 },
-          { name = "crates", priority_weight = 110 },
+          { name = "treesitter", max_item_count = 10, priority_weight = 110 },
           { name = "nvim_lsp", max_item_count = 10, priority_weight = 100 },
           { name = "nvim_lua", max_item_count = 5, priority_weight = 90 },
           { name = "luasnip", max_item_count = 5, priority_weight = 80 },
-          { name = "buffer", keyword_length = 3, max_item_count = 5, priority_weight = 70 },
+          -- { name = "buffer", keyword_length = 3, max_item_count = 5, priority_weight = 70 },
           {
             name = "rg",
             keyword_length = 5,
@@ -138,6 +136,11 @@ return {
       }
 
       cmp.setup(options)
+      cmp.setup.filetype({ "rust", "rs", "toml" }, {
+        sources = {
+          { name = "crates", priority_weight = 110 },
+        },
+      })
 
       -- Use cmdline & path source for ':'.
       cmp.setup.cmdline(":", {
