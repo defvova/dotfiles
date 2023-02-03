@@ -26,5 +26,10 @@ return {
     local palette = require("core.theme").palette
     vim.api.nvim_set_hl(0, "IlluminatedWordText", { ctermbg = 0, bg = palette.bg_cursor_hl, fg = palette.fg_cursor_hl })
     vim.api.nvim_set_hl(0, "IlluminatedWordRead", { ctermbg = 0, bg = palette.bg_cursor_hl, fg = palette.fg_cursor_hl })
+    vim.api.nvim_set_hl(
+      0,
+      "IlluminatedWordWrite",
+      { ctermbg = 0, bg = palette.bg_cursor_hl, fg = palette.fg_cursor_hl }
+    )
   end,
 }
