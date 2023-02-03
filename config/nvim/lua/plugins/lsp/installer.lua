@@ -49,16 +49,16 @@ function M.setup(servers, options)
   }
   require("mason-null-ls").setup_handlers()
 
-  require("mason-nvim-dap").setup {
-    automatic_installation = true,
-    automatic_setup = true,
-    ensure_installed = {
-      "codelldb",
-      "node2",
-      "chrome",
-    },
-  }
-  require("mason-nvim-dap").setup_handlers()
+  -- require("mason-nvim-dap").setup {
+  --   automatic_installation = true,
+  --   automatic_setup = true,
+  --   ensure_installed = {
+  --     "codelldb",
+  --     "node2",
+  --     "chrome",
+  --   },
+  -- }
+  -- require("mason-nvim-dap").setup_handlers()
 
   require("mason-lspconfig").setup {
     ensure_installed = vim.tbl_keys(servers),

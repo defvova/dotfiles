@@ -32,13 +32,13 @@ local M = {
         "mattn/webapi-vim",
         "felipec/vim-sanegx",
         "rust-lang/rust.vim",
-        {
-          "rcarriga/nvim-dap-ui",
-          dependencies = { "mfussenegger/nvim-dap", "jayp0521/mason-nvim-dap.nvim" },
-          config = function()
-            require("dapui").setup()
-          end,
-        },
+        -- {
+        --   "rcarriga/nvim-dap-ui",
+        --   dependencies = { "mfussenegger/nvim-dap", "jayp0521/mason-nvim-dap.nvim" },
+        --   config = function()
+        --     require("dapui").setup()
+        --   end,
+        -- },
       },
     },
   },
@@ -72,29 +72,6 @@ function M.config()
   end
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-  capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-  capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    labelDetailsSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = {
-      properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-      },
-    },
-  }
-
   C.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
   local options = {
