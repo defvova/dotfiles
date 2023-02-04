@@ -71,12 +71,28 @@ function M.config()
     require("lsp-format").on_attach(client)
   end
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  C.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+  C.capabilities = function()
+    local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if status_ok then
+      return cmp_nvim_lsp.default_capabilities()
+    end
+
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+      properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits",
+      },
+    }
+
+    return capabilities
+  end
 
   local options = {
     on_attach = C.on_attach,
-    capabilities = C.capabilities,
+    capabilities = C.capabilities(),
     root_dir = vim.loop.cwd,
     flags = {
       debounce_text_changes = 150,
@@ -142,11 +158,22 @@ function M.config()
     yamlls = {},
     bashls = {},
     emmet_ls = {},
+    cssls = {},
+    html = {},
     tsserver = {
       disable_formatting = true,
       debug = false,
       server = {
+        init_options = {
+          preferences = {
+            includeCompletionsWithSnippetText = true,
+            includeCompletionsForImportStatements = true,
+          },
+        },
         settings = {
+          completions = {
+            completeFunctionCalls = true,
+          },
           javascript = {
             inlayHints = {
               includeInlayEnumMemberValueHints = true,

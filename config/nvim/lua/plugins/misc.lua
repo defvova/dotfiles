@@ -157,9 +157,7 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
-    config = function()
-      require("symbols-outline").setup {}
-    end,
+    config = true,
   },
   {
     "m-demare/hlargs.nvim",
@@ -195,7 +193,6 @@ return {
       show_numbers = true, -- Enable 'number' for the window while peeking
       show_cursorline = true, -- Enable 'cursorline' for the window while peeking
     },
-    config = true,
   },
   {
     "windwp/nvim-ts-autotag",

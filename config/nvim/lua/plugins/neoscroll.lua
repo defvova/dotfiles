@@ -1,6 +1,7 @@
 local M = {
   "karb94/neoscroll.nvim",
-  enabled = false,
+  -- enabled = true,
+  event = "BufReadPost",
   keys = { "<C-u>", "<C-d>", "<C-f>", "<C-b>" },
 }
 
@@ -23,8 +24,8 @@ function M.config()
   neoscroll.setup(options)
 
   local t = {}
-  t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "25" } }
-  t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "25" } }
+  t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "85" } }
+  t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "85" } }
   t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "450" } }
   t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "450" } }
   t["<C-y>"] = { "scroll", { "-0.10", "false", "100" } }

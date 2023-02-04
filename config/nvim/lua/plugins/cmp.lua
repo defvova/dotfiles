@@ -77,6 +77,13 @@ return {
               crates = "[Crates]",
             },
           },
+          duplicates = {
+            buffer = 1,
+            rg = 1,
+            path = 1,
+            nvim_lsp = 0,
+            luasnip = 1,
+          },
         },
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -118,29 +125,31 @@ return {
         },
         sources = {
           { name = "path", priority_weight = 110 },
-          { name = "treesitter", max_item_count = 10, priority_weight = 110 },
+          -- { name = "treesitter", max_item_count = 5, priority_weight = 110 },
+          { name = "buffer", max_item_count = 5, priority_weight = 110 },
           { name = "nvim_lsp", max_item_count = 10, priority_weight = 100 },
-          { name = "nvim_lua", max_item_count = 5, priority_weight = 90 },
           { name = "luasnip", max_item_count = 5, priority_weight = 80 },
-          -- { name = "buffer", keyword_length = 3, max_item_count = 5, priority_weight = 70 },
-          {
-            name = "rg",
-            keyword_length = 5,
-            max_item_count = 5,
-            priority_weight = 60,
-            option = {
-              additional_arguments = "--smart-case --hidden",
-            },
-          },
+          -- {
+          --   name = "rg",
+          --   keyword_length = 5,
+          --   max_item_count = 10,
+          --   priority_weight = 60,
+          --   option = {
+          --     additional_arguments = "--smart-case --hidden",
+          --   },
+          -- },
         },
       }
 
+      if vim.o.ft == "lua" then
+        table.insert(options.sources, { name = "nvim_lua", max_item_count = 10, priority_weight = 100 })
+      end
+
+      if vim.o.ft == "toml" or vim.o.ft == "rust" then
+        table.insert(options.sources, { name = "crates", priority_weight = 110 })
+      end
+
       cmp.setup(options)
-      cmp.setup.filetype({ "rust", "rs", "toml" }, {
-        sources = {
-          { name = "crates", priority_weight = 110 },
-        },
-      })
 
       -- Use cmdline & path source for ':'.
       cmp.setup.cmdline(":", {

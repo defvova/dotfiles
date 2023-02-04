@@ -1,16 +1,11 @@
-local M = {
+return {
   "kevinhwang91/nvim-bqf",
   ft = "qf",
   dependencies = { "junegunn/fzf" },
   build = function()
     vim.fn["fzf#install"]()
   end,
-}
-
-function M.config()
-  local bqf = require "bqf"
-
-  local options = {
+  opts = {
     auto_enable = true,
     preview = {
       win_height = 12,
@@ -29,9 +24,9 @@ function M.config()
         extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
       },
     },
-  }
-
-  bqf.setup(options)
-end
-
-return M
+  },
+  config = function(_, opts)
+    local bqf = require "bqf"
+    bqf.setup(opts)
+  end,
+}
