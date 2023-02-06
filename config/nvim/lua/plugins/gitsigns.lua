@@ -1,6 +1,9 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
+  keys = {
+    { "<leader>gd", "<cmd> Gitsigns diffthis HEAD <CR>", desc = "   git diff" },
+  },
   opts = {
     signcolumn = true,
     numhl = true,

@@ -1,12 +1,13 @@
 return {
   "folke/which-key.nvim",
+  enabled = true,
   keys = "<leader>",
   opts = {
-    marks = true,
-    registers = true,
+    marks = false,
+    registers = false,
     ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-    show_help = true, -- show help message on the command line when the popup is visible
-    triggers = "auto", -- automatically setup triggers
+    show_help = false, -- show help message on the command line when the popup is visible
+    -- triggers = "auto", -- automatically setup triggers
     icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
       separator = "  ", -- symbol used between a key and it's label

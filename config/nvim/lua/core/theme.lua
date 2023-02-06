@@ -40,6 +40,8 @@ end
 
 local function catppuccin()
   local colors = require("catppuccin.palettes").get_palette()
+  vim.cmd "colorscheme catppuccin"
+  vim.opt.background = "dark"
 
   return {
     accent = colors.maroon,

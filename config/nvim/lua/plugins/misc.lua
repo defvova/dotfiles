@@ -1,20 +1,43 @@
 return {
   {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function(_, opts)
+      require("refactoring").setup(opts)
+      require("telescope").load_extension "refactoring"
+    end,
+    keys = {
+      {
+        "<leader>rr",
+        function()
+          require("telescope").extensions.refactoring.refactors()
+        end,
+        mode = { "v" },
+        desc = "Refactor",
+      },
+    },
+  },
+  {
     "chrisbra/csv.vim",
     ft = "csv",
   },
   {
     "dinhhuy258/git.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
-    -- keys = {
-    --   {
-    --     "<leader>gD",
-    --     "<CMD>lua require('git.blame').blame()<CR>",
-    --     desc = "ﲀ   git blame",
-    --   },
-    -- },
-    config = true,
+    keys = {
+      {
+        "<leader>gD",
+        "<CMD>lua require('git.blame').blame()<CR>",
+        desc = "ﲀ   git blame",
+      },
+    },
+    opts = {
+      default_mappings = false,
+    },
   },
   { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
   {
@@ -56,8 +79,8 @@ return {
     "mg979/vim-visual-multi",
     keys = {
       "<C-n>",
-      "<C-Up>",
-      "<C-Down>",
+      { "<C-Up>", mode = "i" },
+      { "<C-Down>", mode = "i" },
     },
   },
   -- {
@@ -107,47 +130,6 @@ return {
     },
   },
   {
-    "saecki/crates.nvim",
-    event = { "BufReadPre Cargo.toml" },
-    opts = {
-      null_ls = {
-        enabled = true,
-        name = "crates.nvim",
-      },
-    },
-  },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = {
-      dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
-      options = { "buffers", "curdir", "tabpages", "winsize", "help" },
-    },
-    keys = {
-      {
-        "<leader>Sc",
-        function()
-          require("persistence").load()
-        end,
-        desc = "ﭯ   restore last session for current dir",
-      },
-      {
-        "<leader>Sl",
-        function()
-          require("persistence").load { last = true }
-        end,
-        desc = "ﮦ   restore last session",
-      },
-      {
-        "<leader>SQ",
-        function()
-          require("persistence").stop()
-        end,
-        desc = "   quit without saving session",
-      },
-    },
-  },
-  {
     "andymass/vim-matchup",
     event = "VeryLazy",
     config = function()
@@ -157,6 +139,9 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
+    keys = {
+      { "<leader>d", "<cmd>SymbolsOutline<CR>", desc = "   toggle symbols outline" },
+    },
     config = true,
   },
   {

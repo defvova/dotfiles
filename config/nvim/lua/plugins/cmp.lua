@@ -23,16 +23,16 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      -- "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "onsails/lspkind-nvim",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "lukas-reineke/cmp-rg",
+      -- "lukas-reineke/cmp-rg",
       { "hrsh7th/cmp-nvim-lua", ft = "lua" },
-      "ray-x/cmp-treesitter",
+      -- "ray-x/cmp-treesitter",
     },
     config = function()
       local cmp = require "cmp"
@@ -80,9 +80,10 @@ return {
           duplicates = {
             buffer = 1,
             rg = 1,
-            path = 1,
-            nvim_lsp = 0,
+            nvim_lsp = 1,
             luasnip = 1,
+            treesitter = 1,
+            path = 1,
           },
         },
         mapping = {
@@ -124,11 +125,11 @@ return {
           }),
         },
         sources = {
-          { name = "path", priority_weight = 110 },
-          -- { name = "treesitter", max_item_count = 5, priority_weight = 110 },
-          { name = "buffer", max_item_count = 5, priority_weight = 110 },
-          { name = "nvim_lsp", max_item_count = 10, priority_weight = 100 },
-          { name = "luasnip", max_item_count = 5, priority_weight = 80 },
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
+          -- { name = "treesitter", max_item_count = 5, priority_weight = 1100 },
           -- {
           --   name = "rg",
           --   keyword_length = 5,

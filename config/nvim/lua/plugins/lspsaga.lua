@@ -2,10 +2,6 @@ return {
   "glepnir/lspsaga.nvim",
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   opts = {
-    ui = {
-      colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
-      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-    },
     lightbulb = {
       enable = false,
       enable_in_insert = true,
@@ -26,4 +22,11 @@ return {
       click_support = false,
     },
   },
+  config = function(_, opts)
+    opts.ui = {
+      colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
+      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+    }
+    require("lspsaga").setup(opts)
+  end,
 }

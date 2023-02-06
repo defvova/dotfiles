@@ -2,6 +2,10 @@ fish_vi_key_bindings
 
 set -U fish_greeting
 
+set -gx EDITOR (which nvim)
+set -gx VISUAL $EDITOR
+set -gx SUDO_EDITOR $EDITOR
+
 alias spotify='ncspot'
 alias lg='lazygit'
 alias ld='lazydocker'

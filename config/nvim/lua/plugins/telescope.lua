@@ -2,6 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
   dependencies = {
+    "benfowler/telescope-luasnip.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     {
       "nvim-telescope/telescope-project.nvim",
@@ -49,6 +50,9 @@ return {
     },
     extensions = {
       fzf = {},
+      luasnip = {
+        theme = "get_dropdown",
+      },
     },
   },
   config = function(_, opts)
@@ -57,6 +61,7 @@ return {
       "project",
       "fzf",
       "noice",
+      "luasnip",
     }
     local telescope = require "telescope"
     local actions = require "telescope.actions"

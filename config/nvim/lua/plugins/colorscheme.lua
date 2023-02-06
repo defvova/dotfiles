@@ -13,7 +13,7 @@ return {
       },
       term_colors = true,
       dim_inactive = {
-        enabled = true,
+        enabled = false,
       },
       integrations = {
         notify = true,

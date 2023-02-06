@@ -21,79 +21,6 @@ M.smart_quit = function()
   end
 end
 
-M.remove_disabled_keys = function(maps, default_mappings)
-  if not maps then
-    return default_mappings
-  end
-
-  -- store keys in a array with true value to compare
-  local keys_to_disable = {}
-  for _, mappings in pairs(maps) do
-    for mode, section_keys in pairs(mappings) do
-      if not keys_to_disable[mode] then
-        keys_to_disable[mode] = {}
-      end
-      section_keys = (type(section_keys) == "table" and section_keys) or {}
-      for k, _ in pairs(section_keys) do
-        keys_to_disable[mode][k] = true
-      end
-    end
-  end
-
-  -- make a copy as we need to modify default_mappings
-  for section_name, section_mappings in pairs(default_mappings) do
-    for mode, mode_mappings in pairs(section_mappings) do
-      mode_mappings = (type(mode_mappings) == "table" and mode_mappings) or {}
-      for k, _ in pairs(mode_mappings) do
-        -- if key if found then remove from default_mappings
-        if keys_to_disable[mode] and keys_to_disable[mode][k] then
-          default_mappings[section_name][mode][k] = nil
-        end
-      end
-    end
-  end
-
-  return default_mappings
-end
-
-M.load_mappings = function(section, mapping_opt)
-  local function set_section_map(section_values)
-    for mode, mode_values in pairs(section_values) do
-      local default_opts = merge_tb("force", { mode = mode }, mapping_opt or {})
-      for keybind, mapping_info in pairs(mode_values) do
-        -- merge default + user opts
-        local opts = merge_tb("force", default_opts, mapping_info.opts or {})
-
-        mapping_info.opts, opts.mode = nil, nil
-        opts.desc = mapping_info[2]
-
-        vim.keymap.set(mode, keybind, mapping_info[1], opts)
-      end
-    end
-  end
-
-  local mappings = require "core.mappings"
-
-  if type(section) == "string" then
-    mappings = { mappings[section] }
-  end
-
-  for _, sect in pairs(mappings) do
-    set_section_map(sect)
-  end
-end
-
-M.merge_plugins = function(default_plugins)
-  local final_table = {}
-
-  for key, _ in pairs(default_plugins) do
-    default_plugins[key][1] = key
-    final_table[#final_table + 1] = default_plugins[key]
-  end
-
-  return final_table
-end
-
 M.file = function(mode, filepath, content)
   local data
   local base_dir = fn.fnamemodify(filepath, ":h")
@@ -184,21 +111,6 @@ M.toggle_theme = function()
   else
     vim.notify "Set your current theme to one of those mentioned in the toggle_mode table (chadrc)"
   end
-end
-
-M.get_buf_option = function(opt)
-  local status_ok, buf_option = pcall(api.nvim_buf_get_option, 0, opt)
-  if not status_ok then
-    return nil
-  else
-    return buf_option
-  end
-end
-
-M.log = function(msg, hl, name)
-  name = name or "Neovim"
-  hl = hl or "Todo"
-  api.nvim_echo({ { name .. ": ", hl }, { msg } }, true, {})
 end
 
 return M

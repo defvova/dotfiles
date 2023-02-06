@@ -28,6 +28,7 @@ local M = {
     },
     {
       "simrat39/rust-tools.nvim",
+      ft = "rust",
       dependencies = {
         "mattn/webapi-vim",
         "felipec/vim-sanegx",
@@ -35,6 +36,11 @@ local M = {
         -- {
         --   "rcarriga/nvim-dap-ui",
         --   dependencies = { "mfussenegger/nvim-dap", "jayp0521/mason-nvim-dap.nvim" },
+        --   keys = {
+        --     { "<leader>Db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "toggle breakpoint" },
+        --     { "<leader>Dc", "<cmd>lua require'dap'.continue()<cr>", desc = "continue" },
+        --     { "<leader>Do", "<cmd>lua require('dapui').toggle()<cr>", desc = "open ui" },
+        --   },
         --   config = function()
         --     require("dapui").setup()
         --   end,
@@ -43,6 +49,24 @@ local M = {
     },
   },
 }
+
+local function show_documentation()
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "help" }, filetype) then
+    vim.cmd("h " .. vim.fn.expand "<cword>")
+  elseif vim.tbl_contains({ "man" }, filetype) then
+    vim.cmd("Man " .. vim.fn.expand "<cword>")
+  elseif vim.fn.expand "%:t" == "Cargo.toml" then
+    require("crates").show_popup()
+  else
+    require("lspsaga.hover"):render_hover_doc()
+  end
+end
+
+local map = function(mode, key, expr, opts)
+  opts = vim.tbl_extend("keep", { noremap = true, silent = true, buffer = bufnr }, opts)
+  return vim.keymap.set(mode, key, expr, opts)
+end
 
 function M.config()
   local lspconfig = require "lspconfig"
@@ -56,7 +80,7 @@ function M.config()
   local C = {}
 
   C.on_attach = function(client, bufnr)
-    utils.load_mappings("lspconfig", { buffer = bufnr })
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     tw_highlight.setup(client, bufnr, {
       single_column = false,
@@ -68,26 +92,33 @@ function M.config()
       vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
     end
 
+    map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to LSP definition" })
+    map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { desc = "lsp definition" })
+    map("n", "K", show_documentation, { desc = "lsp hover" })
+    map("n", "gi", vim.lsp.buf.implementation, { desc = "lsp implementation" })
+    map("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { desc = "   lsp references" })
+    map({ "n", "x" }, "<A-cr>", "<cmd>Lspsaga code_action<CR>", { desc = "   code action menu" })
+    map("n", "<leader>la", "<cmd>Lspsaga rename<CR>", { desc = "   lsp rename" })
+    map("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, { desc = "   add workspace folder" })
+    map("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, { desc = "   remove workspace folder" })
+    map("n", "<leader>lwl", function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, { desc = "   list workspace folders" })
+
     require("lsp-format").on_attach(client)
   end
 
   C.capabilities = function()
     local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     if status_ok then
-      return cmp_nvim_lsp.default_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
+
+      return cmp_nvim_lsp.default_capabilities(capabilities)
     end
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-      properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-      },
-    }
-
-    return capabilities
   end
 
   local options = {

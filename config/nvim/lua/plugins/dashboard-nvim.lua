@@ -1,6 +1,9 @@
 return {
   "glepnir/dashboard-nvim",
   event = "VimEnter",
+  keys = {
+    { "<leader>;", "<cmd> Dashboard <CR>", desc = "舘  dashboard" },
+  },
   config = function()
     local db = require "dashboard"
     local function footer()

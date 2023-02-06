@@ -10,6 +10,15 @@ local M = {
     "LazyGitStatus",
     "LazyGitLog",
   },
+  keys = {
+    { "<leader>gc", "<cmd> LazyGitFilter <CR>", desc = "   git commits" },
+    { "<leader>gC", "<cmd> LazyGitFilterCurrentFile <CR>", desc = "   git commits(for current file)" },
+    { "<leader>gg", "<cmd> LazyGit <CR>", desc = "   git" },
+    { "<leader>gS", "<cmd> LazyGitStash <CR>", desc = "ﱲ   git stash" },
+    { "<leader>gb", "<cmd> LazyGitBranch <CR>", desc = "   git branches" },
+    { "<leader>gs", "<cmd> LazyGitStatus <CR>", desc = "   git status" },
+    { "<leader>gl", "<cmd> LazyGitLog <CR>", desc = "   git log" },
+  },
 }
 
 function M.config()
