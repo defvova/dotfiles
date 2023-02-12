@@ -47,12 +47,13 @@ return {
           width = 80,
         },
       },
+      live_grep = {
+        theme = "dropdown",
+      },
     },
     extensions = {
       fzf = {},
-      luasnip = {
-        theme = "get_dropdown",
-      },
+      luasnip = {},
     },
   },
   config = function(_, opts)

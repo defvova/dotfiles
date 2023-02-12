@@ -17,7 +17,7 @@ return {
       },
       integrations = {
         notify = true,
-        mini = true,
+        mini = false,
         gitsigns = true,
         hop = true,
         lsp_saga = true,
@@ -25,7 +25,7 @@ return {
         neotree = true,
         noice = true,
         cmp = true,
-        dap = true,
+        dap = false,
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -52,7 +52,10 @@ return {
       color_overrides = {},
       highlight_overrides = {
         frappe = function(C)
-          return {}
+          return {
+            NeoTreeNormal = { bg = C.base },
+            -- NeoTreeNormalNC = { bg = C.base },
+          }
         end,
       },
     },

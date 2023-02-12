@@ -66,6 +66,8 @@ return {
           format = require("lspkind").cmp_format {
             mode = "symbol_text",
             preset = "codicons",
+            maxwidth = 50,
+            ellipsis_char = "...",
             menu = {
               buffer = "[Buffer]",
               rg = "[RG]",

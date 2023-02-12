@@ -2,8 +2,6 @@
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "data" .. "/mason/bin"
 
-local custom_config = require "core.custom"
-
 -- autocmds
 local autocmd = vim.api.nvim_create_autocmd
 local api = vim.api
@@ -22,16 +20,24 @@ autocmd("BufReadPost", {
   end,
 })
 
--- autocmd("OptionSet", {
---   pattern = "background",
---   -- pattern = "*",
---   callback = function()
---     -- package.loaded["catppuccin"] = nil
---     -- package.loaded["catppuccin.groups.integrations.feline"] = nil
---     -- vim.cmd "Lazy load catppuccin"
---     -- vim.cmd "colorscheme catppuccin"
---   end,
--- })
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.conf",
+  callback = function()
+    -- vim.api.nvim_command "set commentstring=#%s"
+    vim.api.nvim_command "set filetype=make"
+  end,
+})
+
+autocmd("OptionSet", {
+  pattern = "background",
+  -- pattern = "*",
+  callback = function()
+    -- package.loaded["catppuccin"] = nil
+    -- package.loaded["catppuccin.groups.integrations.feline"] = nil
+    -- vim.cmd "Lazy load catppuccin"
+    vim.cmd "colorscheme catppuccin"
+  end,
+})
 
 -- dont list quickfix buffers
 autocmd("FileType", {
