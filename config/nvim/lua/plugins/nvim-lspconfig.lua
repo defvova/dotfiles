@@ -24,27 +24,13 @@ local M = {
     },
     {
       "folke/neodev.nvim",
-      ft = "lua",
     },
     {
       "simrat39/rust-tools.nvim",
-      ft = "rust",
       dependencies = {
         "mattn/webapi-vim",
         "felipec/vim-sanegx",
         "rust-lang/rust.vim",
-        -- {
-        --   "rcarriga/nvim-dap-ui",
-        --   dependencies = { "mfussenegger/nvim-dap", "jayp0521/mason-nvim-dap.nvim" },
-        --   keys = {
-        --     { "<leader>Db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "toggle breakpoint" },
-        --     { "<leader>Dc", "<cmd>lua require'dap'.continue()<cr>", desc = "continue" },
-        --     { "<leader>Do", "<cmd>lua require('dapui').toggle()<cr>", desc = "open ui" },
-        --   },
-        --   config = function()
-        --     require("dapui").setup()
-        --   end,
-        -- },
       },
     },
   },
@@ -125,9 +111,6 @@ function M.config()
     on_attach = C.on_attach,
     capabilities = C.capabilities(),
     root_dir = vim.loop.cwd,
-    flags = {
-      debounce_text_changes = 150,
-    },
   }
 
   local servers = {
@@ -144,7 +127,7 @@ function M.config()
     },
     tailwindcss = {},
     solargraph = {},
-    sumneko_lua = {
+    lua_ls = {
       settings = {
         Lua = {
           diagnostics = {
@@ -158,13 +141,19 @@ function M.config()
               "after_each",
             },
           },
+          -- workspace = {
+          --   library = {
+          --     [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          --     [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+          --   },
+          --   maxPreload = 100000,
+          --   preloadFileSize = 10000,
+          -- },
           workspace = {
-            library = {
-              [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-              [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-            },
-            maxPreload = 100000,
-            preloadFileSize = 10000,
+            checkThirdParty = false,
+          },
+          completion = {
+            callSnippet = "Replace",
           },
         },
       },

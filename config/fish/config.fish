@@ -16,7 +16,7 @@ alias lt='lsd --tree --depth 3 --ignore-glob node_modules'
 alias top='btm'
 alias htop='btm -b'
 alias vtop='btm -b'
-alias cat='bat --theme=GitHub'
+alias cat="bat --theme='Monokai Extended Bright'"
 alias ps='procs'
 alias df='duf'
 alias docker='podman'

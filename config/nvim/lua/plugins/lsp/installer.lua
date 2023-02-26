@@ -49,20 +49,9 @@ function M.setup(servers, options)
   }
   require("mason-null-ls").setup_handlers()
 
-  -- require("mason-nvim-dap").setup {
-  --   automatic_installation = true,
-  --   automatic_setup = true,
-  --   ensure_installed = {
-  --     "codelldb",
-  --     "node2",
-  --     "chrome",
-  --   },
-  -- }
-  -- require("mason-nvim-dap").setup_handlers()
-
   require("mason-lspconfig").setup {
     ensure_installed = vim.tbl_keys(servers),
-    automatic_installation = false,
+    automatic_installation = true,
   }
 
   -- Package installation folder
@@ -73,10 +62,12 @@ function M.setup(servers, options)
       local opts = vim.tbl_deep_extend("force", options, servers[server_name] or {})
       lspconfig[server_name].setup { opts }
     end,
-    ["sumneko_lua"] = function()
-      local opts = vim.tbl_deep_extend("force", options, servers["sumneko_lua"] or {})
-      require("neodev").setup {}
-      lspconfig.sumneko_lua.setup { opts }
+    ["lua_ls"] = function()
+      local opts = vim.tbl_deep_extend("force", options, servers["lua_ls"] or {})
+      require("neodev").setup {
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      }
+      lspconfig.lua_ls.setup { opts }
     end,
     ["rust_analyzer"] = function()
       local opts = vim.tbl_deep_extend("force", options, servers["rust_analyzer"] or {})
@@ -103,9 +94,9 @@ function M.setup(servers, options)
           end,
         },
         server = opts,
-        -- dap = {
-        --   adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-        -- },
+        dap = {
+          adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+        },
         -- dap = {
         --   adapter = {
         --     type = "executable",

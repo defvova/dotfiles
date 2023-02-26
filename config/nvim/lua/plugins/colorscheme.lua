@@ -25,7 +25,7 @@ return {
         neotree = true,
         noice = true,
         cmp = true,
-        dap = false,
+        dap = true,
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -41,8 +41,8 @@ return {
             information = { "underline" },
           },
         },
-        treesitter_context = true,
-        treesitter = true,
+        treesitter_context = false,
+        treesitter = false,
         ts_rainbow = true,
         symbols_outline = true,
         telescope = true,
