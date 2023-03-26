@@ -1,10 +1,5 @@
-require "core.options"
-require "core.autocmds"
-require "core.keymaps"
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 require "core.lazy"
-
-vim.api.nvim_create_autocmd("User", {
-  pattern = "VeryLazy",
-  callback = function() end,
-})

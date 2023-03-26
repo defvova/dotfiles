@@ -28,6 +28,7 @@ end
 
 return {
   "kevinhwang91/nvim-ufo",
+  enable = false,
   dependencies = "kevinhwang91/promise-async",
   event = "BufReadPost",
   opts = {

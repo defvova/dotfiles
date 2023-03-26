@@ -1,13 +1,14 @@
 return {
-  { "sainnhe/edge", lazy = false, enabled = false },
+  { "sainnhe/edge",          lazy = false, enabled = false },
   { "rebelot/kanagawa.nvim", lazy = false, enabled = false },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
+    priority = 1000,
     opts = {
       flavour = "frappe", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
+      background = {
         light = "latte",
         dark = "frappe",
       },
@@ -16,14 +17,14 @@ return {
         enabled = false,
       },
       integrations = {
-        notify = true,
+        notify = false,
         mini = false,
         gitsigns = true,
-        hop = true,
+        hop = false,
         lsp_saga = true,
         mason = true,
         neotree = true,
-        noice = true,
+        noice = false,
         cmp = true,
         dap = true,
         native_lsp = {

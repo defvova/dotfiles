@@ -22,11 +22,4 @@ return {
       click_support = false,
     },
   },
-  config = function(_, opts)
-    opts.ui = {
-      colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
-      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-    }
-    require("lspsaga").setup(opts)
-  end,
 }

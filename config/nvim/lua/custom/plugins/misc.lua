@@ -1,38 +1,13 @@
 return {
   {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function(_, opts)
-      require("refactoring").setup(opts)
-      require("telescope").load_extension "refactoring"
-    end,
-    keys = {
-      {
-        "<leader>rr",
-        function()
-          require("telescope").extensions.refactoring.refactors()
-        end,
-        mode = { "v" },
-        desc = "Refactor",
-      },
-    },
-  },
-  {
-    "chrisbra/csv.vim",
-    ft = "csv",
-  },
-  {
     "dinhhuy258/git.nvim",
     -- event = "VeryLazy",
     -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
     keys = {
       {
-        "<leader>gD",
+        "<leader>gb",
         "<CMD>lua require('git.blame').blame()<CR>",
-        desc = "ﲀ   git blame",
+        desc = "[G]it [B]lame",
       },
     },
     opts = {
@@ -41,10 +16,41 @@ return {
   },
   { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
   {
+    "numToStr/Comment.nvim",
+    keys = {
+      {
+        "gcc",
+        function()
+          require("Comment.api").toggle.linewise.current()
+        end,
+        desc = "Toggle Comment",
+      },
+      {
+        "gc",
+        "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+        desc = "Toggle Comment",
+        mode = "v",
+      },
+    },
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        mappings = {
+          basic = false,
+          extra = false,
+        },
+      }
+    end,
+  },
+  {
+    "chrisbra/csv.vim",
+    ft = "csv",
+  },
+  {
     "ruifm/gitlinker.nvim",
     keys = {
       {
-        "<leader>gY",
+        "<leader>gL",
         function()
           -- require("gitlinker.actions").copy_to_clipboard()
           require("gitlinker").get_buf_range_url(
@@ -52,10 +58,10 @@ return {
             { action_callback = require("gitlinker.actions").open_in_browser }
           )
         end,
-        desc = "   open line in browser",
+        desc = "[G]it open [L]ine in browser",
       },
       {
-        "<leader>gY",
+        "<leader>gL",
         function()
           -- require("gitlinker.actions").copy_to_clipboard()
           require("gitlinker").get_buf_range_url(
@@ -63,15 +69,15 @@ return {
             { action_callback = require("gitlinker.actions").open_in_browser }
           )
         end,
-        desc = "   open lines in browser",
+        desc = "[G]it open [L]ine in browser",
         mode = "v",
       },
       {
-        "<leader>gB",
+        "<leader>gR",
         function()
           require("gitlinker").get_repo_url { action_callback = require("gitlinker.actions").open_in_browser }
         end,
-        desc = "   open repo in browser",
+        desc = "[G]it open [R]epo in browser",
       },
     },
   },
@@ -84,36 +90,28 @@ return {
     },
   },
   -- {
-  --   "filipdutescu/renamer.nvim",
+  --   "chaoren/vim-wordmotion",
   --   event = "VeryLazy",
-  --   config = function()
-  --     require("renamer").setup()
-  --   end,
   -- },
-  {
-    "chaoren/vim-wordmotion",
-    event = "VeryLazy",
-  },
-  {
-    "phaazon/hop.nvim",
-    name = "hop",
-    keys = {
-      { "f", "<cmd> HopWord<CR>", desc = "hop word", mode = { "n", "x", "v" } },
-    },
-    cmd = {
-      "HopWord",
-      "HopChar1",
-    },
-    config = true,
-  },
+  -- {
+  --   "phaazon/hop.nvim",
+  --   name = "hop",
+  --   keys = {
+  --     { "f", "<cmd> HopWord<CR>", desc = "hop word", mode = { "n", "x", "v" } },
+  --   },
+  --   cmd = {
+  --     "HopWord",
+  --     "HopChar1",
+  --   },
+  --   config = true,
+  -- },
   {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
     config = true,
     keys = {
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "[S]earch Todo ([T]rouble)" },
     },
   },
   {
@@ -140,7 +138,15 @@ return {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
     keys = {
-      { "<leader>d", "<cmd>SymbolsOutline<CR>", desc = "   toggle symbols outline" },
+      { "<leader>so", "<cmd>SymbolsOutline<CR>", desc = "[S]ymbols [O]utline" },
+    },
+    config = true,
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
+    keys = {
+      { "<leader>os", "<cmd>SymbolsOutline<CR>", desc = "[O]pen [S]ymbols outline" },
     },
     config = true,
   },
@@ -152,10 +158,10 @@ return {
   {
     "booperlv/nvim-gomove",
     keys = {
-      { "<A-h>", mode = { "n", "x", "v" } },
+      -- { "<A-h>", mode = { "n", "x", "v" } },
       { "<A-j>", mode = { "n", "x", "v" } },
       { "<A-k>", mode = { "n", "x", "v" } },
-      { "<A-l>", mode = { "n", "x", "v" } },
+      -- { "<A-l>", mode = { "n", "x", "v" } },
     },
     config = true,
   },
@@ -185,31 +191,28 @@ return {
     event = "InsertEnter",
   },
   -- {
-  --   "nvim-treesitter/playground",
-  --   cmd = { "TSCaptureUnderCursor", "TSPlaygroundToggle" },
-  --   config = function()
-  --     require("nvim-treesitter.configs").setup()
-  --   end,
-  -- }
-  {
-    "mfussenegger/nvim-treehopper",
-    keys = {
-      {
-        "m",
-        ":<C-U>lua require('tsht').nodes()<CR>",
-        desc = "Treehopper Visual",
-        mode = { "v" },
-        silent = true,
-      },
-      {
-        "m",
-        ":lua require('tsht').nodes()<CR>",
-        mode = { "o" },
-        desc = "Treehopper",
-        silent = true,
-      },
-    },
-  },
+  --   "mfussenegger/nvim-treehopper",
+  --   keys = {
+  --     {
+  --       "m",
+  --       ":<C-U>lua require('tsht').nodes()<CR>",
+  --       desc = "Treehopper Visual",
+  --       mode = { "v" },
+  --       silent = true,
+  --     },
+  --     {
+  --       "m",
+  --       ":lua require('tsht').nodes()<CR>",
+  --       mode = { "o" },
+  --       desc = "Treehopper",
+  --       silent = true,
+  --     },
+  --   },
+  -- },
+
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth", event = "VeryLazy" },
+  { "tpope/vim-repeat", event = "VeryLazy" },
 
   -- library used by other plugins
   { "nvim-lua/plenary.nvim" },

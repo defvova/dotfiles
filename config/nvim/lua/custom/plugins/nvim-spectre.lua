@@ -1,11 +1,11 @@
 return {
   "windwp/nvim-spectre",
   keys = {
-    { "<leader>sf", "<cmd>lua require('spectre').open()<cr>", desc = "﯒   find & replace (Spectre)" },
+    { "<leader>sf", "<cmd>lua require('spectre').open()<cr>", desc = "[S]earch in [F]iles (Spectre)" },
     {
       "<leader>sF",
       "<cmd>lua require('spectre').open_file_search()<cr>",
-      desc = "﯒   replace in current file (Spectre)",
+      desc = "[S]earch & replace in current [F]ile (Spectre)",
     },
   },
   cmd = { "Spectre" },

@@ -57,6 +57,7 @@
     ~/.config/fish/completions/fisher.fish: config/fish/completions/fisher.fish
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/fish_variables: config/fish/fish_variables
+    ~/.config/nvim/after/plugin/defaults.lua: config/nvim/after/plugin/defaults.lua
     ~/.config/nvim/init.lua: config/nvim/init.lua
     ~/.config/nvim/lua:
       glob: true

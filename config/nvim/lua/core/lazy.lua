@@ -1,22 +1,5 @@
--- local options = {
---   auto_clean = true,
---   auto_reload_compiled = true,
---   compile_on_sync = true,
---   git = { clone_timeout = 6000 },
---   max_jobs = 50,
---   display = {
---     working_sym = "ﲊ",
---     error_sym = "✗ ",
---     done_sym = " ",
---     removed_sym = " ",
---     moved_sym = "",
---     open_fn = function()
---       return require("packer.util").float { border = "single" }
---     end,
---   },
--- }
-
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     "git",
@@ -29,9 +12,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", {
+require("lazy").setup({
+  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
+  --       These are some example plugins that I've included in the kickstart repository.
+  --       Uncomment any of the lines below to enable them.
+  -- require 'kickstart.plugins.autoformat',
+  -- require 'kickstart.plugins.debug',
+
+  { import = "custom.plugins" },
+}, {
   defaults = { lazy = true, version = "*" },
-  install = { colorscheme = { "kanagawa", "edge" }, missing = true },
+  install = { colorscheme = { "kanagawa", "edge", "catppuccin" }, missing = true },
   checker = { enabled = false },
   performance = {
     cache = {

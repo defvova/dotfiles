@@ -2,34 +2,31 @@ return {
   "glepnir/dashboard-nvim",
   event = "VimEnter",
   keys = {
-    { "<leader>;", "<cmd> Dashboard <CR>", desc = "舘  dashboard" },
+    { "<leader>;", "<cmd> Dashboard <CR>", desc = "Dashboard" },
   },
   config = function()
     local db = require "dashboard"
     local function footer()
+      local foot = { "" }
       local datetime = os.date "%d-%m-%Y %H:%M:%S"
       local stats = require("lazy").stats()
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
       local plugins_text = "⚡Neovim loaded "
-          .. stats.count
-          .. " plugins in "
-          .. ms
-          .. "ms"
-          .. "     v"
-          .. vim.version().major
-          .. "."
-          .. vim.version().minor
-          .. "."
-          .. vim.version().patch
-          .. "     "
-          .. datetime
+        .. stats.count
+        .. " plugins in "
+        .. ms
+        .. "ms"
+        .. "     v"
+        .. vim.version().major
+        .. "."
+        .. vim.version().minor
+        .. "."
+        .. vim.version().patch
+        .. "     "
+        .. datetime
 
-      local fortune = require "core.fortune"
-      local quote = fortune()
-
-      table.insert(quote, 1, plugins_text)
-      table.insert(quote, 1, "")
-      return quote
+      table.insert(foot, plugins_text)
+      return foot
     end
 
     local opts = {
@@ -77,7 +74,7 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "LazyVimStarted",
       callback = function()
-        opts.config.footer = footer()
+        opts.config.footer = footer
         db.setup(opts)
       end,
     })
