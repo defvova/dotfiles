@@ -1,9 +1,11 @@
+local theme_mode = require("core.custom").ui.theme_mode
+
 local function kanagawa()
   local spec = require("kanagawa.colors").setup {
     theme = "dragon",
     dimInactive = true,
   }
-  vim.opt.background = "dark"
+  vim.opt.background = theme_mode
   vim.cmd "colorscheme kanagawa"
 
   return {
@@ -22,7 +24,7 @@ end
 local function edge()
   vim.g.edge_enable_italic = 1
   vim.g.edge_better_performance = 1
-  vim.opt.background = "light"
+  vim.opt.background = theme_mode
   vim.cmd "colorscheme edge"
 
   return {
@@ -41,7 +43,7 @@ end
 local function catppuccin()
   local colors = require("catppuccin.palettes").get_palette()
   vim.cmd "colorscheme catppuccin"
-  vim.opt.background = "dark"
+  vim.opt.background = theme_mode
 
   return {
     accent = colors.maroon,
@@ -76,7 +78,7 @@ local themes = {
 }
 
 local theme = {
-  palette = themes[require("core.custom").ui.theme_mode](),
+  palette = themes[theme_mode](),
 }
 
 return theme

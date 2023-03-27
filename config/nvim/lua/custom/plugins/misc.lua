@@ -143,14 +143,6 @@ return {
     config = true,
   },
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
-    keys = {
-      { "<leader>os", "<cmd>SymbolsOutline<CR>", desc = "[O]pen [S]ymbols outline" },
-    },
-    config = true,
-  },
-  {
     "m-demare/hlargs.nvim",
     event = "VeryLazy",
     config = true,
@@ -216,7 +208,17 @@ return {
 
   -- library used by other plugins
   { "nvim-lua/plenary.nvim" },
-  { "nvim-tree/nvim-web-devicons" },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = false,
+    dependencies = { "DaikyXendo/nvim-material-icon" },
+    config = function()
+      require("nvim-web-devicons").setup {
+        override = require("nvim-material-icon").get_icons(),
+        color_icons = true,
+      }
+    end,
+  },
   { "MunifTanjim/nui.nvim" },
   { "nvim-lua/popup.nvim" },
 }

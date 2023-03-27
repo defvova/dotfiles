@@ -1,10 +1,11 @@
 return {
-  { "sainnhe/edge",          lazy = false, enabled = false },
+  { "sainnhe/edge", lazy = false, enabled = require("core.custom").current_theme() == "edge", priority = 1000 },
   { "rebelot/kanagawa.nvim", lazy = false, enabled = false },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
+    enabled = require("core.custom").current_theme() == "catppuccin",
     priority = 1000,
     opts = {
       flavour = "frappe", -- latte, frappe, macchiato, mocha

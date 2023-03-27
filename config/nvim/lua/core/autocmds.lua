@@ -35,7 +35,7 @@ autocmd("OptionSet", {
     -- package.loaded["catppuccin"] = nil
     -- package.loaded["catppuccin.groups.integrations.feline"] = nil
     -- vim.cmd "Lazy load catppuccin"
-    vim.cmd "colorscheme catppuccin"
+    vim.cmd("colorscheme " .. require("core.custom").current_theme())
   end,
 })
 

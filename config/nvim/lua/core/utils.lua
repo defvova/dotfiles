@@ -90,14 +90,6 @@ M.toggle_theme = function()
   local theme1 = themes[1]
   local theme2 = themes[2]
 
-  if g.theme_mode == theme1 or g.theme_mode == theme2 then
-    if g.toggle_theme_icon == "   " then
-      g.toggle_theme_icon = "   "
-    else
-      g.toggle_theme_icon = "   "
-    end
-  end
-
   if g.theme_mode == theme1 then
     g.theme_mode = theme2
 

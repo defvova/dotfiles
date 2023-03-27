@@ -24,8 +24,9 @@ map("n", "<C-k>", "<C-w>k", { desc = "window up" })
 map("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "copy whole file" })
 
 -- go to  beginning and end
-map("i", "<C-b>", "<ESC>^i", { desc = "beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "end of line" })
+map({ "i" }, "<C-b>", "<ESC>^i", { desc = "beginning of line" })
+map({ "n" }, "<C-b>", "<ESC>^", { desc = "beginning of line" })
+map({ "n", "i" }, "<C-e>", "<End>", { desc = "end of line" })
 
 -- navigate within insert mode
 map("i", "<C-h>", "<Left>", { desc = "move left" })
@@ -80,4 +81,4 @@ map("n", "<leader>us", "<cmd> e $MYVIMRC | :cd %:p:h <CR>", { desc = "[U]pdate [
 -- map("n", "<leader>w", "<cmd> w! <CR>", { desc = "save file" })
 map("n", "<leader>q", "<cmd>lua require('core.utils').smart_quit()<CR>", { desc = "quit" })
 map("n", "<leader>up", "<cmd> Lazy sync <CR>", { desc = "[U]pdate [P]lugins" })
--- map("n", "<leader>tt", "<cmd>lua require('core.utils').toggle_theme()<cr>", { desc = "toggle theme" })
+map("n", "<leader>tt", "<cmd>lua require('core.utils').toggle_theme()<cr>", { desc = "[T]oggle [T]heme" })
