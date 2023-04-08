@@ -110,8 +110,10 @@ autocmd("FileType", {
     "qf",
     "spectre_panel",
     "startuptime",
-    "toggleterm",
+    "rm",
     "vim",
+    "fugitive",
+    "fugitiveblame",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

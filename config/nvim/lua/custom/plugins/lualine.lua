@@ -78,7 +78,7 @@ return {
             "diff",
             symbols = assets.git,
             on_click = function()
-              vim.cmd [[Gitsigns diffthis HEAD]]
+              vim.cmd [[DiffviewOpen --selected-file=%s]]
             end,
           },
           "progress",

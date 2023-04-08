@@ -178,16 +178,8 @@ return {
       },
     }
 
-    -- Setup neovim lua configuration
-    require("neodev").setup()
-
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities.textDocument.foldingRange = {
-    --   dynamicRegistration = false,
-    --   lineFoldingOnly = true,
-    -- }
-    capabilities = vim.tbl_deep_extend('keep', capabilities or {}, {
+    capabilities = vim.tbl_deep_extend("keep", capabilities or {}, {
       workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
       textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
     })
@@ -195,6 +187,9 @@ return {
     if status_ok then
       capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
     end
+
+    require("custom.plugins.lsp.handlers").setup()
+    require("custom.plugins.lsp.null-ls").setup { on_attach = on_attach }
 
     -- Setup mason so it can manage external tooling
     require("mason").setup {
@@ -229,9 +224,6 @@ return {
       automatic_installation = true,
     }
 
-    require("custom.plugins.lsp.handlers").setup()
-    require("custom.plugins.lsp.null-ls").setup { on_attach = on_attach }
-
     -- Package installation folder
     local install_root_dir = vim.fn.stdpath "data" .. "/mason"
 
@@ -241,6 +233,18 @@ return {
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
+          root_dir = vim.loop.cwd,
+        }
+      end,
+      ["lua_ls"] = function()
+        local opts = vim.tbl_deep_extend("force", options, servers["lua_ls"] or {})
+        require("neodev").setup {
+          library = { plugins = { "nvim-dap-ui" }, types = true },
+        }
+        require("lspconfig").lua_ls.setup {
+          capabilities = capabilities,
+          on_attach = on_attach,
+          settings = opts,
           root_dir = vim.loop.cwd,
         }
       end,

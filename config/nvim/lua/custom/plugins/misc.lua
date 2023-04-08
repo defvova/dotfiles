@@ -1,5 +1,46 @@
 return {
   {
+    "Darazaki/indent-o-matic",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
+    "jghauser/fold-cycle.nvim",
+    config = true,
+    keys = {
+      {
+        "<BS>",
+        function()
+          require("fold-cycle").open()
+        end,
+        desc = "fold-cycle: toggle",
+      },
+    },
+  },
+  {
+    "andrewferrier/debugprint.nvim",
+    opts = { create_keymaps = false },
+    keys = {
+      {
+        "<leader>dp",
+        function()
+          return require("debugprint").debugprint { variable = true }
+        end,
+        desc = "debugprint: cursor",
+        expr = true,
+      },
+      {
+        "<leader>do",
+        function()
+          return require("debugprint").debugprint { motion = true }
+        end,
+        desc = "debugprint: operator",
+        expr = true,
+      },
+      { "<leader>dC", "<Cmd>DeleteDebugPrints<CR>", desc = "debugprint: clear all" },
+    },
+  },
+  {
     "natecraddock/workspaces.nvim",
     lazy = false,
     config = function()
@@ -12,7 +53,7 @@ return {
             -- stop any active lsp servers
             "LspStop",
             -- delete all buffers (does not save changes)
-            "silent %bdelete!",
+            -- "silent %bdelete!",
           },
           -- hooks run after change directory
           open = {
@@ -31,21 +72,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "dinhhuy258/git.nvim",
-    -- event = "VeryLazy",
-    -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
-    keys = {
-      {
-        "<leader>gb",
-        "<CMD>lua require('git.blame').blame()<CR>",
-        desc = "[G]it [B]lame",
-      },
-    },
-    opts = {
-      default_mappings = false,
-    },
   },
   { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
   {
@@ -78,41 +104,6 @@ return {
   {
     "chrisbra/csv.vim",
     ft = "csv",
-  },
-  {
-    "ruifm/gitlinker.nvim",
-    keys = {
-      {
-        "<leader>gL",
-        function()
-          -- require("gitlinker.actions").copy_to_clipboard()
-          require("gitlinker").get_buf_range_url(
-            "n",
-            { action_callback = require("gitlinker.actions").open_in_browser }
-          )
-        end,
-        desc = "[G]it open [L]ine in browser",
-      },
-      {
-        "<leader>gL",
-        function()
-          -- require("gitlinker.actions").copy_to_clipboard()
-          require("gitlinker").get_buf_range_url(
-            "v",
-            { action_callback = require("gitlinker.actions").open_in_browser }
-          )
-        end,
-        desc = "[G]it open [L]ine in browser",
-        mode = "v",
-      },
-      {
-        "<leader>gR",
-        function()
-          require("gitlinker").get_repo_url { action_callback = require("gitlinker.actions").open_in_browser }
-        end,
-        desc = "[G]it open [R]epo in browser",
-      },
-    },
   },
   {
     "mg979/vim-visual-multi",

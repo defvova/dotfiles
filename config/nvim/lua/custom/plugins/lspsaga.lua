@@ -1,6 +1,6 @@
 return {
   "glepnir/lspsaga.nvim",
-  event = { "BufReadPost", "BufAdd", "BufNewFile" },
+  event = "LspAttach",
   opts = {
     lightbulb = {
       enable = false,
@@ -15,9 +15,7 @@ return {
       in_custom = false,
       enable = true,
       separator = "  ",
-      show_file = true,
       respect_root = true,
-      color_mode = true,
       hide_keyword = false,
       click_support = false,
     },
