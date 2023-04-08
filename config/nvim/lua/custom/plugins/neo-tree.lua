@@ -51,12 +51,25 @@ return {
       indent = {
         with_markers = false,
       },
+      icon = {
+        folder_closed = "",
+        folder_open = "",
+        folder_empty = "",
+      },
+      modified = {
+        symbol = "",
+      },
       diagnostics = {
         symbols = {
           error = "",
           warn = "",
           hint = "",
           info = "",
+        },
+      },
+      git_status = {
+        symbols = {
+          ignored = "◌",
         },
       },
     },

@@ -5,11 +5,7 @@ return {
     require("mini.cursorword").setup {}
 
     local palette = require("core.theme").palette
-    vim.api.nvim_set_hl(0, "MiniCursorword", { ctermbg = 0, bg = palette.bg_cursor_hl, fg = palette.fg_cursor_hl })
-    vim.api.nvim_set_hl(
-      0,
-      "MiniCursorwordCurrent",
-      { ctermbg = 0, bg = palette.bg_cursor_hl, fg = palette.fg_cursor_hl }
-    )
+    vim.api.nvim_set_hl(0, "MiniCursorword", { ctermbg = 0, bold = 1, underline = 1 })
+    vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { ctermbg = 0, bold = 1, underline = 1 })
   end,
 }

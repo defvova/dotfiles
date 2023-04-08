@@ -1,5 +1,38 @@
 return {
   {
+    "natecraddock/workspaces.nvim",
+    lazy = false,
+    config = function()
+      require("workspaces").setup {
+        hooks = {
+          -- hooks run before change directory
+          open_pre = {
+            -- save current session state if currently recording
+            -- "SessionsStop",
+            -- stop any active lsp servers
+            "LspStop",
+            -- delete all buffers (does not save changes)
+            "silent %bdelete!",
+          },
+          -- hooks run after change directory
+          open = {
+            -- load any saved session from current directory
+            -- "NeoTreeFocus",
+            -- function(name, path)
+            --   if not require("sessions").load(path, { silent = true }) then
+            --     -- require("telescope.builtin").find_files { initial_mode = "insert" }
+            --     vim.schedule(function()
+            --       vim.cmd "NeoTreeFocusToggle"
+            --       -- vim.cmd "startinsert"
+            --     end)
+            --   end
+            -- end,
+          },
+        },
+      }
+    end,
+  },
+  {
     "dinhhuy258/git.nvim",
     -- event = "VeryLazy",
     -- cmd = { "Git", "GitBlame", "GitDiff", "GitDiffClose", "GitCreatePullRequest", "GitRevert", "GitRevertFile" },
@@ -202,6 +235,7 @@ return {
   --   },
   -- },
 
+  { "MTDL9/vim-log-highlighting", event = "VeryLazy" },
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth", event = "VeryLazy" },
   { "tpope/vim-repeat", event = "VeryLazy" },
@@ -210,14 +244,14 @@ return {
   { "nvim-lua/plenary.nvim" },
   {
     "nvim-tree/nvim-web-devicons",
-    lazy = false,
-    dependencies = { "DaikyXendo/nvim-material-icon" },
-    config = function()
-      require("nvim-web-devicons").setup {
-        override = require("nvim-material-icon").get_icons(),
-        color_icons = true,
-      }
-    end,
+    -- lazy = false,
+    -- dependencies = { "DaikyXendo/nvim-material-icon" },
+    -- config = function()
+    --   require("nvim-web-devicons").setup {
+    --     override = require("nvim-material-icon").get_icons(),
+    --     color_icons = true,
+    --   }
+    -- end,
   },
   { "MunifTanjim/nui.nvim" },
   { "nvim-lua/popup.nvim" },

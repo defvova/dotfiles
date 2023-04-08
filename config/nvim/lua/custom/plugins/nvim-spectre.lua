@@ -1,5 +1,6 @@
 return {
   "windwp/nvim-spectre",
+  enabled = false,
   keys = {
     { "<leader>sf", "<cmd>lua require('spectre').open()<cr>", desc = "[S]earch in [F]iles (Spectre)" },
     {

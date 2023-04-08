@@ -12,7 +12,7 @@ return {
       tail = { fg = palette.bg, bg = palette.accent_sec, style = "bold" },
     }
 
-    vim.opt.showtabline = 2
+    vim.opt.showtabline = 1
     require("tabby.tabline").set(function(line)
       local cwd = " ﱮ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
       return {

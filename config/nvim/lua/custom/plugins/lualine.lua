@@ -3,21 +3,23 @@ return {
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   opts = function(plugin)
     local assets = {
-      mode_icon = "",
-      dir = "",
-      file = "",
+      mode_icon = "",
+      sep_right = "",
+      dir = "", -- "",
+      file = "", -- ""
+      modified = "",
       lsp = {
         server = "",
-        error = "",
-        warning = "",
-        info = "",
-        hint = "",
+        error = " ",
+        warn = " ",
+        info = " ",
+        hint = " ", -- " ",
       },
       git = {
-        branch = "",
-        added = "",
-        changed = "",
-        removed = "",
+        branch = "",
+        added = " ",
+        modified = " ",
+        removed = " ",
       },
     }
 
@@ -44,9 +46,16 @@ return {
 
       return table.concat(buf_client_names, ", ")
     end
+
+    local lazy_ok, lazy = pcall(require, "lazy.status")
+    local pending_updates = lazy_ok and lazy.updates
+    local has_pending_updates = lazy_ok and lazy.has_updates
+
     return {
       options = {
-        component_separators = "|",
+        -- component_separators = "|",
+        component_separators = "",
+        -- section_separators = { left = assets.sep_right, right = "" },
         section_separators = "",
         theme = "auto",
         icons_enabled = true,
@@ -55,18 +64,25 @@ return {
       sections = {
         lualine_a = {},
         lualine_b = {
-          "progress",
-          "location",
-          "branch",
-          "diff",
-          {
-            "diagnostics",
-            sources = { "nvim_lsp" },
-            symbols = { error = " ", warn = " ", info = " ", hint = " " },
-            colored = true,
-          },
+          { "mode", icon = assets.mode_icon },
         },
         lualine_c = {
+          {
+            "branch",
+            icon = assets.git.branch,
+            on_click = function()
+              vim.cmd [[Telescope git_branches]]
+            end,
+          },
+          {
+            "diff",
+            symbols = assets.git,
+            on_click = function()
+              vim.cmd [[Gitsigns diffthis HEAD]]
+            end,
+          },
+          "progress",
+          "location",
           {
             lsp_client,
             icon = " LSP:",
@@ -77,9 +93,25 @@ return {
           },
         },
         lualine_x = {
-          { require("lazy.status").updates, cond = require("lazy.status").has_updates },
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { "filename", path = 0, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+          {
+            "diagnostics",
+            sources = { "nvim_lsp" },
+            symbols = assets.lsp,
+            on_click = function()
+              vim.cmd [[TroubleToggle document_diagnostics]]
+            end,
+          },
+          {
+            pending_updates,
+            cond = has_pending_updates,
+            on_click = function()
+              vim.cmd [[Lazy sync]]
+            end,
+          },
+          { "filetype", icon_only = true, separator = "", padding = { left = 0, right = 0 } },
+          { "filename", path = 0, symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
+        },
+        lualine_y = {
           {
             function()
               local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
@@ -89,12 +121,14 @@ return {
             color = {
               fg = palette.accent,
             },
+            on_click = function()
+              vim.cmd [[Telescope workspaces]]
+            end,
           },
         },
-        lualine_y = {},
         lualine_z = {},
       },
-      extensions = { "quickfix", "toggleterm", "symbols-outline", "neo-tree" },
+      extensions = { "quickfix", "toggleterm", "symbols-outline", "neo-tree", "lazy", "nvim-dap-ui", "trouble" },
     }
   end,
 }

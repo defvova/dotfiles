@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup()
-  -- local signs = { Error = " ", Warn = " ", Info = " ", Hint = "" }
   -- local diagnostics = { Error = " ", Warning = " ", Information = " ", Hint = " " }
   local signs = {
     Error = " ",
@@ -17,9 +16,9 @@ function M.setup()
   -- LSP handlers configuration
   local config = {
     float = {
-      focusable = true,
-      style = "minimal",
-      border = "rounded",
+      -- focusable = true,
+      -- style = "minimal",
+      -- border = "rounded",
     },
     document_highlight = false,
     code_lens_refresh = true,
@@ -55,15 +54,16 @@ function M.setup()
     virtual_text = false,
     -- virtual_text = {
     --   prefix = "🔥",
+    --   prefix = "",
     --   source = true,
     -- },
   })
 
   -- Hover configuration
-  -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.float)
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.float)
 
   -- Signature help configuration
-  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
 end
 
 return M

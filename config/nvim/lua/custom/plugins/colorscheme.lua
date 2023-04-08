@@ -1,12 +1,22 @@
 return {
-  { "sainnhe/edge", lazy = false, enabled = require("core.custom").current_theme() == "edge", priority = 1000 },
+  {
+    "embark-theme/vim",
+    name = "embark",
+    lazy = false,
+    enabled = require("core.custom").current_theme() == "embark",
+  },
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    lazy = false,
+    enabled = require("core.custom").current_theme() == "oxocarbon",
+  },
+  { "sainnhe/edge", lazy = false, enabled = require("core.custom").current_theme() == "edge" },
   { "rebelot/kanagawa.nvim", lazy = false, enabled = false },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
     enabled = require("core.custom").current_theme() == "catppuccin",
-    priority = 1000,
     opts = {
       flavour = "frappe", -- latte, frappe, macchiato, mocha
       background = {

@@ -21,6 +21,20 @@ local function kanagawa()
   }
 end
 
+local function embark()
+  vim.opt.background = "dark" -- set this to dark or light
+  vim.cmd "colorscheme embark"
+
+  return {}
+end
+
+local function oxocarbon()
+  vim.opt.background = "dark" -- set this to dark or light
+  vim.cmd "colorscheme oxocarbon"
+
+  return {}
+end
+
 local function edge()
   vim.g.edge_enable_italic = 1
   vim.g.edge_better_performance = 1
@@ -59,7 +73,7 @@ local function catppuccin()
 end
 
 local themes = {
-  dark = catppuccin,
+  dark = embark,
   light = edge,
 
   -- rose_pine_dawn = function()

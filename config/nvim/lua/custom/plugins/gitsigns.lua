@@ -3,16 +3,17 @@ return {
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   keys = {
     { "<leader>gd", "<cmd> Gitsigns diffthis HEAD <CR>", desc = "[G]it [D]iff" },
+    { "[c", "<cmd> Gitsigns next_hunk<CR>", desc = "Git Next Hunk" },
+    { "]c", "<cmd> Gitsigns prev_hunk<CR>", desc = "Git Prev Hunk" },
+    { "<leader>gp", "<cmd> Gitsigns preview_hunk<CR>", desc = "[G]it [P]review Hunk" },
   },
   opts = {
     numhl = true,
     signs = {
       add = {
-        -- text = "▎",
         text = "┃",
       },
       change = {
-        -- text = "▎",
         text = "┃",
       },
       delete = {
@@ -23,12 +24,10 @@ return {
       },
       changedelete = {
         show_count = false,
-        -- text = "▎",
         text = "┃",
       },
       untracked = {
         show_count = false,
-        -- text = "▎",
         text = "┃",
       },
     },

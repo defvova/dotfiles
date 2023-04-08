@@ -52,7 +52,7 @@ return {
           {
             desc = " Projects",
             group = "DiagnosticHint",
-            action = "Telescope project",
+            action = "Telescope workspaces",
             key = "p",
           },
           {

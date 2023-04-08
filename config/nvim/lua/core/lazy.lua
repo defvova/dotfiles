@@ -13,33 +13,56 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
   { import = "custom.plugins" },
 }, {
   defaults = { lazy = true, version = "*" },
-  install = { colorscheme = { "kanagawa", "edge", "catppuccin" }, missing = true },
-  checker = { enabled = false },
+  install = { colorscheme = { "kanagawa", "edge", "catppuccin", "embark" }, missing = true },
+  checker = {
+    enabled = true,
+    concurrency = 30,
+    notify = false,
+    frequency = 3600, -- check for updates every hour
+  },
   performance = {
-    cache = {
-      enabled = true,
-    },
     rtp = {
       disabled_plugins = {
-        "gzip",
-        "matchit",
         "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
+        "2html_plugin",
         "tohtml",
-        "tutor",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
         "zipPlugin",
+        "tutor",
+        "rplugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+        "ftplugin",
       },
     },
   },
-  -- debug = true,
+  ui = {
+    icons = {
+      ft = "",
+      lazy = "鈴 ",
+      loaded = "",
+      not_loaded = "",
+    },
+  },
 })

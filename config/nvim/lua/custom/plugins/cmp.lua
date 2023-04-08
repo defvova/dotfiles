@@ -89,6 +89,25 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
+        ["<C-p>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            -- if cmp.visible() and has_words_before() then
+            cmp.select_next_item { behavior = cmp.SelectBehavior, count = 1 }
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-n>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item { behavior = cmp.SelectBehavior, count = 1 }
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             -- if cmp.visible() and has_words_before() then
@@ -111,9 +130,9 @@ return {
       },
       sources = {
         { name = "nvim_lsp", priority = 1000 },
-        { name = "luasnip",  priority = 750 },
-        { name = "buffer",   priority = 500 },
-        { name = "path",     priority = 250 },
+        { name = "luasnip", priority = 750 },
+        { name = "buffer", priority = 500 },
+        { name = "path", priority = 250 },
       },
     }
 

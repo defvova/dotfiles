@@ -16,7 +16,8 @@ opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
+opt.grepprg = "rg --vimgrep --threads=2 --no-heading --with-filename --line-number --smart-case --hidden --glob '!.git'"
+opt.switchbuf = "useopen"
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3
@@ -45,9 +46,14 @@ opt.timeout = true
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.autoread = true -- auto read file if changed outside of vim
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = true -- Disable line wrap
+opt.showmatch = true -- highlight matching [{()}]
+
+-- recursive :find in current dir
+vim.cmd [[set path=.,,,$PWD/**]]
 
 opt.splitkeep = "screen"
 

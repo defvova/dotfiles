@@ -3,13 +3,16 @@ fish_vi_key_bindings
 set -U fish_greeting
 
 set -gx EDITOR (which nvim)
-set -gx VISUAL $EDITOR
-set -gx SUDO_EDITOR $EDITOR
+
+# set -gx PATH bin $PATH
+# set -gx PATH ~/bin $PATH
+# set -gx PATH ~/.local/bin $PATH
 
 alias spotify='ncspot'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias vim='nvim'
+alias nv='neovide --neovim-bin {which nvim}'
 alias ls='lsd -A'
 alias ll='lsd -lA'
 alias lt='lsd --tree --depth 3 --ignore-glob node_modules'

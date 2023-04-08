@@ -67,7 +67,7 @@ return {
       end
 
       nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-      nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+      nmap("<A-Enter>", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
       nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
       nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -128,7 +128,12 @@ return {
       },
       lua_ls = {
         Lua = {
-          workspace = { checkThirdParty = false },
+          runtime = {
+            version = "LuaJIT",
+          },
+          workspace = {
+            checkThirdParty = false,
+          },
           telemetry = { enable = false },
           diagnostics = {
             globals = {
@@ -182,23 +187,53 @@ return {
     --   dynamicRegistration = false,
     --   lineFoldingOnly = true,
     -- }
+    capabilities = vim.tbl_deep_extend('keep', capabilities or {}, {
+      workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
+      textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
+    })
     local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     if status_ok then
       capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
     end
 
     -- Setup mason so it can manage external tooling
-    require("mason").setup()
+    require("mason").setup {
+      ensure_installed = { "lua-language-server" },
+      ui = {
+        icons = {
+          package_pending = " ",
+          package_installed = " ",
+          package_uninstalled = " ﮊ",
+        },
+
+        keymaps = {
+          toggle_server_expand = "<CR>",
+          install_server = "i",
+          update_server = "u",
+          check_server_version = "c",
+          update_all_servers = "U",
+          check_outdated_servers = "C",
+          uninstall_server = "X",
+          cancel_installation = "<C-c>",
+        },
+      },
+
+      max_concurrent_installers = 10,
+    }
 
     -- Ensure the servers above are installed
     local mason_lspconfig = require "mason-lspconfig"
 
     mason_lspconfig.setup {
       ensure_installed = vim.tbl_keys(servers),
+      automatic_installation = true,
     }
 
     require("custom.plugins.lsp.handlers").setup()
     require("custom.plugins.lsp.null-ls").setup { on_attach = on_attach }
+
+    -- Package installation folder
+    local install_root_dir = vim.fn.stdpath "data" .. "/mason"
 
     mason_lspconfig.setup_handlers {
       function(server_name)
@@ -210,12 +245,16 @@ return {
         }
       end,
       ["rust_analyzer"] = function()
+        local extension_path = install_root_dir .. "/packages/codelldb/extension/"
+        local codelldb_path = extension_path .. "adapter/codelldb"
+        local liblldb_path = extension_path .. "lldb/bin/lldb"
+
         require("rust-tools").setup {
           tools = {
             autoSetHints = true,
             runnables = { use_telescope = true },
             inlay_hints = { show_parameter_hints = true },
-            -- executor = require("rust-tools/executors").toggleterm,
+            executor = require("rust-tools/executors").toggleterm,
             hover_actions = { auto_focus = true },
             on_initialized = function()
               vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -227,6 +266,9 @@ return {
             end,
           },
           server = servers["rust_analyzer"],
+          dap = {
+            adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+          },
         }
       end,
       ["tsserver"] = function()

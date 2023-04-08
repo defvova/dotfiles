@@ -10,14 +10,10 @@ return {
         return vim.fn.executable "make" == 1
       end,
     },
-    {
-      "nvim-telescope/telescope-project.nvim",
-      dependencies = { "nvim-telescope/telescope-file-browser.nvim" },
-    },
   },
   keys = {
-    { "<leader>?",       "<cmd>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader><space>", "<cmd>Telescope buffers<CR>",  desc = "[ ] Find existing buffers" },
+    { "<leader>?", "<cmd>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
+    { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "[ ] Find existing buffers" },
     {
       "<leader>/",
       function()
@@ -28,12 +24,12 @@ return {
       end,
       desc = "[/] Fuzzily search in current buffer",
     },
-    { "<leader>f",  "<cmd>Telescope find_files<CR>",  desc = "Search [F]iles" },
-    { "<leader>sh", "<cmd>Telescope help_tags<CR>",   desc = "[S]earch [H]elp" },
+    { "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Search [F]iles" },
+    { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
     { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
-    { "<leader>st", "<cmd>Telescope live_grep<CR>",   desc = "[S]earch [T]ext" },
+    { "<leader>st", "<cmd>Telescope live_grep<CR>", desc = "[S]earch [T]ext" },
     { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
-    { "<leader>sp", "<cmd>Telescope project<CR>",     desc = "[S]earch [P]rojects" },
+    { "<leader>sp", "<cmd>Telescope workspaces<CR>", desc = "[S]earch [P]rojects" },
   },
   opts = {
     defaults = {
@@ -88,10 +84,9 @@ return {
   },
   config = function(_, opts)
     local extensions_list = {
-      "file_browser",
-      "project",
       "fzf",
       "luasnip",
+      "workspaces",
     }
     local telescope = require "telescope"
     local actions = require "telescope.actions"

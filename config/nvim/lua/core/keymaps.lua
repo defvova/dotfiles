@@ -26,7 +26,8 @@ map("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "copy whole file" })
 -- go to  beginning and end
 map({ "i" }, "<C-b>", "<ESC>^i", { desc = "beginning of line" })
 map({ "n" }, "<C-b>", "<ESC>^", { desc = "beginning of line" })
-map({ "n", "i" }, "<C-e>", "<End>", { desc = "end of line" })
+map({ "x" }, "<C-b>", "^", { desc = "beginning of line" })
+map({ "n", "i", "x" }, "<C-e>", "<End>", { desc = "end of line" })
 
 -- navigate within insert mode
 map("i", "<C-h>", "<Left>", { desc = "move left" })
@@ -76,9 +77,21 @@ local function termcodes(str)
 end
 
 map("t", "<C-x>", termcodes "<C-\\><C-N>", { desc = "escape terminal mode" })
+map({ "n", "i" }, "<C-t>", "<cmd>exe v:count1 . 'ToggleTerm'<CR>")
 
 map("n", "<leader>us", "<cmd> e $MYVIMRC | :cd %:p:h <CR>", { desc = "[U]pdate [S]ettings" })
 -- map("n", "<leader>w", "<cmd> w! <CR>", { desc = "save file" })
-map("n", "<leader>q", "<cmd>lua require('core.utils').smart_quit()<CR>", { desc = "quit" })
+map("n", "<leader>q", "<cmd>lua require('core.utils').smart_quit()<CR>", { desc = "quit", silent = true })
 map("n", "<leader>up", "<cmd> Lazy sync <CR>", { desc = "[U]pdate [P]lugins" })
 map("n", "<leader>tt", "<cmd>lua require('core.utils').toggle_theme()<cr>", { desc = "[T]oggle [T]heme" })
+
+map("n", "c.", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { desc = "search and replace word under cursor" })
+map("n", "c>", [[:%s/\V<C-r><C-a>//g<Left><Left>]], { desc = "search and replace WORD under cursor" })
+
+-- Use ':Grep' or ':LGrep' to grep into quickfix|loclist
+-- without output or jumping to first match
+-- Use ':Grep <pattern> %' to search only current file
+-- Use ':Grep <pattern> %:h' to search the current file dir
+vim.cmd "command! -nargs=+ -complete=file Grep noautocmd grep! <args> | redraw! | copen"
+vim.cmd "command! -nargs=+ -complete=file LGrep noautocmd lgrep! <args> | redraw! | lopen"
+map("n", "<leader>sf", [[:Grep ]], { desc = "[S]earch in [F]iles" })
