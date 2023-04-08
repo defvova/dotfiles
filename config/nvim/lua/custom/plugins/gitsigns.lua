@@ -161,7 +161,21 @@ return {
             { "n", "cc", "<Cmd>Git commit <bar> wincmd J<CR>", { desc = "[C]ommit staged [C]hanges" } },
             { "n", "ca", "<Cmd>Git commit --amend <bar> wincmd J<CR>", { desc = "Amend the last commit" } },
             { "n", "c<space>", ":Git commit ", { desc = 'Populate command line with ":Git commit "' } },
-            { "n", "P", "<Cmd>Git push<CR>", { desc = "[G]it [P]ush" } },
+            {
+              "n",
+              "P",
+              function()
+                require("core.utils").confirm("Confirm git push?", {
+                  default = true,
+                  callback = function(choice)
+                    if choice then
+                      vim.cmd "Git push"
+                    end
+                  end,
+                })
+              end,
+              { desc = "[G]it [P]ush" },
+            },
           },
           file_history_panel = { q = "<Cmd>DiffviewClose<CR>" },
         },

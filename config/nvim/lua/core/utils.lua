@@ -105,4 +105,87 @@ M.toggle_theme = function()
   end
 end
 
+M.input_char = function(prompt, opt)
+  opt = vim.tbl_extend("keep", opt or {}, {
+    clear_prompt = true,
+    allow_non_ascii = false,
+    loop = false,
+    prompt_hl = nil,
+  })
+
+  local valid, s, raw
+
+  while true do
+    valid = true
+
+    if prompt then
+      vim.api.nvim_echo({ { prompt, opt.prompt_hl } }, false, {})
+    end
+
+    local c
+    if not opt.allow_non_ascii then
+      while type(c) ~= "number" do
+        c = vim.fn.getchar()
+      end
+    else
+      c = vim.fn.getchar()
+    end
+
+    if opt.clear_prompt then
+      M.clear_prompt()
+    end
+
+    s = type(c) == "number" and vim.fn.nr2char(c) or nil
+    raw = type(c) == "number" and s or c
+
+    if opt.filter then
+      if s == nil or not s:match(opt.filter) then
+        valid = false
+      end
+    end
+
+    if valid or not opt.loop then
+      break
+    end
+  end
+
+  if not valid then
+    return nil, -1
+  end
+
+  return s, raw
+end
+
+M.clear_prompt = function()
+  vim.api.nvim_echo({ { "" } }, false, {})
+  vim.cmd "redraw"
+end
+
+M.confirm = function(prompt, opt)
+  local ok, s = pcall(
+    M.input_char,
+    ("%s %s: "):format(prompt, opt.default and "[Y/n]" or "[y/N]"),
+    { filter = "[yYnN\27\r]", loop = true }
+  )
+
+  M.clear_prompt()
+
+  if not ok then
+    opt.callback(false)
+  else
+    if s == "\27" then
+      opt.callback(false)
+      return
+    end
+    local value = ({
+      y = true,
+      n = false,
+    })[(s or ""):lower()]
+    if value == nil then
+      value = opt.default
+    end
+    opt.callback(value)
+  end
+end
+
 return M
