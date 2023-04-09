@@ -1,11 +1,75 @@
 return {
   {
+    "TimUntersberger/neogit",
+    cmd = "Neogit",
+    keys = {
+      {
+        "<localleader>gs",
+        function()
+          require("neogit").open()
+        end,
+        desc = "[G]it [S]tatus buffer",
+      },
+      {
+        "<localleader>gc",
+        function()
+          require("neogit").open { "commit" }
+        end,
+        desc = "[G]it [C]ommit buffer",
+      },
+      {
+        "<localleader>gp",
+        function()
+          require("neogit").popups.pull.create()
+        end,
+        desc = "[G]it [P]ull popup",
+      },
+      {
+        "<localleader>gP",
+        function()
+          require("neogit").popups.push.create()
+        end,
+        desc = "[G]it [P]ush popup",
+      },
+      {
+        "<localleader>gB",
+        function()
+          require("neogit").open { "branch" }
+        end,
+        desc = "[G]it [B]ranch popup",
+      },
+    },
+    opts = {
+      disable_signs = false,
+      disable_hint = true,
+      disable_commit_confirmation = true,
+      disable_builtin_notifications = true,
+      disable_insert_on_commit = false,
+      status = {
+        recent_commit_count = 100,
+      },
+      signs = {
+        section = { "", "" },
+        item = { "▸", "▾" },
+        hunk = { "", "" },
+      },
+      integrations = {
+        diffview = true,
+      },
+    },
+    config = function(_, opts)
+      local palette = require("core.theme").palette
+      require("neogit").setup(opts)
+
+      vim.api.nvim_set_hl(0, "DiffDelete", { fg = palette.diff_view })
+    end,
+  },
+  {
     "ruifm/gitlinker.nvim",
     keys = {
       {
         "<leader>gL",
         function()
-          -- require("gitlinker.actions").copy_to_clipboard()
           require("gitlinker").get_buf_range_url(
             "n",
             { action_callback = require("gitlinker.actions").open_in_browser }
@@ -16,7 +80,6 @@ return {
       {
         "<leader>gL",
         function()
-          -- require("gitlinker.actions").copy_to_clipboard()
           require("gitlinker").get_buf_range_url(
             "v",
             { action_callback = require("gitlinker.actions").open_in_browser }
@@ -37,6 +100,9 @@ return {
   {
     "rbong/vim-flog",
     cmd = { "Flog", "Flogsplit" },
+    keys = {
+      { "<leader>gf", "<cmd>Flog<CR>", desc = "[F]log" },
+    },
     init = function()
       vim.g.flog_default_opts = { max_count = 512 }
       -- vim.g.flog_override_default_mappings = {}
@@ -59,9 +125,13 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
     keys = {
-      { "[c", "<cmd> Gitsigns next_hunk<CR>", desc = "Git Next Hunk" },
-      { "]c", "<cmd> Gitsigns prev_hunk<CR>", desc = "Git Prev Hunk" },
-      { "<leader>gp", "<cmd> Gitsigns preview_hunk<CR>", desc = "[G]it [P]review Hunk" },
+      { "<leader>hp", "<cmd> Gitsigns preview_hunk<CR>", desc = "[H]unk [P]review" },
+      { "<leader>hr", "<cmd> Gitsigns reset_hunk<CR>", desc = "[H]unk [R]eset" },
+      { "<leader>hR", "<cmd> Gitsigns reset_buffer<CR>", desc = "[H]unk [R]eset buffer" },
+      { "<leader>hs", "<cmd> Gitsigns stage_hunk<CR>", desc = "[H]unk [S]tage" },
+      { "<leader>hS", "<cmd> Gitsigns stage_buffer<CR>", desc = "[H]unk [S]tage buffer" },
+      { "<leader>hu", "<cmd> Gitsigns undo_stage_hunk<CR>", desc = "[H]unk [U]ndo Stage" },
+      { "<leader>hb", "<cmd> Gitsigns blame_line<CR>", desc = "[H]unk [B]lame line" },
     },
     opts = {
       numhl = true,
@@ -100,6 +170,34 @@ return {
         ["+"] = "₊",
       },
     },
+    config = function(_, opts)
+      local gs = require "gitsigns"
+
+      vim.keymap.set("x", "<leader>hr", function()
+        gs.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+      end, { desc = "[H]unk [R]eset" })
+      vim.keymap.set("x", "<leader>hs", function()
+        gs.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+      end, { desc = "[H]unk [S]tage" })
+
+      vim.keymap.set("n", "[c", function()
+        if vim.wo.diff then
+          vim.cmd "norm! [c"
+        else
+          gs.next_hunk()
+        end
+      end, { desc = "Git Next Hunk" })
+
+      vim.keymap.set("n", "]c", function()
+        if vim.wo.diff then
+          vim.cmd "norm! ]c"
+        else
+          gs.prev_hunk()
+        end
+      end, { desc = "Git Prev Hunk" })
+
+      gs.setup(opts)
+    end,
   },
   {
     "sindrets/diffview.nvim",
@@ -160,7 +258,6 @@ return {
             },
             { "n", "cc", "<Cmd>Git commit <bar> wincmd J<CR>", { desc = "[C]ommit staged [C]hanges" } },
             { "n", "ca", "<Cmd>Git commit --amend <bar> wincmd J<CR>", { desc = "Amend the last commit" } },
-            { "n", "c<space>", ":Git commit ", { desc = 'Populate command line with ":Git commit "' } },
             {
               "n",
               "P",
@@ -177,7 +274,10 @@ return {
               { desc = "[G]it [P]ush" },
             },
           },
-          file_history_panel = { q = "<Cmd>DiffviewClose<CR>" },
+          file_history_panel = {
+            q = "<Cmd>DiffviewClose<CR>",
+            { "n", "<cr>", actions.focus_entry, { desc = "Focus the selected entry" } },
+          },
         },
       }
     end,
