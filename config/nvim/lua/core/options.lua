@@ -51,6 +51,7 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = true -- Disable line wrap
 opt.showmatch = true -- highlight matching [{()}]
+opt.hidden = true
 
 -- recursive :find in current dir
 vim.cmd [[set path=.,,,$PWD/**]]

@@ -14,11 +14,18 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 map("n", "tt", "<cmd>$tabnew<CR>", { desc = "new tab" })
+
 -- switch between windows
-map("n", "<C-h>", "<C-w>h", { desc = "window left" })
-map("n", "<C-l>", "<C-w>l", { desc = "window right" })
-map("n", "<C-j>", "<C-w>j", { desc = "window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "window up" })
+-- map("n", "<C-h>", "<C-w>h", { desc = "window left" })
+-- map("n", "<C-l>", "<C-w>l", { desc = "window right" })
+-- map("n", "<C-j>", "<C-w>j", { desc = "window down" })
+-- map("n", "<C-k>", "<C-w>k", { desc = "window up" })
+
+-- Resize with arrows
+-- map("n", "<A-Up>", "<cmd> resize -2<CR>", { desc = "decrease height" })
+-- map("n", "<A-Down>", "<cmd> resize +2<CR>", { desc = "increase height" })
+-- map("n", "<A-Left>", "<cmd> vertical resize -2<CR>", { desc = "decrease width" })
+-- map("n", "<A-Right>", "<cmd> vertical resize +2<CR>", { desc = "increase width" })
 
 -- Copy all
 map("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "copy whole file" })
@@ -62,12 +69,6 @@ map("v", ">", ">gv", { desc = "indent" })
 
 -- new buffer
 map("n", "<S-b>", "<cmd> enew <CR>", { desc = "new buffer" })
-
--- Resize with arrows
-map("n", "<A-Up>", "<cmd> resize -2<CR>", { desc = "decrease height" })
-map("n", "<A-Down>", "<cmd> resize +2<CR>", { desc = "increase height" })
-map("n", "<A-Left>", "<cmd> vertical resize -2<CR>", { desc = "decrease width" })
-map("n", "<A-Right>", "<cmd> vertical resize +2<CR>", { desc = "increase width" })
 
 -- map("n", "<leader>Fc", require("core.cht").cht, { desc = "  Cheatsheets" })
 -- map("n", "<leader>Fs", require("core.cht").stack_overflow, { desc = "  Stack Overflow" })
