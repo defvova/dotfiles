@@ -4,8 +4,16 @@ return {
   event = "BufReadPre",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    "williamboman/mason.nvim",
+    { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
     "williamboman/mason-lspconfig.nvim",
+    {
+      "mfussenegger/nvim-dap",
+      dependencies = {
+        "jay-babu/mason-nvim-dap.nvim",
+        "rcarriga/nvim-dap-ui",
+        "suketa/nvim-dap-ruby",
+      },
+    },
 
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -16,8 +24,11 @@ return {
 
     "princejoogie/tailwind-highlight.nvim",
     {
-      "jose-elias-alvarez/null-ls.nvim",
-      dependencies = { "lukas-reineke/lsp-format.nvim", "jayp0521/mason-null-ls.nvim" },
+      "jay-babu/mason-null-ls.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      dependencies = {
+        { "jose-elias-alvarez/null-ls.nvim", dependencies = { "lukas-reineke/lsp-format.nvim" } },
+      },
     },
     { "b0o/schemastore.nvim" },
     {
@@ -188,9 +199,6 @@ return {
       capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
     end
 
-    require("custom.plugins.lsp.handlers").setup()
-    require("custom.plugins.lsp.null-ls").setup { on_attach = on_attach }
-
     -- Setup mason so it can manage external tooling
     require("mason").setup {
       ensure_installed = { "lua-language-server" },
@@ -224,6 +232,7 @@ return {
       automatic_installation = true,
     }
 
+    require("custom.plugins.lsp.null-ls").setup { on_attach = on_attach }
     -- Package installation folder
     local install_root_dir = vim.fn.stdpath "data" .. "/mason"
 
@@ -283,5 +292,8 @@ return {
         }
       end,
     }
+
+    require("custom.plugins.lsp.handlers").setup()
+    require("custom.plugins.lsp.debug").setup()
   end,
 }
