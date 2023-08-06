@@ -48,63 +48,6 @@ M.file = function(mode, filepath, content)
   return data
 end
 
-M.write_data = function(old_data, new_data)
-  local file_fn = M.file
-  local file = fn.stdpath "config" .. "/lua/core/" .. "custom.lua"
-  local data = file_fn("r", file)
-
-  local content = string.gsub(data, old_data, new_data)
-
-  -- see if the find string exists in file
-  assert(file_fn("w", file, content))
-end
-
-M.change_theme = function(current_theme, new_theme)
-  if current_theme == nil or new_theme == nil then
-    print "Error: Provide current and new theme name"
-    return false
-  end
-
-  if current_theme == new_theme then
-    return
-  end
-
-  -- escape characters which can be parsed as magic chars
-  current_theme = current_theme:gsub("%p", "%%%0")
-  new_theme = new_theme:gsub("%p", "%%%0")
-
-  local old_theme_txt = "theme_mode = .?" .. current_theme .. ".?"
-  local new_theme_txt = 'theme_mode = "' .. new_theme .. '"'
-
-  M.write_data(old_theme_txt, new_theme_txt)
-end
-
-M.reload_theme = function(mode)
-  vim.opt.background = mode
-  vim.cmd("colorscheme " .. require("core.custom").current_theme())
-end
-
-M.toggle_theme = function()
-  local themes = require("core.custom").ui.toggle_mode
-
-  local theme1 = themes[1]
-  local theme2 = themes[2]
-
-  if g.theme_mode == theme1 then
-    g.theme_mode = theme2
-
-    M.change_theme(theme1, theme2)
-    M.reload_theme(theme2)
-  elseif g.theme_mode == theme2 then
-    g.theme_mode = theme1
-
-    M.change_theme(theme2, theme1)
-    M.reload_theme(theme1)
-  else
-    vim.notify "Set your current theme to one of those mentioned in the toggle_mode table (chadrc)"
-  end
-end
-
 M.input_char = function(prompt, opt)
   opt = vim.tbl_extend("keep", opt or {}, {
     clear_prompt = true,

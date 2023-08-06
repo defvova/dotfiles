@@ -1,13 +1,15 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = "BufReadPost",
+  version = false, -- last release is way too old and doesn't work on Windows
+  event = { "BufReadPost", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     -- "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "p00f/nvim-ts-rainbow",
+    "HiPhish/nvim-ts-rainbow2",
   },
+  cmd = { "TSUpdateSync" },
   opts = {
     ensure_installed = {
       "cmake",
@@ -23,7 +25,6 @@ return {
       "javascript",
       "json",
       "toml",
-      "lua",
       "typescript",
       "tsx",
       "css",
@@ -36,10 +37,7 @@ return {
     },
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
-    highlight = {
-      enable = true,
-      use_languagetree = true,
-    },
+    highlight = { enable = true },
     indent = {
       enable = true,
     },
@@ -47,7 +45,7 @@ return {
       enable = true,
       enable_autocmd = false,
     },
-    rainbow = { enable = true, extended_mode = true },
+    rainbow = { enable = true },
     matchup = {
       enable = true, -- mandatory, false will disable the whole extension
     },

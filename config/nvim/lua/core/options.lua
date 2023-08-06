@@ -1,13 +1,6 @@
 local g = vim.g
-local custom_config = require "core.custom"
-local ui = custom_config.ui
-
-g.theme_mode = ui.theme_mode
-
 local opt = vim.opt
 
-opt.foldlevel = 9999
-opt.undolevels = 10000
 opt.autowrite = true -- Enable auto write
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.conceallevel = 0 -- Hide * markup for bold and italic

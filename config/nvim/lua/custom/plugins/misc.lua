@@ -1,5 +1,24 @@
 return {
   {
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("project_nvim").setup {
+        detection_methods = { "pattern", "lsp" },
+        patterns = { ".git" },
+      }
+    end,
+  },
+  {
+    "chentoast/marks.nvim",
+    cmd = { "MarksListAll", "MarksListBuf" },
+    config = function()
+      require("marks").setup {
+        excluded_filetypes = { "gitcommit" },
+      }
+    end,
+  },
+  {
     "Darazaki/indent-o-matic",
     event = "VeryLazy",
     config = true,
@@ -39,39 +58,6 @@ return {
       },
       { "<leader>dC", "<Cmd>DeleteDebugPrints<CR>", desc = "debugprint: clear all" },
     },
-  },
-  {
-    "natecraddock/workspaces.nvim",
-    lazy = false,
-    config = function()
-      require("workspaces").setup {
-        hooks = {
-          -- hooks run before change directory
-          open_pre = {
-            -- save current session state if currently recording
-            -- "SessionsStop",
-            -- stop any active lsp servers
-            "LspStop",
-            -- delete all buffers (does not save changes)
-            -- "silent %bdelete!",
-          },
-          -- hooks run after change directory
-          open = {
-            -- load any saved session from current directory
-            -- "NeoTreeFocus",
-            -- function(name, path)
-            --   if not require("sessions").load(path, { silent = true }) then
-            --     -- require("telescope.builtin").find_files { initial_mode = "insert" }
-            --     vim.schedule(function()
-            --       vim.cmd "NeoTreeFocusToggle"
-            --       -- vim.cmd "startinsert"
-            --     end)
-            --   end
-            -- end,
-          },
-        },
-      }
-    end,
   },
   { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
   {

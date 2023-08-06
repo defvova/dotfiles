@@ -35,17 +35,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
-autocmd("OptionSet", {
-  pattern = "background",
-  -- pattern = "*",
-  callback = function()
-    -- package.loaded["catppuccin"] = nil
-    -- package.loaded["catppuccin.groups.integrations.feline"] = nil
-    -- vim.cmd "Lazy load catppuccin"
-    vim.cmd("colorscheme " .. require("core.custom").current_theme())
-  end,
-})
-
 -- dont list quickfix buffers
 autocmd("FileType", {
   pattern = "qf",

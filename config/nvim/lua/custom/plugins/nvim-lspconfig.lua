@@ -15,9 +15,12 @@ return {
       },
     },
 
-    -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { "j-hui/fidget.nvim", opts = {} },
+    {
+      "j-hui/fidget.nvim",
+      tag = "legacy",
+      event = "LspAttach",
+      opts = { window = { blend = 0 } },
+    },
 
     -- Additional lua configuration, makes nvim stuff amazing!
     "folke/neodev.nvim",
@@ -80,7 +83,7 @@ return {
       nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
       nmap("<A-Enter>", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-      -- nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+      nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
       -- nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
       -- nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
       -- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
@@ -192,12 +195,16 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend("keep", capabilities or {}, {
       workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
-      textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
+      -- textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
     })
     local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     if status_ok then
       capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
     end
+
+    local lspconfig_util = require "lspconfig.util"
+    local add_bun_prefix = require("custom.plugins.lsp.bun").add_bun_prefix
+    lspconfig_util.on_setup = lspconfig_util.add_hook_before(lspconfig_util.on_setup, add_bun_prefix)
 
     -- Setup mason so it can manage external tooling
     require("mason").setup {
@@ -294,6 +301,6 @@ return {
     }
 
     require("custom.plugins.lsp.handlers").setup()
-    require("custom.plugins.lsp.debug").setup()
+    -- require("custom.plugins.lsp.debug").setup()
   end,
 }

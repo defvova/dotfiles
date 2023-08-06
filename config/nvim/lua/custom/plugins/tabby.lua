@@ -2,17 +2,16 @@ return {
   "nanozuki/tabby.nvim",
   event = { "BufReadPre", "BufAdd", "BufNewFile" },
   config = function()
-    local palette = require("core.theme").palette
     local theme = {
-      fill = { fg = palette.fg_sec, bg = palette.bg },
-      head = { fg = palette.fg_sec, bg = palette.bg, style = "italic" },
-      current_tab = { fg = palette.fg, bg = palette.accent, style = "bold" },
-      tab = { fg = palette.fg3, bg = palette.accent_sec, style = "bold" },
-      win = { fg = palette.fg, bg = palette.bg_sec },
-      tail = { fg = palette.bg, bg = palette.accent_sec, style = "bold" },
+      fill = "TabLineFill",
+      head = "TabLine",
+      current_tab = "TabLineSel",
+      tab = "TabLine",
+      win = "TabLine",
+      tail = "TabLine",
     }
 
-    vim.opt.showtabline = 1
+    vim.opt.showtabline = 2
     require("tabby.tabline").set(function(line)
       local cwd = " ﱮ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
       return {

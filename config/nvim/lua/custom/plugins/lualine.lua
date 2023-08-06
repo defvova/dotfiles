@@ -24,7 +24,6 @@ return {
     }
 
     local lualine = require "lualine"
-    local palette = require("core.theme").palette
 
     local function lsp_client(msg)
       msg = msg or "No Active Lsp"
@@ -57,7 +56,8 @@ return {
         component_separators = "",
         -- section_separators = { left = assets.sep_right, right = "" },
         section_separators = "",
-        theme = "auto",
+        -- theme = "auto",
+        -- theme = "catppuccin",
         icons_enabled = true,
         disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
       },
@@ -86,7 +86,7 @@ return {
           {
             lsp_client,
             icon = " LSP:",
-            color = { fg = palette.accent, gui = "bold" },
+            color = { gui = "bold" },
             on_click = function()
               vim.cmd [[LspInfo]]
             end,
@@ -118,11 +118,8 @@ return {
               return dir_name
             end,
             icon = assets.dir,
-            color = {
-              fg = palette.accent,
-            },
             on_click = function()
-              vim.cmd [[Telescope workspaces]]
+              vim.cmd [[Telescope projects]]
             end,
           },
         },

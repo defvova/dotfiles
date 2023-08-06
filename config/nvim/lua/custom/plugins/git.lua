@@ -1,6 +1,6 @@
 return {
   {
-    "TimUntersberger/neogit",
+    "NeogitOrg/neogit",
     cmd = "Neogit",
     keys = {
       {
@@ -58,10 +58,7 @@ return {
       },
     },
     config = function(_, opts)
-      local palette = require("core.theme").palette
       require("neogit").setup(opts)
-
-      vim.api.nvim_set_hl(0, "DiffDelete", { fg = palette.diff_view })
     end,
   },
   {

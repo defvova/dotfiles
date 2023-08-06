@@ -6,7 +6,10 @@ return {
   config = function()
     local ccc = require "ccc"
     ccc.setup {
-      highlighter = { auto_enable = true },
+      highlighter = {
+        auto_enable = true,
+        excludes = { "dart", "lazy", "orgagenda", "org", "NeogitStatus", "toggleterm" },
+      },
       pickers = {
         ccc.picker.hex,
         ccc.picker.css_rgb,

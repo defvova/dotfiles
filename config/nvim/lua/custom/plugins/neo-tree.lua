@@ -34,7 +34,9 @@ return {
       statusline = false,
     },
     filesystem = {
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true,
+      },
       filtered_items = {
         hide_dotfiles = false,
         hide_by_name = {
@@ -50,6 +52,8 @@ return {
     default_component_configs = {
       indent = {
         with_markers = false,
+        -- expander_collapsed = "",
+        -- expander_expanded = "",
       },
       icon = {
         folder_closed = "",

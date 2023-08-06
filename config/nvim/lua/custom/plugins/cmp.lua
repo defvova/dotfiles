@@ -10,6 +10,10 @@ return {
     "hrsh7th/cmp-nvim-lsp-document-symbol",
     "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
+    -- {
+    --   "jcdickinson/http.nvim",
+    --   build = "cargo build --workspace --release",
+    -- },
     {
       "L3MON4D3/LuaSnip",
       event = "InsertEnter",
@@ -33,6 +37,9 @@ return {
   config = function()
     local cmp = require "cmp"
     local luasnip = require "luasnip"
+    local lspkind = require "lspkind"
+    local fmt = string.format
+    -- local compare = require "cmp.config.compare"
 
     -- luasnip.config.setup {}
     -- local has_words_before = function()
@@ -47,6 +54,20 @@ return {
       completion = {
         completeopt = "menu,menuone,noinsert,noselect",
       },
+      -- sorting = {
+      --   priority_weight = 2,
+      --   comparators = {
+      --     -- require "cmp_tabnine.compare",
+      --     compare.score,
+      --     compare.recently_used,
+      --     compare.offset,
+      --     compare.exact,
+      --     compare.kind,
+      --     compare.sort_text,
+      --     compare.length,
+      --     compare.order,
+      --   },
+      -- },
       preselect = cmp.PreselectMode.None,
       snippet = {
         expand = function(args)
@@ -55,12 +76,14 @@ return {
       },
       formatting = {
         fields = { "abbr", "kind", "menu" },
-        format = require("lspkind").cmp_format {
+        format = lspkind.cmp_format {
           mode = "symbol_text",
           preset = "codicons",
           maxwidth = 50,
           ellipsis_char = "...",
+          -- symbol_map = { Codeium = "" },
           menu = {
+            -- codeium = "[AI]",
             buffer = "[Buffer]",
             rg = "[RG]",
             nvim_lsp = "[LSP]",
@@ -70,8 +93,15 @@ return {
             path = "[Path]",
             crates = "[Crates]",
           },
+          before = function(entry, item)
+            -- if entry.source.name == "codeium" then
+            --   item.kind = fmt("%s %s", "", "Codeium")
+            -- end
+            return item
+          end,
         },
         duplicates = {
+          -- codeium = 1,
           buffer = 1,
           rg = 1,
           nvim_lsp = 1,
@@ -129,7 +159,9 @@ return {
         end, { "i", "s" }),
       },
       sources = {
+        -- group_index = 1
         { name = "nvim_lsp", priority = 1000 },
+        -- { name = "codeium", priority = 1000 },
         { name = "luasnip", priority = 750 },
         { name = "buffer", priority = 500 },
         { name = "path", priority = 250 },

@@ -52,7 +52,7 @@ return {
           {
             desc = " Projects",
             group = "DiagnosticHint",
-            action = "Telescope workspaces",
+            action = "Telescope projects",
             key = "p",
           },
           {
@@ -74,7 +74,6 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "LazyVimStarted",
       callback = function()
-        local _ = require("core.theme").palette
         opts.config.footer = footer
         db.setup(opts)
       end,
