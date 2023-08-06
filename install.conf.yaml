@@ -33,6 +33,7 @@
     - youtube-dl
     - mplayer
     - font-jetbrains-mono-nerd-font
+    - tmux
     - alacritty
 
 - create:
@@ -45,6 +46,7 @@
       recursive: true
 
 - link:
+    ~/.tmux.conf: config/.tmux.conf
     ~/.config/alacritty:
       glob: true
       path: config/alacritty/*
