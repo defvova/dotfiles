@@ -33,6 +33,7 @@
     - youtube-dl
     - mplayer
     - font-jetbrains-mono-nerd-font
+    - alacritty
 
 - create:
     - ~/.config/nvim
@@ -44,6 +45,9 @@
       recursive: true
 
 - link:
+    ~/.config/alacritty:
+      glob: true
+      path: config/alacritty/*
     ~/.config/fish:
       glob: true
       path: config/fish/*

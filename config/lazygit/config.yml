@@ -1,4 +1,5 @@
 gui:
+  nerdFontsVersion: "3"
   # stuff relating to the UI
   scrollHeight: 2 # how many lines you scroll by
   scrollPastBottom: true # enable scrolling past the bottom
@@ -40,6 +41,25 @@ gui:
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
 git:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - "#a6d189" # Green
+      - bold
+    inactiveBorderColor:
+      - "#c6d0f5" # Text
+    optionsTextColor:
+      - "#8caaee" # Blue
+    selectedLineBgColor:
+      - "#414559" # Surface0
+    selectedRangeBgColor:
+      - "#414559" # Surface0
+    cherryPickedCommitBgColor:
+      - "#81c8be" # Teal
+    cherryPickedCommitFgColor:
+      - "#8caaee" # Blue
+    unstagedChangesColor:
+      - red       # Red
   paging:
     colorArg: always
     useConfig: false

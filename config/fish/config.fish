@@ -4,6 +4,32 @@ set -U fish_greeting
 
 set -gx EDITOR (which nvim)
 
+# fish_config theme save "Catppuccin Frappe"
+# fish_config theme save "Catppuccin Latte"
+
+# Fish syntax highlighting
+# set -g fish_color_autosuggestion '555'  'brblack'
+# set -g fish_color_cancel -r
+# set -g fish_color_command --bold
+# set -g fish_color_comment red
+# set -g fish_color_cwd green
+# set -g fish_color_cwd_root red
+# set -g fish_color_end brmagenta
+# set -g fish_color_error brred
+# set -g fish_color_escape 'bryellow'  '--bold'
+# set -g fish_color_history_current --bold
+# set -g fish_color_host normal
+# set -g fish_color_match --background=brblue
+# set -g fish_color_normal normal
+# set -g fish_color_operator bryellow
+# set -g fish_color_param cyan
+# set -g fish_color_quote yellow
+# set -g fish_color_redirection brblue
+# set -g fish_color_search_match 'bryellow'  '--background=brblack'
+# set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
+# set -g fish_color_user brgreen
+# set -g fish_color_valid_path --underline
+
 # set -gx PATH bin $PATH
 # set -gx PATH ~/bin $PATH
 # set -gx PATH ~/.local/bin $PATH
@@ -44,11 +70,16 @@ function build_fabric
   cd $current_path
 end
 
+fish_add_path -g ~/.cargo/bin
+# test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# set --export PATH $HOME/.emacs.d/bin $PATH
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
 starship init fish | source
 frum init | source
 fnm env --use-on-cd | source
 zoxide init fish | source
-
-fish_add_path -g ~/.cargo/bin
-# test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-
