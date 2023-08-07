@@ -1,8 +1,12 @@
 fish_vi_key_bindings
 
 set -U fish_greeting
+set -gx EDITOR nvim
+set -gx FZF_CTRL_T_COMMAND nvim
 
-set -gx EDITOR (which nvim)
+# don't describe the command for darwin
+# https://github.com/fish-shell/fish-shell/issues/6270
+function __fish_describe_command; end
 
 # fish_config theme save "Catppuccin Frappe"
 # fish_config theme save "Catppuccin Latte"
@@ -38,7 +42,6 @@ alias spotify='ncspot'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias vim='nvim'
-alias nv='neovide --neovim-bin {which nvim}'
 alias ls='lsd -A'
 alias ll='lsd -lA'
 alias lt='lsd --tree --depth 3 --ignore-glob node_modules'
