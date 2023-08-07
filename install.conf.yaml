@@ -38,6 +38,7 @@
 
 - create:
     - ~/.config/nvim
+    - ~/.config/tmux
 
 - clean:
     ~/:
@@ -46,6 +47,9 @@
       recursive: true
 
 - link:
+    ~/.config/tmux/tmuxline:
+      glob: true
+      path: config/tmux/tmuxline
     ~/.tmux.conf: config/.tmux.conf
     ~/.config/alacritty:
       glob: true
