@@ -35,6 +35,7 @@
     - font-jetbrains-mono-nerd-font
     - tmux
     - alacritty
+    - dark-notify
 
 - create:
     - ~/.config/nvim
@@ -47,9 +48,9 @@
       recursive: true
 
 - link:
-    ~/.config/tmux/tmuxline:
+    ~/.config/tmux/theme:
       glob: true
-      path: config/tmux/tmuxline
+      path: config/tmux/theme
     ~/.tmux.conf: config/.tmux.conf
     ~/.config/alacritty:
       glob: true
