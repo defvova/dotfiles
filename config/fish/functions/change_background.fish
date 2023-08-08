@@ -32,10 +32,10 @@ function change_background --argument mode_setting
   # # change tmux
   switch $mode
     case dark
-      tmux source-file ~/.config/tmux/theme/dark.tmux.conf
+      tmux set -g @tmux_power_theme 'sky'
       tmux source ~/.tmux.conf
     case light
-      tmux source-file ~/.config/tmux/theme/light.tmux.conf
+      tmux set -g @tmux_power_theme 'snow'
       tmux source ~/.tmux.conf
   end
 

@@ -1,83 +1,149 @@
 schemes:
   dark: &dark
     primary:
-      background: "#011627"
-      foreground: "#d6deeb"
+      foreground: "#e0def4"
+      background: "#232136"
+      dim_foreground: "#908caa"
+      bright_foreground: "#e0def4"
 
-    # Cursor colors
     cursor:
-      text: CellBackground
-      cursor: CellForeground
+      text: "#e0def4"
+      cursor: "#56526e"
 
-    # Vi mode cursor colors
     vi_mode_cursor:
-      text: CellBackground
-      cursor: "#22da6e"
+      text: "#e0def4"
+      cursor: "#56526e"
 
-    # Selection colors
-    selection:
-      text: "#ffffff"
-      background: "#0d486e"
-
-    # Search colors
     search:
       matches:
-        foreground: "#000000"
-        background: "#22da6e"
+        foreground: "#908caa"
+        background: "#393552"
+      focused_match:
+        foreground: "#232136"
+        background: "#ea9a97"
 
-        focused_match:
-          foreground: "#ffffff"
-          background: "#22da6e"
+    hints:
+      start:
+        foreground: "#908caa"
+        background: "#2a273f"
+      end:
+        foreground: "#6e6a86"
+        background: "#2a273f"
 
-      footer_bar:
-        foreground: "#ffffff"
-        background: "#1d3b53"
+    line_indicator:
+      foreground: "None"
+      background: "None"
 
-    # Normal colors
+    footer_bar:
+      foreground: "#e0def4"
+      background: "#2a273f"
+
+    selection:
+      text: "#e0def4"
+      background: "#44415a"
+
     normal:
-      black: "#011627"
-      red: "#EF5350"
-      green: "#22da6e"
-      yellow: "#c5e478"
-      blue: "#82AAFF"
-      magenta: "#C792EA"
-      cyan: "#21c7a8"
-      white: "#ffffff"
+      black: "#393552"
+      red: "#eb6f92"
+      green: "#3e8fb0"
+      yellow: "#f6c177"
+      blue: "#9ccfd8"
+      magenta: "#c4a7e7"
+      cyan: "#ea9a97"
+      white: "#e0def4"
 
-    # Bright colors
     bright:
-      black: "#575656"
-      red: "#EF5350"
-      green: "#22da6e"
-      yellow: "#ffeb95"
-      blue: "#82AAFF"
-      magenta: "#C792EA"
-      cyan: "#7fdbca"
-      white: "#ffffff"
+      black: "#6e6a86"
+      red: "#eb6f92"
+      green: "#3e8fb0"
+      yellow: "#f6c177"
+      blue: "#9ccfd8"
+      magenta: "#c4a7e7"
+      cyan: "#ea9a97"
+      white: "#e0def4"
+
+    dim:
+      black: "#6e6a86"
+      red: "#eb6f92"
+      green: "#3e8fb0"
+      yellow: "#f6c177"
+      blue: "#9ccfd8"
+      magenta: "#c4a7e7"
+      cyan: "#ea9a97"
+      white: "#e0def4"
 
   light: &light
     primary:
-      background: "0xFAFAFA"
-      foreground: "0x4B505B"
+      foreground: "#575279"
+      background: "#faf4ed"
+      dim_foreground: "#797593"
+      bright_foreground: "#575279"
+
+    cursor:
+      text: "#575279"
+      cursor: "#cecacd"
+
+    vi_mode_cursor:
+      text: "#575279"
+      cursor: "#cecacd"
+
+    search:
+      matches:
+        foreground: "#797593"
+        background: "#f2e9e1"
+      focused_match:
+        foreground: "#faf4ed"
+        background: "#d7827e"
+
+    hints:
+      start:
+        foreground: "#797593"
+        background: "#fffaf3"
+      end:
+        foreground: "#9893a5"
+        background: "#fffaf3"
+
+
+    line_indicator:
+      foreground: "None"
+      background: "None"
+
+    footer_bar:
+      foreground: "#575279"
+      background: "#fffaf3"
+
+    selection:
+      text: "#575279"
+      background: "#dfdad9"
 
     normal:
-      black:	  "0x4B505B"
-      red:	  "0xD05858"
-      green:	  "0x608E32"
-      yellow:	  "0xBE7E05"
-      blue:	  "0x5079BE"
-      magenta:	  "0xB05CCC"
-      cyan:	  "0x3A8B84"
-      white:	  "0xFAFAFA"
+      black: "#f2e9e1"
+      red: "#b4637a"
+      green: "#286983"
+      yellow: "#ea9d34"
+      blue: "#56949f"
+      magenta: "#907aa9"
+      cyan: "#d7827e"
+      white: "#575279"
 
     bright:
-      black:	  "0x4B505B"
-      red:	  "0xD05858"
-      green:	  "0x608E32"
-      yellow:	  "0xBE7E05"
-      blue:	  "0x5079BE"
-      magenta:	  "0xB05CCC"
-      cyan:	  "0x3A8B84"
-      white:	  "0xFAFAFA"
+      black: "#9893a5"
+      red: "#b4637a"
+      green: "#286983"
+      yellow: "#ea9d34"
+      blue: "#56949f"
+      magenta: "#907aa9"
+      cyan: "#d7827e"
+      white: "#575279"
+
+    dim:
+      black: "#9893a5"
+      red: "#b4637a"
+      green: "#286983"
+      yellow: "#ea9d34"
+      blue: "#56949f"
+      magenta: "#907aa9"
+      cyan: "#d7827e"
+      white: "#575279"
 
 colors: *dark

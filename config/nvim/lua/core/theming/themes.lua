@@ -134,6 +134,24 @@ local M = {
         vim.cmd.colorscheme "oxocarbon"
       end,
     },
+    rosepine = {
+      style = { "main", "moon", "dawn" },
+      transparent = false,
+      lualine = function(style)
+        return "auto"
+      end,
+      activate = function(style, transparent)
+        require("rose-pine").setup {
+          variant = style,
+        }
+        if style == "dawn" then
+          vim.opt.background = "light"
+        else
+          vim.opt.background = "dark"
+        end
+        vim.cmd.colorscheme "rose-pine"
+      end,
+    },
   },
 }
 
