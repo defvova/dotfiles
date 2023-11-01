@@ -52,6 +52,7 @@
       glob: true
       path: config/tmux/theme
     ~/.tmux.conf: config/.tmux.conf
+    ~/.ideavimrc: config/.ideavimrc
     ~/.config/alacritty:
       glob: true
       path: config/alacritty/*

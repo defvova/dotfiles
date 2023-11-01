@@ -1,0 +1,39 @@
+set visualbell
+
+set number
+" set relativenumber
+set ideajoin
+set ignorecase
+set hlsearch
+
+set clipboard+=unnamedplus
+
+set highlightedyank # Highlight what you try to copy
+let g:highlightedyank_highlight_color = "rgba(218, 192, 109, 155)"
+let g:highlightedyank_highlight_duration = 5
+
+nnoremap <ESC> :noh<CR>
+
+" let mapleader = " "
+"
+" " Jetbrains Actions Mappings
+"
+" nmap <Tab>          <action>(NextTab)
+" nmap <S-Tab>        <action>(PreviousTab)
+" nmap <leader>a      <action>(Run)
+" nmap <leader>cc     <action>(CloseEditor)
+" nmap <leader>co     <action>(CloseAllEditorsButActive)
+" nmap <leader>cp     <action>(CloseProject)
+" nmap <leader>cs     <action>(QuickChangeScheme)
+" " nmap <leader>e      <action>(ActivateProjectToolWindow) # Toggle File Explorer
+" nmap <leader>g      <action>(GotoNextError)
+" nmap <leader>h      <action>(HideActiveWindow)
+" nmap <leader>i      <action>(Generate)
+" nmap <leader>l      <action>(ShowErrorDescription)
+" nmap <leader>m      <action>(Git.Menu)
+" nmap <leader>n      <action>(NewClass)
+" nmap <leader>o      <action>(OptimizeImports)
+" nmap <leader>q      <action>(Stop)
+" nmap <leader>r      <action>(ReformatCode)
+" nmap <leader>s      <action>(GlobalSettings)
+" nmap <leader>t      <action>(ActivateTerminalToolWindow)
