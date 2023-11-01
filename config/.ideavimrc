@@ -1,3 +1,4 @@
+" Reference: https://github.com/chylex/dotfiles
 set visualbell
 
 set number
@@ -16,15 +17,27 @@ let g:highlightedyank_highlight_duration = 5
 
 nnoremap <ESC> :noh<CR>
 
+nnoremap L $
+nnoremap H ^
+vnoremap L $
+vnoremap H ^
+
 """ IdeaVim options
 " Smart join for <C-J>
 set ideajoin
 " Map vim marks to IDEA global marks
 set ideamarks
+set ideaput
 
 """ IdeaVim actions
 nmap [[ <Action>(MethodUp)
 nmap ]] <Action>(MethodDown)
+
+" formatting
+nnoremap == :action ReformatCode <CR>
+vnoremap == :action ReformatCode <CR>
+nnoremap -- :action OptimizeImports <CR>
+vnoremap -- :action OptimizeImports <CR>
 
 " let mapleader = " "
 "
