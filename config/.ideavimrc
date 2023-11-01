@@ -5,14 +5,26 @@ set number
 set ideajoin
 set ignorecase
 set hlsearch
+set smartcase
+set showmode
 
-set clipboard+=unnamedplus
+set clipboard+=unnamedplus,unnamed
 
 set highlightedyank # Highlight what you try to copy
 let g:highlightedyank_highlight_color = "rgba(218, 192, 109, 155)"
 let g:highlightedyank_highlight_duration = 5
 
 nnoremap <ESC> :noh<CR>
+
+""" IdeaVim options
+" Smart join for <C-J>
+set ideajoin
+" Map vim marks to IDEA global marks
+set ideamarks
+
+""" IdeaVim actions
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
 
 " let mapleader = " "
 "
