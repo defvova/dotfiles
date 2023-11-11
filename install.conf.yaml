@@ -40,6 +40,7 @@
 - create:
     - ~/.config/nvim
     - ~/.config/tmux
+    - ~/.config/rio
 
 - clean:
     ~/:
@@ -56,6 +57,10 @@
     ~/.config/alacritty:
       glob: true
       path: config/alacritty/*
+    ~/.config/rio:
+      glob: true
+      path: config/rio/*
+    ~/.config/rio/config.toml: config/rio/config.toml
     ~/.config/fish:
       glob: true
       path: config/fish/*

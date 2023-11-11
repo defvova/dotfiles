@@ -1,0 +1,67 @@
+blinking-cursor = false
+performance = "High"
+disable-unfocused-render = false
+use-fork = false
+use-kitty-keyboard-protocol = false
+line-height = 1.0
+padding-x = 0.0
+cursor = "▇"
+scroll-multiplier = 3.0
+env-vars = []
+option-as-alt = "false"
+ignore-selection-foreground-color = false
+
+# https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/rio
+[adaptive-theme]
+light = "rose-pine-dawn"
+dark = "rose-pine-moon"
+
+[navigation]
+mode = "CollapsedTab"
+use-current-path = false
+
+[window]
+width = 600
+height = 400
+mode = "Maximized"
+
+[background]
+
+[shell]
+program = "/opt/homebrew/bin/fish"
+args = ["--login"]
+
+[fonts]
+size = 18.0
+extras = []
+
+[fonts.regular]
+family = "cascadiamono"
+weight = 400
+style = "normal"
+
+[fonts.bold]
+family = "cascadiamono"
+weight = 800
+style = "normal"
+
+[fonts.bold-italic]
+family = "cascadiamono"
+weight = 800
+style = "italic"
+
+[fonts.italic]
+family = "cascadiamono"
+weight = 400
+style = "italic"
+
+[developer]
+enable-fps-counter = false
+log-level = "OFF"
+
+[bindings]
+keys = [
+  { key = "\\", with = "control", action = "SplitVertically" },
+  { key = "-", with = "control", action = "SplitHorizontally" }
+]
+

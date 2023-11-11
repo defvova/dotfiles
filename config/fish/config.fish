@@ -1,5 +1,7 @@
 fish_vi_key_bindings
 
+zoxide init fish | source
+
 set -U fish_greeting
 set -gx EDITOR nvim
 set -gx FZF_CTRL_T_COMMAND nvim
@@ -34,11 +36,16 @@ set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
 set -g fish_color_user brgreen
 set -g fish_color_valid_path --underline
 
+# if status is-interactive
+#  and not set -q TMUX
+#  exec tmux new-session -A -D -s main
+# end
+
 # set -gx PATH bin $PATH
 # set -gx PATH ~/bin $PATH
 # set -gx PATH ~/.local/bin $PATH
 
-alias spotify='ncspot'
+alias cd 'z'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias vim='nvim'
@@ -49,6 +56,7 @@ alias top='btm'
 alias htop='btm -b'
 alias vtop='btm -b'
 alias cat="bat --theme='Monokai Extended Bright'"
+alias pcat='cat -p'
 alias ps='procs'
 alias df='duf'
 alias docker='podman'
@@ -58,6 +66,7 @@ alias reload='exec fish'
 alias speedtest='speedtest-cli'
 alias weather='curl wttr.in/cherkasy'
 alias youtube='youtube-dl'
+alias spotify='ncspot'
 
 function npm-login
   if grep -q "codeartifact" ~/.npmrc
@@ -85,4 +94,3 @@ set --export PATH $BUN_INSTALL/bin $PATH
 starship init fish | source
 frum init | source
 fnm env --use-on-cd | source
-zoxide init fish | source
