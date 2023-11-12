@@ -1,5 +1,5 @@
 return {
-  "glepnir/lspsaga.nvim",
+  "nvimdev/lspsaga.nvim",
   event = "LspAttach",
   opts = {
     lightbulb = {
@@ -11,13 +11,13 @@ return {
       sign_priority = 20,
       virtual_text = false,
     },
-    symbol_in_winbar = {
-      in_custom = false,
-      enable = true,
-      separator = "  ",
-      respect_root = true,
-      hide_keyword = false,
-      click_support = false,
-    },
+    -- symbol_in_winbar = {
+    --   in_custom = false,
+    --   enable = true,
+    --   separator = "  ",
+    --   respect_root = true,
+    --   hide_keyword = false,
+    --   click_support = false,
+    -- },
   },
 }

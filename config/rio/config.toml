@@ -8,16 +8,18 @@ padding-x = 0.0
 cursor = "▇"
 scroll-multiplier = 3.0
 env-vars = []
-option-as-alt = "false"
+option-as-alt = "left"
 ignore-selection-foreground-color = false
 
 # https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/rio
 [adaptive-theme]
 light = "rose-pine-dawn"
-dark = "rose-pine-moon"
+# dark = "rose-pine-moon"
+dark = "nordic"
 
 [navigation]
 mode = "CollapsedTab"
+# mode = "Plain"
 use-current-path = false
 
 [window]
@@ -27,9 +29,9 @@ mode = "Maximized"
 
 [background]
 
-[shell]
-program = "/opt/homebrew/bin/fish"
-args = ["--login"]
+# [shell]
+# program = "/opt/homebrew/bin/fish"
+# args = ["--login"]
 
 [fonts]
 size = 18.0
@@ -59,9 +61,9 @@ style = "italic"
 enable-fps-counter = false
 log-level = "OFF"
 
-[bindings]
-keys = [
-  { key = "\\", with = "control", action = "SplitVertically" },
-  { key = "-", with = "control", action = "SplitHorizontally" }
-]
-
+# [bindings]
+# keys = [
+#   { key = "\\", with = "control", action = "SplitVertically" },
+#   { key = "-", with = "control", action = "SplitHorizontally" }
+# ]
+#

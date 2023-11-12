@@ -152,6 +152,16 @@ local M = {
         vim.cmd.colorscheme "rose-pine"
       end,
     },
+    nordic = {
+      style = { "nordic" },
+      transparent = false,
+      lualine = function(style)
+        return "nordic"
+      end,
+      activate = function(style, transparent)
+        vim.cmd.colorscheme "nordic"
+      end,
+    },
   },
 }
 

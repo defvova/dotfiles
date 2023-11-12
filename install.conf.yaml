@@ -3,44 +3,46 @@
       create: true
       relink: true
 
-- install-brew: true
+# - install-brew: true
 
-- brew:
-    - git
-    - neovim
-    - lazygit
-    - lazydocker
-    - tig
-    - ripgrep
-    - bottom
-    - bat
-    - lsd
-    - procs
-    - zoxide
-    - duf
-    - starship
-    - podman
-    - podman-compose
-    - font-hack-nerd-font
-    - universal-ctags
-    - fnm
-    - frum
-    - fd
-    - so
-    - git-delta
-    - gnu-sed
-    - speedtest-cli
-    - youtube-dl
-    - mplayer
-    - font-jetbrains-mono-nerd-font
-    - tmux
-    - alacritty
-    - dark-notify
+# - brew:
+#     - git
+#     - neovim
+#     - lazygit
+#     - lazydocker
+#     - tig
+#     - ripgrep
+#     - bottom
+#     - bat
+#     - lsd
+#     - procs
+#     - zoxide
+#     - duf
+#     - starship
+#     - podman
+#     - podman-compose
+#     - font-hack-nerd-font
+#     - universal-ctags
+#     - fnm
+#     - frum
+#     - fd
+#     - so
+#     - git-delta
+#     - gnu-sed
+#     - speedtest-cli
+#     - youtube-dl
+#     - mplayer
+#     - font-jetbrains-mono-nerd-font
+#     # - tmux
+#     # - alacritty
+#     - dark-notify
+#     - zellij
 
 - create:
     - ~/.config/nvim
-    - ~/.config/tmux
+    # - ~/.config/tmux
     - ~/.config/rio
+    - ~/.config/zellij
 
 - clean:
     ~/:
@@ -49,39 +51,43 @@
       recursive: true
 
 - link:
-    ~/.config/tmux/theme:
+    ~/.config/zellij:
       glob: true
-      path: config/tmux/theme
-    ~/.tmux.conf: config/.tmux.conf
-    ~/.ideavimrc: config/.ideavimrc
-    ~/.config/alacritty:
-      glob: true
-      path: config/alacritty/*
-    ~/.config/rio:
-      glob: true
-      path: config/rio/*
-    ~/.config/rio/config.toml: config/rio/config.toml
-    ~/.config/fish:
-      glob: true
-      path: config/fish/*
-    ~/.config/fish/functions:
-      glob: true
-      path: config/fish/functions/*
-    ~/.config/fish/functions/fisher.fish: config/fish/functions/fisher.fish
-    ~/.config/fish/completions:
-      glob: true
-      path: config/fish/completions/*
-    ~/.config/fish/completions/fisher.fish: config/fish/completions/fisher.fish
-    ~/.config/fish/config.fish: config/fish/config.fish
-    ~/.config/fish/fish_variables: config/fish/fish_variables
-    ~/.config/nvim/after/plugin/defaults.lua: config/nvim/after/plugin/defaults.lua
-    ~/.config/nvim/init.lua: config/nvim/init.lua
-    ~/.config/nvim/lua:
-      glob: true
-      path: config/nvim/lua/*
-    ~/Library/Application Support/lazygit/config.yml: config/lazygit/config.yml
-    ~/.config/starship.toml: config/starship.toml
+      path: config/zellij/*
+    ~/.config/zellij/config.kdl: config/zellij/config.kdl
+    # ~/.config/tmux/theme:
+    #   glob: true
+    #   path: config/tmux/theme
+    # ~/.tmux.conf: config/.tmux.conf
+    # ~/.ideavimrc: config/.ideavimrc
+    # ~/.config/alacritty:
+    #   glob: true
+    #   path: config/alacritty/*
+    # ~/.config/rio:
+    #   glob: true
+    #   path: config/rio/*
+    # ~/.config/rio/config.toml: config/rio/config.toml
+    # ~/.config/fish:
+    #   glob: true
+    #   path: config/fish/*
+    # ~/.config/fish/functions:
+    #   glob: true
+    #   path: config/fish/functions/*
+    # ~/.config/fish/functions/fisher.fish: config/fish/functions/fisher.fish
+    # ~/.config/fish/completions:
+    #   glob: true
+    #   path: config/fish/completions/*
+    # ~/.config/fish/completions/fisher.fish: config/fish/completions/fisher.fish
+    # ~/.config/fish/config.fish: config/fish/config.fish
+    # ~/.config/fish/fish_variables: config/fish/fish_variables
+    # ~/.config/nvim/after/plugin/defaults.lua: config/nvim/after/plugin/defaults.lua
+    # ~/.config/nvim/init.lua: config/nvim/init.lua
+    # ~/.config/nvim/lua:
+    #   glob: true
+    #   path: config/nvim/lua/*
+    # ~/Library/Application Support/lazygit/config.yml: config/lazygit/config.yml
+    # ~/.config/starship.toml: config/starship.toml
 
-- shell:
-    - [git submodule update --init --recursive, Installing submodules]
-    - [nvim --headless '+Lazy! sync' +qa, Installing Neovim plugins]
+# - shell:
+#     - [git submodule update --init --recursive, Installing submodules]
+#     - [nvim --headless '+Lazy! sync' +qa, Installing Neovim plugins]

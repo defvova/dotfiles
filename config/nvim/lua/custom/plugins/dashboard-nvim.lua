@@ -1,5 +1,5 @@
 return {
-  "glepnir/dashboard-nvim",
+  "nvimdev/dashboard-nvim",
   event = "VimEnter",
   keys = {
     { "<leader>;", "<cmd> Dashboard <CR>", desc = "Dashboard" },
