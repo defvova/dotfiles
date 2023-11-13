@@ -117,7 +117,10 @@ return {
       config = {
         color = "pink",
         invoke_on_body = true,
-        hint = hint_opts,
+        hint = {
+          border = "solid",
+          offset = -1,
+        },
       },
       name = "dap",
       mode = { "n", "x" },

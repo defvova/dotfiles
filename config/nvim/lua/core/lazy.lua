@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { import = "custom.plugins" },
 }, {
-  defaults = { lazy = true, version = "*" },
+  defaults = { lazy = true },
   checker = {
     enabled = true,
     concurrency = 30,

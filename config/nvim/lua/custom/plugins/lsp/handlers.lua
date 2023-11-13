@@ -2,16 +2,16 @@ local M = {}
 
 function M.setup()
   -- local diagnostics = { Error = " ", Warning = " ", Information = " ", Hint = " " }
-  local signs = {
-    Error = " ",
-    Warn = " ",
-    Info = " ",
-    Hint = " ",
-  }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
+  -- local signs = {
+  --   Error = " ",
+  --   Warn = " ",
+  --   Info = " ",
+  --   Hint = " ",
+  -- }
+  -- for type, icon in pairs(signs) do
+  --   local hl = "DiagnosticSign" .. type
+  --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  -- end
 
   -- LSP handlers configuration
   local config = {
