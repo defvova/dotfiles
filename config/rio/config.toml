@@ -20,7 +20,7 @@ dark = "nordic"
 [navigation]
 mode = "CollapsedTab"
 # mode = "Plain"
-use-current-path = false
+use-current-path = true
 
 [window]
 width = 600
