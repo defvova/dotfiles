@@ -143,7 +143,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "princejoogie/tailwind-highlight.nvim",
       "b0o/schemastore.nvim",
-      "jose-elias-alvarez/typescript.nvim",
+      "pmizio/typescript-tools.nvim"
     },
     config = function()
       local tw_highlight = require "tailwind-highlight"
@@ -191,36 +191,7 @@ return {
       })
 
       local servers = {
-        tsserver = {
-          require('typescript').setup {
-            disable_commands = false,
-            debug = false,
-            -- server = {
-            --   init_options = {
-            --     preferences = {
-            --       includeCompletionsWithSnippetText = true,
-            --       includeCompletionsForImportStatements = true,
-            --     },
-            --   },
-            --   settings = {
-            --     completions = {
-            --       completeFunctionCalls = true,
-            --     },
-            --     javascript = {
-            --       inlayHints = {
-            --         includeInlayEnumMemberValueHints = true,
-            --         includeInlayFunctionLikeReturnTypeHints = true,
-            --         includeInlayFunctionParameterTypeHints = true,
-            --         includeInlayParameterNameHints = "all",
-            --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            --         includeInlayPropertyDeclarationTypeHints = true,
-            --         includeInlayVariableTypeHints = true,
-            --       },
-            --     },
-            --   },
-            -- },
-          }
-        },
+        tsserver = {},
         jsonls = {
           json = {
             schemas = schemastore.json.schemas(),
@@ -236,6 +207,8 @@ return {
         tailwindcss = {},
         solargraph = {},
       }
+
+      require("typescript-tools").setup {}
 
       local ensure_installed = {}
       for server_name, options in pairs(servers) do

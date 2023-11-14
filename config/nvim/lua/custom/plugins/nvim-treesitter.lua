@@ -7,7 +7,7 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
     -- "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "HiPhish/nvim-ts-rainbow2",
+    "HiPhish/rainbow-delimiters.nvim"
   },
   cmd = { "TSUpdateSync" },
   opts = {
@@ -110,6 +110,7 @@ return {
     },
   },
   config = function(_, opts)
+    require('rainbow-delimiters.setup').setup {}
     require("nvim-treesitter.configs").setup(opts)
   end,
 }
