@@ -2,7 +2,7 @@ return {
   "anuvyklack/hydra.nvim",
   event = "VeryLazy",
   dependencies = {
-    "mrjones2014/smart-splits.nvim",
+    -- "mrjones2014/smart-splits.nvim",
     { "sindrets/winshift.nvim", cmd = "WinShift" },
     {
       "anuvyklack/windows.nvim",
