@@ -33,14 +33,11 @@
     - youtube-dl
     - mplayer
     - font-jetbrains-mono-nerd-font
-    # - tmux
-    # - alacritty
-    - dark-notify
+    # - dark-notify
     - zellij
 
 - create:
     - ~/.config/nvim
-    # - ~/.config/tmux
     - ~/.config/rio
     - ~/.config/zellij
 
@@ -55,14 +52,6 @@
       glob: true
       path: config/zellij/*
     ~/.config/zellij/config.kdl: config/zellij/config.kdl
-    # ~/.config/tmux/theme:
-    #   glob: true
-    #   path: config/tmux/theme
-    # ~/.tmux.conf: config/.tmux.conf
-    # ~/.ideavimrc: config/.ideavimrc
-    # ~/.config/alacritty:
-    #   glob: true
-    #   path: config/alacritty/*
     ~/.config/rio:
       glob: true
       path: config/rio/*
