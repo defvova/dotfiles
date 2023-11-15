@@ -122,6 +122,7 @@ return {
       "luasnip",
       "projects",
       "lazy",
+      "persisted"
     }
     local telescope = require "telescope"
     telescope.setup(opts)

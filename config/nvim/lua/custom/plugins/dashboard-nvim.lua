@@ -56,9 +56,9 @@ return {
             key = "p",
           },
           {
-            desc = " Last session",
+            desc = " Load session",
             group = "DiagnosticHint",
-            action = "lua require('persistence').load({ last = true })",
+            action = "Telescope persisted",
             key = "r",
           },
           {
