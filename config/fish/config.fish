@@ -44,6 +44,7 @@ set -g fish_color_valid_path --underline
 # set -gx PATH bin $PATH
 # set -gx PATH ~/bin $PATH
 # set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.local/share/bob/nvim-bin $PATH
 
 alias cd 'z'
 alias lg='lazygit'

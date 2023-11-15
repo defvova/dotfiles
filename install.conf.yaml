@@ -79,4 +79,8 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - [cargo install --git 'https://github.com/MordechaiHadad/bob.git', Installing nvim version manager]
+    - [bob install latest, Installing latest nvim]
+    - [bob use latest, Set latest nvim version]
     - [nvim --headless '+Lazy! sync' +qa, Installing Neovim plugins]
+
