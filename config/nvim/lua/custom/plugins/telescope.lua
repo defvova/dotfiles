@@ -27,7 +27,8 @@ return {
       end,
       desc = "[/] Fuzzily search in current buffer",
     },
-    { "<leader><space>", "<cmd>Telescope find_files<CR>", desc = "[ ] Search Files" },
+    { "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Search [F]iles" },
+    { "<leader><space>", "<cmd>Telescope file_browser<CR>", desc = "[ ] File Browser" },
     { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
     { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
     { "<leader>st", "<cmd>Telescope live_grep<CR>", desc = "[S]earch [T]ext" },
@@ -117,7 +118,7 @@ return {
     local extensions_list = {
       "fzf",
       "git_diffs",
-      -- "file_browser",
+      "file_browser",
       "luasnip",
       "projects",
       "lazy",
@@ -128,8 +129,5 @@ return {
     for _, ext in ipairs(extensions_list) do
       telescope.load_extension(ext)
     end
-
-    local file_browser = require("telescope").load_extension "file_browser"
-    require("telescope.builtin").file_browser = file_browser.file_browser
   end,
 }

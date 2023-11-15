@@ -149,4 +149,14 @@ return {
       extensions = { "quickfix", "toggleterm", "symbols-outline", "neo-tree", "lazy", "nvim-dap-ui", "trouble" },
     }
   end,
+  config = function (_, opts)
+    require("lualine").setup(opts)
+
+    vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+      group = "lualine_augroup",
+      pattern = "LspProgressStatusUpdated",
+      callback = require("lualine").refresh,
+    })
+  end
 }
