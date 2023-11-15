@@ -140,6 +140,13 @@ return {
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
+      --     {
+      --       "jay-babu/mason-null-ls.nvim",
+      --       event = { "BufReadPre", "BufNewFile" },
+      --       dependencies = {
+      --         { "nvimtools/none-ls.nvim", dependencies = { "lukas-reineke/lsp-format.nvim" } },
+      --       },
+      --     },
       "williamboman/mason-lspconfig.nvim",
       "princejoogie/tailwind-highlight.nvim",
       "b0o/schemastore.nvim",
