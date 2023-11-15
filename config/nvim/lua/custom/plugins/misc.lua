@@ -139,7 +139,8 @@ return {
   },
   {
     "andymass/vim-matchup",
-    event = "VeryLazy",
+    lazy = false,
+    -- event = "VeryLazy",
     config = true,
   },
   {
