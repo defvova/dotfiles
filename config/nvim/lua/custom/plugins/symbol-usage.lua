@@ -2,17 +2,6 @@ return {
   "Wansmer/symbol-usage.nvim",
   event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
   config = function()
-    local function h(name)
-      return vim.api.nvim_get_hl(0, { name = name })
-    end
-
-    -- hl-groups can have any name
-    vim.api.nvim_set_hl(0, "SymbolUsageRounding", { fg = h("CursorLine").bg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageContent", { bg = h("CursorLine").bg, fg = h("Comment").fg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = h("Function").fg, bg = h("CursorLine").bg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageDef", { fg = h("Type").fg, bg = h("CursorLine").bg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = h("@keyword").fg, bg = h("CursorLine").bg, italic = true })
-
     local function text_format(symbol)
       local res = {}
 
@@ -20,23 +9,23 @@ return {
         local usage = symbol.references <= 1 and "usage" or "usages"
         local num = symbol.references == 0 and "no" or symbol.references
         table.insert(res, { "󰌹 ", "SymbolUsageRef" })
-        table.insert(res, { ("%s %s"):format(num, usage), "SymbolUsageContent" })
+        table.insert(res, { ("%s %s"):format(num, usage) })
       end
 
       if symbol.definition then
         if #res > 0 then
           table.insert(res, { " ", "NonText" })
         end
-        table.insert(res, { "󰳽 ", "SymbolUsageDef" })
-        table.insert(res, { symbol.definition .. " defs", "SymbolUsageContent" })
+        table.insert(res, { "󰳽 " })
+        table.insert(res, { symbol.definition .. " defs" })
       end
 
       if symbol.implementation then
         if #res > 0 then
           table.insert(res, { " ", "NonText" })
         end
-        table.insert(res, { "󰡱 ", "SymbolUsageImpl" })
-        table.insert(res, { symbol.implementation .. " impls", "SymbolUsageContent" })
+        table.insert(res, { "󰡱 " })
+        table.insert(res, { symbol.implementation .. " impls" })
       end
 
       return res

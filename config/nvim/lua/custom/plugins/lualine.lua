@@ -9,7 +9,7 @@ return {
     local assets = {
       mode_icon = "",
       sep_right = "",
-      dir = "", -- "",
+      dir = "", -- "",
       file = "", -- ""
       modified = "",
       lsp = {
