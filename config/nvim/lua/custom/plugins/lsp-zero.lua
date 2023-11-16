@@ -2,7 +2,6 @@ return {
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
-    lazy = true,
     config = false,
     init = function()
       -- Disable automatic setup, we are doing it manually
@@ -58,12 +57,12 @@ return {
               path = "[Path]",
               crates = "[Crates]",
             },
-            before = function(entry, item)
-              -- if entry.source.name == "codeium" then
-              --   item.kind = fmt("%s %s", "", "Codeium")
-              -- end
-              return item
-            end,
+            -- before = function(entry, item)
+            --   -- if entry.source.name == "codeium" then
+            --   --   item.kind = fmt("%s %s", "", "Codeium")
+            --   -- end
+            --   return item
+            -- end,
           },
           duplicates = {
             -- codeium = 1,
@@ -176,10 +175,18 @@ return {
       end
 
       lsp_zero.on_attach(function(client, bufnr)
-        lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', 'F4' } }
+        lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>' } }
         vim.keymap.set('n', 'K', show_documentation, { buffer = bufnr })
-        vim.keymap.set({ "v", "n" }, "<F4>", require("actions-preview").code_actions)
-        vim.keymap.set({ "v", "n" }, "<A-Enter>", require("actions-preview").code_actions)
+        vim.keymap.set({ "v", "n", "i" }, "<F4>",
+          function()
+            require("actions-preview").code_actions()
+          end
+        )
+        vim.keymap.set({ "v", "n", "i" }, "<A-Enter>",
+          function()
+            require("actions-preview").code_actions()
+          end
+        )
 
         tw_highlight.setup(client, bufnr, {
           single_column = false,
@@ -198,7 +205,7 @@ return {
       })
 
       local servers = {
-        tsserver = {},
+        -- tsserver = {},
         jsonls = {
           json = {
             schemas = schemastore.json.schemas(),
