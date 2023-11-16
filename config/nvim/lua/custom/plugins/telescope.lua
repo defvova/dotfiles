@@ -101,6 +101,9 @@ return {
         },
         buffers = {
           theme = "dropdown",
+          sort_mru = true,
+          sort_lastused = true,
+          ignore_current_buffer = true
         },
       },
       extensions = {
@@ -110,6 +113,8 @@ return {
           theme = "ivy",
           -- disables netrw and use telescope-file-browser in its place
           hijack_netrw = true,
+          cwd_to_path = true,
+          depth = false
         },
       },
     }
@@ -117,7 +122,7 @@ return {
   config = function(_, opts)
     local extensions_list = {
       "fzf",
-      "git_diffs",
+      -- "git_diffs",
       "file_browser",
       "luasnip",
       "projects",
