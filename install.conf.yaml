@@ -74,6 +74,9 @@
     ~/.config/nvim/lua:
       glob: true
       path: config/nvim/lua/*
+    ~/.config/nvim/ftplugin:
+      glob: true
+      path: config/nvim/ftplugin/*
     ~/Library/Application Support/lazygit/config.yml: config/lazygit/config.yml
     ~/.config/starship.toml: config/starship.toml
 
