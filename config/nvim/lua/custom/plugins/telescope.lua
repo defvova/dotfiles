@@ -13,10 +13,14 @@ return {
         return vim.fn.executable "make" == 1
       end,
     },
+    {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      version = "^1.0.0",
+    },
   },
   keys = {
     { "<leader>?", "<cmd>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader>bb", "<cmd>Telescope buffers<CR>", desc = "[B] Find existing [B]uffers" },
+    { "<leader>b", "<cmd>Telescope buffers<CR>",  desc = "[B] Find existing Buffers" },
     {
       "<leader>/",
       function()
@@ -27,14 +31,14 @@ return {
       end,
       desc = "[/] Fuzzily search in current buffer",
     },
-    { "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Search [F]iles" },
-    { "<leader><space>", "<cmd>Telescope file_browser<CR>", desc = "[ ] File Browser" },
-    { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "[S]earch [H]elp" },
-    { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
-    { "<leader>st", "<cmd>Telescope live_grep<CR>", desc = "[S]earch [T]ext" },
-    { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
-    { "<leader>sp", "<cmd>Telescope projects<CR>", desc = "[S]earch [P]rojects" },
-    { "<leader>ht", "<cmd>lua require'core.theming.theme_picker'.open_picker()<cr>", desc = "Search Theme" },
+    { "<leader>f",       "<cmd>Telescope find_files<CR>",                                                       desc = "Search [F]iles" },
+    { "<leader><space>", "<cmd>Telescope file_browser<CR>",                                                     desc = "[ ] File Browser" },
+    { "<leader>sh",      "<cmd>Telescope help_tags<CR>",                                                        desc = "[S]earch [H]elp" },
+    { "<leader>sw",      "<cmd>Telescope grep_string<CR>",                                                      desc = "[S]earch current [W]ord" },
+    { "<leader>st",      "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>", desc = "[S]earch [T]ext" },
+    { "<leader>sd",      "<cmd>Telescope diagnostics<CR>",                                                      desc = "[S]earch [D]iagnostics" },
+    { "<leader>sp",      "<cmd>Telescope projects<CR>",                                                         desc = "[S]earch [P]rojects" },
+    { "<leader>ht",      "<cmd>lua require'core.theming.theme_picker'.open_picker()<cr>",                       desc = "Search Theme" },
   },
   opts = function()
     local actions = require "telescope.actions"
@@ -94,7 +98,8 @@ return {
           },
         },
         live_grep = {
-          theme = "dropdown",
+          -- theme = "dropdown",
+          theme = "ivy",
         },
         grep_string = {
           theme = "dropdown",
@@ -103,7 +108,8 @@ return {
           theme = "dropdown",
           sort_mru = true,
           sort_lastused = true,
-          ignore_current_buffer = true
+          ignore_current_buffer = true,
+          initial_mode = "normal"
         },
       },
       extensions = {
@@ -111,11 +117,18 @@ return {
         luasnip = {},
         file_browser = {
           theme = "ivy",
+          grouped = true,
           -- disables netrw and use telescope-file-browser in its place
           hijack_netrw = true,
           cwd_to_path = true,
           depth = false
         },
+        live_grep_args = {
+          initial_mode = "normal",
+          auto_quoting = true,
+          theme = "ivy",
+          -- layout_config = { mirror=true }, -- mirror preview pane
+        }
       },
     }
   end,
@@ -127,7 +140,8 @@ return {
       "luasnip",
       "projects",
       "lazy",
-      "persisted"
+      "persisted",
+      "live_grep_args"
     }
     local telescope = require "telescope"
     telescope.setup(opts)
