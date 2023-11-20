@@ -8,8 +8,9 @@ return {
   opts = {
     auto_enable = true,
     preview = {
-      win_height = 12,
-      win_vheight = 12,
+      win_height = 20,
+      win_vheight = 20,
+      winblend = 0,
       delay_syntax = 80,
       border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
     },
