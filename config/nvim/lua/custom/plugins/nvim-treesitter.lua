@@ -41,10 +41,10 @@ return {
     indent = {
       enable = true,
     },
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
+    -- context_commentstring = {
+    --   enable = true,
+    --   enable_autocmd = false,
+    -- },
     rainbow = { enable = true },
     matchup = {
       enable = true, -- mandatory, false will disable the whole extension
@@ -110,6 +110,8 @@ return {
     },
   },
   config = function(_, opts)
+    vim.g.skip_ts_context_commentstring_module = true
+    require('ts_context_commentstring').setup {}
     require('rainbow-delimiters.setup').setup {}
     require("nvim-treesitter.configs").setup(opts)
   end,
