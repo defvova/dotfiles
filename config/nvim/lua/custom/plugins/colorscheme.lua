@@ -37,5 +37,9 @@ return {
     priority = 1000,
     lazy = false,
   },
+  {
+    "lambdalisue/glyph-palette.vim",
+    lazy = false
+  }
   -- { "EdenEast/nightfox.nvim" }
 }

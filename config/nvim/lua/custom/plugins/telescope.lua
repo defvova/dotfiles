@@ -121,6 +121,7 @@ return {
           -- disables netrw and use telescope-file-browser in its place
           hijack_netrw = true,
           cwd_to_path = true,
+          initial_mode = "normal",
           depth = false
         },
         live_grep_args = {

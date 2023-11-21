@@ -80,6 +80,7 @@ local M = {
         return style
       end,
       activate = function(style, transparent)
+        vim.opt.background = "dark"
         vim.cmd.colorscheme(style)
       end,
     },

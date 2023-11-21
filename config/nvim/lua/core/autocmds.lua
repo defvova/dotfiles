@@ -48,6 +48,11 @@ autocmd("BufEnter", {
   command = "set fo-=c fo-=r fo-=o",
 })
 
+autocmd({"VimEnter", "BufRead" }, {
+  pattern = "*",
+  command = "call glyph_palette#apply()"
+})
+
 -- Automatically delete trailing DOS-returns and whitespace on file open and write.
 autocmd({ "BufRead", "BufWritePre", "FileWritePre" }, {
   pattern = "*",
