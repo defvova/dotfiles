@@ -13,7 +13,7 @@ ignore-selection-foreground-color = false
 
 # https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/rio
 [adaptive-theme]
-light = "rose-pine-dawn"
+light = "edge-light"
 # dark = "rose-pine-moon"
 dark = "night-owl"
 
