@@ -1,5 +1,6 @@
 return {
   'mvllow/modes.nvim',
+  enabled = false,
   event = "VimEnter",
   version = 'v0.2.0',
   config = function()

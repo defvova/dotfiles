@@ -5,7 +5,8 @@ return {
     "benfowler/telescope-luasnip.nvim",
     "paopaol/telescope-git-diffs.nvim",
     "tsakirist/telescope-lazy.nvim",
-    "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
+    -- "nvim-telescope/telescope-file-browser.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
@@ -32,7 +33,7 @@ return {
       desc = "[/] Fuzzily search in current buffer",
     },
     { "<leader>f",       "<cmd>Telescope find_files<CR>",                                                       desc = "Search [F]iles" },
-    { "<leader><space>", "<cmd>Telescope file_browser<CR>",                                                     desc = "[ ] File Browser" },
+    -- { "<leader><space>", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",                       desc = "[ ] File Browser" },
     { "<leader>sh",      "<cmd>Telescope help_tags<CR>",                                                        desc = "[S]earch [H]elp" },
     { "<leader>sw",      "<cmd>Telescope grep_string<CR>",                                                      desc = "[S]earch current [W]ord" },
     { "<leader>st",      "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>", desc = "[S]earch [T]ext" },
@@ -62,6 +63,7 @@ return {
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         set_env = { ["COLORTERM"] = "truecolor" },
+        file_ignore_patterns = {".git", ".DS_Store", "node_modules"},
         mappings = {
           i = {
             ["<C-s>"] = actions.select_horizontal,
@@ -109,7 +111,15 @@ return {
           sort_mru = true,
           sort_lastused = true,
           ignore_current_buffer = true,
-          initial_mode = "normal"
+          initial_mode = "normal",
+          mappings = {
+            i = {
+              ['<c-d>'] = require('telescope.actions').delete_buffer
+            },
+            n = {
+              ['d'] = require('telescope.actions').delete_buffer
+            },
+          },
         },
       },
       extensions = {
@@ -122,7 +132,8 @@ return {
           hijack_netrw = true,
           cwd_to_path = true,
           initial_mode = "normal",
-          depth = false
+          depth = false,
+          add_dirs = false,
         },
         live_grep_args = {
           initial_mode = "normal",
@@ -137,12 +148,13 @@ return {
     local extensions_list = {
       "fzf",
       -- "git_diffs",
-      "file_browser",
+      -- "file_browser",
       "luasnip",
       "projects",
       "lazy",
       "persisted",
-      "live_grep_args"
+      "live_grep_args",
+      "media_files"
     }
     local telescope = require "telescope"
     telescope.setup(opts)

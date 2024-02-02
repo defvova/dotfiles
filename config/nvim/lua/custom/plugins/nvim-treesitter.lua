@@ -29,14 +29,13 @@ return {
       "tsx",
       "css",
       "rust",
-      "yaml",
+      -- "yaml",
       "markdown",
       "markdown_inline",
-      "vim",
-      "help",
+      "lua"
     },
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = true,
+    -- auto_install = true,
     highlight = { enable = true },
     indent = {
       enable = true,
@@ -46,9 +45,9 @@ return {
     --   enable_autocmd = false,
     -- },
     rainbow = { enable = true },
-    matchup = {
-      enable = true, -- mandatory, false will disable the whole extension
-    },
+    -- matchup = {
+    --   enable = true, -- mandatory, false will disable the whole extension
+    -- },
     endwise = {
       enable = true,
     },
@@ -110,8 +109,8 @@ return {
     },
   },
   config = function(_, opts)
-    vim.g.skip_ts_context_commentstring_module = true
     require('ts_context_commentstring').setup {}
+    vim.g.skip_ts_context_commentstring_module = true
     require('rainbow-delimiters.setup').setup {}
     require("nvim-treesitter.configs").setup(opts)
   end,

@@ -7,6 +7,7 @@ return {
   end,
   opts = {
     auto_enable = true,
+    auto_resize_height = true,
     preview = {
       win_height = 20,
       win_vheight = 20,

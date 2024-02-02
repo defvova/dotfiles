@@ -13,9 +13,13 @@ return {
   -- Autocompletion
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    -- event = "InsertEnter",
+    lazy = false,
     dependencies = {
-      { "L3MON4D3/LuaSnip" },
+      {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+      },
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -91,13 +95,12 @@ return {
         sources = {
           -- group_index = 1
           { name = "nvim_lsp", priority = 1000 },
+          { name = "path",     priority = 1000 },
           -- { name = "codeium", priority = 1000 },
           { name = "luasnip",  priority = 750 },
           { name = "buffer",   priority = 500 },
-          { name = "path",     priority = 250 },
         },
       }
-
 
       if vim.o.ft == "lua" then
         table.insert(cmp_options.sources, { name = "nvim_lua", max_item_count = 10, priority_weight = 100 })

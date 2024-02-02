@@ -28,7 +28,7 @@ autocmd("LspAttach", {
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.conf",
+  pattern = { "*.conf", "*.conf.j2" },
   callback = function()
     -- vim.api.nvim_command "set commentstring=#%s"
     vim.api.nvim_command "set filetype=make"
@@ -48,7 +48,7 @@ autocmd("BufEnter", {
   command = "set fo-=c fo-=r fo-=o",
 })
 
-autocmd({"VimEnter", "BufRead" }, {
+autocmd({ "VimEnter", "BufRead" }, {
   pattern = "*",
   command = "call glyph_palette#apply()"
 })

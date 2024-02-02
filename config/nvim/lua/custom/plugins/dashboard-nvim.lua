@@ -12,6 +12,8 @@ return {
       local stats = require("lazy").stats()
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
       local plugins_text = "⚡Neovim loaded "
+        .. stats.loaded
+        .. "/"
         .. stats.count
         .. " plugins in "
         .. ms
@@ -42,7 +44,7 @@ return {
         },
         packages = { enable = false },
         shortcut = {
-          { desc = " Update", group = "@property", action = "Lazy update", key = "u" },
+          { desc = "󰒲 Update", group = "@property", action = "Lazy update", key = "u" },
           {
             desc = " Files",
             group = "Label",

@@ -97,10 +97,10 @@ local M = {
           vim.opt.background = "dark"
         end
 
-        vim.cmd.colorscheme "edge"
         vim.g.edge_style = style
-        vim.g.edge_better_performance = 1
-      end,
+        -- vim.g.edge_better_performance = 1
+        vim.cmd.colorscheme "edge"
+      end
     },
     kanagawa = {
       style = { "wave" },
@@ -145,6 +145,7 @@ local M = {
         require("rose-pine").setup {
           variant = style,
         }
+        -- WARNING: Background doesn't work!
         if style == "dawn" then
           vim.opt.background = "light"
         else

@@ -128,6 +128,9 @@ return {
   {
     "zbirenbaum/neodim",
     -- event = "BufReadPre",
+    enabled = function()
+      return vim.fn.has("nvim-0.10.0") == 1
+    end,
     event = "LspAttach",
     config = true,
   },
@@ -138,12 +141,15 @@ return {
       mappings_style = "sandwich",
     },
   },
-  {
-    "andymass/vim-matchup",
-    lazy = false,
-    -- event = "VeryLazy",
-    config = true,
-  },
+  -- {
+  --   "andymass/vim-matchup",
+  --   -- event = "VeryLazy",
+  --   lazy = false,
+  --   config = function()
+  --     vim.g.matchup_matchparen_deferred = 1   -- work async
+  --     vim.g.matchup_matchparen_offscreen = {} -- disable status bar icon
+  --   end,
+  -- },
   {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },

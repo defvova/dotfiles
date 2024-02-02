@@ -1,5 +1,19 @@
 return {
   {
+    'akinsho/git-conflict.nvim',
+    cmd = {
+      "GitConflictChooseOurs",
+      "GitConflictChooseTheirs",
+      "GitConflictChooseBoth",
+      "GitConflictChooseNone",
+      "GitConflictNextConflict",
+      "GitConflictPrevConflict",
+      "GitConflictListQf"
+    },
+    version = "*",
+    config = true
+  },
+  {
     "NeogitOrg/neogit",
     cmd = "Neogit",
     keys = {
@@ -125,13 +139,13 @@ return {
       'petertriho/nvim-scrollbar'
     },
     keys = {
-      { "<leader>hp", "<cmd> Gitsigns preview_hunk<CR>", desc = "[H]unk [P]review" },
-      { "<leader>hr", "<cmd> Gitsigns reset_hunk<CR>", desc = "[H]unk [R]eset" },
-      { "<leader>hR", "<cmd> Gitsigns reset_buffer<CR>", desc = "[H]unk [R]eset buffer" },
-      { "<leader>hs", "<cmd> Gitsigns stage_hunk<CR>", desc = "[H]unk [S]tage" },
-      { "<leader>hS", "<cmd> Gitsigns stage_buffer<CR>", desc = "[H]unk [S]tage buffer" },
+      { "<leader>hp", "<cmd> Gitsigns preview_hunk<CR>",    desc = "[H]unk [P]review" },
+      { "<leader>hr", "<cmd> Gitsigns reset_hunk<CR>",      desc = "[H]unk [R]eset" },
+      { "<leader>hR", "<cmd> Gitsigns reset_buffer<CR>",    desc = "[H]unk [R]eset buffer" },
+      { "<leader>hs", "<cmd> Gitsigns stage_hunk<CR>",      desc = "[H]unk [S]tage" },
+      { "<leader>hS", "<cmd> Gitsigns stage_buffer<CR>",    desc = "[H]unk [S]tage buffer" },
       { "<leader>hu", "<cmd> Gitsigns undo_stage_hunk<CR>", desc = "[H]unk [U]ndo Stage" },
-      { "<leader>hb", "<cmd> Gitsigns blame_line<CR>", desc = "[H]unk [B]lame line" },
+      { "<leader>hb", "<cmd> Gitsigns blame_line<CR>",      desc = "[H]unk [B]lame line" },
     },
     opts = {
       numhl = true,
@@ -205,8 +219,8 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
-      { "<localleader>gd", "<Cmd>DiffviewOpen<CR>", desc = "[G]it [D]iff", mode = "n" },
-      { "gh", [[:'<'>DiffviewFileHistory<CR>]], desc = "[G]it range [H]istory", mode = "v" },
+      { "<localleader>gd", "<Cmd>DiffviewOpen<CR>",          desc = "[G]it [D]iff",          mode = "n" },
+      { "gh",              [[:'<'>DiffviewFileHistory<CR>]], desc = "[G]it range [H]istory", mode = "v" },
       {
         "<localleader>gh",
         "<Cmd>DiffviewFileHistory<CR>",
@@ -251,15 +265,15 @@ return {
           view = { q = "<Cmd>DiffviewClose<CR>" },
           file_panel = {
             q = "<Cmd>DiffviewClose<CR>",
-            { "n", "<cr>", actions.focus_entry, { desc = "Focus the selected entry" } },
+            { "n", "<cr>", actions.focus_entry,                          { desc = "Focus the selected entry" } },
             {
               "n",
               "s",
               actions.toggle_stage_entry,
               { desc = "[S]tage / un[S]tage the selected entry" },
             },
-            { "n", "cc", "<Cmd>Git commit <bar> wincmd J<CR>", { desc = "[C]ommit staged [C]hanges" } },
-            { "n", "ca", "<Cmd>Git commit --amend <bar> wincmd J<CR>", { desc = "Amend the last commit" } },
+            { "n", "cc",   "<Cmd>Git commit <bar> wincmd J<CR>",         { desc = "[C]ommit staged [C]hanges" } },
+            { "n", "ca",   "<Cmd>Git commit --amend <bar> wincmd J<CR>", { desc = "Amend the last commit" } },
             {
               "n",
               "P",

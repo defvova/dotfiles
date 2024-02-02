@@ -3,8 +3,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
--- map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
--- map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 map("n", "<ESC>", "<cmd> noh <CR>", { desc = "no highlight" })
 
@@ -75,6 +75,7 @@ map("n", "c>", [[:%s/\V<C-r><C-a>//g<Left><Left>]], { desc = "search and replace
 -- without output or jumping to first match
 -- Use ':Grep <pattern> %' to search only current file
 -- Use ':Grep <pattern> %:h' to search the current file dir
-vim.cmd "command! -nargs=+ -complete=file Grep noautocmd grep! <args> | redraw! | copen"
-vim.cmd "command! -nargs=+ -complete=file LGrep noautocmd lgrep! <args> | redraw! | lopen"
+
+vim.cmd "command! -nargs=+ -complete=file Grep noautocmd silent grep! <args> | redraw! | copen"
+vim.cmd "command! -nargs=+ -complete=file LGrep noautocmd silent lgrep! <args> | redraw! | lopen"
 map("n", "<leader>sf", [[:Grep ]], { desc = "[S]earch in [F]iles" })

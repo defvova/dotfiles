@@ -22,6 +22,11 @@ require("lazy").setup({
     notify = false,
     frequency = 3600, -- check for updates every hour
   },
+  install = {
+    missing = true,
+    -- try to load one of these colorschemes when starting an installation during startup
+    colorscheme = { "edge", "night-owl" },
+  },
   performance = {
     rtp = {
       disabled_plugins = {
