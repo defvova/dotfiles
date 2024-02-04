@@ -1,8 +1,6 @@
 return {
   "DNLHC/glance.nvim",
   opts = {
-    preview_win_opts = { relativenumber = false },
-    theme = { enable = true, mode = "darken" },
   },
   keys = {
     -- { "gd", "<Cmd>Glance definitions<CR>", desc = "[G]lance [D]efinitions" },

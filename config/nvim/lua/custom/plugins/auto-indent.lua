@@ -1,5 +1,5 @@
 return {
-    'vidocqh/auto-indent.nvim',
-    lazy = false,
-    opts = {}
+  'vidocqh/auto-indent.nvim',
+  lazy = false,
+  opts = {}
 }

@@ -178,8 +178,9 @@ return {
       end
 
       lsp_zero.on_attach(function(client, bufnr)
-        lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>' } }
+        lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>', 'gd', 'gD', 'gi', 'gr' } }
         vim.keymap.set('n', 'K', show_documentation, { buffer = bufnr })
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
         vim.keymap.set({ "v", "n", "i" }, "<F4>",
           function()
             require("actions-preview").code_actions()
@@ -273,7 +274,7 @@ return {
         },
       })
 
-      require("custom.plugins.lsp.handlers").setup()
+      -- require("custom.plugins.lsp.handlers").setup()
     end,
   },
 }

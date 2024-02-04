@@ -51,12 +51,12 @@ return {
             action = "Telescope find_files",
             key = "f",
           },
-          {
-            desc = " Projects",
-            group = "DiagnosticHint",
-            action = "Telescope projects",
-            key = "p",
-          },
+          -- {
+          --   desc = " Projects",
+          --   group = "DiagnosticHint",
+          --   action = "Telescope projects",
+          --   key = "p",
+          -- },
           {
             desc = " Load session",
             group = "DiagnosticHint",

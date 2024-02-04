@@ -38,7 +38,6 @@ return {
     { "<leader>sw",      "<cmd>Telescope grep_string<CR>",                                                      desc = "[S]earch current [W]ord" },
     { "<leader>st",      "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>", desc = "[S]earch [T]ext" },
     { "<leader>sd",      "<cmd>Telescope diagnostics<CR>",                                                      desc = "[S]earch [D]iagnostics" },
-    { "<leader>sp",      "<cmd>Telescope projects<CR>",                                                         desc = "[S]earch [P]rojects" },
     { "<leader>ht",      "<cmd>lua require'core.theming.theme_picker'.open_picker()<cr>",                       desc = "Search Theme" },
   },
   opts = function()
@@ -150,7 +149,6 @@ return {
       -- "git_diffs",
       -- "file_browser",
       "luasnip",
-      "projects",
       "lazy",
       "persisted",
       "live_grep_args",

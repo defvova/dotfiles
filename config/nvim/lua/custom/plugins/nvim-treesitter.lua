@@ -7,7 +7,12 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
     -- "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "HiPhish/rainbow-delimiters.nvim"
+    "HiPhish/rainbow-delimiters.nvim",
+    {
+      "RRethy/nvim-treesitter-endwise",
+      event = "InsertEnter",
+      ft = { "ruby", "lua" },
+    },
   },
   cmd = { "TSUpdateSync" },
   opts = {

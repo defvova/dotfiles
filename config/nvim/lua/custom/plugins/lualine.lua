@@ -5,7 +5,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "linrongbin16/lsp-progress.nvim",
   },
-  opts = function(plugin)
+  opts = function()
     local assets = {
       mode_icon = "",
       sep_right = "",
@@ -26,29 +26,6 @@ return {
         removed = " ",
       },
     }
-
-    local lualine = require "lualine"
-
-    local function lsp_client(msg)
-      msg = msg or "No Active Lsp"
-      local buf_clients = vim.lsp.buf_get_clients()
-      if next(buf_clients) == nil then
-        if type(msg) == "boolean" or #msg == 0 then
-          return ""
-        end
-        return msg
-      end
-
-      local buf_client_names = {}
-
-      for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" then
-          table.insert(buf_client_names, client.name)
-        end
-      end
-
-      return table.concat(buf_client_names, ", ")
-    end
 
     local lazy_ok, lazy = pcall(require, "lazy.status")
     local pending_updates = lazy_ok and lazy.updates
@@ -139,9 +116,9 @@ return {
               return dir_name
             end,
             icon = assets.dir,
-            on_click = function()
-              vim.cmd [[Telescope projects]]
-            end,
+            -- on_click = function()
+            --   vim.cmd [[Telescope projects]]
+            -- end,
           },
         },
         lualine_z = {},

@@ -1,16 +1,5 @@
 return {
   {
-    "ahmedkhalf/project.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("project_nvim").setup {
-        manual_mode = true,
-        detection_methods = { "pattern", "lsp" },
-        patterns = { ".git" },
-      }
-    end,
-  },
-  {
     "chentoast/marks.nvim",
     cmd = { "MarksListAll", "MarksListBuf" },
     config = function()
@@ -23,19 +12,6 @@ return {
     "Darazaki/indent-o-matic",
     event = "VeryLazy",
     config = true,
-  },
-  {
-    "jghauser/fold-cycle.nvim",
-    config = true,
-    keys = {
-      {
-        "<BS>",
-        function()
-          require("fold-cycle").open()
-        end,
-        desc = "fold-cycle: toggle",
-      },
-    },
   },
   {
     "andrewferrier/debugprint.nvim",
@@ -60,7 +36,7 @@ return {
       { "<leader>dC", "<Cmd>DeleteDebugPrints<CR>", desc = "debugprint: clear all" },
     },
   },
-  { "gennaro-tedesco/nvim-jqx", cmd = { "JqxQuery", "JqxList" } },
+  { "gennaro-tedesco/nvim-jqx",   cmd = { "JqxQuery", "JqxList" } },
   {
     "numToStr/Comment.nvim",
     keys = {
@@ -96,7 +72,7 @@ return {
     "mg979/vim-visual-multi",
     keys = {
       "<C-n>",
-      { "<C-Up>", mode = "i" },
+      { "<C-Up>",   mode = "i" },
       { "<C-Down>", mode = "i" },
     },
   },
@@ -166,12 +142,26 @@ return {
   {
     "booperlv/nvim-gomove",
     keys = {
-      -- { "<A-h>", mode = { "n", "x", "v" } },
       { "<A-j>", mode = { "n", "x", "v" } },
       { "<A-k>", mode = { "n", "x", "v" } },
-      -- { "<A-l>", mode = { "n", "x", "v" } },
     },
-    config = true,
+    config = function()
+      require("gomove").setup({
+        map_defaults = false
+      })
+
+      local map = require("gomove.mappings").map
+      map({
+        { "n", "<A-j>", "<Plug>GoNSMDown",  {} },
+        { "n", "<A-k>", "<Plug>GoNSMUp",    {} },
+        { "x", "<A-j>", "<Plug>GoVSMDown",  {} },
+        { "x", "<A-k>", "<Plug>GoVSMUp",    {} },
+        { "n", "<A-J>", "<Plug>GoNSDDown",  {} },
+        { "n", "<A-K>", "<Plug>GoNSDUp",    {} },
+        { "x", "<A-J>", "<Plug>GoVSDDown",  {} },
+        { "x", "<A-K>", "<Plug>GoVSDUp",    {} },
+      })
+    end
   },
   {
     "dstein64/vim-startuptime",
@@ -181,15 +171,10 @@ return {
     end,
   },
   {
-    "RRethy/nvim-treesitter-endwise",
-    event = "InsertEnter",
-    ft = { "ruby", "lua" },
-  },
-  {
     "nacro90/numb.nvim",
     event = "VeryLazy",
     opts = {
-      show_numbers = true, -- Enable 'number' for the window while peeking
+      show_numbers = true,    -- Enable 'number' for the window while peeking
       show_cursorline = true, -- Enable 'cursorline' for the window while peeking
     },
   },
@@ -220,8 +205,8 @@ return {
 
   { "MTDL9/vim-log-highlighting", event = "VeryLazy" },
   -- Detect tabstop and shiftwidth automatically
-  { "tpope/vim-sleuth", event = "VeryLazy" },
-  { "tpope/vim-repeat", event = "VeryLazy" },
+  { "tpope/vim-sleuth",           event = "VeryLazy" },
+  { "tpope/vim-repeat",           event = "VeryLazy" },
 
   -- library used by other plugins
   { "nvim-lua/plenary.nvim" },
