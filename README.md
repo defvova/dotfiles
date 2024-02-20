@@ -2,18 +2,15 @@
   <img src="https://raw.githubusercontent.com/0bman/dotfiles/master/assets/demo.jpg"/>
 </p>
 
-**Installation:**
+## Installing
 
-1. Clone repository
+> [!WARNING]
+> Please review the scripts and packages that are installed and settings before running the install script
 
-```
-git clone git@github.com:0bman/dotfiles.git
-```
-
-2. Run in terminal **(works only for Mac)**
-
-```
-cd dotfiles && ./install
+Run the `dotfiles` script:
+```sh
+curl -sO https://raw.githubusercontent.com/0bman/dotfiles/master/dotfiles
 ```
 
-That’s it!
+## Credits
+https://github.com/protiumx/.dotfiles

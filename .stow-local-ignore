@@ -1,0 +1,9 @@
+.git
+install.sh
+dotfiles
+README.md
+.stylua.toml
+.neoconf.json
+.gitignore
+scripts
+assets
