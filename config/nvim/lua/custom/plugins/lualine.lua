@@ -1,3 +1,5 @@
+-- https://github.com/fredrikaverpil/dotfiles/blob/main/nvim-lazyvim/lua/plugins/lsp.lua
+
 return {
   "nvim-lualine/lualine.nvim",
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
@@ -31,6 +33,24 @@ return {
     local pending_updates = lazy_ok and lazy.updates
     local has_pending_updates = lazy_ok and lazy.has_updates
 
+    local function truncated_git_branch()
+      local handle = io.popen("git symbolic-ref --short HEAD 2>/dev/null")
+      local branch = handle:read("*a") or ""
+      handle:close()
+
+      branch = branch:gsub("\n", "")
+      if #branch > 25 then
+        local parts = {}
+        for part in string.gmatch(branch, "[^/]+") do
+          table.insert(parts, part)
+        end
+        if #parts >= 3 then
+          return parts[1]:sub(1, 1) .. "/" .. parts[2]:sub(1, 1) .. "/" .. parts[3]
+        end
+      end
+      return branch
+    end
+
     return {
       options = {
         -- component_separators = "|",
@@ -49,7 +69,7 @@ return {
         },
         lualine_c = {
           {
-            "branch",
+            truncated_git_branch,
             icon = assets.git.branch,
             on_click = function()
               vim.cmd [[Telescope git_branches]]
@@ -106,8 +126,8 @@ return {
               vim.cmd [[Lazy sync]]
             end,
           },
-          { "filetype", icon_only = true, separator = "", padding = { left = 0, right = 0 } },
-          { "filename", path = 0, symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
+          { "filetype", icon_only = true, separator = "",                                                            padding = { left = 0, right = 0 } },
+          { "filename", path = 0,         symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
         },
         lualine_y = {
           {
@@ -126,7 +146,7 @@ return {
       extensions = { "quickfix", "toggleterm", "symbols-outline", "neo-tree", "lazy", "nvim-dap-ui", "trouble" },
     }
   end,
-  config = function (_, opts)
+  config = function(_, opts)
     require("lualine").setup(opts)
 
     vim.api.nvim_create_augroup("lualine_augroup", { clear = true })

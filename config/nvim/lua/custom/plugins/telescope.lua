@@ -62,7 +62,7 @@ return {
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         set_env = { ["COLORTERM"] = "truecolor" },
-        file_ignore_patterns = {".git", ".DS_Store", "node_modules"},
+        file_ignore_patterns = {".git", ".DS_Store", "node_modules", "yarn.lock", "package.lock"},
         mappings = {
           i = {
             ["<C-s>"] = actions.select_horizontal,

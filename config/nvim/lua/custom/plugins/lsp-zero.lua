@@ -118,7 +118,7 @@ return {
         sources = cmp.config.sources({
           { name = "path", max_item_count = 5 },
         }, {
-          { name = "cmdline", max_item_count = 15 },
+          { name = "cmdline", max_item_count = 15, option = { ignore_cmds = { 'Man', '!' } } },
         }),
       })
 
@@ -158,20 +158,17 @@ return {
       local tw_highlight = require "tailwind-highlight"
       local schemastore = require "schemastore"
 
-      -- local ih = require('lsp-inlayhints')
-      -- ih.setup()
-
       local lsp_zero = require "lsp-zero"
       lsp_zero.extend_lspconfig()
 
       local function show_documentation()
         local filetype = vim.bo.filetype
-        if vim.tbl_contains({ "vim", "help" }, filetype) then
+        if vim.fn.expand "%:t" == "Cargo.toml" then
+          require("crates").show_popup()
+        elseif vim.tbl_contains({ "vim", "help" }, filetype) then
           vim.cmd("h " .. vim.fn.expand "<cword>")
         elseif vim.tbl_contains({ "man" }, filetype) then
           vim.cmd("Man " .. vim.fn.expand "<cword>")
-        elseif vim.fn.expand "%:t" == "Cargo.toml" then
-          require("crates").show_popup()
         else
           vim.lsp.buf.hover()
         end
@@ -181,11 +178,6 @@ return {
         lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>', 'gd', 'gD', 'gi', 'gr' } }
         vim.keymap.set('n', 'K', show_documentation, { buffer = bufnr })
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-        vim.keymap.set({ "v", "n", "i" }, "<F4>",
-          function()
-            require("actions-preview").code_actions()
-          end
-        )
         vim.keymap.set({ "v", "n", "i" }, "<A-Enter>",
           function()
             require("actions-preview").code_actions()
@@ -197,8 +189,6 @@ return {
           mode = "background",
           debounce = 200,
         })
-
-        -- ih.on_attach(client, bufnr)
       end)
 
       lsp_zero.set_sign_icons({
@@ -224,9 +214,16 @@ return {
         html = {},
         tailwindcss = {},
         solargraph = {},
+        astro = {
+          -- capabilities = lsp_zero.get_capabilities(),
+          -- init_options = {
+          --   typescript = {
+          --     -- tsdk = './node_modules/typescript/lib'
+          --     tsdk = vim.fs.normalize('~/Library/pnpm/global/5/node_modules/typescript/lib')
+          --   }
+          -- },
+        }
       }
-
-      require("typescript-tools").setup {}
 
       local ensure_installed = {}
       for server_name, options in pairs(servers) do
@@ -241,6 +238,22 @@ return {
 
       local lua_opts = lsp_zero.nvim_lua_ls()
       require("lspconfig").lua_ls.setup(lua_opts)
+
+      require("typescript-tools").setup {
+        handlers = {
+          lsp_zero.default_setup,
+        },
+        on_attach = function(client, bufnr)
+          -- client.server_capabilities.documentFormattingProvider = false
+          -- client.server_capabilities.documentRangeFormattingProvider = false
+
+          lsp_zero.on_attach(client, bufnr)
+        end,
+        settings = {
+          separate_diagnostic_server = true,
+          publish_diagnostic_on = "insert_leave",
+        }
+      }
 
       -- require("custom.plugins.lsp.null-ls").setup { on_attach = lsp_zero.on_attach }
 
@@ -274,7 +287,7 @@ return {
         },
       })
 
-      -- require("custom.plugins.lsp.handlers").setup()
+      require("custom.plugins.lsp.handlers").setup()
     end,
-  },
+  }
 }

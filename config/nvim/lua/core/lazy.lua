@@ -28,6 +28,10 @@ require("lazy").setup({
     colorscheme = { "edge", "night-owl" },
   },
   performance = {
+    cache = {
+      enabled = true,
+      -- disable_events = {},
+    },
     rtp = {
       disabled_plugins = {
         "matchparen",

@@ -1,6 +1,6 @@
 # fish_vi_key_bindings
 
-zoxide init fish | source
+zoxide init --cmd cd fish | source
 
 set -U fish_greeting
 set -gx EDITOR nvim
@@ -46,7 +46,7 @@ set -g fish_color_valid_path --underline
 # set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.local/share/bob/nvim-bin $PATH
 
-alias cd 'z'
+# alias cd 'z'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias vim='nvim'
@@ -92,6 +92,14 @@ fish_add_path -g ~/.cargo/bin
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
+# command_timeout
 starship init fish | source
 frum init | source
 fnm env --use-on-cd | source
+
+# pnpm
+set -gx PNPM_HOME "/Users/vova/Library/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
