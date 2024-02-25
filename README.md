@@ -9,7 +9,7 @@
 
 Run the `dotfiles` script:
 ```sh
-curl -sO https://raw.githubusercontent.com/0bman/dotfiles/master/dotfiles
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/0bman/dotfiles/master/dotfiles)"
 ```
 
 ## Credits
