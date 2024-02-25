@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REPO_URL=https://github.com/0bman/dotfiles.git
+REPO_URL=git@github.com:0bman/dotfiles.git
 REPO_PATH="$HOME/.dotfiles"
 
 reset_color=$(tput sgr 0)
