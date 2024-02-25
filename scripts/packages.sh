@@ -1,33 +1,33 @@
 taps=(
 	homebrew/cask
-	homebrew/cask-fonts
+	# homebrew/cask-fonts
 	homebrew/core
 )
 
 packages=(
-	bat       #  https://github.com/sharkdp/bat
+    bat       #  https://github.com/sharkdp/bat
 	bottom    #  https://github.com/ClementTsang/bottom
 	# cmake
 	# ctags
 	curl
 	dust  #  https://github.com/bootandy/dust
-  lsd
+    lsd
 	fd    #  https://github.com/sharkdp/fd
 	hyperfine  #  https://github.com/sharkdp/hyperfine
-  lazygit
+    lazygit
 	lazydocker #  https://github.com/jesseduffield/lazydocker
-  tig
+    tig
 	git-delta #  https://github.com/dandavison/delta
 	gnu-sed
-  duf
-  starship
-  # podman
-  # podman-compose
-  # font-hack-nerd-font
-  # font-jetbrains-mono-nerd-font
+    duf
+    starship
+    # podman
+    # podman-compose
+    # font-hack-nerd-font
+    # font-jetbrains-mono-nerd-font
 	universal-ctags
-  fnm
-  frum
+    fnm
+    frum
 	neovim
 	procs #  https://github.com/dalance/procs/
 	ripgrep #  https://github.com/BurntSushi/ripgre
@@ -35,9 +35,9 @@ packages=(
 	stow
 	zoxide #  https://github.com/ajeetdsouza/zoxide
 	zellij
-  speedtest-cli
-  youtube-dl
-  mplayer
+    speedtest-cli
+    youtube-dl
+    mplayer
 )
 
 install_packages() {

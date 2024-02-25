@@ -47,7 +47,8 @@ set -g fish_color_valid_path --underline
 set -gx PATH ~/.local/share/bob/nvim-bin $PATH
 
 # alias cd 'z'
-alias lg='lazygit'
+# alias lg='lazygit'
+alias lg="lazygit --use-config-file='$HOME/.config/lazygit/config.yml'"
 alias ld='lazydocker'
 alias vim='nvim'
 alias ls='lsd -A'
@@ -95,7 +96,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 # command_timeout
 starship init fish | source
 frum init | source
-fnm env --use-on-cd | source
 
 # pnpm
 set -gx PNPM_HOME "/Users/vova/Library/pnpm"

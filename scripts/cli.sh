@@ -1,6 +1,9 @@
 install_rust_tools() {
 	source "$HOME/.cargo/env"
 
+	rustup update
+	rustup default stable
+
 	if ! command -v rust-analyzer &>/dev/null; then
 		info "Installing rust-analyzer"
 		brew install rust-analyzer

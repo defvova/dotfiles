@@ -14,9 +14,10 @@ setup_github_ssh() {
 
 stow_dotfiles() {
 	# shellcheck disable=SC2155
-	local to_stow="$(find stow -maxdepth 1 -type d -mindepth 1 | awk -F "/" '{print $NF}' ORS=' ')"
-	info "Stowing: $to_stow"
-	stow -d stow --verbose 1 --target "$HOME" "$to_stow"
+	# local to_stow="$(find stow -maxdepth 1 -type d -mindepth 1 | awk -F "/" '{print $NF}' ORS=' ')"
+	# info "Stowing: $to_stow"
+	# stow -d stow --verbose 1 --target "$HOME" "$to_stow"
+	stow --dir $REPO_PATH --verbose 1 -R --restow .
 }
 
 nvim_step() {

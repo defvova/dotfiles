@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
+REPO_PATH="$HOME/.dotfiles"
+
 set -o errexit
 set -o nounset
 set -o pipefail
 
 . scripts/utils.sh
+. scripts/brew.sh
 . scripts/packages.sh
 . scripts/config.sh
 . scripts/cli.sh
@@ -38,7 +41,6 @@ main() {
 	install_fonts
 	success "Finished installing fonts"
 
-
 	info "################################################################################"
 	info "Rust tools"
 	info "################################################################################"
@@ -57,11 +59,11 @@ main() {
 	stow_dotfiles
 	success "Finished stowing dotfiles"
 
-	info "################################################################################"
-	info "SSH Key"
-	info "################################################################################"
-	setup_github_ssh
-	success "Finished setting up SSH Key"
+	# info "################################################################################"
+	# info "SSH Key"
+	# info "################################################################################"
+	# setup_github_ssh
+	# success "Finished setting up SSH Key"
 
 	if ! hash rustc &>/dev/null; then
 		info "################################################################################"
@@ -74,7 +76,7 @@ main() {
 	info "################################################################################"
 	info "Installing nvim version manager"
 	info "################################################################################"
-	nvim_step()
+	nvim_step
 
 	info "Done"
 	info "System needs to restart. Restart?"
