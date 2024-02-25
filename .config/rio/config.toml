@@ -1,7 +1,8 @@
 padding-x = 0.0
 hide-cursor-when-typing = true
 ignore-selection-foreground-color = true
-editor = 'vim'
+editor = 'nvim'
+option-as-alt = 'left'
 
 # https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/rio
 [adaptive-theme]
