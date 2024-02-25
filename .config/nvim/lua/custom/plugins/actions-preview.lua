@@ -5,6 +5,7 @@ return {
       telescope = {
         sorting_strategy = "ascending",
         layout_strategy = "vertical",
+        initial_mode = "normal",
         layout_config = {
           width = 0.8,
           height = 0.9,
