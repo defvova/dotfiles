@@ -3,3 +3,4 @@ autoload/
 sessions/
 tags
 .DS_Store
+.config/nvim/session
