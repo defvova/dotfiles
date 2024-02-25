@@ -10,30 +10,24 @@ return {
     "MunifTanjim/nui.nvim",
     {
       "s1n7ax/nvim-window-picker",
+      version = '2.*',
       config = function()
         require("window-picker").setup {
-          autoselect_one = true,
-          include_current = false,
           filter_rules = {
-            -- filter using buffer options
+            autoselect_one = true,
+            include_current_win = false,
             bo = {
-              -- if the file type is one of following, the window will be ignored
               filetype = { "neo-tree", "neo-tree-popup", "notify" },
-              -- if the buffer type is one of following, the window will be ignored
               buftype = { "terminal", "quickfix" },
             },
           },
-          other_win_hl_color = "#e35e4f",
+          -- other_win_hl_color = "#e35e4f",
         }
       end,
     },
   },
   opts = {
     hide_root_node = true,
-    source_selector = {
-      winbar = false,
-      statusline = false,
-    },
     filesystem = {
       follow_current_file = {
         enabled = true,
@@ -43,6 +37,9 @@ return {
         hide_by_name = {
           "node_modules",
           ".cache",
+        },
+        always_show = {
+          ".env",
         },
         never_show = {
           ".DS_Store",
