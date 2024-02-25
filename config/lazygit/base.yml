@@ -42,7 +42,7 @@ gui:
   splitDiff: "auto" # one of 'auto' | 'always'
 git:
   theme:
-    lightTheme: true
+    # lightTheme: false
     activeBorderColor:
       - "#a6d189" # Green
       - bold

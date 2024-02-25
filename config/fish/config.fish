@@ -47,7 +47,8 @@ set -g fish_color_valid_path --underline
 set -gx PATH ~/.local/share/bob/nvim-bin $PATH
 
 # alias cd 'z'
-alias lg='lazygit'
+# alias lg="lazygit --use-config-file=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo $HOME/.config/lazygit/base,$HOME/.config/lazygit/light || echo $HOME/.config/lazygit/base,$HOME/.config/lazygit/dark)"
+alias lg="lazygit"
 alias ld='lazydocker'
 alias vim='nvim'
 alias ls='lsd -A'
@@ -56,7 +57,8 @@ alias lt='lsd --tree --depth 3 --ignore-glob node_modules'
 alias top='btm'
 alias htop='btm -b'
 alias vtop='btm -b'
-alias cat="bat --theme='Monokai Extended Bright'"
+# alias cat="bat"
+alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Visual Studio Dark+ || echo ansi)"
 alias pcat='cat -p'
 alias ps='procs'
 alias df='duf'
@@ -68,6 +70,8 @@ alias speedtest='speedtest-cli'
 alias weather='curl wttr.in/cherkasy'
 alias youtube='youtube-dl'
 alias spotify='ncspot'
+
+alias diesel='diesel --database-url=file:///Users/vova/.config/lazynotes/database.sqlite'
 
 function npm-login
   if grep -q "codeartifact" ~/.npmrc

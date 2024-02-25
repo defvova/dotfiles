@@ -1,15 +1,7 @@
-blinking-cursor = false
-performance = "High"
-disable-unfocused-render = false
-use-fork = false
-use-kitty-keyboard-protocol = false
-line-height = 1.0
 padding-x = 0.0
-cursor = "▇"
-scroll-multiplier = 3.0
-env-vars = []
-option-as-alt = "left"
-ignore-selection-foreground-color = false
+hide-cursor-when-typing = true
+ignore-selection-foreground-color = true
+editor = 'vim'
 
 # https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/rio
 [adaptive-theme]
@@ -27,15 +19,12 @@ width = 600
 height = 400
 mode = "Maximized"
 
-[background]
+[renderer]
+performance = "High"
 
 # [shell]
 # program = "/opt/homebrew/bin/fish"
 # args = ["--login"]
-
-[fonts]
-size = 18.0
-extras = []
 
 [fonts.regular]
 family = "cascadiamono"
@@ -64,6 +53,5 @@ log-level = "OFF"
 # [bindings]
 # keys = [
 #   { key = "\\", with = "control", action = "SplitVertically" },
-#   { key = "-", with = "control", action = "SplitHorizontally" }
+#   { key = "-", with = "control", action = "SplitHorizontally" },
 # ]
-#
