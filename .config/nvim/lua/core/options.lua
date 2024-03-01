@@ -1,5 +1,9 @@
 local opt = vim.opt
 
+vim.scriptencoding = "utf-8"
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
 opt.autowrite = true -- Enable auto write
 opt.conceallevel = 0 -- Hide * markup for bold and italic
 opt.confirm = false -- Confirm to save changes before exiting modified buffer
@@ -7,8 +11,9 @@ opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep --threads=2 --no-heading --with-filename --line-number --smart-case --hidden --glob '!.git'"
 opt.switchbuf = "useopen"
-opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 3
+-- opt.inccommand = "nosplit" -- preview incremental substitute
+opt.inccommand = "split" -- preview incremental substitute
+-- opt.laststatus = 3
 opt.list = false -- Show some invisible characters (tabs...
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
@@ -24,6 +29,16 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.showmatch = true -- highlight matching [{()}]
 opt.hidden = true
+opt.title = true
+opt.backup = false
+
+opt.showcmd = true
+opt.cmdheight = 0
+opt.laststatus = 0
+
+opt.backspace = { "start", "eol", "indent" }
+opt.path:append({ "**" })
+opt.wildignore:append({ "*/node_modules/*" })
 
 -- recursive :find in current dir
 vim.cmd [[set path=.,,,$PWD/**]]
@@ -41,8 +56,10 @@ opt.relativenumber = false -- Relative line numbers
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.softtabstop = 2
 opt.expandtab = true -- Use spaces instead of tabs
+opt.smarttab = true
 
 -- Enable auto indenting and set it to spaces
+opt.autoindent = true
 opt.smartindent = true -- Insert indents automatically
 opt.shiftwidth = 2 -- Size of an indent
 opt.shiftround = true -- Round indent
