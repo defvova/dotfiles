@@ -7,7 +7,16 @@ local autocmd = vim.api.nvim_create_autocmd
 local api = vim.api
 
 -- Check if we need to reload the file when it changed
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+-- autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "TermClose", "TermLeave" }, { command = "checktime" })
+autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "TermClose", "TermLeave" }, {
+  pattern = "*",
+  command = "if mode() != 'c' | checktime | endif",
+})
+
+autocmd({ "FileChangedShellPost" }, {
+  pattern = "*",
+  command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None',
+})
 
 -- go to last loc when opening a buffer
 autocmd("BufReadPost", {
