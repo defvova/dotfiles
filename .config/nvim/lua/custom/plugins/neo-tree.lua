@@ -29,6 +29,7 @@ return {
   opts = {
     hide_root_node = true,
     filesystem = {
+      async_directory_scan = "always",
       follow_current_file = {
         enabled = true,
       },
@@ -37,6 +38,8 @@ return {
         hide_by_name = {
           "node_modules",
           ".cache",
+          "package-lock.json",
+          "Cargo.lock"
         },
         always_show = {
           ".env",
