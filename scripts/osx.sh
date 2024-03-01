@@ -23,7 +23,7 @@ setup_osx() {
 	defaults write com.apple.finder ShowPathbar -bool true
 
 	# Show Status Bar
-	defaults write com.apple.finder "ShowStatusBar" -bool true
+	defaults write com.apple.finder ShowStatusBar -bool true
 
 	# Do not show warning when changing the file extension
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false

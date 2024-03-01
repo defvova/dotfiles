@@ -1,4 +1,8 @@
 setup_github_ssh() {
+	# brew install pinentry-mac
+	# echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+	# killall gpg-agent
+
 	if [ -z "${SSH_PASSPHRASE}" ]; then
 		echo "SSH_PASSPHRASE not set"
 	else
