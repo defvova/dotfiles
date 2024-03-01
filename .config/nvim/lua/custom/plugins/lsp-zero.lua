@@ -225,8 +225,15 @@ return {
         }
       }
 
+      local capabilities = lsp_zero.get_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+      }
+
       local ensure_installed = {}
       for server_name, options in pairs(servers) do
+        options.capabilities = capabilities
         lsp_zero.use(server_name, options)
         table.insert(ensure_installed, server_name)
       end
