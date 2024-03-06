@@ -20,6 +20,7 @@ return {
         "L3MON4D3/LuaSnip",
         dependencies = { "rafamadriz/friendly-snippets" },
       },
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -61,12 +62,13 @@ return {
               path = "[Path]",
               crates = "[Crates]",
             },
-            -- before = function(entry, item)
-            --   -- if entry.source.name == "codeium" then
-            --   --   item.kind = fmt("%s %s", "", "Codeium")
-            --   -- end
-            --   return item
-            -- end,
+            before = function(entry, item)
+              return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+              -- if entry.source.name == "codeium" then
+              --   item.kind = fmt("%s %s", "", "Codeium")
+              -- end
+              -- return item
+            end,
           },
           duplicates = {
             -- codeium = 1,
@@ -212,7 +214,18 @@ return {
         emmet_ls = {},
         cssls = {},
         html = {},
-        tailwindcss = {},
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                  { "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+                },
+              },
+            },
+          },
+        },
         solargraph = {},
         astro = {
           -- capabilities = lsp_zero.get_capabilities(),
