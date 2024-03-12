@@ -73,6 +73,10 @@ alias http='xh'
 
 alias diesel='diesel --database-url=file:///Users/vova/.config/lazynotes/database.sqlite'
 
+function fv
+  nvim "$(fd -E node_modules -E .git -E '*.png' -E '*.jpg' -t f -H | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
+end
+
 function npm-login
   if grep -q "codeartifact" ~/.npmrc
     aws codeartifact login --tool npm --domain maxeda --repository npm
