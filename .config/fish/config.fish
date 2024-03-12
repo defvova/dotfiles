@@ -69,6 +69,7 @@ alias speedtest='speedtest-cli'
 alias weather='curl wttr.in/cherkasy'
 alias youtube='youtube-dl'
 alias spotify='ncspot'
+alias http='xh'
 
 alias diesel='diesel --database-url=file:///Users/vova/.config/lazynotes/database.sqlite'
 

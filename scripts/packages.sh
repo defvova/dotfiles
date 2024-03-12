@@ -26,6 +26,7 @@ packages=(
     # font-hack-nerd-font
     # font-jetbrains-mono-nerd-font
 	universal-ctags
+    xh
     fnm
     frum
 	neovim
