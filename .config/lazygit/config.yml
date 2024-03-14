@@ -8,25 +8,8 @@ gui:
     mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
     language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
     timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
-    # theme:
-    #   lightTheme: false # For terminals with a light background
-    #   activeBorderColor:
-    #     - green
-    #     - bold
-    #   inactiveBorderColor:
-    #     - white
-    #   optionsTextColor:
-    #     - blue
-    #   selectedLineBgColor:
-    #     - blue # set to `default` to have no background colour
-    #   selectedRangeBgColor:
-    #     - blue
-    #   cherryPickedCommitBgColor:
-    #     - cyan
-    #   cherryPickedCommitFgColor:
-    #     - blue
-    #   unstagedChangesColor:
-    #     - red
+    theme:
+        lightTheme: true # For terminals with a light background
     commitLength:
         show: true
     mouseEvents: true
@@ -41,30 +24,11 @@ gui:
     commandLogSize: 8
     splitDiff: "auto" # one of 'auto' | 'always'
 git:
-    theme:
-        lightTheme: true
-        # activeBorderColor:
-        #   - "#a6d189" # Green
-        #   - bold
-        # inactiveBorderColor:
-        #   - "#c6d0f5" # Text
-        # optionsTextColor:
-        #   - "#8caaee" # Blue
-        # selectedLineBgColor:
-        #   - "#414559" # Surface0
-        # selectedRangeBgColor:
-        #   - "#414559" # Surface0
-        # cherryPickedCommitBgColor:
-        #   - "#81c8be" # Teal
-        # cherryPickedCommitFgColor:
-        #   - "#8caaee" # Blue
-        # unstagedChangesColor:
-        #   - red       # Red
     paging:
         colorArg: always
         useConfig: false
-        pager: delta --dark --line-numbers --paging=never # Dark mode
-        # pager: delta --light --line-numbers --paging=never # Light mode
+        # pager: delta --dark --line-numbers --24-bit-color=never --paging=never # Dark mode
+        pager: delta --light --line-numbers --24-bit-color=never --paging=never # Light mode
     commit:
         signOff: false
     merging:
