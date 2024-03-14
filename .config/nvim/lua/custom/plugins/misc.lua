@@ -111,11 +111,12 @@ return {
     config = true,
   },
   {
-    "ur4ltz/surround.nvim",
-    keys = { { "s", mode = { "v", "x" } } },
-    opts = {
-      mappings_style = "sandwich",
-    },
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end
   },
   -- {
   --   "andymass/vim-matchup",
@@ -152,14 +153,14 @@ return {
 
       local map = require("gomove.mappings").map
       map({
-        { "n", "<A-j>", "<Plug>GoNSMDown",  {} },
-        { "n", "<A-k>", "<Plug>GoNSMUp",    {} },
-        { "x", "<A-j>", "<Plug>GoVSMDown",  {} },
-        { "x", "<A-k>", "<Plug>GoVSMUp",    {} },
-        { "n", "<A-J>", "<Plug>GoNSDDown",  {} },
-        { "n", "<A-K>", "<Plug>GoNSDUp",    {} },
-        { "x", "<A-J>", "<Plug>GoVSDDown",  {} },
-        { "x", "<A-K>", "<Plug>GoVSDUp",    {} },
+        { "n", "<A-j>", "<Plug>GoNSMDown", {} },
+        { "n", "<A-k>", "<Plug>GoNSMUp",   {} },
+        { "x", "<A-j>", "<Plug>GoVSMDown", {} },
+        { "x", "<A-k>", "<Plug>GoVSMUp",   {} },
+        { "n", "<A-J>", "<Plug>GoNSDDown", {} },
+        { "n", "<A-K>", "<Plug>GoNSDUp",   {} },
+        { "x", "<A-J>", "<Plug>GoVSDDown", {} },
+        { "x", "<A-K>", "<Plug>GoVSDUp",   {} },
       })
     end
   },
