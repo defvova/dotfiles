@@ -87,7 +87,7 @@ return {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+            select = false,
           },
           ["<C-n>"] = cmp_action.luasnip_supertab(),
           ["<C-p>"] = cmp_action.luasnip_shift_supertab(),
