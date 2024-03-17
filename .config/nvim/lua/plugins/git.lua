@@ -135,9 +135,9 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
-    dependencies = {
-      'petertriho/nvim-scrollbar'
-    },
+    -- dependencies = {
+    --   'petertriho/nvim-scrollbar'
+    -- },
     keys = {
       { "<leader>hp", "<cmd> Gitsigns preview_hunk<CR>",    desc = "[H]unk [P]review" },
       { "<leader>hr", "<cmd> Gitsigns reset_hunk<CR>",      desc = "[H]unk [R]eset" },
@@ -212,7 +212,7 @@ return {
 
       gs.setup(opts)
 
-      require("scrollbar.handlers.gitsigns").setup()
+      -- require("scrollbar.handlers.gitsigns").setup()
     end,
   },
   {

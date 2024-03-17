@@ -1,6 +1,7 @@
 return {
   'petertriho/nvim-scrollbar',
   lazy = false,
+  enabled = false,
   config = function()
     require("scrollbar").setup({
       excluded_buftypes = {
