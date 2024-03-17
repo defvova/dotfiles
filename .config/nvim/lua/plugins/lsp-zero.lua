@@ -307,7 +307,7 @@ return {
         },
       })
 
-      require("custom.plugins.lsp.handlers").setup()
+      require("plugins.lsp.handlers").setup()
     end,
   }
 }
