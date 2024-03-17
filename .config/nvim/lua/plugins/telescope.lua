@@ -152,7 +152,8 @@ return {
       "lazy",
       "persisted",
       "live_grep_args",
-      "media_files"
+      "media_files",
+      "notify"
     }
     local telescope = require "telescope"
     telescope.setup(opts)
