@@ -34,6 +34,7 @@
   "indent-o-matic": { "branch": "master", "commit": "4d11e98f523d3c4500b1dc33f0d1a248a4f69719" },
   "kanagawa.nvim": { "branch": "master", "commit": "bfa818c7bf6259152f1d89cf9fbfba3554c93695" },
   "lazy.nvim": { "branch": "main", "commit": "83493db50a434a4c5c648faf41e2ead80f96e478" },
+  "leetcode.nvim": { "branch": "master", "commit": "765cc76df77072e3ff4c3fdc256b9a244af73b6d" },
   "lsp-lens.nvim": { "branch": "main", "commit": "48bb1a7e271424c15f3d588d54adc9b7c319d977" },
   "lsp-progress.nvim": { "branch": "main", "commit": "1c37b1cd0611563a767f0a340d61f265c4c54ecd" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "14c9164413df4be17a5a0ca9e01a376691cbcaef" },
