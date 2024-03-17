@@ -1,3 +1,6 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $username\
 $hostname\
@@ -22,11 +25,23 @@ success_symbol = "[[♥](green) ❯](green)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
+[cmd_duration]
+format = "[ $duration ]($style)"
+style = "bold" #white
+
 [directory.substitutions]
 '~/work/bitbucket/maxeda' = 'maxeda'
 
+[directory]
+read_only = " "
+style = "bold #c678dd" #purple
+
 [docker_context]
-format = 'via [🐋 $context](blue bold)'
+symbol = " "
+
+[git_branch]
+symbol = " "
+style = "bold #98c379"  #green
 
 [git_status]
 format = '([$up_to_date$ahead_behind]($style) )'
@@ -39,3 +54,14 @@ behind = '⇣${count}'
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 cherry_pick = '[🍒 PICKING](bold red)'
+
+[nodejs]
+symbol = " "
+style = "bold #e5c07b" #yellow
+
+[package]
+style = "bold #e06c75" #red
+
+[ruby]
+symbol = " "
+style = "bold #e06c75" #red
