@@ -50,14 +50,27 @@ function M.setup()
   -- vim.diagnostic.config(config.diagnostic)
 
   -- Disable inline diagnostics error
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    -- virtual_text = {
-    --   prefix = "🔥",
-    --   prefix = "",
-    --   source = true,
-    -- },
-  })
+  -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  --   virtual_text = false,
+  --   -- virtual_text = {
+  --   --   prefix = "🔥",
+  --   --   prefix = "",
+  --   --   source = true,
+  --   -- },
+  -- })
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+    require("ts-error-translator").translate_diagnostics(err, result, ctx, config)
+    vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, { virtual_text = false })
+    -- vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --   virtual_text = false,
+    --   -- virtual_text = {
+    --   --   prefix = "🔥",
+    --   --   prefix = "",
+    --   --   source = true,
+    --   -- },
+    -- })
+  end
 
   -- -- Hover configuration
   -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.float)
