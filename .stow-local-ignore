@@ -8,3 +8,5 @@ README.md
 scripts
 assets
 .config/fonts
+.DS_Store
+session
