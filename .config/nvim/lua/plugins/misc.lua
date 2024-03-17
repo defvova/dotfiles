@@ -1,13 +1,5 @@
 return {
   {
-    'Darazaki/indent-o-matic',
-    event = "VeryLazy",
-    lazy = false,
-    config = function ()
-      require('indent-o-matic').setup()
-    end
-  },
-  {
     'dmmulroy/ts-error-translator.nvim',
     ft = { 'js', 'jsx', 'ts', 'tsx' },
     event = "VeryLazy",
@@ -35,17 +27,9 @@ return {
     config = true
   },
   {
-    "chentoast/marks.nvim",
-    cmd = { "MarksListAll", "MarksListBuf" },
-    config = function()
-      require("marks").setup {
-        excluded_filetypes = { "gitcommit" },
-      }
-    end,
-  },
-  {
     "Darazaki/indent-o-matic",
     event = "VeryLazy",
+    lazy = false,
     config = true,
   },
   {
@@ -208,6 +192,7 @@ return {
   },
   {
     "nacro90/numb.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       show_numbers = true,    -- Enable 'number' for the window while peeking
