@@ -23,11 +23,12 @@ local function scheme_for_appearance(appearance)
   if appearance:find 'Dark' then
     return 'Night Owl (Gogh)'
   else
-    return 'One Light (Gogh)'
+    return 'Edge Light (base16)'
   end
 end
 
 config.disable_default_key_bindings = true
+config.window_close_confirmation = 'AlwaysPrompt'
 
 config.front_end = "WebGpu"
 config.max_fps = 120
@@ -51,8 +52,21 @@ config.window_padding = {
 config.adjust_window_size_when_changing_font_size = false
 config.color_scheme = scheme_for_appearance(get_appearance())
 
-local act = wezterm.action
+-- INFO: https://wezfurlong.org/wezterm/config/lua/wezterm.color/save_scheme.html#weztermcolorsave_schemecolors-metadata-file_name
+-- colors, metadata = wezterm.color.load_base16_scheme("/Users/vova/.config/wezterm/themes/edge-light.yaml")
+-- wezterm.color.save_scheme(colors, metadata, "/Users/vova/.config/wezterm/themes/edge-light.toml")
+local lightScheme = wezterm.get_builtin_color_schemes()['Edge Light (base16)']
+lightScheme.foreground = '#4b505b'
+lightScheme.selection_bg = '#dde2e7'
+lightScheme.selection_fg = '#4b505b'
+lightScheme.cursor_bg = '#6996e0'
+lightScheme.cursor_border = '#6996e0'
 
+config.color_schemes = {
+  ['Edge Light (base16)'] = lightScheme,
+}
+
+local act = wezterm.action
 config.mouse_bindings = {
   {
     event = { Down = { streak = 3, button = 'Left' } },
