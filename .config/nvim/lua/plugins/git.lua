@@ -108,30 +108,30 @@ return {
       },
     },
   },
-  -- {
-  --   "rbong/vim-flog",
-  --   cmd = { "Flog", "Flogsplit" },
-  --   keys = {
-  --     { "<leader>gf", "<cmd>Flog<CR>", desc = "[F]log" },
-  --   },
-  --   init = function()
-  --     vim.g.flog_default_opts = { max_count = 512 }
-  --     -- vim.g.flog_override_default_mappings = {}
-  --     -- vim.g.flog_jumplist_default_mappings = {}
-  --     vim.g.flog_use_internal_lua = true
-  --   end,
-  --   dependencies = {
-  --     "tpope/vim-fugitive",
-  --     cmd = "Git",
-  --     keys = {
-  --       {
-  --         "<leader>gb",
-  --         "<CMD>Git blame<CR>",
-  --         desc = "[G]it [B]lame",
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "rbong/vim-flog",
+    cmd = { "Flog", "Flogsplit" },
+    keys = {
+      { "<leader>gf", "<cmd>Flog<CR>", desc = "[F]log" },
+    },
+    init = function()
+      vim.g.flog_default_opts = { max_count = 512 }
+      -- vim.g.flog_override_default_mappings = {}
+      -- vim.g.flog_jumplist_default_mappings = {}
+      vim.g.flog_use_internal_lua = true
+    end,
+    dependencies = {
+      "tpope/vim-fugitive",
+      cmd = "Git",
+      keys = {
+        {
+          "<leader>gb",
+          "<CMD>Git blame<CR>",
+          desc = "[G]it [B]lame",
+        },
+      },
+    },
+  },
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
