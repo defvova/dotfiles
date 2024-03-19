@@ -80,10 +80,11 @@ return {
     end
 
     notify.setup({
+      top_down = false,
       fps = 60,
       render = "compact",
       timeout = 3000,
-      stages = anim(Dir.TOP_DOWN),
+      -- stages = anim(Dir.BOTTOM_UP),
     })
   end
 }
