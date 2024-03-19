@@ -128,7 +128,7 @@ return {
             end,
           },
           { "filetype", icon_only = true, separator = "",                                                            padding = { left = 0, right = 0 } },
-          { "filename", path = 0,         symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
+          { "filename", path = 0, symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
         },
         lualine_y = {
           {
