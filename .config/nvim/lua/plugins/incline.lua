@@ -2,7 +2,6 @@ return {
   'b0o/incline.nvim',
   event = 'VeryLazy',
   config = function()
-    local helpers = require 'incline.helpers'
     local devicons = require 'nvim-web-devicons'
     require('incline').setup {
       window = {
@@ -43,9 +42,10 @@ return {
         local modified = vim.bo[props.buf].modified
 
         return {
-          ft_icon and { ' ', ft_icon, ' ', guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or '',
+          ft_icon and { ' ', ft_icon, ' ', guifg = ft_color } or '',
           ' ',
-          { filename, gui = modified and 'bold,italic' or 'bold' }
+          { filename, gui = modified and 'bold,italic' or 'bold' },
+          modified and { ' ', '', ' ' } or ''
         }
       end,
     }
