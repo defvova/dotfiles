@@ -85,25 +85,21 @@ return {
           enable_preview = true,
         },
         find_files = {
+          theme = "ivy",
           -- results_title = false,
-          previewer = false,
-          layout_config = {
-            width = 80,
-          },
+          -- previewer = false,
+          -- layout_config = {
+          --   width = 80,
+          -- },
         },
         oldfiles = {
-          -- results_title = false,
-          previewer = false,
-          layout_config = {
-            width = 80,
-          },
+          theme = "ivy",
         },
         live_grep = {
-          -- theme = "dropdown",
           theme = "ivy",
         },
         grep_string = {
-          theme = "dropdown",
+          theme = "ivy",
         },
         buffers = {
           theme = "dropdown",
@@ -133,6 +129,12 @@ return {
           initial_mode = "normal",
           depth = false,
           add_dirs = false,
+        },
+        lazy = {
+          theme = "ivy",
+        },
+        notify = {
+          theme = "ivy",
         },
         live_grep_args = {
           initial_mode = "normal",
