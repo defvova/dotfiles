@@ -6,6 +6,8 @@ end
 map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
+map({ 'n' }, '#', [[<cmd>let save_pos=getpos(".")<CR>#<cmd>call setpos('.', save_pos)<CR>]], { noremap = true, silent = true })
+
 map("n", "<ESC>", "<cmd>lua require('notify').dismiss(); vim.cmd('noh')<CR>", { desc = "no highlight & no alerts" })
 
 -- Add undo break-points
