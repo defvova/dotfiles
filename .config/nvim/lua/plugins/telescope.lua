@@ -19,34 +19,62 @@ return {
       version = "^1.0.0",
     },
   },
-  keys = {
-    { "<leader>?", "<cmd>Telescope oldfiles<CR>", desc = "[?] Find recently opened files" },
-    { "<leader>b", "<cmd>Telescope buffers<CR>",  desc = "[B] Find existing Buffers" },
-    {
-      "<leader>/",
-      function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-          previewer = false,
-        })
-      end,
-      desc = "[/] Fuzzily search in current buffer",
-    },
-    { "<leader>f",       "<cmd>Telescope find_files<CR>",                                                       desc = "Search [F]iles" },
-    -- { "<leader><space>", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",                       desc = "[ ] File Browser" },
-    { "<leader>sh",      "<cmd>Telescope help_tags<CR>",                                                        desc = "[S]earch [H]elp" },
-    { "<leader>sw",      "<cmd>Telescope grep_string<CR>",                                                      desc = "[S]earch current [W]ord" },
-    { "<leader>st",      "<cmd>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>", desc = "[S]earch [T]ext" },
-    { "<leader>sd",      "<cmd>Telescope diagnostics<CR>",                                                      desc = "[S]earch [D]iagnostics" },
-    { "<leader>ht",      "<cmd>lua require'core.theming.theme_picker'.open_picker()<cr>",                       desc = "Search Theme" },
-  },
+  init = function()
+    local t = require("legendary.toolbox")
+    require("legendary").keymaps({
+      {
+        itemgroup = "Telescope|Search|Grep",
+        description = "Gaze deeply into unknown regions using the power of the moon",
+        icon = "",
+        keymaps = {
+          {
+            "<leader>f",
+            t.lazy_required_fn("telescope.builtin", "find_files", { hidden = true }),
+            description = "Search [F]iles",
+          },
+          {
+            "<leader>sg",
+            t.lazy_required_fn(
+              "telescope.builtin",
+              "live_grep",
+              { prompt_title = "Open Files", path_display = { "shorten" }, grep_open_files = true }
+            ),
+            description = '[S]earch [G]rep text',
+          },
+          {
+            "<leader>/",
+            t.lazy_required_fn(
+              "telescope.builtin",
+              "live_grep",
+              { prompt_title = "Search CWD", path_display = { "smart" } }
+            ),
+            description = "[/] Search CWD",
+          },
+          {
+            "<leader>b",
+            t.lazy_required_fn(
+              "telescope.builtin",
+              "buffers",
+              { prompt_title = "Buffer List", path_display = { "smart" } }
+            ),
+            desc = "Find existing [B]uffers"
+          },
+          {
+            "<leader>st",
+            "<cmd>lua require'core.theming.theme_picker'.open_picker()<cr>",
+            desc = "[S]earch [T]heme"
+          }
+        },
+      },
+    })
+  end,
   opts = function()
     local actions = require "telescope.actions"
     local layout_actions = require "telescope.actions.layout"
 
     return {
       defaults = {
-        prompt_prefix = "   ",
+        prompt_prefix = "   ",
         selection_caret = "  ",
         dynamic_preview_title = true,
         sorting_strategy = "ascending",
@@ -62,7 +90,7 @@ return {
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         set_env = { ["COLORTERM"] = "truecolor" },
-        file_ignore_patterns = {".git", ".DS_Store", "node_modules", "yarn.lock", "package.lock", "Cargo.lock"},
+        file_ignore_patterns = { ".git", ".DS_Store", "node_modules", "yarn.lock", "package.lock", "Cargo.lock" },
         mappings = {
           i = {
             ["<C-s>"] = actions.select_horizontal,
@@ -101,6 +129,10 @@ return {
         grep_string = {
           theme = "ivy",
         },
+        lsp_references = {
+          theme = 'ivy',
+          initial_mode = "normal",
+        },
         buffers = {
           theme = "dropdown",
           sort_mru = true,
@@ -118,7 +150,12 @@ return {
         },
       },
       extensions = {
-        fzf = {},
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        },
         luasnip = {},
         file_browser = {
           theme = "ivy",

@@ -1,3 +1,110 @@
+local function autocmds(client, bufnr)
+  require("legendary").autocmds({
+    {
+      name = "LspOnAttachAutocmds",
+      clear = false,
+      {
+        { "CursorHold", "CursorHoldI" },
+        ":silent! lua vim.lsp.buf.document_highlight()",
+        opts = { buffer = bufnr },
+      },
+      {
+        "CursorMoved",
+        ":silent! lua vim.lsp.buf.clear_references()",
+        opts = { buffer = bufnr },
+      },
+    },
+  })
+end
+
+local function commands(client, bufnr)
+  if vim.g.lsp_commands then
+    return {}
+  end
+
+  require("legendary").commands({
+    {
+      ":LspRestart",
+      description = "LSP: Restart any attached clients",
+    },
+    {
+      ":LspStart",
+      description = "LSP: Start the client manually",
+    },
+    {
+      ":LspInfo",
+      description = "LSP: Show attached clients",
+    },
+    {
+      "LspUninstallAll",
+      description = "LSP: Uninstall all servers",
+    },
+    {
+      "LspLog",
+      function()
+        vim.cmd("edit " .. vim.lsp.get_log_path())
+      end,
+      description = "LSP: Show logs",
+    },
+  })
+
+  vim.g.lsp_commands = true
+end
+
+local function mappings(client, bufnr)
+  local function show_documentation()
+    local filetype = vim.bo.filetype
+    if vim.fn.expand "%:t" == "Cargo.toml" then
+      require("crates").show_popup()
+    elseif vim.tbl_contains({ "vim", "help" }, filetype) then
+      vim.cmd("h " .. vim.fn.expand "<cword>")
+    elseif vim.tbl_contains({ "man" }, filetype) then
+      vim.cmd("Man " .. vim.fn.expand "<cword>")
+    else
+      vim.lsp.buf.hover()
+    end
+  end
+
+  local t = require("legendary.toolbox")
+  require("legendary").keymaps({
+    {
+      'K',
+      show_documentation,
+      description = "LSP: Show hover information",
+      opts = {
+        buffer = bufnr,
+      }
+    },
+    {
+      'gd',
+      t.lazy_required_fn("telescope.builtin", "lsp_definitions"),
+      description = 'LSP: [G]o to [D]efinition',
+      opts = {
+        buffer = bufnr,
+      }
+    },
+    {
+      "<A-Enter>",
+      function()
+        require("actions-preview").code_actions()
+      end,
+      description = "LSP: Show code actions",
+      mode = { 'v', 'n', 'i' },
+      opts = {
+        buffer = bufnr,
+      },
+    },
+    {
+      "gr",
+      t.lazy_required_fn("telescope.builtin", "lsp_references"),
+      description = "LSP: [G]o to [R]eferences",
+      opts = { buffer = bufnr },
+    },
+    { "<leader>D", t.lazy_required_fn("telescope.builtin", "lsp_type_definitions"), description = "LSP: Go to type [D]efinition", opts = { buffer = bufnr } },
+    { "gi", t.lazy_required_fn("telescope.builtin", "lsp_implementations"), description = "LSP: [G]o to [I]mplementation", opts = { buffer = bufnr } },
+  })
+end
+
 return {
   {
     "VonHeikemen/lsp-zero.nvim",
@@ -143,7 +250,23 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
-      { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        init = function()
+          require("legendary").commands({
+            {
+              ":Mason",
+              description = "LSP Servers: Open Mason",
+            },
+            {
+              ":MasonUninstallAll",
+              description = "LSP Servers: Uninstall all Mason packages",
+            },
+          })
+        end,
+        config = true,
+      },
       --     {
       --       "jay-babu/mason-null-ls.nvim",
       --       event = { "BufReadPre", "BufNewFile" },
@@ -163,28 +286,12 @@ return {
       local lsp_zero = require "lsp-zero"
       lsp_zero.extend_lspconfig()
 
-      local function show_documentation()
-        local filetype = vim.bo.filetype
-        if vim.fn.expand "%:t" == "Cargo.toml" then
-          require("crates").show_popup()
-        elseif vim.tbl_contains({ "vim", "help" }, filetype) then
-          vim.cmd("h " .. vim.fn.expand "<cword>")
-        elseif vim.tbl_contains({ "man" }, filetype) then
-          vim.cmd("Man " .. vim.fn.expand "<cword>")
-        else
-          vim.lsp.buf.hover()
-        end
-      end
-
       lsp_zero.on_attach(function(client, bufnr)
         lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>', 'gd', 'gD', 'gi', 'gr' } }
-        vim.keymap.set('n', 'K', show_documentation, { buffer = bufnr })
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-        vim.keymap.set({ "v", "n", "i" }, "<A-Enter>",
-          function()
-            require("actions-preview").code_actions()
-          end
-        )
+
+        autocmds(client, bufnr)
+        commands(client, bufnr)
+        mappings(client, bufnr)
 
         tw_highlight.setup(client, bufnr, {
           single_column = false,

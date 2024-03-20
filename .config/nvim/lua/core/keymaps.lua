@@ -85,6 +85,6 @@ vim.cmd "command! -nargs=+ -complete=file Grep noautocmd silent grep! <args> | r
 vim.cmd "command! -nargs=+ -complete=file LGrep noautocmd silent lgrep! <args> | redraw! | lopen"
 map("n", "<leader>sf", [[:Grep ]], { desc = "[S]earch in [F]iles" })
 
-map("n", "zR", require('ufo').openAllFolds, { desc = "Unfold all" })
-map("n", "zM", require('ufo').closeAllFolds, { desc = "Fold all" })
-map("n", "<BS>", "zc", { desc = "Fold block" })
+-- map("n", "zR", require('ufo').openAllFolds, { desc = "Unfold all" })
+-- map("n", "zM", require('ufo').closeAllFolds, { desc = "Fold all" })
+-- map("n", "<BS>", "zc", { desc = "Fold block" })

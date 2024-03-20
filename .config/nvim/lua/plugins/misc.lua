@@ -116,9 +116,12 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
     config = true,
-    keys = {
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "[S]earch Todo ([T]rouble)" },
-    },
+    init = function()
+      require("legendary").keymaps({
+        { "<leader>xt", "<cmd>TodoTrouble<cr>",   description = "Todo comments (Trouble)" },
+        { "<Leader>xT", "<cmd>TodoTelescope<CR>", description = "Todo comments (Telescope)" },
+      })
+    end,
   },
   {
     "zbirenbaum/neodim",

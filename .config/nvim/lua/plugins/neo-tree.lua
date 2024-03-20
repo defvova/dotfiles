@@ -2,9 +2,15 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
   cmd = "Neotree",
-  keys = {
-    { "<leader>e", "<cmd>Neotree filesystem reveal toggle<cr>", desc = "Toggle NeoTree" },
-  },
+  init = function()
+    require("legendary").keymaps({
+      {
+        "<leader>e",
+        "<cmd>Neotree filesystem reveal toggle<cr>",
+        description = "Explorer: Toggle NeoTree",
+      },
+    })
+  end,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
