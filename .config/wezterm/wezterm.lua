@@ -59,8 +59,8 @@ local lightScheme = wezterm.get_builtin_color_schemes()['Edge Light (base16)']
 lightScheme.foreground = '#4b505b'
 lightScheme.selection_bg = '#dde2e7'
 lightScheme.selection_fg = '#4b505b'
-lightScheme.cursor_bg = '#6996e0'
-lightScheme.cursor_border = '#6996e0'
+-- lightScheme.cursor_bg = '#6996e0'
+-- lightScheme.cursor_border = '#6996e0'
 
 config.color_schemes = {
   ['Edge Light (base16)'] = lightScheme,
