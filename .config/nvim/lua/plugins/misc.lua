@@ -41,7 +41,7 @@ return {
         function()
           return require("debugprint").debugprint { variable = true }
         end,
-        desc = "debugprint: cursor",
+        desc = "[Debugprint]: Cursor",
         expr = true,
       },
       {
@@ -49,13 +49,28 @@ return {
         function()
           return require("debugprint").debugprint { motion = true }
         end,
-        desc = "debugprint: operator",
+        desc = "[Debugprint]: Operator",
         expr = true,
       },
-      { "<leader>dC", "<Cmd>DeleteDebugPrints<CR>", desc = "debugprint: clear all" },
+      { "<leader>dC", "<Cmd>DeleteDebugPrints<CR>", desc = "[Debugprint]: Clear all" },
     },
   },
-  { "gennaro-tedesco/nvim-jqx",   cmd = { "JqxQuery", "JqxList" } },
+  {
+    "gennaro-tedesco/nvim-jqx",
+    cmd = { "JqxQuery", "JqxList" },
+    init = function()
+      require("legendary").commands({
+        {
+          ":JqxQuery",
+          description = "[JSON]: Executes a generic `jq` query in the current file"
+        },
+        {
+          ":JqxList",
+          description = "[JSON]: Populate the quickfix window with json keys"
+        }
+      })
+    end
+  },
   {
     "numToStr/Comment.nvim",
     keys = {
@@ -64,12 +79,12 @@ return {
         function()
           require("Comment.api").toggle.linewise.current()
         end,
-        desc = "Toggle Comment",
+        desc = "[Comment]: Toggle Comment",
       },
       {
         "gc",
         "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-        desc = "Toggle Comment",
+        desc = "[Comment]: Toggle Comment",
         mode = "v",
       },
     },
@@ -86,14 +101,6 @@ return {
   {
     "chrisbra/csv.vim",
     ft = "csv",
-  },
-  {
-    "mg979/vim-visual-multi",
-    keys = {
-      "<C-n>",
-      { "<C-Up>",   mode = "i" },
-      { "<C-Down>", mode = "i" },
-    },
   },
   -- {
   --   "chaoren/vim-wordmotion",
@@ -116,12 +123,10 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
     config = true,
-    init = function()
-      require("legendary").keymaps({
-        { "<leader>xt", "<cmd>TodoTrouble<cr>",   description = "Todo comments (Trouble)" },
-        { "<Leader>xT", "<cmd>TodoTelescope<CR>", description = "Todo comments (Telescope)" },
-      })
-    end,
+    keys = {
+      { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "[Todo]: Comments (Trouble)" },
+      { "<Leader>xT", "<cmd>TodoTelescope<CR>", desc = "[Todo]: Comments (Telescope)" },
+    }
   },
   {
     "zbirenbaum/neodim",
@@ -157,11 +162,11 @@ return {
     },
     config = true,
   },
-  {
-    "m-demare/hlargs.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
+  -- {
+  --   "m-demare/hlargs.nvim",
+  --   event = "VeryLazy",
+  --   config = true,
+  -- },
   {
     "booperlv/nvim-gomove",
     keys = {
@@ -189,6 +194,14 @@ return {
   {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
+    init = function()
+      require("legendary").commands({
+        {
+          ":StartupTime",
+          description = "[Startup]: Event timing information"
+        }
+      })
+    end,
     config = function()
       vim.g.startuptime_tries = 10
     end,

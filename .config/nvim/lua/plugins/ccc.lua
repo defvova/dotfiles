@@ -3,6 +3,26 @@ return {
   -- event = "VeryLazy",
   cmd = { "CccPick", "CccConvert", "CccHighlighterEnable", "CccHighlighterToggle" },
   -- ft = { "lua", "css", "html", "sass", "less", "typescriptreact" },
+  init = function()
+    require("legendary").commands({
+      {
+        ":CccPick",
+        description = "[Colors]: Detects and replaces the color under the cursor"
+      },
+      {
+        ":CccConvert",
+        description = "[Colors]: Convert color formats directly without opening the UI"
+      },
+      {
+        ":CccHighlighterEnable",
+        description = "[Colors]: Highlight colors in the buffer"
+      },
+      {
+        ":CccHighlighterToggle",
+        description = "[Colors]: Toggle highlight"
+      }
+    })
+  end,
   config = function()
     local ccc = require "ccc"
     ccc.setup {

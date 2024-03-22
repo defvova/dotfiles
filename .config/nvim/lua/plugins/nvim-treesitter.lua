@@ -64,9 +64,9 @@ return {
       enable = true,
       keymaps = {
         init_selection = "<c-space>",
-        node_incremental = "<c-space>",
-        scope_incremental = "<c-s>",
-        node_decremental = "<M-space>",
+        node_incremental = "<Tab>",
+        scope_incremental = "<CR>",
+        node_decremental = "<S-Tab>",
       },
     },
     textobjects = {

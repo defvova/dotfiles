@@ -1,3 +1,5 @@
+-- https://github.com/mrjones2014/dotfiles/blob/master/nvim/lua/my/legendary/commands.lua
+-- https://github.com/olimorris/dotfiles/blob/main/.config/nvim/lua/plugins/utilities.lua
 return {
   "mrjones2014/legendary.nvim",
   priority = 100000,
@@ -18,6 +20,8 @@ return {
   },
   config = function()
     require("legendary").setup({
+      include_builtin = false,
+      include_legendary_cmds = false,
       extensions = {
         lazy_nvim = true,
         which_key = false,

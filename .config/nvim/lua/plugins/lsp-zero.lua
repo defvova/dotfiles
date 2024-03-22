@@ -1,3 +1,4 @@
+local lsp_buffers = {}
 local function autocmds(client, bufnr)
   require("legendary").autocmds({
     {
@@ -25,26 +26,26 @@ local function commands(client, bufnr)
   require("legendary").commands({
     {
       ":LspRestart",
-      description = "LSP: Restart any attached clients",
+      description = "[LSP]: Restart any attached clients",
     },
     {
       ":LspStart",
-      description = "LSP: Start the client manually",
+      description = "[LSP]: Start the client manually",
     },
     {
       ":LspInfo",
-      description = "LSP: Show attached clients",
+      description = "[LSP]: Show attached clients",
     },
     {
       "LspUninstallAll",
-      description = "LSP: Uninstall all servers",
+      description = "[LSP]: Uninstall all servers",
     },
     {
       "LspLog",
       function()
         vim.cmd("edit " .. vim.lsp.get_log_path())
       end,
-      description = "LSP: Show logs",
+      description = "[LSP]: Show logs",
     },
   })
 
@@ -70,7 +71,7 @@ local function mappings(client, bufnr)
     {
       'K',
       show_documentation,
-      description = "LSP: Show hover information",
+      description = "[LSP]: Show hover information",
       opts = {
         buffer = bufnr,
       }
@@ -78,7 +79,7 @@ local function mappings(client, bufnr)
     {
       'gd',
       t.lazy_required_fn("telescope.builtin", "lsp_definitions"),
-      description = 'LSP: [G]o to [D]efinition',
+      description = '[LSP]: [G]o to [D]efinition',
       opts = {
         buffer = bufnr,
       }
@@ -88,7 +89,7 @@ local function mappings(client, bufnr)
       function()
         require("actions-preview").code_actions()
       end,
-      description = "LSP: Show code actions",
+      description = "[LSP]: Show code actions",
       mode = { 'v', 'n', 'i' },
       opts = {
         buffer = bufnr,
@@ -97,11 +98,11 @@ local function mappings(client, bufnr)
     {
       "gr",
       t.lazy_required_fn("telescope.builtin", "lsp_references"),
-      description = "LSP: [G]o to [R]eferences",
+      description = "[LSP]: [G]o to [R]eferences",
       opts = { buffer = bufnr },
     },
-    { "<leader>D", t.lazy_required_fn("telescope.builtin", "lsp_type_definitions"), description = "LSP: Go to type [D]efinition", opts = { buffer = bufnr } },
-    { "gi", t.lazy_required_fn("telescope.builtin", "lsp_implementations"), description = "LSP: [G]o to [I]mplementation", opts = { buffer = bufnr } },
+    { "<leader>D", t.lazy_required_fn("telescope.builtin", "lsp_type_definitions"), description = "[LSP]: Go to type [D]efinition",  opts = { buffer = bufnr } },
+    { "gi",        t.lazy_required_fn("telescope.builtin", "lsp_implementations"),  description = "[LSP]: [G]o to [I]mplementation", opts = { buffer = bufnr } },
   })
 end
 
@@ -257,11 +258,11 @@ return {
           require("legendary").commands({
             {
               ":Mason",
-              description = "LSP Servers: Open Mason",
+              description = "[LSP Servers]: Open Mason",
             },
             {
               ":MasonUninstallAll",
-              description = "LSP Servers: Uninstall all Mason packages",
+              description = "[LSP Servers]: Uninstall all Mason packages",
             },
           })
         end,
@@ -287,9 +288,12 @@ return {
       lsp_zero.extend_lspconfig()
 
       lsp_zero.on_attach(function(client, bufnr)
+        if vim.tbl_contains(lsp_buffers, bufnr) then
+          return
+        end
         lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>', 'gd', 'gD', 'gi', 'gr' } }
 
-        autocmds(client, bufnr)
+        -- autocmds(client, bufnr)
         commands(client, bufnr)
         mappings(client, bufnr)
 
@@ -298,6 +302,8 @@ return {
           mode = "background",
           debounce = 200,
         })
+
+        table.insert(lsp_buffers, bufnr)
       end)
 
       lsp_zero.set_sign_icons({

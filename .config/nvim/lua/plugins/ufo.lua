@@ -5,29 +5,27 @@ return {
     dependencies = {
       "kevinhwang91/promise-async",
     },
-    init = function()
-      require("legendary").keymaps({
-        {
-          "zR",
-          function()
-            require("ufo").openAllFolds()
-          end,
-          description = "Fold: Open all folds",
-        },
-        {
-          "zM",
-          function()
-            require("ufo").closeAllFolds()
-          end,
-          description = "Fold: Close all folds",
-        },
-        {
-          "<BS>",
-          'zc',
-          description = "Fold: Close block",
-        },
-      })
-    end,
+    keys = {
+      {
+        "zR",
+        function()
+          require("ufo").openAllFolds()
+        end,
+        desc = "[Fold]: Open all folds",
+      },
+      {
+        "zM",
+        function()
+          require("ufo").closeAllFolds()
+        end,
+        desc = "[Fold]: Close all folds",
+      },
+      {
+        "<BS>",
+        'zc',
+        desc = "[Fold]: Close block",
+      },
+    },
     config = function()
       require("ufo").setup({
         open_fold_hl_timeout = 150,

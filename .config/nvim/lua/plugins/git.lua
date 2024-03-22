@@ -1,80 +1,4 @@
 return {
-  -- {
-  --   'akinsho/git-conflict.nvim',
-  --   cmd = {
-  --     "GitConflictChooseOurs",
-  --     "GitConflictChooseTheirs",
-  --     "GitConflictChooseBoth",
-  --     "GitConflictChooseNone",
-  --     "GitConflictNextConflict",
-  --     "GitConflictPrevConflict",
-  --     "GitConflictListQf"
-  --   },
-  --   version = "*",
-  --   config = true
-  -- },
-  -- {
-  --   "NeogitOrg/neogit",
-  --   cmd = "Neogit",
-  --   keys = {
-  --     {
-  --       "<localleader>gs",
-  --       function()
-  --         require("neogit").open()
-  --       end,
-  --       desc = "[G]it [S]tatus buffer",
-  --     },
-  --     {
-  --       "<localleader>gc",
-  --       function()
-  --         require("neogit").open { "commit" }
-  --       end,
-  --       desc = "[G]it [C]ommit buffer",
-  --     },
-  --     {
-  --       "<localleader>gp",
-  --       function()
-  --         require("neogit").popups.pull.create()
-  --       end,
-  --       desc = "[G]it [P]ull popup",
-  --     },
-  --     {
-  --       "<localleader>gP",
-  --       function()
-  --         require("neogit").popups.push.create()
-  --       end,
-  --       desc = "[G]it [P]ush popup",
-  --     },
-  --     {
-  --       "<localleader>gB",
-  --       function()
-  --         require("neogit").open { "branch" }
-  --       end,
-  --       desc = "[G]it [B]ranch popup",
-  --     },
-  --   },
-  --   opts = {
-  --     disable_signs = false,
-  --     disable_hint = true,
-  --     disable_commit_confirmation = true,
-  --     disable_builtin_notifications = true,
-  --     disable_insert_on_commit = false,
-  --     status = {
-  --       recent_commit_count = 100,
-  --     },
-  --     signs = {
-  --       section = { "", "" },
-  --       item = { "▸", "▾" },
-  --       hunk = { "", "" },
-  --     },
-  --     integrations = {
-  --       diffview = true,
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     require("neogit").setup(opts)
-  --   end,
-  -- },
   {
     "ruifm/gitlinker.nvim",
     keys = {
@@ -86,7 +10,7 @@ return {
             { action_callback = require("gitlinker.actions").open_in_browser }
           )
         end,
-        desc = "[G]it open [L]ine in browser",
+        desc = "[Git]: [G]it open [L]ine in browser",
       },
       {
         "<leader>gL",
@@ -96,7 +20,7 @@ return {
             { action_callback = require("gitlinker.actions").open_in_browser }
           )
         end,
-        desc = "[G]it open [L]ine in browser",
+        desc = "[Git]: [G]it open [L]ine in browser",
         mode = "x",
       },
       {
@@ -104,49 +28,24 @@ return {
         function()
           require("gitlinker").get_repo_url { action_callback = require("gitlinker.actions").open_in_browser }
         end,
-        desc = "[G]it open [R]epo in browser",
+        desc = "[Git]: [G]it open [R]epo in browser",
       },
     },
   },
   {
-    "rbong/vim-flog",
-    cmd = { "Flog", "Flogsplit" },
+    "tpope/vim-fugitive",
+    cmd = "Git",
     keys = {
-      { "<leader>gf", "<cmd>Flog<CR>", desc = "[F]log" },
-    },
-    init = function()
-      vim.g.flog_default_opts = { max_count = 512 }
-      -- vim.g.flog_override_default_mappings = {}
-      -- vim.g.flog_jumplist_default_mappings = {}
-      vim.g.flog_use_internal_lua = true
-    end,
-    dependencies = {
-      "tpope/vim-fugitive",
-      cmd = "Git",
-      keys = {
-        {
-          "<leader>gb",
-          "<CMD>Git blame<CR>",
-          desc = "[G]it [B]lame",
-        },
+      {
+        "<leader>gb",
+        "<CMD>Git blame<CR>",
+        desc = "[Git]: [G]it [B]lame",
       },
     },
   },
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufAdd", "BufNewFile" },
-    -- dependencies = {
-    --   'petertriho/nvim-scrollbar'
-    -- },
-    keys = {
-      { "<leader>hp", "<cmd> Gitsigns preview_hunk<CR>",    desc = "[H]unk [P]review" },
-      { "<leader>hr", "<cmd> Gitsigns reset_hunk<CR>",      desc = "[H]unk [R]eset" },
-      { "<leader>hR", "<cmd> Gitsigns reset_buffer<CR>",    desc = "[H]unk [R]eset buffer" },
-      { "<leader>hs", "<cmd> Gitsigns stage_hunk<CR>",      desc = "[H]unk [S]tage" },
-      { "<leader>hS", "<cmd> Gitsigns stage_buffer<CR>",    desc = "[H]unk [S]tage buffer" },
-      { "<leader>hu", "<cmd> Gitsigns undo_stage_hunk<CR>", desc = "[H]unk [U]ndo Stage" },
-      { "<leader>hb", "<cmd> Gitsigns blame_line<CR>",      desc = "[H]unk [B]lame line" },
-    },
     opts = {
       numhl = true,
       signs = {
@@ -186,33 +85,7 @@ return {
     },
     config = function(_, opts)
       local gs = require "gitsigns"
-
-      vim.keymap.set("x", "<leader>hr", function()
-        gs.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
-      end, { desc = "[H]unk [R]eset" })
-      vim.keymap.set("x", "<leader>hs", function()
-        gs.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
-      end, { desc = "[H]unk [S]tage" })
-
-      vim.keymap.set("n", "[c", function()
-        if vim.wo.diff then
-          vim.cmd "norm! [c"
-        else
-          gs.next_hunk()
-        end
-      end, { desc = "Git Next Hunk" })
-
-      vim.keymap.set("n", "]c", function()
-        if vim.wo.diff then
-          vim.cmd "norm! ]c"
-        else
-          gs.prev_hunk()
-        end
-      end, { desc = "Git Prev Hunk" })
-
       gs.setup(opts)
-
-      -- require("scrollbar.handlers.gitsigns").setup()
     end,
   },
   -- {

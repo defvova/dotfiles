@@ -1,7 +1,12 @@
 local M = {
   "monaqa/dial.nvim",
   keys = {
-    "<C-z>", "<C-x>"
+    {
+      "<C-z>", desc = "[Toggle]: Increment", mode = { 'n', 'v', 'x' }
+    },
+    {
+      "<C-x>", desc = "[Toggle]: Decrement", mode = { 'n', 'v', 'x' }
+    }
   }
 }
 

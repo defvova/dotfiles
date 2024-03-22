@@ -7,24 +7,28 @@ return {
       function()
         require("smart-splits").move_cursor_left()
       end,
+      mode = { 'n', 'i' }
     },
     {
       "<C-j>",
       function()
         require("smart-splits").move_cursor_down()
       end,
+      mode = { 'n', 'i' }
     },
     {
       "<C-k>",
       function()
         require("smart-splits").move_cursor_up()
       end,
+      mode = { 'n', 'i' }
     },
     {
       "<C-l>",
       function()
         require("smart-splits").move_cursor_right()
       end,
+      mode = { 'n', 'i' }
     },
   },
 }

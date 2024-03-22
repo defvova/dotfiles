@@ -14,27 +14,27 @@ return {
     {
       "<leader>Sc",
       [[<cmd>SessionLoad<cr>]],
-      desc = "ﭯ   restore last session for current dir",
+      desc = "[Session]: Restore last session for current dir",
     },
     {
       "<leader>Sl",
       [[<cmd>SessionLoadLast<cr>]],
-      desc = "ﮦ   restore last session",
+      desc = "[Session]: Restore last session",
     },
     {
       "<leader>SS",
       [[<cmd>SessionStop<cr>]],
-      desc = "stop saving session",
+      desc = "[Session]: Stop saving session",
     },
     {
       "<leader>SD",
       [[<cmd>SessionDelete<cr>]],
-      desc = "delete the current session",
+      desc = "[Session]: Delete the current session",
     },
     {
       "<leader>Ss",
       [[<cmd>Telescope persisted<cr>]],
-      desc = "search session",
+      desc = "[Session]: Search session",
     }
   },
 }

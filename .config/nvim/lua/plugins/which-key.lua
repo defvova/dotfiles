@@ -1,6 +1,7 @@
 return {
   "folke/which-key.nvim",
   lazy = false,
+  enabled = false,
   keys = "<leader>",
   opts = {
     -- marks = false,
