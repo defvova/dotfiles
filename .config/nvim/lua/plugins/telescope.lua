@@ -133,6 +133,10 @@ return {
           theme = 'ivy',
           initial_mode = "normal",
         },
+        lsp_definitions = {
+          theme = 'ivy',
+          initial_mode = "normal",
+        },
         buffers = {
           theme = "dropdown",
           sort_mru = true,

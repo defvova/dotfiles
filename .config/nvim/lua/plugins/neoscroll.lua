@@ -1,6 +1,6 @@
 local M = {
   "karb94/neoscroll.nvim",
-  enabled = true,
+  enabled = false,
   event = "BufReadPost",
   keys = { "<C-u>", "<C-d>", "<C-f>", "<C-y>" },
 }

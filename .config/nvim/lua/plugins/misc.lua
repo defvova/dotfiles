@@ -1,31 +1,41 @@
 return {
   {
+    "ahmedkhalf/project.nvim",
+    lazy = false,
+    config = function()
+      require("project_nvim").setup {
+        silent_chdir = true,
+        patterns = { ".git", "package.json" }
+      }
+    end
+  },
+  {
     'dmmulroy/ts-error-translator.nvim',
     ft = { 'js', 'jsx', 'ts', 'tsx' },
     event = "VeryLazy",
     config = true
   },
-  {
-    "chrisgrieser/nvim-spider",
-    keys = {
-      {
-        "e",
-        "<cmd>lua require('spider').motion('e')<CR>",
-        mode = { "n", "o", "x" },
-      },
-      {
-        "w",
-        "<cmd>lua require('spider').motion('w')<CR>",
-        mode = { "n", "o", "x" },
-      },
-      {
-        "b",
-        "<cmd>lua require('spider').motion('b')<CR>",
-        mode = { "n", "o", "x" },
-      },
-    },
-    config = true
-  },
+  -- {
+  --   "chrisgrieser/nvim-spider",
+  --   keys = {
+  --     {
+  --       "e",
+  --       "<cmd>lua require('spider').motion('e')<CR>",
+  --       mode = { "n", "o", "x" },
+  --     },
+  --     {
+  --       "w",
+  --       "<cmd>lua require('spider').motion('w')<CR>",
+  --       mode = { "n", "o", "x" },
+  --     },
+  --     {
+  --       "b",
+  --       "<cmd>lua require('spider').motion('b')<CR>",
+  --       mode = { "n", "o", "x" },
+  --     },
+  --   },
+  --   config = true
+  -- },
   {
     "Darazaki/indent-o-matic",
     event = "VeryLazy",

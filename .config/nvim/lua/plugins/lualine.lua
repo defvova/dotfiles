@@ -112,14 +112,14 @@ return {
           },
         },
         lualine_x = {
-          {
-            "diagnostics",
-            sources = { "nvim_lsp" },
-            symbols = assets.lsp,
-            on_click = function()
-              vim.cmd [[TroubleToggle document_diagnostics]]
-            end,
-          },
+          -- {
+          --   "diagnostics",
+          --   sources = { "nvim_lsp" },
+          --   symbols = assets.lsp,
+          --   on_click = function()
+          --     vim.cmd [[TroubleToggle document_diagnostics]]
+          --   end,
+          -- },
           {
             pending_updates,
             cond = has_pending_updates,
@@ -127,8 +127,8 @@ return {
               vim.cmd [[Lazy sync]]
             end,
           },
-          { "filetype", icon_only = true, separator = "",                                                            padding = { left = 0, right = 0 } },
-          { "filename", path = 0, symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
+          -- { "filetype", icon_only = true, separator = "",                                                            padding = { left = 0, right = 0 } },
+          -- { "filename", path = 0, symbols = { modified = assets.modified, readonly = "", unnamed = "Empty" } },
         },
         lualine_y = {
           {
