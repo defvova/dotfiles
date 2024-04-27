@@ -1,6 +1,3 @@
-require("core.theming.themes").activate_theme("tokyonight", "storm", false)
-vim.opt.background = "dark"
-
 -- autocmds
 local autocmd = vim.api.nvim_create_autocmd
 local api = vim.api

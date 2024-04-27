@@ -57,7 +57,7 @@ return {
         component_separators = "",
         -- section_separators = { left = assets.sep_right, right = "" },
         section_separators = "",
-        -- theme = "auto",
+        theme = "auto",
         -- theme = "catppuccin",
         icons_enabled = true,
         disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
