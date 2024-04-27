@@ -1,10 +1,12 @@
 return {
   "f-person/auto-dark-mode.nvim",
   lazy = false,
+  enabled = false,
   opts = {
     update_interval = 1000,
     set_dark_mode = function()
-      require("core.theming.themes").activate_theme("nightowl", "night-owl", false)
+      -- require("core.theming.themes").activate_theme("nightowl", "night-owl", false)
+      require("core.theming.themes").activate_theme("tokyonight", "day", false)
       vim.opt.background = "dark"
       -- require "custom.plugins.theme"
     end,

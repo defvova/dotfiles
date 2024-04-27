@@ -135,6 +135,24 @@ local M = {
         vim.cmd.colorscheme "oxocarbon"
       end,
     },
+    tokyonight = {
+      style = { "storm", "moon", "night", "day" },
+      transparent = false,
+      lualine = function(style)
+        return "tokyonight"
+      end,
+      activate = function(style, transparent)
+        require("tokyonight").setup {
+          style = "moon"
+        }
+        if style == "day" then
+          vim.opt.background = "light"
+        else
+          vim.opt.background = "dark"
+        end
+        vim.cmd.colorscheme "tokyonight"
+      end,
+    },
     rosepine = {
       style = { "main", "moon", "dawn" },
       transparent = false,

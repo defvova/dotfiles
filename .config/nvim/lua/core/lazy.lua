@@ -25,7 +25,7 @@ require("lazy").setup({
   install = {
     missing = true,
     -- try to load one of these colorschemes when starting an installation during startup
-    colorscheme = { "edge", "night-owl" },
+    colorscheme = { "edge", "tokyonight", "night-owl" },
   },
   performance = {
     cache = {
