@@ -61,8 +61,6 @@ alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /de
 alias pcat='cat -p'
 alias ps='procs'
 alias df='duf'
-alias docker='podman'
-alias docker-compose='podman-compose'
 alias reload='exec fish'
 # alias speedtest='networkquality'
 alias speedtest='speedtest-cli'
@@ -70,6 +68,8 @@ alias weather='curl wttr.in/cherkasy'
 alias youtube='youtube-dl'
 alias spotify='ncspot'
 alias http='xh'
+# brew install ynqa/tap/jnv
+alias json='jnv'
 
 alias diesel='diesel --database-url=file:///Users/vova/.config/lazynotes/database.sqlite'
 
