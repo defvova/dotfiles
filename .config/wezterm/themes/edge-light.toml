@@ -1,0 +1,41 @@
+[colors]
+ansi = [
+    "#fafafa",
+    "#db7070",
+    "#7c9f4b",
+    "#d69822",
+    "#6587bf",
+    "#b870ce",
+    "#509c93",
+    "#5e646f",
+]
+background = "#fafafa"
+brights = [
+    "#5e646f",
+    "#db7070",
+    "#7c9f4b",
+    "#d69822",
+    "#6587bf",
+    "#b870ce",
+    "#509c93",
+    "#5e646f",
+]
+cursor_bg = "#5e646f"
+cursor_border = "#5e646f"
+cursor_fg = "#fafafa"
+foreground = "#5e646f"
+selection_bg = "#5e646f"
+selection_fg = "#fafafa"
+
+[colors.indexed]
+16 = "#db7070"
+17 = "#509c93"
+18 = "#7c9f4b"
+19 = "#d69822"
+20 = "#6587bf"
+21 = "#b870ce"
+
+[metadata]
+aliases = []
+author = "cjayross (https://github.com/cjayross)"
+name = "Edge Light"

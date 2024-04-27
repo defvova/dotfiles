@@ -34,8 +34,9 @@ config.front_end = "WebGpu"
 config.max_fps = 120
 config.webgpu_power_preference = "HighPerformance"
 
-config.font = wezterm.font('JetBrains Mono', { weight = 'Bold', italic = true })
-config.font_size = 14.0
+-- config.font = wezterm.font('JetBrains Mono', { weight = 'Book', italic = true })
+config.font = wezterm.font('MesloLGS Nerd Font Mono', { weight = 'Medium', italic = true })
+config.font_size = 15.0
 config.line_height = 1.1
 -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } -- disable ligatures
 
@@ -50,21 +51,22 @@ config.window_padding = {
   bottom = 0,
 }
 config.adjust_window_size_when_changing_font_size = false
-config.color_scheme = scheme_for_appearance(get_appearance())
 
+-- config.color_scheme = scheme_for_appearance(get_appearance())
 -- INFO: https://wezfurlong.org/wezterm/config/lua/wezterm.color/save_scheme.html#weztermcolorsave_schemecolors-metadata-file_name
 -- colors, metadata = wezterm.color.load_base16_scheme("/Users/vova/.config/wezterm/themes/edge-light.yaml")
 -- wezterm.color.save_scheme(colors, metadata, "/Users/vova/.config/wezterm/themes/edge-light.toml")
-local lightScheme = wezterm.get_builtin_color_schemes()['Edge Light (base16)']
-lightScheme.foreground = '#4b505b'
-lightScheme.selection_bg = '#dde2e7'
-lightScheme.selection_fg = '#4b505b'
--- lightScheme.cursor_bg = '#6996e0'
--- lightScheme.cursor_border = '#6996e0'
-
-config.color_schemes = {
-  ['Edge Light (base16)'] = lightScheme,
-}
+-- local lightScheme = wezterm.get_builtin_color_schemes()['Edge Light (base16)']
+-- lightScheme.foreground = '#4b505b'
+-- lightScheme.selection_bg = '#dde2e7'
+-- lightScheme.selection_fg = '#4b505b'
+-- -- lightScheme.cursor_bg = '#6996e0'
+-- -- lightScheme.cursor_border = '#6996e0'
+--
+-- config.color_schemes = {
+--   ['Edge Light (base16)'] = lightScheme,
+-- }
+config.color_scheme = 'Tokyo Night Storm (Gogh)'
 
 local act = wezterm.action
 config.mouse_bindings = {
@@ -93,8 +95,8 @@ config.keys = {
     mods = 'CMD',
     action = act.ClearScrollback 'ScrollbackAndViewport',
   },
-  { key = '[', mods = 'CMD', action = act.ScrollByPage(-1) },
-  { key = ']', mods = 'CMD', action = act.ScrollByPage(1) },
+  { key = '[', mods = 'CMD', action = act.ScrollByPage(-0.5) },
+  { key = ']', mods = 'CMD', action = act.ScrollByPage(0.5) },
   -- SEARCH
   {
     key = 'f',
