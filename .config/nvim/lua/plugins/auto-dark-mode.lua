@@ -32,7 +32,72 @@ return {
     end,
     set_light_mode = function()
       require("catppuccin").setup {
-        flavour = "latte"
+        flavour = "latte",
+        integrations = {
+          alpha = true,
+          gitsigns = true,
+          treesitter = true,
+          notify = true,
+          mason = true,
+          neotree = true,
+          noice = true,
+          cmp = true,
+          treesitter_context = true,
+          ufo = true,
+          lsp_trouble = true,
+          illuminate = {
+            enabled = true,
+            lsp = true
+          },
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = { "italic" },
+              hints = { "italic" },
+              warnings = { "italic" },
+              information = { "italic" },
+            },
+            underlines = {
+              errors = { "underline" },
+              hints = { "underline" },
+              warnings = { "underline" },
+              information = { "underline" },
+            },
+            inlay_hints = {
+              background = true,
+            },
+          },
+        },
+        highlight_overrides = {
+          latte = function(latte)
+            local util = require("tokyonight.util")
+
+            return {
+              NeoTreeNormal = {
+                bg = latte.base
+              },
+              NeoTreeNormalNC = {
+                -- bg = util.darken(latte.base, 0.9)
+                link = "NeoTreeNormal"
+              },
+              NormalFloat = {
+                bg = latte.base
+              },
+              FloatBorder = {
+                link = "NormalFloat"
+              },
+              FloatTitle = {
+                link = "NormalFloat"
+              },
+              InclineNormal = {
+                fg = '#000000'
+              },
+              InclineNormalNC = {
+                fg = util.lighten('#000000', 0.6)
+              }
+            }
+          end
+        },
       }
 
       vim.opt.background = "light"
