@@ -20,8 +20,8 @@ return {
     },
   },
   init = function()
-    local t = require("legendary.toolbox")
-    require("legendary").keymaps({
+    local t = require "legendary.toolbox"
+    require("legendary").keymaps {
       {
         itemgroup = "Telescope|Search|Grep",
         description = "Gaze deeply into unknown regions using the power of the moon",
@@ -39,7 +39,7 @@ return {
               "live_grep",
               { prompt_title = "Open Files", path_display = { "shorten" }, grep_open_files = true }
             ),
-            description = '[S]earch [G]rep text',
+            description = "[S]earch [G]rep text",
           },
           {
             "<leader>/",
@@ -57,16 +57,16 @@ return {
               "buffers",
               { prompt_title = "Buffer List", path_display = { "smart" } }
             ),
-            desc = "Find existing [B]uffers"
+            desc = "Find existing [B]uffers",
           },
           {
             "<leader>st",
             "<cmd>lua require'core.theming.theme_picker'.open_picker()<cr>",
-            desc = "[S]earch [T]heme"
-          }
+            desc = "[S]earch [T]heme",
+          },
         },
       },
-    })
+    }
   end,
   opts = function()
     local actions = require "telescope.actions"
@@ -130,11 +130,11 @@ return {
           theme = "ivy",
         },
         lsp_references = {
-          theme = 'ivy',
+          theme = "ivy",
           initial_mode = "normal",
         },
         lsp_definitions = {
-          theme = 'ivy',
+          theme = "ivy",
           initial_mode = "normal",
         },
         buffers = {
@@ -145,10 +145,10 @@ return {
           initial_mode = "normal",
           mappings = {
             i = {
-              ['<c-d>'] = require('telescope.actions').delete_buffer
+              ["<c-d>"] = require("telescope.actions").delete_buffer,
             },
             n = {
-              ['d'] = require('telescope.actions').delete_buffer
+              ["d"] = require("telescope.actions").delete_buffer,
             },
           },
         },
@@ -182,7 +182,7 @@ return {
           auto_quoting = true,
           theme = "ivy",
           -- layout_config = { mirror=true }, -- mirror preview pane
-        }
+        },
       },
     }
   end,
@@ -196,7 +196,7 @@ return {
       "persisted",
       "live_grep_args",
       "media_files",
-      "notify"
+      "notify",
     }
     local telescope = require "telescope"
     telescope.setup(opts)

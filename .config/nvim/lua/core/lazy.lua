@@ -27,6 +27,12 @@ require("lazy").setup({
     -- try to load one of these colorschemes when starting an installation during startup
     colorscheme = { "tokyonight", "catppuccin" },
   },
+  pkg = {
+    sources = {
+      "lazy",
+      "packspec",
+    },
+  },
   performance = {
     cache = {
       enabled = true,

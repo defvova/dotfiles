@@ -2,7 +2,8 @@
 
 return {
   "nvim-lualine/lualine.nvim",
-  event = { "BufReadPost", "BufAdd", "BufNewFile" },
+  -- event = { "BufReadPost", "BufAdd", "BufNewFile" },
+  lazy = false,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "linrongbin16/lsp-progress.nvim",
@@ -34,8 +35,8 @@ return {
     local has_pending_updates = lazy_ok and lazy.has_updates
 
     local function truncated_git_branch()
-      local handle = io.popen("git symbolic-ref --short HEAD 2>/dev/null")
-      local branch = handle:read("*a") or ""
+      local handle = io.popen "git symbolic-ref --short HEAD 2>/dev/null"
+      local branch = handle:read "*a" or ""
       handle:close()
 
       branch = branch:gsub("\n", "")
@@ -61,7 +62,7 @@ return {
         -- theme = "catppuccin",
         icons_enabled = true,
         disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
-        globalstatus = true
+        globalstatus = true,
       },
       sections = {
         lualine_a = {},
@@ -156,5 +157,5 @@ return {
       pattern = "LspProgressStatusUpdated",
       callback = require("lualine").refresh,
     })
-  end
+  end,
 }

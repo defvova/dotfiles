@@ -1,6 +1,6 @@
 local lsp_buffers = {}
 local function autocmds(client, bufnr)
-  require("legendary").autocmds({
+  require("legendary").autocmds {
     {
       name = "LspOnAttachAutocmds",
       clear = false,
@@ -15,7 +15,7 @@ local function autocmds(client, bufnr)
         opts = { buffer = bufnr },
       },
     },
-  })
+  }
 end
 
 local function commands(client, bufnr)
@@ -23,7 +23,7 @@ local function commands(client, bufnr)
     return {}
   end
 
-  require("legendary").commands({
+  require("legendary").commands {
     {
       ":LspRestart",
       description = "[LSP]: Restart any attached clients",
@@ -47,7 +47,7 @@ local function commands(client, bufnr)
       end,
       description = "[LSP]: Show logs",
     },
-  })
+  }
 
   vim.g.lsp_commands = true
 end
@@ -66,23 +66,23 @@ local function mappings(client, bufnr)
     end
   end
 
-  local t = require("legendary.toolbox")
-  require("legendary").keymaps({
+  local t = require "legendary.toolbox"
+  require("legendary").keymaps {
     {
-      'K',
+      "K",
       show_documentation,
       description = "[LSP]: Show hover information",
       opts = {
         buffer = bufnr,
-      }
+      },
     },
     {
-      'gd',
+      "gd",
       t.lazy_required_fn("telescope.builtin", "lsp_definitions"),
-      description = '[LSP]: [G]o to [D]efinition',
+      description = "[LSP]: [G]o to [D]efinition",
       opts = {
         buffer = bufnr,
-      }
+      },
     },
     {
       "<A-Enter>",
@@ -90,7 +90,7 @@ local function mappings(client, bufnr)
         require("actions-preview").code_actions()
       end,
       description = "[LSP]: Show code actions",
-      mode = { 'v', 'n', 'i' },
+      mode = { "v", "n", "i" },
       opts = {
         buffer = bufnr,
       },
@@ -101,9 +101,19 @@ local function mappings(client, bufnr)
       description = "[LSP]: [G]o to [R]eferences",
       opts = { buffer = bufnr },
     },
-    { "<leader>D", t.lazy_required_fn("telescope.builtin", "lsp_type_definitions"), description = "[LSP]: Go to type [D]efinition",  opts = { buffer = bufnr } },
-    { "gi",        t.lazy_required_fn("telescope.builtin", "lsp_implementations"),  description = "[LSP]: [G]o to [I]mplementation", opts = { buffer = bufnr } },
-  })
+    {
+      "<leader>D",
+      t.lazy_required_fn("telescope.builtin", "lsp_type_definitions"),
+      description = "[LSP]: Go to type [D]efinition",
+      opts = { buffer = bufnr },
+    },
+    {
+      "gi",
+      t.lazy_required_fn("telescope.builtin", "lsp_implementations"),
+      description = "[LSP]: [G]o to [I]mplementation",
+      opts = { buffer = bufnr },
+    },
+  }
 end
 
 return {
@@ -144,7 +154,7 @@ return {
       local cmp = require "cmp"
       local cmp_action = lsp_zero.cmp_action()
 
-      require('luasnip.loaders.from_vscode').lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load()
 
       local cmp_options = {
         completion = {
@@ -199,16 +209,16 @@ return {
           },
           ["<C-n>"] = cmp_action.luasnip_supertab(),
           ["<C-p>"] = cmp_action.luasnip_shift_supertab(),
-          ['<Tab>'] = cmp_action.luasnip_supertab(),
-          ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+          ["<Tab>"] = cmp_action.luasnip_supertab(),
+          ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
         },
         sources = {
           -- group_index = 1
           { name = "nvim_lsp", priority = 1000 },
-          { name = "path",     priority = 1000 },
+          { name = "path", priority = 1000 },
           -- { name = "codeium", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "buffer",   priority = 500 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
         },
       }
 
@@ -228,19 +238,19 @@ return {
         sources = cmp.config.sources({
           { name = "path", max_item_count = 5 },
         }, {
-          { name = "cmdline", max_item_count = 15, option = { ignore_cmds = { 'Man', '!' } } },
+          { name = "cmdline", max_item_count = 15, option = { ignore_cmds = { "Man", "!" } } },
         }),
       })
 
       -- lsp_document_symbols
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp_document_symbol", max_item_count = 8 },
-        }, {
-          { name = "buffer", max_item_count = 5 },
-        }),
-      })
+      -- cmp.setup.cmdline("/", {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = cmp.config.sources({
+      --     { name = "nvim_lsp_document_symbol", max_item_count = 8 },
+      --   }, {
+      --     { name = "buffer", max_item_count = 5 },
+      --   }),
+      -- })
     end,
   },
 
@@ -255,7 +265,7 @@ return {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
         init = function()
-          require("legendary").commands({
+          require("legendary").commands {
             {
               ":Mason",
               description = "[LSP Servers]: Open Mason",
@@ -264,7 +274,7 @@ return {
               ":MasonUninstallAll",
               description = "[LSP Servers]: Uninstall all Mason packages",
             },
-          })
+          }
         end,
         config = true,
       },
@@ -278,7 +288,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "princejoogie/tailwind-highlight.nvim",
       "b0o/schemastore.nvim",
-      "pmizio/typescript-tools.nvim"
+      "pmizio/typescript-tools.nvim",
     },
     config = function()
       local tw_highlight = require "tailwind-highlight"
@@ -291,7 +301,7 @@ return {
         if vim.tbl_contains(lsp_buffers, bufnr) then
           return
         end
-        lsp_zero.default_keymaps { buffer = bufnr, exclude = { 'K', '<F4>', 'gd', 'gD', 'gi', 'gr' } }
+        lsp_zero.default_keymaps { buffer = bufnr, exclude = { "K", "<F4>", "gd", "gD", "gi", "gr" } }
 
         -- autocmds(client, bufnr)
         commands(client, bufnr)
@@ -306,12 +316,12 @@ return {
         table.insert(lsp_buffers, bufnr)
       end)
 
-      lsp_zero.set_sign_icons({
-        error = '✘',
-        warn = '▲',
-        hint = '⚑',
-        info = '»'
-      })
+      lsp_zero.set_sign_icons {
+        error = "✘",
+        warn = "▲",
+        hint = "⚑",
+        info = "»",
+      }
 
       local servers = {
         -- tsserver = {},
@@ -333,7 +343,7 @@ return {
               experimental = {
                 classRegex = {
                   { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                  { "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+                  { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
                 },
               },
             },
@@ -348,13 +358,13 @@ return {
           --     tsdk = vim.fs.normalize('~/Library/pnpm/global/5/node_modules/typescript/lib')
           --   }
           -- },
-        }
+        },
       }
 
       local capabilities = lsp_zero.get_capabilities()
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
-        lineFoldingOnly = true
+        lineFoldingOnly = true,
       }
 
       local ensure_installed = {}
@@ -363,7 +373,6 @@ return {
         lsp_zero.use(server_name, options)
         table.insert(ensure_installed, server_name)
       end
-
 
       -- local lspconfig_util = require "lspconfig.util"
       -- local add_bun_prefix = require("custom.plugins.lsp.bun").add_bun_prefix
@@ -385,12 +394,12 @@ return {
         settings = {
           separate_diagnostic_server = true,
           publish_diagnostic_on = "insert_leave",
-        }
+        },
       }
 
       -- require("custom.plugins.lsp.null-ls").setup { on_attach = lsp_zero.on_attach }
 
-      require('mason').setup({
+      require("mason").setup {
         ui = {
           icons = {
             package_pending = " ",
@@ -411,16 +420,16 @@ return {
         },
 
         max_concurrent_installers = 10,
-      })
-      require('mason-lspconfig').setup({
+      }
+      require("mason-lspconfig").setup {
         automatic_installation = true,
         ensure_installed = ensure_installed,
         handlers = {
           lsp_zero.default_setup,
         },
-      })
+      }
 
       require("plugins.lsp.handlers").setup()
     end,
-  }
+  },
 }

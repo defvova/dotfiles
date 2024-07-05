@@ -2,18 +2,18 @@ return {
   "kawre/leetcode.nvim",
   cmd = "Leet",
   init = function()
-    require("legendary").commands({
+    require("legendary").commands {
       {
         ":Leet",
-        description = "[Teach]: Open leet code"
-      }
-    })
+        description = "[Teach]: Open leet code",
+      },
+    }
   end,
   opts = {
-    lang = 'ruby',
+    lang = "rust",
     plugins = {
       non_standalone = true,
       fidget = false,
     },
-  }
+  },
 }

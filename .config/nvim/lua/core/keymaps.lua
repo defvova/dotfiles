@@ -7,9 +7,12 @@ map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next
 map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- map({ 'n' }, '#', [[<cmd>let save_pos=getpos(".")<CR>#<cmd>call setpos('.', save_pos)<CR>]], { noremap = true, silent = true })
-map('n', '#',
+map(
+  "n",
+  "#",
   [[<cmd>lua vim.fn.setreg('/', '\\<' .. vim.fn.expand('<cword>') .. '\\>')<CR><cmd>set hlsearch<CR>]],
-  { noremap = true, silent = true })
+  { noremap = true, silent = true }
+)
 
 map("n", "<ESC>", "<cmd>lua require('notify').dismiss(); vim.cmd('noh')<CR>", { desc = "no highlight & no alerts" })
 
@@ -22,7 +25,7 @@ map("i", ";", ";<c-g>u")
 map("n", "tt", "<cmd>$tabnew<CR>", { desc = "new tab" })
 
 -- Copy all
-map("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "copy whole file" })
+-- map("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "copy whole file" })
 
 -- switch between windows
 -- map("n", "<C-h>", "<C-w>h", { desc = "window left" })
@@ -57,7 +60,8 @@ map("v", "<", "<gv", { desc = "dedent" })
 map("v", ">", ">gv", { desc = "indent" })
 
 -- map("n", "<leader>w", "<cmd> w! <CR>", { desc = "save file" })
-map("n", "<leader>q", "<cmd>lua require('core.utils').smart_quit()<CR>", { desc = "quit", silent = true })
+-- map("n", "<leader>q", "<cmd>lua require('core.utils').smart_quit()<CR>", { desc = "quit", silent = true })
+map("n", "<leader>q", "<cmd>q!<CR>", { desc = "quit", silent = true })
 
 map("n", "c.", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { desc = "search and replace word under cursor" })
 map("n", "c>", [[:%s/\V<C-r><C-a>//g<Left><Left>]], { desc = "search and replace WORD under cursor" })
@@ -91,14 +95,14 @@ function SetupMultipleCursors()
   )
 end
 
-local t = require("legendary.toolbox")
-legendary.keymaps({
+local t = require "legendary.toolbox"
+legendary.keymaps {
   {
     "`",
     ":",
     hide = true,
     description = "Command mode",
-    mode = { 'n', 'v', 'x' }
+    mode = { "n", "v", "x" },
   },
   {
     ":",
@@ -106,12 +110,20 @@ legendary.keymaps({
     hide = true,
     description = "Search [F]iles",
   },
-  { "<leader>rN", "<cmd> set rnu! <CR>",                 description = "[Config]: Toggle [R]elative [N]umber" },
-  { "<S-b>",      "<cmd> enew <CR>",                     description = "[NVIM]: New Buffer" },
-  { "<leader>us", "<cmd> e $MYVIMRC | :cd %:p:h <CR>",   description = "[NVIM]: [U]pdate [S]ettings" },
+  { "<leader>rN", "<cmd> set rnu! <CR>", description = "[Config]: Toggle [R]elative [N]umber" },
+  { "<S-b>", "<cmd> enew <CR>", description = "[NVIM]: New Buffer" },
+  { "<leader>us", "<cmd> e $MYVIMRC | :cd %:p:h <CR>", description = "[NVIM]: [U]pdate [S]ettings" },
 
-  { "c.",         [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], description = "[Replace]: Find and replace word under cursor" },
-  { "c>",         [[:%s/\V<C-r><C-a>//g<Left><Left>]],   description = "[Replace]: Find and replace WORD under cursor" },
+  {
+    "c.",
+    [[:%s/\<<C-r><C-w>\>//g<Left><Left>]],
+    description = "[Replace]: Find and replace word under cursor",
+  },
+  {
+    "c>",
+    [[:%s/\V<C-r><C-a>//g<Left><Left>]],
+    description = "[Replace]: Find and replace WORD under cursor",
+  },
   -- Multiple Cursors
   -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
   -- https://github.com/akinsho/dotfiles/blob/45c4c17084d0aa572e52cc177ac5b9d6db1585ae/.config/nvim/plugin/mappings.lua#L298
@@ -167,4 +179,4 @@ legendary.keymaps({
       -- },
     },
   },
-})
+}
