@@ -1,0 +1,34 @@
+[colors]
+ansi = [
+  '#1e1c31',
+  '#f0719b',
+  '#a1efd3',
+  '#ffe9aa',
+  '#57c7ff',
+  '#c792ea',
+  '#87dfeb',
+  '#f8f8f2',
+]
+background = '#1e1c31'
+brights = [
+  '#585273',
+  '#f02e6e',
+  '#2ce592',
+  '#ffb378',
+  '#1da0e2',
+  '#a742ea',
+  '#63f2f1',
+  '#a6b3cc',
+]
+cursor_bg = '#a1efd3'
+cursor_border = '#1e1c31'
+cursor_fg = '#1e1c31'
+foreground = '#eeffff'
+selection_bg = '#3e3859'
+selection_fg = '#cbe3e7'
+
+[colors.indexed]
+
+[metadata]
+name = 'embark'
+origin_url = 'https://embark-theme.github.io/'

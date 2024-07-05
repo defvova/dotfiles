@@ -1,11 +1,11 @@
 return {
   "f-person/auto-dark-mode.nvim",
   lazy = false,
-  enabled = true,
+  enabled = false,
   opts = {
     update_interval = 1000,
     set_dark_mode = function()
-      require("tokyonight").setup({
+      require("tokyonight").setup {
         sidebars = { "qf", "terminal", "packer" },
         lualine_bold = true,
         on_colors = function(colors)
@@ -17,18 +17,18 @@ return {
           colors.bg_sidebar = bg_dark
         end,
         on_highlights = function(hl)
-          local util = require("tokyonight.util")
+          local util = require "tokyonight.util"
 
           hl.InclineNormal = {
-            fg = '#ffffff'
+            fg = "#ffffff",
           }
           hl.InclineNormalNC = {
-            fg = util.darken('#ffffff', 0.6)
+            fg = util.darken("#ffffff", 0.6),
           }
         end,
-      })
+      }
       vim.opt.background = "dark"
-      vim.cmd("colorscheme tokyonight")
+      vim.cmd "colorscheme tokyonight"
     end,
     set_light_mode = function()
       require("catppuccin").setup {
@@ -47,7 +47,7 @@ return {
           lsp_trouble = true,
           illuminate = {
             enabled = true,
-            lsp = true
+            lsp = true,
           },
           native_lsp = {
             enabled = true,
@@ -70,38 +70,38 @@ return {
         },
         highlight_overrides = {
           latte = function(latte)
-            local util = require("tokyonight.util")
+            local util = require "tokyonight.util"
 
             return {
               NeoTreeNormal = {
-                bg = latte.base
+                bg = latte.base,
               },
               NeoTreeNormalNC = {
                 -- bg = util.darken(latte.base, 0.9)
-                link = "NeoTreeNormal"
+                link = "NeoTreeNormal",
               },
               NormalFloat = {
-                bg = latte.base
+                bg = latte.base,
               },
               FloatBorder = {
-                link = "NormalFloat"
+                link = "NormalFloat",
               },
               FloatTitle = {
-                link = "NormalFloat"
+                link = "NormalFloat",
               },
               InclineNormal = {
-                fg = '#000000'
+                fg = "#000000",
               },
               InclineNormalNC = {
-                fg = util.lighten('#000000', 0.6)
-              }
+                fg = util.lighten("#000000", 0.6),
+              },
             }
-          end
+          end,
         },
       }
 
       vim.opt.background = "light"
-      vim.cmd("colorscheme catppuccin")
-    end
-  }
+      vim.cmd "colorscheme catppuccin"
+    end,
+  },
 }
