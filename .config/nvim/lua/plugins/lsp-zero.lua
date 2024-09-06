@@ -403,8 +403,6 @@ return {
         ui = {
           icons = {
             package_pending = " ",
-            package_installed = " ",
-            package_uninstalled = " ﮊ",
           },
 
           keymaps = {
@@ -422,8 +420,8 @@ return {
         max_concurrent_installers = 10,
       }
       require("mason-lspconfig").setup {
-        automatic_installation = true,
-        ensure_installed = ensure_installed,
+        automatic_installation = false,
+        -- ensure_installed = ensure_installed,
         handlers = {
           lsp_zero.default_setup,
         },

@@ -119,5 +119,7 @@ return {
     vim.g.skip_ts_context_commentstring_module = true
     require('rainbow-delimiters.setup').setup {}
     require("nvim-treesitter.configs").setup(opts)
+
+    vim.treesitter.language.register('markdown', 'mdx')
   end,
 }

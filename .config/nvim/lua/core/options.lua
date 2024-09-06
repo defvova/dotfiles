@@ -17,7 +17,6 @@ opt.inccommand = "split" -- preview incremental substitute
 opt.list = false         -- Show some invisible characters (tabs...
 opt.pumheight = 10       -- Maximum number of entries in a popup
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
-opt.shortmess:append { W = true, I = true, c = true }
 opt.showmode = false  -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
 opt.spelllang = { "en" }
@@ -27,7 +26,7 @@ opt.undolevels = 10000
 opt.autoread = true                -- auto read file if changed outside of vim
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5                -- Minimum window width
-opt.showmatch = true               -- highlight matching [{()}]
+-- opt.showmatch = true               -- highlight matching [{()}]
 opt.hidden = true
 opt.title = true
 opt.backup = false

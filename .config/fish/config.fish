@@ -3,8 +3,8 @@
 zoxide init --cmd cd fish | source
 
 set -U fish_greeting
-set -gx EDITOR nvim
-set -gx FZF_CTRL_T_COMMAND nvim
+set -gx EDITOR zed --wait
+set -gx FZF_CTRL_T_COMMAND zed
 
 # don't describe the command for darwin
 # https://github.com/fish-shell/fish-shell/issues/6270
