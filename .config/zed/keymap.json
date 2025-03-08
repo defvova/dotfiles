@@ -1,0 +1,73 @@
+[
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-t": "workspace::NewTerminal"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "`": "command_palette::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "tab": "menu::SelectNext",
+      "shift-tab": "menu::SelectPrev"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "shift-tab": "editor::ContextMenuPrev",
+      "tab": "editor::ContextMenuNext"
+    }
+  },
+  {
+    "context": "(BufferSearchBar && !in_replace > Editor) || (ProjectSearchBar > Editor)",
+    "bindings": {
+      "shift-tab": "search::PreviousHistoryQuery",
+      "tab": "search::NextHistoryQuery"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": [
+        "vim::PushOperator",
+        {
+          "AddSurrounds": {}
+        }
+      ]
+    }
+  }
+  // {
+  //   "context": "!Editor && FileFinder",
+  //   "use_key_equivalents": true,
+  //   "bindings": {
+  //     // "tab": "editor::ContextMenuNext"
+  //     // "tab": "menu::SelectNext"
+  //     // "tab": "editor::MoveDown"
+  //   }
+  // }
+]
